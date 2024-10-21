@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aesolicitudes-mfe
+  labels:
+    app: aesolicitudes-mfe
+    app.kubernetes.io/component: aesolicitudes-mfe
+    app.kubernetes.io/instance: aesolicitudes-mfe
+    app.kubernetes.io/name: aesolicitudes-mfe
+    app.kubernetes.io/part-of: ae-app-frontend
+    app.openshift.io/runtime: aesolicitudes-mfe
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aesolicitudes-mfe
+  template:
+    metadata:
+      labels:
+        app: aesolicitudes-mfe
+        deployment: aesolicitudes-mfe
+    spec:
+      containers:
+        - name: aesolicitudes-mfe
+          image: 'image-registry.openshift-image-registry.svc:5000/soporte-colsanitas-dev/aesolicitudes-mfe:latest'
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources:
+            requests:
+              cpu: 10m
+              memory: 100Mi
+            - name: TZ
+              value: "America/Bogota"              
