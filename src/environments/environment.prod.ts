@@ -8,6 +8,15 @@ export const environment = {
     authority: 'https://login.microsoftonline.com/8ca9fee9-9f9d-4340-8cbb-05498e9baa9a',
     redirectUri: 'http://localhost:4204'
   },  
-  urlms: 'http://localhost:8080'
+  urlms: 'http://localhost:8080',
+  bhservicesinfo: {
+    documental: {
+      url: '',
+      idfolder_docidentificacion: '',
+      idfolder_docsolicitud: '',
+      documentClass_docidentificacion: '',
+      documentClass_docsolicitud: ''
+    }
+  }
 };
 

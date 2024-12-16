@@ -59,6 +59,9 @@ export class AppHeaderComponent implements OnInit {
         if (firstLevel === '0') {
             this.getExchangeInfoForHatSubNode0(hatIndex, exchInfo);
         }
+        if (firstLevel === '1') {
+            this.getExchangeInfoForHatSubNode1(hatIndex, exchInfo);
+        }
         return exchInfo;
     }
 
@@ -72,6 +75,18 @@ export class AppHeaderComponent implements OnInit {
         if (hatSubNodeIndex === '0_0') {
             exchInfo.targetClassName = ModelConstants.Solicitud.name;
             exchInfo.targetIUName = ModelConstants.Solicitud.piuuconsultarradicado;
+        }
+    }
+
+    /**
+     * Assign the proper values to the exchange information based in the hat index
+     * @param hatSubNodeIndex Hat index
+     * @param exchInfo Exchange information
+     */
+    private getExchangeInfoForHatSubNode1(hatSubNodeIndex: string, exchInfo: ExchangeInfo): void {
+        if (hatSubNodeIndex === '1') {
+            exchInfo.targetClassName = ModelConstants.Protecciondatos.name;
+            exchInfo.targetIUName = ModelConstants.Protecciondatos.siuutcrearprotecciondatosna;
         }
     }
 

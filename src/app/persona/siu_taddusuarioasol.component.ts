@@ -1,0 +1,2139 @@
+﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { AppGlobalInfo } from '../app.appglobalinfo';
+import { Field, FieldDefinedSelection, FieldOVLenseSearch, FieldOVPreload } from '../common/baseIUElements';
+import { AbstractServiceIU } from '../common/abstractSIU';
+import { ExchangeInfo } from '../common/app.exchangeinfo';
+import { ModelConstants } from '../common/model.constants';
+import { Util } from '../common/app.utils';
+import { DefinedSelections } from '../common/definedSelection';
+import { StandardFunctions } from '../common/standardFunctions';
+import { LanguageMng } from '../common/languageMng';
+import { ConditionalNavigationMng } from '../common/conditionalNavigationMng';
+import { UserFunctions } from '../common/userFunctions';
+import { BHServicesUtil } from '../bhcallutils/bhservicesutil';
+import { GestionCache } from '../common/gestionCache';
+@Component({
+    selector: 'imes-persona-siu-taddusuarioasol',
+    templateUrl: './siu_taddusuarioasol.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class PersonaSIUuTADDUSUARIOASOLComponent extends AbstractServiceIU implements OnInit {
+    /** Fields */
+    public ptupuagrTipoIdentificacion: FieldOVPreload;
+    public ptupuagrDepartamentoNacimiento: FieldOVPreload;
+    public ptupuagrMunicipioNacimiento: FieldOVPreload;
+    public ptupuagrEstadoCivil: FieldOVPreload;
+    public ptupuatrNumIdentificacion: Field;
+    public ptupuatrPrimerNombre: Field;
+    public ptupuatrSegundoNombre: Field;
+    public ptupuatrPrimerApellido: Field;
+    public ptupuatrSegundoApellido: Field;
+    public ptupuatrFechaNacimiento: Field;
+    public ptupuatrGenero: FieldDefinedSelection;
+    public ptupuatrIndicadorExtranjero: FieldDefinedSelection;
+    public ptupuatrTelefonoFijo: Field;
+    public ptupuatrTelefonoCelular: Field;
+    public ptupuatrCorreoElectronico: Field;
+    public ptupuagrDepartamento: FieldOVPreload;
+    public ptupuagrMunicipio: FieldOVPreload;
+    public ptupuatrDireccionCompleta: Field;
+    public ptupuatrRural: FieldDefinedSelection;
+    public ptupuCodigo: Field;
+    public ptupuTieneEPSSanitas: Field;
+    public ptupuRechazadoAfiliacion: Field;
+    public ptupuagrPais: FieldOVLenseSearch;
+    public ptSolicitud: FieldOVLenseSearch;
+    public ptDireccionesTitular: FieldOVPreload;
+    public ptReplicarDireccion: Field;
+    public ptDireccionesXClass: FieldDefinedSelection;
+    public ptEstadoPersona: FieldOVLenseSearch;
+
+    /**
+     * Component constructor
+     * @param appGlobalInfo Application Global Information
+     * @param util Navigation utils
+     * @param changeDetectorRef Angular module
+     * @param langMng Language manager
+     * @param stdFun Standard functions
+     * @param condNavMng Conditional manager
+     * @param usrFunc User functions
+     */
+    constructor(
+        public override appGlobalInfo: AppGlobalInfo, public override util: Util, public override changeDetectorRef: ChangeDetectorRef,
+        public langMng: LanguageMng, public stdFun: StandardFunctions,
+        public override condNavMng: ConditionalNavigationMng, public usrFunc: UserFunctions,
+        private bhServicesUtil: BHServicesUtil, private gestionCache: GestionCache) {
+        super(appGlobalInfo, util, changeDetectorRef, condNavMng);
+        this.idXML = 'Clas_1431886233600805Ser_51UIServ_1';
+        this.className = ModelConstants.Persona.name;
+        this.iuName = ModelConstants.Persona.siuutaddusuarioasol;
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
+            'MesaDeApoyo']));
+        this.serviceName = 'TADDUSUARIOASOL';
+        this.title = this.langMng.translateText('cls_Persona_svc_TADDUSUARIOASOL',
+            'Añadir usuario');
+
+        // Create inbound argument components
+        this.ptupuagrTipoIdentificacion = new FieldOVPreload(this.langMng);
+        this.ptupuagrDepartamentoNacimiento = new FieldOVPreload(this.langMng);
+        this.ptupuagrMunicipioNacimiento = new FieldOVPreload(this.langMng);
+        this.ptupuagrEstadoCivil = new FieldOVPreload(this.langMng);
+        this.ptupuatrNumIdentificacion = new Field(this.langMng);
+        this.ptupuatrPrimerNombre = new Field(this.langMng);
+        this.ptupuatrSegundoNombre = new Field(this.langMng);
+        this.ptupuatrPrimerApellido = new Field(this.langMng);
+        this.ptupuatrSegundoApellido = new Field(this.langMng);
+        this.ptupuatrFechaNacimiento = new Field(this.langMng);
+        this.ptupuatrGenero = new FieldDefinedSelection(this.langMng);
+        this.ptupuatrIndicadorExtranjero = new FieldDefinedSelection(this.langMng);
+        this.ptupuatrTelefonoFijo = new Field(this.langMng);
+        this.ptupuatrTelefonoCelular = new Field(this.langMng);
+        this.ptupuatrCorreoElectronico = new Field(this.langMng);
+        this.ptupuagrDepartamento = new FieldOVPreload(this.langMng);
+        this.ptupuagrMunicipio = new FieldOVPreload(this.langMng);
+        this.ptupuatrDireccionCompleta = new Field(this.langMng);
+        this.ptupuatrRural = new FieldDefinedSelection(this.langMng);
+        this.ptupuCodigo = new Field(this.langMng);
+        this.ptupuTieneEPSSanitas = new Field(this.langMng);
+        this.ptupuRechazadoAfiliacion = new Field(this.langMng);
+        this.ptupuagrPais = new FieldOVLenseSearch(this.langMng);
+        this.ptSolicitud = new FieldOVLenseSearch(this.langMng);
+        this.ptDireccionesTitular = new FieldOVPreload(this.langMng);
+        this.ptReplicarDireccion = new Field(this.langMng);
+        this.ptDireccionesXClass = new FieldDefinedSelection(this.langMng);
+        this.ptEstadoPersona = new FieldOVLenseSearch(this.langMng);
+
+    }
+
+    public ngOnInit(): void {
+        this.myngOnInit();
+    }
+
+    private buscarPersonaenCORE(): void {
+
+        // Comprobamos que tengamos el tipo y el numero
+        const tipo = this.ptupuagrTipoIdentificacion.getSelectedInstances();
+        if (tipo && tipo.length === 1 && this.ptupuatrNumIdentificacion.value &&
+            this.appGlobalInfo.getLoggedUserInfo().getValorDeCache('verDBasicosPersona') ) {
+            this.buscarPersonaenCOREAux(tipo[0].jsonOID);
+        }
+    }
+
+    private buscarPersonaenCOREAux(oidJSONTipoIdentificacion: string): void {
+
+        // Recuperamos los datos necesarios para tratar los datos
+        this.addQueryInstanceFromField(this.ptSolicitud, 'NumRadicado,drvPermiteRechazados,AE_SOLICITUDES.PlanT.EsVoluntario');
+        this.notifyCallToTheBackEnd();
+        this.cacheDependencyRules.searchAll().then(() => {
+            const varputhissolicitud = this.getFirstInstanceFromCache(this.ptSolicitud);
+            const numSol = varputhissolicitud.get('NumRadicado');
+            this.bhServicesUtil.buscarPersonaPorOidTipoIdent(oidJSONTipoIdentificacion, this.ptupuatrNumIdentificacion.value, numSol).then (( datosPersona: any) => {
+            this.notifyAnswerFromToTheBackEnd();
+            if (datosPersona?.basicData) {
+                this.cargarPersonaNaturalDesdeCORE(datosPersona);
+            } else {
+                //this.setShowWait(false);
+                this.util.addErrorMessage('La persona no existe');
+                this.limpiarCampos();
+            }
+            }).catch( (err: Error) => {
+                this.notifyAnswerFromToTheBackEnd();
+                this.setShowWait(false);
+                this.util.addErrorMessage(err);
+            });
+        });
+    }
+
+    private limpiarCampos(): void {
+        this.ptupuagrDepartamentoNacimiento.clean();
+        this.ptupuagrMunicipioNacimiento.clean();
+        this.ptupuagrMunicipioNacimiento.cleanPreload();
+        this.ptupuagrEstadoCivil.clean();
+        this.ptupuatrPrimerNombre.clean();
+        this.ptupuatrSegundoNombre.clean();
+        this.ptupuatrPrimerApellido.clean();
+        this.ptupuatrSegundoApellido.clean();
+        this.ptupuatrFechaNacimiento.clean();
+        this.ptupuatrGenero.clean();
+        this.ptupuatrIndicadorExtranjero.value = false;
+        this.ptupuatrTelefonoFijo.clean();
+        this.ptupuatrTelefonoCelular.clean();
+        this.ptupuatrCorreoElectronico.clean();
+        this.ptupuagrDepartamento.clean();
+        this.ptupuagrMunicipio.clean();
+        this.ptupuagrMunicipio.cleanPreload();
+        this.ptupuatrDireccionCompleta.clean();
+        this.ptupuatrRural.value = false;
+        this.ptupuCodigo.clean();
+        this.ptupuTieneEPSSanitas.value = false;
+        this.ptupuRechazadoAfiliacion.clean();
+        this.ptupuagrPais.clean();
+        this.ptReplicarDireccion.value = false;
+        this.ptDireccionesXClass.clean();
+        this.ptDireccionesXClass.options = [];
+        this.ptEstadoPersona.clean();
+    }
+
+    private cargarPersonaNaturalDesdeCORE(datosPersona: any): void {
+
+        // Lista de promesas a las que tenemos que esperar para terminar
+        this.setShowWait(true);
+        this.limpiarCampos();
+
+        const varputhissolicitud = this.getFirstInstanceFromCache(this.ptSolicitud);
+        const permiteRechazados = varputhissolicitud.get('drvPermiteRechazados');
+        const planVoluntario = varputhissolicitud.get('AE_SOLICITUDES.PlanT.EsVoluntario');
+        const numSol = varputhissolicitud.get('NumRadicado');
+
+        //this.ptDireccionesXClass = new Field(this.langMng);
+        this.ptEstadoPersona.clean();
+
+        // Codigo del CORE
+        this.ptupuCodigo.value = datosPersona.basicData.id;
+       
+        // PTE
+        this.ptupuRechazadoAfiliacion.value = '';
+
+        // TODO
+        // this.ptuTieneEPSSanitas = new FieldDefinedSelection(this.langMng);
+
+        // Nombre
+        this.ptupuatrPrimerNombre.value = datosPersona?.basicData?.name?.name?.firstName;
+        this.ptupuatrSegundoNombre.value = datosPersona?.basicData?.name?.name?.secondName;
+        this.ptupuatrPrimerApellido.value = datosPersona?.basicData?.name?.name?.firstFamily;
+        this.ptupuatrSegundoApellido.value = datosPersona?.basicData?.name?.name?.secondFamily;
+        this.ptupuatrFechaNacimiento.value = this.util.getDate(datosPersona?.basicData?.birthDate);
+        this.ptupuatrGenero.value = datosPersona?.basicData?.gender;
+
+        // PTE 
+        this.ptupuatrIndicadorExtranjero.value = false;
+
+        this.ptupuatrTelefonoFijo.value = BHServicesUtil.getValorElementoPor2Claves(datosPersona?.contact?.telecom, 
+                'system', 'TELEFONO_CONTACTO_PRINCIPAL', 
+                'use', 'RESIDENCIAL', 
+                'value');
+        this.ptupuatrTelefonoCelular.value = BHServicesUtil.getValorElementoPorClave(datosPersona?.contact?.telecom, 'system', 'CELULAR_CONTACTO_PRINCIPAL', 'value');
+        this.ptupuatrCorreoElectronico.value = BHServicesUtil.getValorElementoPorClave(datosPersona?.contact?.telecom, 'system', 'CORREO_ELECTRONICO', 'value');
+
+        this.ptupuagrEstadoCivil.setValue( datosPersona?.basicData?.maritalStatus?.code ? 
+            this.util.oidBuilder.buildOidEstadoCivil(datosPersona?.basicData?.maritalStatus?.code) : null);
+
+        // Ciudad de nacimiento
+        if (datosPersona?.basicData?.extension && datosPersona?.basicData?.extension.length > 0) {
+            const valueAddress = datosPersona?.basicData?.extension[0].valueAddress;
+            if (valueAddress) {
+                // Tenemos los codigos legales de departamento y municipio
+                const codLegalDep = valueAddress?.state?.code;
+                const codLegalMun = valueAddress?.city?.code;
+                if (codLegalDep) {
+                    this.notifyCallToTheBackEnd();
+                    this.gestionCache.getOidDepartamentoPorCodigoLegal(codLegalDep).then( (oidDep: string) => {
+                        this.notifyAnswerFromToTheBackEnd();
+                        // Asignamos el valor el argumento y precargamos los municipios
+                        this.ptupuagrDepartamentoNacimiento.setValue(JSON.parse(oidDep));
+                        this.loadPreloadptupuagrmunicipionacimiento();
+                        if (codLegalMun) {
+                            // Buscamos el municipio por codigo legal
+                            this.gestionCache.getOidMunicipioPorCodigoLegal(codLegalMun).then ((oidMun: string) => {
+                                this.notifyAnswerFromToTheBackEnd();
+                                this.ptupuagrMunicipioNacimiento.setValue(JSON.parse(oidMun));
+                            }).catch( (err: Error) => {
+                                this.notifyAnswerFromToTheBackEnd();
+                                this.util.addErrorMessage(err);
+                            });
+                        }
+                    });
+                }
+            }
+        }
+
+        // Direccion residencial
+        const direccionResidencia = BHServicesUtil.getElemento(datosPersona?.contact?.address, 'use', 'RESIDENCIAL');
+        if (direccionResidencia) {
+            this.ptupuatrDireccionCompleta.value = direccionResidencia.text;
+            // PTE
+            this.ptupuatrRural.value = false;
+            // Tenemos los codigos legales de departamento y municipio
+            const codLegalDep = direccionResidencia?.state?.code;
+            const codLegalMun = direccionResidencia.city?.code;
+            const codPais = direccionResidencia.country?.code;
+
+            if (codLegalDep) {
+                this.notifyCallToTheBackEnd();
+                this.gestionCache.getOidDepartamentoPorCodigoLegal(codLegalDep).then( (oidDep: string) => {
+                    this.notifyAnswerFromToTheBackEnd();
+                    // Asignamos el valor el argumento y precargamos los municipios
+                    this.ptupuagrDepartamento.setValue(JSON.parse(oidDep));
+                    this.loadPreloadptupuagrmunicipio();
+                    if (codLegalMun) {
+                        // Buscamos el municipio por codigo legal
+                        this.gestionCache.getOidMunicipioPorCodigoLegal(codLegalMun).then ((oidMun: string) => {
+                            this.notifyAnswerFromToTheBackEnd();
+                            this.ptupuagrMunicipio.setValue(JSON.parse(oidMun));
+                        }).catch( (err: Error) => {
+                            this.notifyAnswerFromToTheBackEnd();
+                            this.util.addErrorMessage(err);
+                        });
+                    }
+                });
+            }
+            // Pais
+            if (codPais) {
+                this.notifyCallToTheBackEnd();
+                this.gestionCache.existePais(codPais).then((existePais: boolean) => {
+                    this.notifyAnswerFromToTheBackEnd();
+                    // Asignamos el valor el argumento
+                    if (existePais) {
+                        this.ptupuagrPais.setValue(this.util.oidBuilder.buildOidPais(codPais));
+                    }
+                }).catch( (err: Error) => {
+                    this.notifyAnswerFromToTheBackEnd();
+                    this.util.addErrorMessage(err);
+                });
+            }
+        }
+
+
+        // Estado de la persona
+        if (datosPersona.estadoPersona) {
+            this.ptEstadoPersona.setValue( this.util.oidBuilder.buildOidEstadoPersona(datosPersona.estadoPersona));
+        }
+
+
+        // Cargamos todas las direcciones recibidas en el combo
+        // Si el usuario no puede ver los datos básicos de persona, no hacemos nada
+        if (this.appGlobalInfo.getLoggedUserInfo().userCache?.modDBasicosPersona && datosPersona?.contact?.address) {
+            let i = 1;
+            for (const dir of datosPersona.contact.address) {
+                const datoDireccion = {
+                    idUnico: i,
+                    address: dir,
+                    telefonoFijo: BHServicesUtil.getValorElementoPor2Claves(datosPersona?.contact?.telecom, 
+                        'system', 'TELEFONO', 
+                        'use', dir.use, 
+                        'value'),
+                    telefonoCelular: BHServicesUtil.getValorElementoPorClave(datosPersona?.contact?.telecom, 
+                        'system', 'CELULAR', 
+                        'value')
+                }
+                this.ptDireccionesXClass.options.push({key: datoDireccion, value: dir.text})
+                i++;
+            }
+        }
+
+
+        // Si la persona existe y el plan de la solicitud es voluntario, buscamos los contratos existentes
+        // Planes Voluntarios - Req. 5: Validación de afiliado - Referencia: HU-AEEPS-04
+        if (planVoluntario) {
+            this.notifyCallToTheBackEnd();
+            this.bhServicesUtil.consultarBeneficiario( 
+                BHServicesUtil.getValorElementoPorClave(datosPersona.basicData.identifier, 'type', 'TIPO_IDENTIFICACION', 'value'),
+                BHServicesUtil.getValorElementoPorClave(datosPersona.basicData.identifier, 'type', 'NUMERO_IDENTIFICACION', 'value'),
+                numSol).then ((contratos: string[]) => {
+                // Recorremos los contratos encontrados
+                this.notifyAnswerFromToTheBackEnd();
+                if (contratos) {
+                    // Recorremos los contratos 
+                    let mensaje = '';
+
+                    mensaje += this.ptupuatrPrimerNombre.value ? this.ptupuatrPrimerNombre.value : '';
+                    mensaje += this.ptupuatrSegundoNombre.value ? " " + this.ptupuatrSegundoNombre.value : '';
+                    mensaje += this.ptupuatrPrimerApellido.value ? " " + this.ptupuatrPrimerApellido.value : '';
+                    mensaje += this.ptupuatrSegundoApellido.value ? " " + this.ptupuatrSegundoApellido.value : '';
+              
+                    contratos.unshift(mensaje);
+                    this.util.addErrorMessageList( contratos );
+                }
+            }).catch( (err: Error) => {
+                this.notifyAnswerFromToTheBackEnd();
+                this.util.addErrorMessage(err);
+            });
+        }        
+    }
+
+    private asignarDireccionSeleccionada(): void {
+        // Asignamos la dirección seleccionada en el combo
+        if (!this.ptDireccionesXClass.value) {
+            return;
+        }
+
+        const dirSel = this.ptDireccionesXClass.value;
+        this.ptupuatrDireccionCompleta.value = dirSel.address.text;
+        this.ptupuatrTelefonoFijo.value = dirSel.telefonoFijo;
+        this.ptupuatrTelefonoCelular.value = dirSel.telefonoCelular;
+        const codLegalDep = dirSel.address.state?.code;
+        const codLegalMun = dirSel.address.city?.code;
+        const codPais = dirSel.address.country?.code;
+
+        if (codLegalDep) {
+            this.setShowWait(true);
+            this.gestionCache.getOidDepartamentoPorCodigoLegal(codLegalDep).then( (oidDep: string) => {
+                this.setShowWait(false);
+                if (oidDep) {
+                    // Si no es el mismo departamento
+                    const depSeleccionado = this.ptupuagrDepartamento.getSelectedInstances() ? this.ptupuagrDepartamento.getSelectedInstances()[0] : undefined;
+                    if (depSeleccionado?.jsonOID != oidDep) {
+                        // Asignamos el valor el argumento y precargamos los municipios
+                        this.ptupuagrDepartamento.setValue(JSON.parse(oidDep));
+                        this.loadPreloadptupuagrmunicipio();
+                    } else {
+
+                    }
+                    if (codLegalMun) {
+                        const munSeleccionado = this.ptupuagrMunicipio.getSelectedInstances() ? this.ptupuagrMunicipio.getSelectedInstances()[0] : undefined;
+                        // Buscamos el municipio por codigo legal
+                        this.setShowWait(true);
+                        this.gestionCache.getOidMunicipioPorCodigoLegal(codLegalMun).then ((oidMun: string) => {
+                            this.setShowWait(false);
+                            if (munSeleccionado?.jsonOID != oidMun) {                                
+                                this.ptupuagrMunicipio.setValue(JSON.parse(oidMun));
+                            }
+                        }).catch( (err: Error) => {
+                            this.setShowWait(false);
+                            this.util.addErrorMessage(err);
+                        });
+                        
+                    } else {
+                        this.ptupuagrMunicipio.clean();
+                    }
+
+                }
+            }).catch( (err: Error) => {
+                this.setShowWait(false);
+                this.util.addErrorMessage(err);
+            });
+        } else {
+            this.ptupuagrDepartamento.clean();
+            this.loadPreloadptupuagrmunicipio();
+        }
+         // Pais
+        if (codPais) {
+            this.gestionCache.existePais(codPais).then((existePais: boolean) => {
+                // Asignamos el valor el argumento
+                this.setShowWait(false);
+                if (existePais) {
+                    this.ptupuagrPais.setValue(this.util.oidBuilder.buildOidPais(codPais));
+                }
+            }).catch( (err: Error) => {
+                this.setShowWait(false);
+                this.util.addErrorMessage(err);
+            })
+        } else {
+            this.ptupuagrPais.clean();
+        }
+    }    
+
+    /**
+     * Initialize the component using default values
+     */
+    public override initializeComponents(): void {
+
+        this.ptupuagrTipoIdentificacion.nameInRequest = 'pt_p_agrtipoidentificacion';
+        this.ptupuagrTipoIdentificacion.alias = this.langMng.translateText(
+            'cls_Persona_svc_TADDUSUARIOASOL_inArg_pt_p_agrTipoIdentificacion',
+            'Tipo identificación');
+        this.ptupuagrTipoIdentificacion.mandatory = true;
+        this.ptupuagrTipoIdentificacion.dataType = ModelConstants.Tipoidentificacion.name;
+        this.ptupuagrTipoIdentificacion.maxLength = 170;
+        this.ptupuagrTipoIdentificacion.assignCSS();
+        this.fields.push(this.ptupuagrTipoIdentificacion);
+
+        this.ptupuagrDepartamentoNacimiento.nameInRequest = 'pt_p_agrdepartamentonacimiento';
+        this.ptupuagrDepartamentoNacimiento.alias = this.langMng.translateText(
+            'cls_Persona_svc_TADDUSUARIOASOL_inArg_pt_p_agrDepartamentoNacimiento',
+            'Departamento nacimiento');
+        this.ptupuagrDepartamentoNacimiento.mandatory = false;
+        this.ptupuagrDepartamentoNacimiento.dataType = ModelConstants.Departamento.name;
+        this.ptupuagrDepartamentoNacimiento.maxLength = 150;
+        this.ptupuagrDepartamentoNacimiento.assignCSS();
+        this.fields.push(this.ptupuagrDepartamentoNacimiento);
+
+        this.ptupuagrMunicipioNacimiento.nameInRequest = 'pt_p_agrmunicipionacimiento';
+        this.ptupuagrMunicipioNacimiento.alias = this.langMng.translateText(
+            'cls_Persona_svc_TADDUSUARIOASOL_inArg_pt_p_agrMunicipioNacimiento',
+            'Municipio nacimiento');
+        this.ptupuagrMunicipioNacimiento.mandatory = false;
+        this.ptupuagrMunicipioNacimiento.dataType = ModelConstants.Municipio.name;
+        this.ptupuagrMunicipioNacimiento.maxLength = 150;
+        this.ptupuagrMunicipioNacimiento.assignCSS();
+        this.fields.push(this.ptupuagrMunicipioNacimiento);
+
+        this.ptupuagrEstadoCivil.nameInRequest = 'pt_p_agrestadocivil';
+        this.ptupuagrEstadoCivil.alias = this.langMng.translateText(
+            'cls_Persona_svc_TADDUSUARIOASOL_inArg_pt_p_agrEstadoCivil',
+            'EstadoCivil');
+        this.ptupuagrEstadoCivil.mandatory = true;
+        this.ptupuagrEstadoCivil.dataType = ModelConstants.Estadocivil.name;
+        this.ptupuagrEstadoCivil.maxLength = 100;
+        this.ptupuagrEstadoCivil.assignCSS();
+        this.fields.push(this.ptupuagrEstadoCivil);
+
+        this.ptupuatrNumIdentificacion.nameInRequest = 'pt_p_atrnumidentificacion';
+        this.ptupuatrNumIdentificacion.alias = this.langMng.translateText(
+            'cls_Persona_svc_TADDUSUARIOASOL_inArg_pt_p_atrNumIdentificacion',
+            'Nº Identificación');
+        this.ptupuatrNumIdentificacion.mandatory = true;
+        this.ptupuatrNumIdentificacion.dataType = Field.dtString;
+        this.ptupuatrNumIdentificacion.maxLength = 60;
+        this.ptupuatrNumIdentificacion.assignCSS();
+        this.fields.push(this.ptupuatrNumIdentificacion);
+
+        this.ptupuatrPrimerNombre.nameInRequest = 'pt_p_atrprimernombre';
+        this.ptupuatrPrimerNombre.alias = this.langMng.translateText(
+            'cls_Persona_svc_TADDUSUARIOASOL_inArg_pt_p_atrPrimerNombre',
+            'Primer nombre');
+        this.ptupuatrPrimerNombre.mandatory = true;
+        this.ptupuatrPrimerNombre.dataType = Field.dtString;
+        this.ptupuatrPrimerNombre.maxLength = 50;
+        this.ptupuatrPrimerNombre.assignCSS();
+        this.fields.push(this.ptupuatrPrimerNombre);
+
+        this.ptupuatrSegundoNombre.nameInRequest = 'pt_p_atrsegundonombre';
+        this.ptupuatrSegundoNombre.alias = this.langMng.translateText(
+            'cls_Persona_svc_TADDUSUARIOASOL_inArg_pt_p_atrSegundoNombre',
+            'Segundo nombre');
+        this.ptupuatrSegundoNombre.mandatory = false;
+        this.ptupuatrSegundoNombre.dataType = Field.dtString;
+        this.ptupuatrSegundoNombre.maxLength = 50;
+        this.ptupuatrSegundoNombre.assignCSS();
+        this.fields.push(this.ptupuatrSegundoNombre);
+
+        this.ptupuatrPrimerApellido.nameInRequest = 'pt_p_atrprimerapellido';
+        this.ptupuatrPrimerApellido.alias = this.langMng.translateText(
+            'cls_Persona_svc_TADDUSUARIOASOL_inArg_pt_p_atrPrimerApellido',
+            'Primer Apellido');
+        this.ptupuatrPrimerApellido.mandatory = true;
+        this.ptupuatrPrimerApellido.dataType = Field.dtString;
+        this.ptupuatrPrimerApellido.maxLength = 50;
+        this.ptupuatrPrimerApellido.assignCSS();
+        this.fields.push(this.ptupuatrPrimerApellido);
+
+        this.ptupuatrSegundoApellido.nameInRequest = 'pt_p_atrsegundoapellido';
+        this.ptupuatrSegundoApellido.alias = this.langMng.translateText(
+            'cls_Persona_svc_TADDUSUARIOASOL_inArg_pt_p_atrSegundoApellido',
+            'Segundo Apellido');
+        this.ptupuatrSegundoApellido.mandatory = false;
+        this.ptupuatrSegundoApellido.dataType = Field.dtString;
+        this.ptupuatrSegundoApellido.maxLength = 50;
+        this.ptupuatrSegundoApellido.assignCSS();
+        this.fields.push(this.ptupuatrSegundoApellido);
+
+        this.ptupuatrFechaNacimiento.nameInRequest = 'pt_p_atrfechanacimiento';
+        this.ptupuatrFechaNacimiento.alias = this.langMng.translateText(
+            'cls_Persona_svc_TADDUSUARIOASOL_inArg_pt_p_atrFechaNacimiento',
+            'Fecha nacimiento');
+        this.ptupuatrFechaNacimiento.mandatory = true;
+        this.ptupuatrFechaNacimiento.dataType = Field.dtDate;
+        this.ptupuatrFechaNacimiento.assignCSS();
+        this.fields.push(this.ptupuatrFechaNacimiento);
+
+        this.ptupuatrGenero.nameInRequest = 'pt_p_atrgenero';
+        this.ptupuatrGenero.alias = this.langMng.translateText(
+            'cls_Persona_svc_TADDUSUARIOASOL_inArg_pt_p_atrGenero',
+            'Género');
+        this.ptupuatrGenero.mandatory = true;
+        this.ptupuatrGenero.dataType = Field.dtString;
+        this.ptupuatrGenero.options = DefinedSelections.DS_GENERO;
+        this.ptupuatrGenero.maxLength = 1;
+        this.ptupuatrGenero.assignCSS();
+        this.fields.push(this.ptupuatrGenero);
+
+        this.ptupuatrIndicadorExtranjero.nameInRequest = 'pt_p_atrindicadorextranjero';
+        this.ptupuatrIndicadorExtranjero.alias = this.langMng.translateText(
+            'cls_Persona_svc_TADDUSUARIOASOL_inArg_pt_p_atrIndicadorExtranjero',
+            'Indicador extranjero');
+        this.ptupuatrIndicadorExtranjero.mandatory = true;
+        this.ptupuatrIndicadorExtranjero.dataType = Field.dtBool;
+        this.ptupuatrIndicadorExtranjero.options = DefinedSelections.DS_SINO;
+        this.ptupuatrIndicadorExtranjero.assignCSS();
+        this.fields.push(this.ptupuatrIndicadorExtranjero);
+
+        this.ptupuatrTelefonoFijo.nameInRequest = 'pt_p_atrtelefonofijo';
+        this.ptupuatrTelefonoFijo.alias = this.langMng.translateText(
+            'cls_Persona_svc_TADDUSUARIOASOL_inArg_pt_p_atrTelefonoFijo',
+            'Teléfono fijo');
+        this.ptupuatrTelefonoFijo.mandatory = false;
+        this.ptupuatrTelefonoFijo.dataType = Field.dtString;
+        this.ptupuatrTelefonoFijo.maxLength = 15;
+        this.ptupuatrTelefonoFijo.assignCSS();
+        this.fields.push(this.ptupuatrTelefonoFijo);
+
+        this.ptupuatrTelefonoCelular.nameInRequest = 'pt_p_atrtelefonocelular';
+        this.ptupuatrTelefonoCelular.alias = this.langMng.translateText(
+            'cls_Persona_svc_TADDUSUARIOASOL_inArg_pt_p_atrTelefonoCelular',
+            'Teléfono celular');
+        this.ptupuatrTelefonoCelular.mandatory = false;
+        this.ptupuatrTelefonoCelular.dataType = Field.dtString;
+        this.ptupuatrTelefonoCelular.maxLength = 15;
+        this.ptupuatrTelefonoCelular.assignCSS();
+        this.fields.push(this.ptupuatrTelefonoCelular);
+
+        this.ptupuatrCorreoElectronico.nameInRequest = 'pt_p_atrcorreoelectronico';
+        this.ptupuatrCorreoElectronico.alias = this.langMng.translateText(
+            'cls_Persona_svc_TADDUSUARIOASOL_inArg_pt_p_atrCorreoElectronico',
+            'Correo electrónico');
+        this.ptupuatrCorreoElectronico.mandatory = false;
+        this.ptupuatrCorreoElectronico.dataType = Field.dtString;
+        this.ptupuatrCorreoElectronico.maxLength = 100;
+        this.ptupuatrCorreoElectronico.assignCSS();
+        this.fields.push(this.ptupuatrCorreoElectronico);
+
+        this.ptupuagrDepartamento.nameInRequest = 'pt_p_agrdepartamento';
+        this.ptupuagrDepartamento.alias = this.langMng.translateText(
+            'cls_Persona_svc_TADDUSUARIOASOL_inArg_pt_p_agrDepartamento',
+            'Departamento');
+        this.ptupuagrDepartamento.mandatory = true;
+        this.ptupuagrDepartamento.dataType = ModelConstants.Departamento.name;
+        this.ptupuagrDepartamento.maxLength = 150;
+        this.ptupuagrDepartamento.assignCSS();
+        this.fields.push(this.ptupuagrDepartamento);
+
+        this.ptupuagrMunicipio.nameInRequest = 'pt_p_agrmunicipio';
+        this.ptupuagrMunicipio.alias = this.langMng.translateText(
+            'cls_Persona_svc_TADDUSUARIOASOL_inArg_pt_p_agrMunicipio',
+            'Municipio');
+        this.ptupuagrMunicipio.mandatory = true;
+        this.ptupuagrMunicipio.dataType = ModelConstants.Municipio.name;
+        this.ptupuagrMunicipio.maxLength = 150;
+        this.ptupuagrMunicipio.assignCSS();
+        this.fields.push(this.ptupuagrMunicipio);
+
+        this.ptupuatrDireccionCompleta.nameInRequest = 'pt_p_atrdireccioncompleta';
+        this.ptupuatrDireccionCompleta.alias = this.langMng.translateText(
+            'cls_Persona_svc_TADDUSUARIOASOL_inArg_pt_p_atrDireccionCompleta',
+            'Dirección completa');
+        this.ptupuatrDireccionCompleta.mandatory = true;
+        this.ptupuatrDireccionCompleta.dataType = Field.dtString;
+        this.ptupuatrDireccionCompleta.maxLength = 250;
+        this.ptupuatrDireccionCompleta.assignCSS();
+        this.fields.push(this.ptupuatrDireccionCompleta);
+
+        this.ptupuatrRural.nameInRequest = 'pt_p_atrrural';
+        this.ptupuatrRural.alias = this.langMng.translateText(
+            'cls_Persona_svc_TADDUSUARIOASOL_inArg_pt_p_atrRural',
+            'Rural');
+        this.ptupuatrRural.mandatory = true;
+        this.ptupuatrRural.dataType = Field.dtBool;
+        this.ptupuatrRural.options = DefinedSelections.DS_SINO;
+        this.ptupuatrRural.assignCSS();
+        this.fields.push(this.ptupuatrRural);
+
+        this.ptupuCodigo.nameInRequest = 'pt_p_codigo';
+        this.ptupuCodigo.alias = this.langMng.translateText(
+            'cls_Persona_svc_TADDUSUARIOASOL_inArg_pt_p_Codigo',
+            'Código');
+        this.ptupuCodigo.mandatory = false;
+        this.ptupuCodigo.dataType = Field.dtInt;
+        this.ptupuCodigo.assignCSS();
+        this.fields.push(this.ptupuCodigo);
+
+        this.ptupuTieneEPSSanitas.nameInRequest = 'pt_p_tieneepssanitas';
+        this.ptupuTieneEPSSanitas.alias = this.langMng.translateText(
+            'cls_Persona_svc_TADDUSUARIOASOL_inArg_pt_p_TieneEPSSanitas',
+            'Tiene EPS Sanitas');
+        this.ptupuTieneEPSSanitas.mandatory = true;
+        this.ptupuTieneEPSSanitas.dataType = Field.dtBool;
+        this.ptupuTieneEPSSanitas.assignCSS();
+        this.fields.push(this.ptupuTieneEPSSanitas);
+
+        this.ptupuRechazadoAfiliacion.nameInRequest = 'pt_p_rechazadoafiliacion';
+        this.ptupuRechazadoAfiliacion.alias = this.langMng.translateText(
+            'cls_Persona_svc_TADDUSUARIOASOL_inArg_pt_p_RechazadoAfiliacion',
+            'Rechazado Afiliación');
+        this.ptupuRechazadoAfiliacion.mandatory = false;
+        this.ptupuRechazadoAfiliacion.dataType = Field.dtString;
+        this.ptupuRechazadoAfiliacion.maxLength = 50;
+        this.ptupuRechazadoAfiliacion.assignCSS();
+        this.fields.push(this.ptupuRechazadoAfiliacion);
+
+        this.ptupuagrPais.nameInRequest = 'pt_p_agrpais';
+        this.ptupuagrPais.alias = this.langMng.translateText(
+            'cls_Persona_svc_TADDUSUARIOASOL_inArg_pt_p_agrPais',
+            'País');
+        this.ptupuagrPais.mandatory = false;
+        this.ptupuagrPais.dataType = ModelConstants.Pais.name;
+        this.ptupuagrPais.maxLength = 50;
+        this.ptupuagrPais.assignCSS();
+        this.fields.push(this.ptupuagrPais);
+
+        this.ptSolicitud.nameInRequest = 'ptsolicitud';
+        this.ptSolicitud.alias = this.langMng.translateText(
+            'cls_Persona_svc_TADDUSUARIOASOL_inArg_ptSolicitud',
+            'Solicitud');
+        this.ptSolicitud.mandatory = true;
+        this.ptSolicitud.dataType = ModelConstants.Solicitud.name;
+        this.ptSolicitud.maxLength = 50;
+        this.ptSolicitud.assignCSS();
+        this.fields.push(this.ptSolicitud);
+
+        this.ptDireccionesTitular.nameInRequest = 'ptdireccionestitular';
+        this.ptDireccionesTitular.alias = this.langMng.translateText(
+            'cls_Persona_svc_TADDUSUARIOASOL_inArg_ptDireccionesTitular',
+            'Direcciones titular');
+        this.ptDireccionesTitular.mandatory = false;
+        this.ptDireccionesTitular.dataType = ModelConstants.Direccion.name;
+        this.ptDireccionesTitular.maxLength = 400;
+        this.ptDireccionesTitular.assignCSS();
+        this.fields.push(this.ptDireccionesTitular);
+
+        this.ptReplicarDireccion.nameInRequest = 'ptreplicardireccion';
+        this.ptReplicarDireccion.alias = this.langMng.translateText(
+            'cls_Persona_svc_TADDUSUARIOASOL_inArg_ptReplicarDireccion',
+            'Replicar dirección');
+        this.ptReplicarDireccion.mandatory = true;
+        this.ptReplicarDireccion.dataType = Field.dtBool;
+        this.ptReplicarDireccion.assignCSS();
+        this.fields.push(this.ptReplicarDireccion);
+
+        this.ptDireccionesXClass.nameInRequest = 'ptdireccionesxclass';
+        this.ptDireccionesXClass.alias = this.langMng.translateText(
+            'cls_Persona_svc_TADDUSUARIOASOL_inArg_ptDireccionesXClass',
+            'Direcciones');
+        this.ptDireccionesXClass.mandatory = false;
+        this.ptDireccionesXClass.dataType = Field.dtString;
+        this.ptDireccionesXClass.options = DefinedSelections.DS_GENERO;
+        this.ptDireccionesXClass.maxLength = 1;
+        this.ptDireccionesXClass.assignCSS();
+        this.fields.push(this.ptDireccionesXClass);
+
+        this.ptEstadoPersona.nameInRequest = 'ptestadopersona';
+        this.ptEstadoPersona.alias = this.langMng.translateText(
+            'cls_Persona_svc_TADDUSUARIOASOL_inArg_ptEstadoPersona',
+            'Estado Persona');
+        this.ptEstadoPersona.mandatory = false;
+        this.ptEstadoPersona.dataType = ModelConstants.Estadopersona.name;
+        this.ptEstadoPersona.maxLength = 150;
+        this.ptEstadoPersona.assignCSS();
+        this.fields.push(this.ptEstadoPersona);
+    }
+
+    /**
+     * Initialize with default values
+     */
+    public override initializeDefaultValues(): Promise<void> {
+        return new Promise<void>((resolve) => {
+            const promiseArr: Array<Promise<void>> = [];
+
+            // pt_p_atrIndicadorExtranjero
+            const defValptupuatrIndicadorExtranjero = new Promise<void>((resolveDefValue) => {
+                this.ptupuatrIndicadorExtranjero.setValue(true);
+                resolveDefValue();
+            });
+            promiseArr.push(defValptupuatrIndicadorExtranjero);
+
+            // pt_p_atrRural
+            const defValptupuatrRural = new Promise<void>((resolveDefValue) => {
+                this.ptupuatrRural.setValue(false);
+                resolveDefValue();
+            });
+            promiseArr.push(defValptupuatrRural);
+
+            // pt_p_TieneEPSSanitas
+            const defValptupuTieneEPSSanitas = new Promise<void>((resolveDefValue) => {
+                this.ptupuTieneEPSSanitas.setValue(false);
+                this.loadPreloadptupuagrmunicipio();
+                resolveDefValue();
+            });
+            promiseArr.push(defValptupuTieneEPSSanitas);
+
+            // ptReplicarDireccion
+            const defValptReplicarDireccion = new Promise<void>((resolveDefValue) => {
+                this.ptReplicarDireccion.setValue(false);
+                resolveDefValue();
+            });
+            promiseArr.push(defValptReplicarDireccion);
+
+            Promise.all(promiseArr).then((results: any[]) => {
+                this.setShowWait(false);
+                this.changeDetectorRef.markForCheck();
+                resolve();
+            });
+        });
+    }
+
+    /**
+     * Initialize arguments from context that identify a Role
+     */
+    public override initializeFromCtxRelated(): void {
+        let lastRole = '';
+        let lastRoleOid = null;
+        if (this.context.exchangeInfo) {
+            lastRole = this.context.exchangeInfo.getLastNavigationRole();
+            lastRoleOid = this.context.exchangeInfo.getLastNavigationRoleOid();
+        }
+
+        if (lastRole && lastRoleOid) {
+            if (lastRole === 'TipoIdentificacion') {
+                this.ptupuagrTipoIdentificacion.setValue(lastRoleOid);
+                this.executeDependecyRulesptupuagrtipoidentificacion('SetValue', true);
+                this.ptupuagrTipoIdentificacion.enabled = false;
+                this.executeDependecyRulesptupuagrtipoidentificacion('SetEnabled', true);
+            }
+            if (lastRole === 'DepartamentoNacimiento') {
+                this.ptupuagrDepartamentoNacimiento.setValue(lastRoleOid);
+                this.ptupuagrDepartamentoNacimiento.enabled = false;
+                this.loadPreloadptupuagrmunicipionacimiento();
+            }
+            if (lastRole === 'MunicipioNacimiento') {
+                this.ptupuagrMunicipioNacimiento.setValue(lastRoleOid);
+                this.ptupuagrMunicipioNacimiento.enabled = false;
+            }
+            if (lastRole === 'EstadoCivil') {
+                this.ptupuagrEstadoCivil.setValue(lastRoleOid);
+                this.ptupuagrEstadoCivil.enabled = false;
+            }
+            if (lastRole === 'Solicitud') {
+                this.ptSolicitud.setValue(lastRoleOid);
+                this.executeDependecyRulesptsolicitud('SetValue', true);
+                this.ptSolicitud.enabled = false;
+                this.executeDependecyRulesptsolicitud('SetEnabled', true);
+            }
+            if (lastRole === 'EstadoPersona') {
+                this.ptEstadoPersona.setValue(lastRoleOid);
+                this.executeDependecyRulesptestadopersona('SetValue', true);
+                this.ptEstadoPersona.enabled = false;
+                this.executeDependecyRulesptestadopersona('SetEnabled', true);
+            }
+        }
+    }
+
+    /**
+     * Search the preload values of non dependent fields
+     */
+    public override loadPreload(): void {
+
+        // ptupuagrTipoIdentificacion
+        const navFiltersptupuagrTipoIdentificacion: string[] = [];
+        navFiltersptupuagrTipoIdentificacion.push('Persona_TADDUSUARIOASOL_pt_p_agrTipoIdentificacion_NavFilter0');
+        this.notifyCallToTheBackEnd();
+        this.util.searchPreload('TipoIdentificacion', 'IC_TipoIdentificacion', navFiltersptupuagrTipoIdentificacion, this.getNavigationFilterVariables(), 'OC_TipoIdentificacion').then(
+            (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
+                if (response && response.results) {
+                    this.ptupuagrTipoIdentificacion.loadPreload(response.results);
+                } else {
+                    this.ptupuagrTipoIdentificacion.loadPreload([]);
+                }
+                this.numberOfPendingPreload--;
+                this.initializeFromContext();
+                this.changeDetectorRef.markForCheck();
+            },
+            (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
+                this.processErrorInLoadPreload(response.resultDescription);
+            }
+        );
+        this.numberOfPendingPreload++;
+
+        // ptupuagrDepartamentoNacimiento
+        this.notifyCallToTheBackEnd();
+        this.util.searchPreload('Departamento', 'IC_Departamento', [], null, 'OC_Departamento').then(
+            (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
+                if (response && response.results) {
+                    this.ptupuagrDepartamentoNacimiento.loadPreload(response.results);
+                } else {
+                    this.ptupuagrDepartamentoNacimiento.loadPreload([]);
+                }
+                this.numberOfPendingPreload--;
+                this.initializeFromContext();
+                this.changeDetectorRef.markForCheck();
+            },
+            (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
+                this.processErrorInLoadPreload(response.resultDescription);
+            }
+        );
+        this.numberOfPendingPreload++;
+
+        // ptupuagrEstadoCivil
+        this.notifyCallToTheBackEnd();
+        this.util.searchPreload('EstadoCivil', 'IC_EstadoCivil', [], null, 'OC_EstadoCivil').then(
+            (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
+                if (response && response.results) {
+                    this.ptupuagrEstadoCivil.loadPreload(response.results);
+                } else {
+                    this.ptupuagrEstadoCivil.loadPreload([]);
+                }
+                this.numberOfPendingPreload--;
+                this.initializeFromContext();
+                this.changeDetectorRef.markForCheck();
+            },
+            (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
+                this.processErrorInLoadPreload(response.resultDescription);
+            }
+        );
+        this.numberOfPendingPreload++;
+
+        // ptupuagrDepartamento
+        this.notifyCallToTheBackEnd();
+        this.util.searchPreload('Departamento', 'IC_Departamento', [], null, 'OC_Departamento').then(
+            (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
+                if (response && response.results) {
+                    this.ptupuagrDepartamento.loadPreload(response.results);
+                } else {
+                    this.ptupuagrDepartamento.loadPreload([]);
+                }
+                this.numberOfPendingPreload--;
+                this.initializeFromContext();
+                this.changeDetectorRef.markForCheck();
+            },
+            (response: any) => {
+                this.notifyAnswerFromToTheBackEnd();
+                this.processErrorInLoadPreload(response.resultDescription);
+            }
+        );
+        this.numberOfPendingPreload++;
+    }
+
+    /**
+     * Search the preload values of field pt_p_agrMunicipioNacimiento
+     */
+    private loadPreloadptupuagrmunicipionacimiento(): void {
+
+        if (this.ptupuagrDepartamentoNacimiento.getSelectedInstances().length === 1) {
+            const navFilters: string[] = [];
+            navFilters.push('Persona_TADDUSUARIOASOL_pt_p_agrMunicipioNacimiento_NavFilter0');
+            this.util.searchPreload('Municipio', 'IC_Municipio', navFilters, this.getNavigationFilterVariables(), 'OC_Municipio').then(
+                (response: any) => {
+                    if (response && response.results) {
+                        this.ptupuagrMunicipioNacimiento.loadPreload(response.results);
+                    } else {
+                        this.ptupuagrMunicipioNacimiento.loadPreload([]);
+                    }
+                    this.executePendingDependencyRules();
+                    this.changeDetectorRef.markForCheck();
+                },
+                (response: any) => {
+                    this.ptupuagrMunicipioNacimiento.cleanPreload();
+                    this.util.addErrorMessage(response.resultDescription);
+                    this.executePendingDependencyRules();
+                    this.changeDetectorRef.markForCheck();
+                }
+            );
+        } else {
+            this.ptupuagrMunicipioNacimiento.cleanPreload();
+            this.executePendingDependencyRules();
+            this.changeDetectorRef.markForCheck();
+        }
+    }
+
+    /**
+     * Search the preload values of field pt_p_agrMunicipio
+     */
+    private loadPreloadptupuagrmunicipio(): void {
+
+        if (this.ptupuagrDepartamento.getSelectedInstances().length === 1 &&
+            !this.util.isNull(this.ptupuTieneEPSSanitas.value)) {
+            const navFilters: string[] = [];
+            navFilters.push('Persona_TADDUSUARIOASOL_pt_p_agrMunicipio_NavFilter0');
+            navFilters.push('Persona_TADDUSUARIOASOL_pt_p_agrMunicipio_NavFilter1');
+            this.util.searchPreload('Municipio', 'IC_Municipio', navFilters, this.getNavigationFilterVariables(), 'OC_Municipio').then(
+                (response: any) => {
+                    if (response && response.results) {
+                        this.ptupuagrMunicipio.loadPreload(response.results);
+                    } else {
+                        this.ptupuagrMunicipio.loadPreload([]);
+                    }
+                    this.executePendingDependencyRules();
+                    this.changeDetectorRef.markForCheck();
+                },
+                (response: any) => {
+                    this.ptupuagrMunicipio.cleanPreload();
+                    this.util.addErrorMessage(response.resultDescription);
+                    this.executePendingDependencyRules();
+                    this.changeDetectorRef.markForCheck();
+                }
+            );
+        } else {
+            this.ptupuagrMunicipio.cleanPreload();
+            this.executePendingDependencyRules();
+            this.changeDetectorRef.markForCheck();
+        }
+    }
+
+    /**
+     * Search the preload values of field ptDireccionesTitular
+     */
+    private loadPreloadptdireccionestitular(): void {
+
+        if (this.ptSolicitud.getSelectedInstances().length === 1) {
+            const navFilters: string[] = [];
+            navFilters.push('Persona_TADDUSUARIOASOL_ptDireccionesTitular_NavFilter0');
+            this.util.searchPreload('Direccion', 'IC_Direccion', navFilters, this.getNavigationFilterVariables(), '').then(
+                (response: any) => {
+                    if (response && response.results) {
+                        this.ptDireccionesTitular.loadPreload(response.results);
+                    } else {
+                        this.ptDireccionesTitular.loadPreload([]);
+                    }
+                    if (this.ptDireccionesTitular.getSelectedInstances().length > 0) {
+                        this.executeDependecyRulesptdireccionestitular('SetValue', true);
+                    }
+                    this.executePendingDependencyRules();
+                    this.changeDetectorRef.markForCheck();
+                },
+                (response: any) => {
+                    this.ptDireccionesTitular.cleanPreload();
+                    this.util.addErrorMessage(response.resultDescription);
+                    this.executePendingDependencyRules();
+                    this.changeDetectorRef.markForCheck();
+                }
+            );
+        } else {
+            if (this.ptDireccionesTitular.getSelectedInstances().length > 0) {
+                this.ptDireccionesTitular.cleanPreload();
+                this.executeDependecyRulesptdireccionestitular('SetValue', true);
+            } else {
+                this.ptDireccionesTitular.cleanPreload();
+            }
+            this.executePendingDependencyRules();
+            this.changeDetectorRef.markForCheck();
+        }
+    }
+
+   /**
+    * Process the selection backward navigation
+    */
+    public override processSelectionBackward(exchInfo: ExchangeInfo): void {
+        if (!(exchInfo.selectedOids && exchInfo.selectedOids.length > 0)) {
+            return;
+        }
+        if (exchInfo.originArgumentName.toLowerCase() === 'ptupuagrPais'.toLowerCase()) {
+            this.ptupuagrPais.addOids(exchInfo.selectedOids);
+            this.executeDependecyRulesptupuagrpais('SetValue', false);
+        }
+
+        if (exchInfo.originArgumentName.toLowerCase() === 'ptSolicitud'.toLowerCase()) {
+            this.ptSolicitud.addOids(exchInfo.selectedOids);
+            this.executeDependecyRulesptsolicitud('SetValue', false);
+        }
+
+        if (exchInfo.originArgumentName.toLowerCase() === 'ptEstadoPersona'.toLowerCase()) {
+            this.ptEstadoPersona.addOids(exchInfo.selectedOids);
+            this.executeDependecyRulesptestadopersona('SetValue', false);
+        }
+
+    }
+
+    /**
+     * Evaluate dependendy rules for pt_p_agrTipoIdentificacion argument
+     * @param event Rule event
+     * @param internal Internal or External
+     */
+    private executeDependecyRulesptupuagrtipoidentificacion(event: string, internal: boolean): void {
+        if ('SetValue' === event && this.ptupuagrTipoIdentificacion.getSelectedInstances().length > 1) {
+            return;
+        }
+        if (!this.cacheDependencyRules.checkCounter()) {
+            return;
+        }
+        // Rule 1
+        if ('SetValue' === event && !internal) {
+            this.executeDependecyRules1ptupuagrTipoIdentificacion();
+        }
+        // Rule 2
+        if ('SetValue' === event && !internal) {
+            this.executeDependecyRules2ptupuagrTipoIdentificacion();
+        }
+        // Rule 3
+        if ('SetValue' === event) {
+            this.executeDependecyRules3ptupuagrTipoIdentificacion();
+        }
+        // Rule 4
+        if ('SetValue' === event) {
+            this.executeDependecyRules4ptupuagrTipoIdentificacion();
+        }
+        this.executePendingDependencyRules();
+    }
+
+    /**
+     * Dependency rule 1 for pt_p_agrTipoIdentificacion argument
+     */
+    private executeDependecyRules1ptupuagrTipoIdentificacion(): void {
+        this.cacheDependencyRules.counter++;
+        this.addQueryInstanceFromField(this.ptupuagrTipoIdentificacion,
+                'nombrecorto');
+        this.notifyCallToTheBackEnd();
+        this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
+            try {
+                this.executeDependecyRules1ptupuagrTipoIdentificacionActions();
+            } catch (e) {
+                console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
+                this.executePendingDependencyRules();
+                this.changeDetectorRef.markForCheck();
+            } });
+        this.cacheDependencyRules.counter--;
+    }
+
+    /**
+     * Actions of dependency rule 1 for pt_p_agrTipoIdentificacion argument
+     */
+    private executeDependecyRules1ptupuagrTipoIdentificacionActions(): void {
+        const varptupuagrtipoidentificacion = this.getFirstInstanceFromCache(this.ptupuagrTipoIdentificacion);
+        // v <> NULL AND v.nombrecorto = "MS"
+        if (varptupuagrtipoidentificacion && !this.util.isNull(varptupuagrtipoidentificacion) &&
+            this.util.valueEquals(varptupuagrtipoidentificacion.get('nombrecorto'), 'MS')) {
+            // pt_p_atrPrimerNombre.SetActive( FALSE )
+            this.ptupuatrPrimerNombre.enabled = false;
+            // pt_p_atrPrimerNombre.SetValue( "HIJODE" )
+            this.ptupuatrPrimerNombre.setValue('HIJODE');
+            // pt_p_atrFechaNacimiento.SetActive( FALSE )
+            this.ptupuatrFechaNacimiento.enabled = false;
+            // pt_p_atrFechaNacimiento.SetValue( systemdate() )
+            this.ptupuatrFechaNacimiento.setValue(this.stdFun.systemDate());
+        }
+        this.executePendingDependencyRules();
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Dependency rule 2 for pt_p_agrTipoIdentificacion argument
+     */
+    private executeDependecyRules2ptupuagrTipoIdentificacion(): void {
+        this.cacheDependencyRules.counter++;
+        this.addQueryInstanceFromField(this.ptupuagrTipoIdentificacion,
+                'nombrecorto');
+        this.notifyCallToTheBackEnd();
+        this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
+            try {
+                this.executeDependecyRules2ptupuagrTipoIdentificacionActions();
+            } catch (e) {
+                console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
+                this.executePendingDependencyRules();
+                this.changeDetectorRef.markForCheck();
+            } });
+        this.cacheDependencyRules.counter--;
+    }
+
+    /**
+     * Actions of dependency rule 2 for pt_p_agrTipoIdentificacion argument
+     */
+    private executeDependecyRules2ptupuagrTipoIdentificacionActions(): void {
+        const varptupuagrtipoidentificacion = this.getFirstInstanceFromCache(this.ptupuagrTipoIdentificacion);
+        // v <> NULL AND v.nombrecorto <> "MS"
+        if (varptupuagrtipoidentificacion && !this.util.isNull(varptupuagrtipoidentificacion) &&
+            !this.util.valueEquals(varptupuagrtipoidentificacion.get('nombrecorto'), 'MS')) {
+            // pt_p_atrPrimerNombre.SetActive( TRUE )
+            this.ptupuatrPrimerNombre.enabled = true;
+            // pt_p_atrFechaNacimiento.SetActive( TRUE )
+            this.ptupuatrFechaNacimiento.enabled = true;
+        }
+        this.executePendingDependencyRules();
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Dependency rule 3 for pt_p_agrTipoIdentificacion argument
+     */
+    private executeDependecyRules3ptupuagrTipoIdentificacion(): void {
+        this.cacheDependencyRules.counter++;
+        this.addQueryInstanceFromField(this.ptupuagrTipoIdentificacion,
+                'nit');
+        this.notifyCallToTheBackEnd();
+        this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
+            try {
+                this.executeDependecyRules3ptupuagrTipoIdentificacionActions();
+            } catch (e) {
+                console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
+                this.executePendingDependencyRules();
+                this.changeDetectorRef.markForCheck();
+            } });
+        this.cacheDependencyRules.counter--;
+    }
+
+    /**
+     * Actions of dependency rule 3 for pt_p_agrTipoIdentificacion argument
+     */
+    private executeDependecyRules3ptupuagrTipoIdentificacionActions(): void {
+        const varptupuagrtipoidentificacion = this.getFirstInstanceFromCache(this.ptupuagrTipoIdentificacion);
+        // v <> NULL AND v.nit = true
+        if (varptupuagrtipoidentificacion && !this.util.isNull(varptupuagrtipoidentificacion) &&
+            this.util.valueEquals(this.util.getBool(varptupuagrtipoidentificacion.get('nit')), true)) {
+            // ptReplicarDireccion.SetValue( FALSE )
+            this.ptReplicarDireccion.setValue(false);
+            this.executeDependecyRulesptreplicardireccion('SetValue', true);
+            // ptReplicarDireccion.SetActive( FALSE )
+            this.ptReplicarDireccion.enabled = false;
+            this.executeDependecyRulesptreplicardireccion('SetActive', true);
+        }
+        this.executePendingDependencyRules();
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Dependency rule 4 for pt_p_agrTipoIdentificacion argument
+     */
+    private executeDependecyRules4ptupuagrTipoIdentificacion(): void {
+        this.cacheDependencyRules.counter++;
+        this.addQueryInstanceFromField(this.ptupuagrTipoIdentificacion,
+                'nit');
+        this.notifyCallToTheBackEnd();
+        this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
+            try {
+                this.executeDependecyRules4ptupuagrTipoIdentificacionActions();
+            } catch (e) {
+                console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
+                this.executePendingDependencyRules();
+                this.changeDetectorRef.markForCheck();
+            } });
+        this.cacheDependencyRules.counter--;
+    }
+
+    /**
+     * Actions of dependency rule 4 for pt_p_agrTipoIdentificacion argument
+     */
+    private executeDependecyRules4ptupuagrTipoIdentificacionActions(): void {
+        const varptupuagrtipoidentificacion = this.getFirstInstanceFromCache(this.ptupuagrTipoIdentificacion);
+        // v <> NULL AND v.nit = false
+        if (varptupuagrtipoidentificacion && !this.util.isNull(varptupuagrtipoidentificacion) &&
+            this.util.valueEquals(this.util.getBool(varptupuagrtipoidentificacion.get('nit')), false)) {
+            // ptReplicarDireccion.SetActive( TRUE )
+            this.ptReplicarDireccion.enabled = true;
+            this.executeDependecyRulesptreplicardireccion('SetActive', true);
+        }
+        this.executePendingDependencyRules();
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Process the change in the pt_p_agrTipoIdentificacion argument
+     */
+    public onptupuagrtipoidentificacionChange(): void {
+        this.executeDependecyRulesptupuagrtipoidentificacion('SetValue', false);
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Evaluate dependendy rules for pt_p_atrNumIdentificacion argument
+     * @param event Rule event
+     * @param internal Internal or External
+     */
+    private executeDependecyRulesptupuatrnumidentificacion(event: string, internal: boolean): void {
+        if (!this.cacheDependencyRules.checkCounter()) {
+            return;
+        }
+        // Rule 1
+        if ('SetValue' === event && !internal) {
+            this.buscarPersonaenCORE();
+        }
+        this.executePendingDependencyRules();
+    }
+
+    /**
+     * Dependency rule 1 for pt_p_atrNumIdentificacion argument
+     */
+    private executeDependecyRules1ptupuatrNumIdentificacion(): void {
+        this.cacheDependencyRules.counter++;
+        try {
+            this.executeDependecyRules1ptupuatrNumIdentificacionActions();
+        } catch (e) {
+            console.log(e);
+            this.executePendingDependencyRules();
+            this.changeDetectorRef.markForCheck();
+        }
+        this.cacheDependencyRules.counter--;
+    }
+
+    /**
+     * Actions of dependency rule 1 for pt_p_atrNumIdentificacion argument
+     */
+    private executeDependecyRules1ptupuatrNumIdentificacionActions(): void {
+        // v <> NULL
+        if (!this.util.isNull(this.ptupuatrNumIdentificacion.value)) {
+            // pt_p_atrDireccionCompleta.SetValue( NULL )
+            this.ptupuatrDireccionCompleta.setValue(null);
+        }
+        this.executePendingDependencyRules();
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Process the change in the pt_p_atrNumIdentificacion argument
+     */
+    public onptupuatrnumidentificacionChange(): void {
+        this.clearValidationMessages();
+        this.executeDependecyRulesptupuatrnumidentificacion('SetValue', false);
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Evaluate dependendy rules for pt_p_atrIndicadorExtranjero argument
+     * @param event Rule event
+     * @param internal Internal or External
+     */
+    private executeDependecyRulesptupuatrindicadorextranjero(event: string, internal: boolean): void {
+        if (!this.cacheDependencyRules.checkCounter()) {
+            return;
+        }
+        // Rule 1
+        if ('SetValue' === event) {
+            this.executeDependecyRules1ptupuatrIndicadorExtranjero();
+        }
+        // Rule 2
+        if ('SetValue' === event) {
+            this.executeDependecyRules2ptupuatrIndicadorExtranjero();
+        }
+        this.executePendingDependencyRules();
+    }
+
+    /**
+     * Dependency rule 1 for pt_p_atrIndicadorExtranjero argument
+     */
+    private executeDependecyRules1ptupuatrIndicadorExtranjero(): void {
+        this.cacheDependencyRules.counter++;
+        try {
+            this.executeDependecyRules1ptupuatrIndicadorExtranjeroActions();
+        } catch (e) {
+            console.log(e);
+            this.executePendingDependencyRules();
+            this.changeDetectorRef.markForCheck();
+        }
+        this.cacheDependencyRules.counter--;
+    }
+
+    /**
+     * Actions of dependency rule 1 for pt_p_atrIndicadorExtranjero argument
+     */
+    private executeDependecyRules1ptupuatrIndicadorExtranjeroActions(): void {
+        // v <> NULL AND v = true
+        if (!this.util.isNull(this.util.getBool(this.ptupuatrIndicadorExtranjero.value)) &&
+            this.util.valueEquals(this.util.getBool(this.ptupuatrIndicadorExtranjero.value), true)) {
+            // pt_p_agrDepartamentoNacimiento.SetValue( NULL )
+            this.ptupuagrDepartamentoNacimiento.setValue(null);
+            this.pendingDependencyRules.push('loadPreloadptupuagrmunicipionacimiento');
+            // pt_p_agrDepartamentoNacimiento.SetActive( FALSE )
+            this.ptupuagrDepartamentoNacimiento.enabled = false;
+            // pt_p_agrDepartamentoNacimiento.SetMandatory( FALSE )
+            this.ptupuagrDepartamentoNacimiento.mandatory = false;
+            // pt_p_agrMunicipioNacimiento.SetValue( NULL )
+            this.ptupuagrMunicipioNacimiento.setValue(null);
+            // pt_p_agrMunicipioNacimiento.SetActive( FALSE )
+            this.ptupuagrMunicipioNacimiento.enabled = false;
+            // pt_p_agrMunicipioNacimiento.SetMandatory( FALSE )
+            this.ptupuagrMunicipioNacimiento.mandatory = false;
+        }
+        this.executePendingDependencyRules();
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Dependency rule 2 for pt_p_atrIndicadorExtranjero argument
+     */
+    private executeDependecyRules2ptupuatrIndicadorExtranjero(): void {
+        this.cacheDependencyRules.counter++;
+        try {
+            this.executeDependecyRules2ptupuatrIndicadorExtranjeroActions();
+        } catch (e) {
+            console.log(e);
+            this.executePendingDependencyRules();
+            this.changeDetectorRef.markForCheck();
+        }
+        this.cacheDependencyRules.counter--;
+    }
+
+    /**
+     * Actions of dependency rule 2 for pt_p_atrIndicadorExtranjero argument
+     */
+    private executeDependecyRules2ptupuatrIndicadorExtranjeroActions(): void {
+        // v <> NULL AND v = false
+        if (!this.util.isNull(this.util.getBool(this.ptupuatrIndicadorExtranjero.value)) &&
+            this.util.valueEquals(this.util.getBool(this.ptupuatrIndicadorExtranjero.value), false)) {
+            // pt_p_agrDepartamentoNacimiento.SetActive( TRUE )
+            this.ptupuagrDepartamentoNacimiento.enabled = true;
+            // pt_p_agrDepartamentoNacimiento.SetMandatory( TRUE )
+            this.ptupuagrDepartamentoNacimiento.mandatory = true;
+            // pt_p_agrMunicipioNacimiento.SetActive( TRUE )
+            this.ptupuagrMunicipioNacimiento.enabled = true;
+            // pt_p_agrMunicipioNacimiento.SetMandatory( TRUE )
+            this.ptupuagrMunicipioNacimiento.mandatory = true;
+        }
+        this.executePendingDependencyRules();
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Process the change in the pt_p_atrIndicadorExtranjero argument
+     */
+    public onptupuatrindicadorextranjeroChange(): void {
+        this.clearValidationMessages();
+        this.executeDependecyRulesptupuatrindicadorextranjero('SetValue', false);
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Evaluate dependendy rules for pt_p_agrPais argument
+     * @param event Rule event
+     * @param internal Internal or External
+     */
+    private executeDependecyRulesptupuagrpais(event: string, internal: boolean): void {
+        // Suplementary information
+        if ('SetValue' === event) {
+            this.setSuppInfoptupuagrpais();
+        }
+        this.executePendingDependencyRules();
+    }
+
+    /**
+     * Set the supplementary information to the pt_p_agrPais argument
+     */
+    private setSuppInfoptupuagrpais(): void {
+
+        const displaySetIC = 'Descripcion';
+        let numberMissingSupInfo = 0;
+        for (const value of this.ptupuagrPais.getSelectedInstances()) {
+            if (!value.supplementaryInfo || value.supplementaryInfo === '') {
+                numberMissingSupInfo++;
+                this.cacheDependencyRules.addQueryInstance(ModelConstants.Pais.name, value.oid, displaySetIC);
+            }
+        }
+
+        if (numberMissingSupInfo === 0) {
+            this.ptupuagrPais.setText();
+            this.executePendingDependencyRules();
+            this.changeDetectorRef.markForCheck();
+        } else {
+            this.notifyCallToTheBackEnd();
+            this.cacheDependencyRules.searchAll().then(() => {
+                this.notifyAnswerFromToTheBackEnd();
+                for (const value of this.ptupuagrPais.getSelectedInstances()) {
+                    if (!value.supplementaryInfo || value.supplementaryInfo === '') {
+                        value.supplementaryInfo = this.cacheDependencyRules.getText(ModelConstants.Pais.name,
+                            value.oid, displaySetIC, [Field.dtString]);
+                    }
+                }
+                this.ptupuagrPais.setText();
+                this.executePendingDependencyRules();
+                this.changeDetectorRef.markForCheck();
+            });
+        }
+    }
+
+    /**
+     * Process the change in the pt_p_agrPais lense search argument
+     */
+    public onptupuagrpaisChange(): void {
+
+        const searchText = this.ptupuagrPais.text;
+        if (searchText && searchText !== '') {
+            if (searchText !== this.ptupuagrPais.lastText) {
+                this.ptupuagrPais.removeCSSClass('noResultsLenseSearch');
+                this.ptupuagrPais.lastText = searchText;
+                this.util.searchLenseSearch(ModelConstants.Pais.name, 'IC_Pais', searchText, [], null).then(
+                        (response: any) => {
+                            this.ptupuagrPais.removeCSSClass('noResultsLenseSearch');
+                            this.ptupuagrPais.searchResults = response.results;
+                            if (this.ptupuagrPais.searchResults &&
+                                this.ptupuagrPais.searchResults.length === 0) {
+                                this.ptupuagrPais.addCSSClass('noResultsLenseSearch');
+                            }
+                            if (this.ptupuagrPais.searchResults &&
+                                this.ptupuagrPais.searchResults.length === 1) {
+                                this.processptupuagrpaisSelected(0);
+                            }
+                            this.changeDetectorRef.markForCheck();
+                        },
+                        (response: any) => {
+                            this.ptupuagrPais.removeCSSClass('noResultsLenseSearch');
+                            this.ptupuagrPais.searchResults = [];
+                            this.util.addErrorMessage(response.message);
+                            this.changeDetectorRef.markForCheck();
+                        });
+            }
+        } else {
+            this.ptupuagrPais.removeCSSClass('noResultsLenseSearch');
+            this.ptupuagrPais.searchResults = [];
+            this.cleanptupuagrpais();
+        }
+
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Process the selection in the pt_p_agrPais lense search argument
+     */
+    public processptupuagrpaisSelected(index: number): void {
+
+        let selectedInstance = null;
+        if (index !== -1 && this.ptupuagrPais.searchResults.length > index) {
+            selectedInstance = this.ptupuagrPais.searchResults[index];
+        }
+        // Clean the result list
+        this.ptupuagrPais.searchResults = [];
+        if (selectedInstance) {
+            if (!this.ptupuagrPais.allowMultiSelect) {
+                this.ptupuagrPais.cleanSelectedInstances();
+            }
+            selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
+            this.ptupuagrPais.getSelectedInstances().push(selectedInstance);
+        }
+        this.executeDependecyRulesptupuagrpais('SetValue', false);
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Clean the value of the pt_p_agrPais lense search argument
+     */
+    public cleanptupuagrpais(): void {
+        this.clearValidationMessages();
+        this.ptupuagrPais.clean();
+        this.executeDependecyRulesptupuagrpais('SetValue', false);
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Evaluate dependendy rules for ptSolicitud argument
+     * @param event Rule event
+     * @param internal Internal or External
+     */
+    private executeDependecyRulesptsolicitud(event: string, internal: boolean): void {
+        // Suplementary information
+        if ('SetValue' === event) {
+            this.setSuppInfoptsolicitud();
+        }
+
+        // Load dependent preload
+        if ('SetValue' === event) {
+            this.loadPreloadptdireccionestitular();
+        }
+        if ('SetValue' === event && this.ptSolicitud.getSelectedInstances().length > 1) {
+            return;
+        }
+        if (!this.cacheDependencyRules.checkCounter()) {
+            return;
+        }
+        // Rule 1
+        if ('SetValue' === event) {
+            this.executeDependecyRules1ptSolicitud();
+        }
+        this.executePendingDependencyRules();
+    }
+
+    /**
+     * Set the supplementary information to the ptSolicitud argument
+     */
+    private setSuppInfoptsolicitud(): void {
+
+        const displaySetIC = 'Ae_solicitudes.Numero_solicitud';
+        let numberMissingSupInfo = 0;
+        for (const value of this.ptSolicitud.getSelectedInstances()) {
+            if (!value.supplementaryInfo || value.supplementaryInfo === '') {
+                numberMissingSupInfo++;
+                this.cacheDependencyRules.addQueryInstance(ModelConstants.Solicitud.name, value.oid, displaySetIC);
+            }
+        }
+
+        if (numberMissingSupInfo === 0) {
+            this.ptSolicitud.setText();
+            this.executePendingDependencyRules();
+            this.changeDetectorRef.markForCheck();
+        } else {
+            this.notifyCallToTheBackEnd();
+            this.cacheDependencyRules.searchAll().then(() => {
+                this.notifyAnswerFromToTheBackEnd();
+                for (const value of this.ptSolicitud.getSelectedInstances()) {
+                    if (!value.supplementaryInfo || value.supplementaryInfo === '') {
+                        value.supplementaryInfo = this.cacheDependencyRules.getText(ModelConstants.Solicitud.name,
+                            value.oid, displaySetIC, [Field.dtString]);
+                    }
+                }
+                this.ptSolicitud.setText();
+                this.executePendingDependencyRules();
+                this.changeDetectorRef.markForCheck();
+            });
+        }
+    }
+
+    /**
+     * Dependency rule 1 for ptSolicitud argument
+     */
+    private executeDependecyRules1ptSolicitud(): void {
+        this.cacheDependencyRules.counter++;
+        this.addQueryInstanceFromField(this.ptSolicitud,
+                'titular.Solicitud.Ae_solicitudes.id_solicitud,titular.tipopersona');
+        this.notifyCallToTheBackEnd();
+        this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
+            try {
+                this.executeDependecyRules1ptSolicitudActions();
+            } catch (e) {
+                console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
+                this.executePendingDependencyRules();
+                this.changeDetectorRef.markForCheck();
+            } });
+        this.cacheDependencyRules.counter--;
+    }
+
+    /**
+     * Actions of dependency rule 1 for ptSolicitud argument
+     */
+    private executeDependecyRules1ptSolicitudActions(): void {
+        const varptsolicitud = this.getFirstInstanceFromCache(this.ptSolicitud);
+        // v <> NULL AND v.titular <> NULL AND v.titular.tipopersona <> "N"
+        if (varptsolicitud && !this.util.isNull(varptsolicitud) && !this.util.isNull(this.util.oidBuilder.buildOidTitular(
+            this.util.getInt(varptsolicitud.get('titular.Solicitud.Ae_solicitudes.id_solicitud')))) &&
+            !this.util.valueEquals(varptsolicitud.get('titular.tipopersona'), 'N')) {
+            // ptReplicarDireccion.SetVisible( FALSE )
+            this.ptReplicarDireccion.visible = false;
+            // ptReplicarDireccion.SetValue( FALSE )
+            this.ptReplicarDireccion.setValue(false);
+            this.executeDependecyRulesptreplicardireccion('SetValue', true);
+            // ptDireccionesTitular.SetValue( NULL )
+            this.ptDireccionesTitular.setValue(null);
+            this.executeDependecyRulesptdireccionestitular('SetValue', true);
+            // ptDireccionesTitular.SetVisible( FALSE )
+            this.ptDireccionesTitular.visible = false;
+            // pt_p_atrIndicadorExtranjero.SetValue( FALSE )
+            this.ptupuatrIndicadorExtranjero.setValue(false);
+            this.executeDependecyRulesptupuatrindicadorextranjero('SetValue', true);
+        }
+        this.executePendingDependencyRules();
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Process the change in the ptSolicitud lense search argument
+     */
+    public onptsolicitudChange(): void {
+
+        const searchText = this.ptSolicitud.text;
+        if (searchText && searchText !== '') {
+            if (searchText !== this.ptSolicitud.lastText) {
+                this.ptSolicitud.removeCSSClass('noResultsLenseSearch');
+                this.ptSolicitud.lastText = searchText;
+                this.util.searchLenseSearch(ModelConstants.Solicitud.name, 'IC_Solicitud', searchText, [], null).then(
+                        (response: any) => {
+                            this.ptSolicitud.removeCSSClass('noResultsLenseSearch');
+                            this.ptSolicitud.searchResults = response.results;
+                            if (this.ptSolicitud.searchResults &&
+                                this.ptSolicitud.searchResults.length === 0) {
+                                this.ptSolicitud.addCSSClass('noResultsLenseSearch');
+                            }
+                            if (this.ptSolicitud.searchResults &&
+                                this.ptSolicitud.searchResults.length === 1) {
+                                this.processptsolicitudSelected(0);
+                            }
+                            this.changeDetectorRef.markForCheck();
+                        },
+                        (response: any) => {
+                            this.ptSolicitud.removeCSSClass('noResultsLenseSearch');
+                            this.ptSolicitud.searchResults = [];
+                            this.util.addErrorMessage(response.message);
+                            this.changeDetectorRef.markForCheck();
+                        });
+            }
+        } else {
+            this.ptSolicitud.removeCSSClass('noResultsLenseSearch');
+            this.ptSolicitud.searchResults = [];
+            this.cleanptsolicitud();
+        }
+
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Process the selection in the ptSolicitud lense search argument
+     */
+    public processptsolicitudSelected(index: number): void {
+
+        let selectedInstance = null;
+        if (index !== -1 && this.ptSolicitud.searchResults.length > index) {
+            selectedInstance = this.ptSolicitud.searchResults[index];
+        }
+        // Clean the result list
+        this.ptSolicitud.searchResults = [];
+        if (selectedInstance) {
+            if (!this.ptSolicitud.allowMultiSelect) {
+                this.ptSolicitud.cleanSelectedInstances();
+            }
+            selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
+            this.ptSolicitud.getSelectedInstances().push(selectedInstance);
+        }
+        this.executeDependecyRulesptsolicitud('SetValue', false);
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Clean the value of the ptSolicitud lense search argument
+     */
+    public cleanptsolicitud(): void {
+        this.clearValidationMessages();
+        this.ptSolicitud.clean();
+        this.executeDependecyRulesptsolicitud('SetValue', false);
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Evaluate dependendy rules for ptDireccionesTitular argument
+     * @param event Rule event
+     * @param internal Internal or External
+     */
+    private executeDependecyRulesptdireccionestitular(event: string, internal: boolean): void {
+        if ('SetValue' === event && this.ptDireccionesTitular.getSelectedInstances().length > 1) {
+            return;
+        }
+        if (!this.cacheDependencyRules.checkCounter()) {
+            return;
+        }
+        // Rule 1
+        if ('SetValue' === event && !internal) {
+            this.executeDependecyRules1ptDireccionesTitular();
+        }
+        this.executePendingDependencyRules();
+    }
+
+    /**
+     * Dependency rule 1 for ptDireccionesTitular argument
+     */
+    private executeDependecyRules1ptDireccionesTitular(): void {
+        this.cacheDependencyRules.counter++;
+        this.addQueryInstanceFromField(this.ptDireccionesTitular,
+                'departamento.Codigo,municipio.Codigo,pais.Codigo,direccioncompleta,rural');
+        this.notifyCallToTheBackEnd();
+        this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
+            try {
+                this.executeDependecyRules1ptDireccionesTitularActions();
+            } catch (e) {
+                console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
+                this.executePendingDependencyRules();
+                this.changeDetectorRef.markForCheck();
+            } });
+        this.cacheDependencyRules.counter--;
+    }
+
+    /**
+     * Actions of dependency rule 1 for ptDireccionesTitular argument
+     */
+    private executeDependecyRules1ptDireccionesTitularActions(): void {
+        const varptdireccionestitular = this.getFirstInstanceFromCache(this.ptDireccionesTitular);
+        // v <> NULL
+        if (varptdireccionestitular && !this.util.isNull(varptdireccionestitular)) {
+            // pt_p_agrDepartamento.SetValue( v.departamento )
+            this.ptupuagrDepartamento.setValue(this.util.oidBuilder.buildOidDepartamento(
+                this.util.getInt(varptdireccionestitular.get('departamento.Codigo'))));
+            this.pendingDependencyRules.push('loadPreloadptupuagrmunicipio');
+            // pt_p_agrMunicipio.SetValue( v.municipio )
+            this.ptupuagrMunicipio.setValue(this.util.oidBuilder.buildOidMunicipio(
+                this.util.getInt(varptdireccionestitular.get('municipio.Codigo'))));
+            // pt_p_agrPais.SetValue( v.pais )
+            this.ptupuagrPais.setValue(this.util.oidBuilder.buildOidPais(
+                varptdireccionestitular.get('pais.Codigo')));
+            this.executeDependecyRulesptupuagrpais('SetValue', true);
+            // pt_p_atrDireccionCompleta.SetValue( v.direccioncompleta )
+            this.ptupuatrDireccionCompleta.setValue(varptdireccionestitular.get('direccioncompleta'));
+            // pt_p_atrRural.SetValue( v.rural )
+            this.ptupuatrRural.setValue(this.util.getBool(varptdireccionestitular.get('rural')));
+        }
+        this.executePendingDependencyRules();
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Process the change in the ptDireccionesTitular argument
+     */
+    public onptdireccionestitularChange(): void {
+        this.executeDependecyRulesptdireccionestitular('SetValue', false);
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Evaluate dependendy rules for ptReplicarDireccion argument
+     * @param event Rule event
+     * @param internal Internal or External
+     */
+    private executeDependecyRulesptreplicardireccion(event: string, internal: boolean): void {
+        if (!this.cacheDependencyRules.checkCounter()) {
+            return;
+        }
+        // Rule 1
+        if ('SetValue' === event) {
+            this.executeDependecyRules1ptReplicarDireccion();
+        }
+        // Rule 2
+        if ('SetValue' === event) {
+            this.executeDependecyRules2ptReplicarDireccion();
+        }
+        this.executePendingDependencyRules();
+    }
+
+    /**
+     * Dependency rule 1 for ptReplicarDireccion argument
+     */
+    private executeDependecyRules1ptReplicarDireccion(): void {
+        this.cacheDependencyRules.counter++;
+        try {
+            this.executeDependecyRules1ptReplicarDireccionActions();
+        } catch (e) {
+            console.log(e);
+            this.executePendingDependencyRules();
+            this.changeDetectorRef.markForCheck();
+        }
+        this.cacheDependencyRules.counter--;
+    }
+
+    /**
+     * Actions of dependency rule 1 for ptReplicarDireccion argument
+     */
+    private executeDependecyRules1ptReplicarDireccionActions(): void {
+        // v <> NULL AND v = TRUE
+        if (!this.util.isNull(this.util.getBool(this.ptReplicarDireccion.value)) &&
+            this.util.valueEquals(this.util.getBool(this.ptReplicarDireccion.value), true)) {
+            // ptDireccionesTitular.SetVisible( TRUE )
+            this.ptDireccionesTitular.visible = true;
+            // ptDireccionesTitular.SetActive( TRUE )
+            this.ptDireccionesTitular.enabled = true;
+            this.executeDependecyRulesptdireccionestitular('SetActive', true);
+            // ptDireccionesXClass.SetActive( FALSE )
+            this.ptDireccionesXClass.enabled = false;
+            this.executeDependecyRulesptdireccionesxclass('SetActive', true);
+            // ptDireccionesXClass.SetValue( NULL )
+            this.ptDireccionesXClass.setValue(null);
+            this.executeDependecyRulesptdireccionesxclass('SetValue', true);
+        }
+        this.executePendingDependencyRules();
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Dependency rule 2 for ptReplicarDireccion argument
+     */
+    private executeDependecyRules2ptReplicarDireccion(): void {
+        this.cacheDependencyRules.counter++;
+        try {
+            this.executeDependecyRules2ptReplicarDireccionActions();
+        } catch (e) {
+            console.log(e);
+            this.executePendingDependencyRules();
+            this.changeDetectorRef.markForCheck();
+        }
+        this.cacheDependencyRules.counter--;
+    }
+
+    /**
+     * Actions of dependency rule 2 for ptReplicarDireccion argument
+     */
+    private executeDependecyRules2ptReplicarDireccionActions(): void {
+        // v <> NULL AND v = FALSE
+        if (!this.util.isNull(this.util.getBool(this.ptReplicarDireccion.value)) &&
+            this.util.valueEquals(this.util.getBool(this.ptReplicarDireccion.value), false)) {
+            // ptDireccionesTitular.SetVisible( FALSE )
+            this.ptDireccionesTitular.visible = false;
+            // ptDireccionesTitular.SetValue( NULL )
+            this.ptDireccionesTitular.setValue(null);
+            this.executeDependecyRulesptdireccionestitular('SetValue', true);
+            // ptDireccionesXClass.SetActive( TRUE )
+            this.ptDireccionesXClass.enabled = true;
+            this.executeDependecyRulesptdireccionesxclass('SetActive', true);
+        }
+        this.executePendingDependencyRules();
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Process the change in the ptReplicarDireccion argument
+     */
+    public onptreplicardireccionChange(): void {
+        this.clearValidationMessages();
+        this.executeDependecyRulesptreplicardireccion('SetValue', false);
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Evaluate dependendy rules for ptDireccionesXClass argument
+     * @param event Rule event
+     * @param internal Internal or External
+     */
+    private executeDependecyRulesptdireccionesxclass(event: string, internal: boolean): void {
+        if (!this.cacheDependencyRules.checkCounter()) {
+            return;
+        }
+        // Rule 1
+        if ('SetValue' === event && !internal) {
+            this.executeDependecyRules1ptDireccionesXClass();
+        }
+        this.executePendingDependencyRules();
+    }
+
+    /**
+     * Dependency rule 1 for ptDireccionesXClass argument
+     */
+    private executeDependecyRules1ptDireccionesXClass(): void {
+        this.cacheDependencyRules.counter++;
+        try {
+            this.executeDependecyRules1ptDireccionesXClassActions();
+        } catch (e) {
+            console.log(e);
+            this.executePendingDependencyRules();
+            this.changeDetectorRef.markForCheck();
+        }
+        this.cacheDependencyRules.counter--;
+    }
+
+    /**
+     * Actions of dependency rule 1 for ptDireccionesXClass argument
+     */
+    private executeDependecyRules1ptDireccionesXClassActions(): void {
+        // v <> NULL
+        if (!this.util.isNull(this.ptDireccionesXClass.value)) {
+            // pt_p_atrDireccionCompleta.SetValue( NULL )
+            // this.ptupuatrDireccionCompleta.setValue(null);
+            this.asignarDireccionSeleccionada();
+        }
+        this.executePendingDependencyRules();
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Process the change in the ptDireccionesXClass argument
+     */
+    public onptdireccionesxclassChange(): void {
+        this.clearValidationMessages();
+        this.executeDependecyRulesptdireccionesxclass('SetValue', false);
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Evaluate dependendy rules for ptEstadoPersona argument
+     * @param event Rule event
+     * @param internal Internal or External
+     */
+    private executeDependecyRulesptestadopersona(event: string, internal: boolean): void {
+        // Suplementary information
+        if ('SetValue' === event) {
+            this.setSuppInfoptestadopersona();
+        }
+        this.executePendingDependencyRules();
+    }
+
+    /**
+     * Set the supplementary information to the ptEstadoPersona argument
+     */
+    private setSuppInfoptestadopersona(): void {
+
+        const displaySetIC = 'Descripcion';
+        let numberMissingSupInfo = 0;
+        for (const value of this.ptEstadoPersona.getSelectedInstances()) {
+            if (!value.supplementaryInfo || value.supplementaryInfo === '') {
+                numberMissingSupInfo++;
+                this.cacheDependencyRules.addQueryInstance(ModelConstants.Estadopersona.name, value.oid, displaySetIC);
+            }
+        }
+
+        if (numberMissingSupInfo === 0) {
+            this.ptEstadoPersona.setText();
+            this.executePendingDependencyRules();
+            this.changeDetectorRef.markForCheck();
+        } else {
+            this.notifyCallToTheBackEnd();
+            this.cacheDependencyRules.searchAll().then(() => {
+                this.notifyAnswerFromToTheBackEnd();
+                for (const value of this.ptEstadoPersona.getSelectedInstances()) {
+                    if (!value.supplementaryInfo || value.supplementaryInfo === '') {
+                        value.supplementaryInfo = this.cacheDependencyRules.getText(ModelConstants.Estadopersona.name,
+                            value.oid, displaySetIC, [Field.dtString]);
+                    }
+                }
+                this.ptEstadoPersona.setText();
+                this.executePendingDependencyRules();
+                this.changeDetectorRef.markForCheck();
+            });
+        }
+    }
+
+    /**
+     * Process the change in the ptEstadoPersona lense search argument
+     */
+    public onptestadopersonaChange(): void {
+
+        const searchText = this.ptEstadoPersona.text;
+        if (searchText && searchText !== '') {
+            if (searchText !== this.ptEstadoPersona.lastText) {
+                this.ptEstadoPersona.removeCSSClass('noResultsLenseSearch');
+                this.ptEstadoPersona.lastText = searchText;
+                this.util.searchLenseSearch(ModelConstants.Estadopersona.name, 'IC_EstadoPersona', searchText, [], null).then(
+                        (response: any) => {
+                            this.ptEstadoPersona.removeCSSClass('noResultsLenseSearch');
+                            this.ptEstadoPersona.searchResults = response.results;
+                            if (this.ptEstadoPersona.searchResults &&
+                                this.ptEstadoPersona.searchResults.length === 0) {
+                                this.ptEstadoPersona.addCSSClass('noResultsLenseSearch');
+                            }
+                            if (this.ptEstadoPersona.searchResults &&
+                                this.ptEstadoPersona.searchResults.length === 1) {
+                                this.processptestadopersonaSelected(0);
+                            }
+                            this.changeDetectorRef.markForCheck();
+                        },
+                        (response: any) => {
+                            this.ptEstadoPersona.removeCSSClass('noResultsLenseSearch');
+                            this.ptEstadoPersona.searchResults = [];
+                            this.util.addErrorMessage(response.message);
+                            this.changeDetectorRef.markForCheck();
+                        });
+            }
+        } else {
+            this.ptEstadoPersona.removeCSSClass('noResultsLenseSearch');
+            this.ptEstadoPersona.searchResults = [];
+            this.cleanptestadopersona();
+        }
+
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Process the selection in the ptEstadoPersona lense search argument
+     */
+    public processptestadopersonaSelected(index: number): void {
+
+        let selectedInstance = null;
+        if (index !== -1 && this.ptEstadoPersona.searchResults.length > index) {
+            selectedInstance = this.ptEstadoPersona.searchResults[index];
+        }
+        // Clean the result list
+        this.ptEstadoPersona.searchResults = [];
+        if (selectedInstance) {
+            if (!this.ptEstadoPersona.allowMultiSelect) {
+                this.ptEstadoPersona.cleanSelectedInstances();
+            }
+            selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
+            this.ptEstadoPersona.getSelectedInstances().push(selectedInstance);
+        }
+        this.executeDependecyRulesptestadopersona('SetValue', false);
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Clean the value of the ptEstadoPersona lense search argument
+     */
+    public cleanptestadopersona(): void {
+        this.clearValidationMessages();
+        this.ptEstadoPersona.clean();
+        this.executeDependecyRulesptestadopersona('SetValue', false);
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Manages the change for the pt_p_agrDepartamentoNacimiento argument
+     */
+    public onptupuagrdepartamentonacimientoChange(): void {
+        this.loadPreloadptupuagrmunicipionacimiento();
+
+        this.executePendingDependencyRules();
+    }
+
+    /**
+     * Manages the change for the pt_p_agrDepartamento argument
+     */
+    public onptupuagrdepartamentoChange(): void {
+        this.loadPreloadptupuagrmunicipio();
+
+        this.executePendingDependencyRules();
+    }
+
+    /**
+     * Manages the change for the pt_p_TieneEPSSanitas argument
+     */
+    public onptuputieneepssanitasChange(): void {
+        this.loadPreloadptupuagrmunicipio();
+
+        this.executePendingDependencyRules();
+    }
+
+   /**
+    * Process the click in the lense of any object-valued argument
+    * @param argumentName Name of the argument
+    */
+    public doSearchAction(argumentName: string): void {
+        const exchInfo = this.getSelectionForwardExchInfo();
+        exchInfo.originArgumentName = argumentName;
+        if ('ptupuagrPais'.toLowerCase() === argumentName.toLowerCase()) {
+            this.ptupuagrPais.completeSelectionForwardExchInfo(exchInfo);
+            exchInfo.targetIUName = 'PIU_Pais';
+            this.util.navigateSelectionForward(exchInfo);
+        }
+        if ('ptSolicitud'.toLowerCase() === argumentName.toLowerCase()) {
+            this.ptSolicitud.completeSelectionForwardExchInfo(exchInfo);
+            exchInfo.targetIUName = 'PIU_Radicados_Obs';
+            this.util.navigateSelectionForward(exchInfo);
+        }
+        if ('ptEstadoPersona'.toLowerCase() === argumentName.toLowerCase()) {
+            this.ptEstadoPersona.completeSelectionForwardExchInfo(exchInfo);
+            exchInfo.targetIUName = 'PIU_EstadoPersona';
+            this.util.navigateSelectionForward(exchInfo);
+        }
+    }
+
+    /**
+     * Returns true if all elements contained in the group are visible
+     * @param groupId Group id.
+     */
+    public isGroupVisible(groupId: string): boolean {
+        let isVisible = true;
+
+        if (groupId === '0') {
+            isVisible = this.ptupuagrTipoIdentificacion.visible ||
+                this.ptupuatrNumIdentificacion.visible;
+        }
+        if (groupId === '1') {
+            isVisible = this.ptupuatrPrimerNombre.visible ||
+                this.ptupuatrSegundoNombre.visible ||
+                this.ptupuatrPrimerApellido.visible ||
+                this.ptupuatrSegundoApellido.visible ||
+                this.ptupuatrFechaNacimiento.visible ||
+                this.ptupuatrGenero.visible ||
+                this.ptupuatrIndicadorExtranjero.visible ||
+                this.ptupuagrDepartamentoNacimiento.visible ||
+                this.ptupuagrMunicipioNacimiento.visible ||
+                this.ptupuagrEstadoCivil.visible;
+        }
+        if (groupId === '2') {
+            isVisible = this.ptReplicarDireccion.visible ||
+                this.ptDireccionesTitular.visible ||
+                this.ptDireccionesXClass.visible ||
+                this.ptupuatrDireccionCompleta.visible ||
+                this.ptupuagrDepartamento.visible ||
+                this.ptupuagrMunicipio.visible ||
+                this.ptupuatrRural.visible ||
+                this.ptupuatrCorreoElectronico.visible ||
+                this.ptupuatrTelefonoFijo.visible ||
+                this.ptupuatrTelefonoCelular.visible;
+        }
+        return isVisible;
+    }
+
+    /**
+     * Returns the alias group
+     * @param groupId Group id
+     */
+    public getGroupAlias(groupId: string): string {
+        let alias = '';
+
+        if (groupId === '0') {
+            alias = this.langMng.translateText('0',
+                'Seleccione usuario');
+        }
+        if (groupId === '1') {
+            alias = this.langMng.translateText('1',
+                'Datos básicos');
+        }
+        if (groupId === '2') {
+            alias = this.langMng.translateText('2',
+                'Datos de contacto');
+        }
+        return alias;
+    }
+}

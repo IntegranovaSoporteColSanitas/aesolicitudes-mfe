@@ -17,8 +17,6 @@ import { ModelConstants } from './model.constants';
 @Injectable({providedIn: 'root'})
 export class Util {
 
-    /** Wait dialog observable */
-    public waitDialogAction: Subject<boolean> = new Subject<boolean>();
     /** Error messages observable */
     public errorMessagesAction: Subject<string> = new Subject<string>();
     /** Grid preferences observable, action */
@@ -428,10 +426,8 @@ export class Util {
                     if (errorMsg) {
                         this.addErrorMessage(errorMsg);
                     }
-                    this.hideWaitDialog();
                 }).catch((errorMsg) => {
                     this.addErrorMessage(errorMsg);
-                    this.hideWaitDialog();
                 });
             }
         }
@@ -710,7 +706,13 @@ export class Util {
         return returnvalue;
     }
 
-
+    /**
+     * Returns a safe url form images
+     * @param url Image url
+     */
+    public getSafeUrl(url: string): SafeUrl {
+        return this.sanitizer.bypassSecurityTrustUrl(url);
+    }
 
     /**
      * Saves a file using the data in base 64 format
@@ -719,7 +721,7 @@ export class Util {
      */
     public saveFileFromBase64(base64Data: string, fileName: string): void {
         if (base64Data) {
-            const binaryString = atob(base64Data);
+            const binaryString = window.atob(base64Data);
             const len = binaryString.length;
             const bytes = new Uint8Array(len);
             for (let i = 0; i < len; i++) {
@@ -1002,22 +1004,6 @@ export class Util {
         return this.callHttpPost(url, queryRequest);
     }
 
-
-
-    /**
-     * Show the wait dialog
-     */
-    public showWaitDialog(): void {
-        this.waitDialogAction.next(true);
-    }
-
-    /**
-     * Hide the wait dialog
-     */
-    public hideWaitDialog(): void {
-        this.waitDialogAction.next(false);
-    }
-
     /**
      * Show the Progress bar
      * @param value Percentage complete
@@ -1165,10 +1151,8 @@ export class Util {
         this.generateInstanceReport(exchInfo.targetClassName, exchInfo.printUIName, exchInfo.selectedOids,
                                     exchInfo.customData.reportParams).then((errorMsg) => {
                                         this.processReportResponse(errorMsg, exchInfo.comeBackContext);
-                                        this.hideWaitDialog();
         }).catch((errorMsg) => {
             this.addErrorMessage(errorMsg);
-            this.hideWaitDialog();
         });
     }
 
@@ -1222,10 +1206,8 @@ export class Util {
         this.generatePopulationReport(exchInfo.targetClassName, exchInfo.targetIUName, exchInfo.customData.filters,
                                       exchInfo.customData.reportParams).then((errorMsg) => {
                                         this.processReportResponse(errorMsg, exchInfo.comeBackContext);
-                                        this.hideWaitDialog();
         }).catch((errorMsg) => {
             this.addErrorMessage(errorMsg);
-            this.hideWaitDialog();
         });
     }
 
@@ -1304,10 +1286,11 @@ export class Util {
                          orderCriteriaName: string): Promise<any> {
 
         const url = `${this.appGlobalInfo.APPCONSTANTS.BASE_URL}/api/${className}Api/GetWithDisplaySetDynamic`;
-        const queryRequest: { displaySetName: string, filters: any[], orderCriteriaName: string } = {
+        const queryRequest: { displaySetName: string, filters: any[], orderCriteriaName: string, pageSize: number } = {
             displaySetName,
             filters: [],
-            orderCriteriaName
+            orderCriteriaName,
+            pageSize: 0
         };
         if (navFiltersNames && navFiltersNames.length > 0) {
             for (const filterNav of navFiltersNames) {
@@ -1385,7 +1368,11 @@ export class Util {
      */
     public getFilterByOid(oid: any): { name: string, variables: any[] } {
         let filterByOid = this.getFilter('_OID');
-        filterByOid = this.addFilterVariable(filterByOid, 'oid', oid);
+        if (typeof oid === 'string' ) {
+            filterByOid = this.addFilterVariable(filterByOid, 'oid', oid);
+        } else {
+            filterByOid = this.addFilterVariable(filterByOid, 'oid', JSON.stringify(oid));
+        }
         return filterByOid;
     }
 
@@ -1397,7 +1384,11 @@ export class Util {
     public getFilterByRelated(rolePath: string, relatedOid: any): { name: string, variables: any[] } {
         let filterRelated = this.getFilter('_Related');
         filterRelated = this.addFilterVariable(filterRelated, 'relatedInstancePath', rolePath);
-        filterRelated = this.addFilterVariable(filterRelated, 'relatedInstanceOid', JSON.stringify(relatedOid));
+        if (typeof relatedOid === 'string' ) {
+            filterRelated = this.addFilterVariable(filterRelated, 'relatedInstanceOid', relatedOid);
+        } else {
+            filterRelated = this.addFilterVariable(filterRelated, 'relatedInstanceOid', JSON.stringify(relatedOid));
+        }
         return filterRelated;
     }
 

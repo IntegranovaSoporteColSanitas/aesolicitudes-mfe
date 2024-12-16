@@ -18,6 +18,7 @@ import { Subscription } from 'rxjs';
     changeDetection: ChangeDetectionStrategy.OnPush,
     template: `
 
+    <waitDialog [showWait]="showWait"></waitDialog> 
     <ng-container *ngIf="visible">
         <div style="text-align: center;margin-bottom: 10px;">
             <h2>{{title}}</h2>
@@ -80,6 +81,8 @@ export class GenericSiuComponent implements OnInit {
     /** Scenario is visible or not */
     public visible = true;
 
+    public showWait = false;
+
     constructor(
         protected appGlobalInfo: AppGlobalInfo,
         protected util: Util,
@@ -89,7 +92,6 @@ export class GenericSiuComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.util.hideWaitDialog();
         this.exchangeInfo = this.appGlobalInfo.appExchangeInfo.get();
         this.className = this.exchangeInfo.targetClassName;
         this.serviceIUName = this.exchangeInfo.targetIUName;
@@ -165,7 +167,7 @@ export class GenericSiuComponent implements OnInit {
             this.util.showProgressBar(this.title, executionCount + 1 === totalExecutions ? 99 :
                 Math.round(((executionCount + 1) / totalExecutions) * 100), 0);
         } else {
-            this.util.showWaitDialog();
+            this.showWait = true;
         }
         let lOid = oid;
         if (this.argNameInRequest?.endsWith('_json')) {
@@ -182,7 +184,7 @@ export class GenericSiuComponent implements OnInit {
                 if (this.oidList.length === 0) {
                     this.visible = true;
                     this.util.addErrorMessageList(errorList);
-                    this.util.hideWaitDialog();
+                    this.showWait = false;
                     this.util.hideProgressBar();
                     this.changeDetectorRef.markForCheck();
                 } else {
@@ -197,13 +199,13 @@ export class GenericSiuComponent implements OnInit {
         }
         if (this.oidList.length === 0) {
             if (errorList.length === 0) {
-                this.util.hideWaitDialog();
+                this.showWait = false;
                 this.util.hideProgressBar();
                 this.processSuccessfulExecution(data, executionCount);
             } else {
                 this.visible = true;
                 this.util.addErrorMessageList(errorList);
-                this.util.hideWaitDialog();
+                this.showWait = false;
                 this.util.hideProgressBar();
                 this.changeDetectorRef.markForCheck();
             }
@@ -269,7 +271,7 @@ export class GenericSiuComponent implements OnInit {
             }
         } else {
             // Query to get the value of attributes
-			this.util.showWaitDialog();
+			this.showWait = true;
 			this.util.callQueryByOid(this.argClassName, JSON.stringify(this.originalOidList[0]),
 				this.argSupInfAttNames).then((instance) => {
 				if (instance) {
@@ -291,7 +293,7 @@ export class GenericSiuComponent implements OnInit {
 				} else {
 					this.argValue = '';
 				}
-				this.util.hideWaitDialog();
+				this.showWait = false;
 				this.changeDetectorRef.markForCheck();
 				if (this.siuHasNoShow) {
 					this.saveChanges();
@@ -299,7 +301,7 @@ export class GenericSiuComponent implements OnInit {
 			}).catch((errorMsg) => {
 				this.argValue = '';
 				this.util.addErrorMessage(errorMsg);
-				this.util.hideWaitDialog();
+				this.showWait = false;
 				this.changeDetectorRef.markForCheck();
 			});
         }
@@ -309,7 +311,107 @@ export class GenericSiuComponent implements OnInit {
      * Configure the scenario based on the Class and service interaction unit
      */
     private configureSIU(): boolean {
-        // No services in generic scenario
-        return false;
+        let siuFound = false;
+        switch (this.className) {
+            case ModelConstants.Solicitud.name:
+                siuFound = this.configureClassSolicitud();
+                break;
+            case ModelConstants.Cuestionariop.name:
+                siuFound = this.configureClassCuestionarioP();
+                break;
+            case ModelConstants.Documentog.name:
+                siuFound = this.configureClassDocumentoG();
+                break;
+        }
+        return siuFound;
+    }
+
+    /**
+     * Configuration for class Solicitud
+     */
+    private configureClassSolicitud(): boolean {
+        let siuFound = false;
+        switch (this.serviceIUName) {
+            case ModelConstants.Solicitud.siuuenviarsmsinfopago:
+                this.title = this.langMng.translateText('cls_Solicitud_svc_enviarSMSInfoPago',
+                    'enviarSMSInfoPago');
+                this.serviceName = 'enviarSMSInfoPago';
+                this.argName = 'p_thissolicitud';
+                this.argNameInRequest = 'p_thissolicitud_oid';
+                this.argClassName = ModelConstants.Solicitud.name;
+                this.argAlias = this.langMng.translateText(
+                    'cls_Solicitud_svc_enviarSMSInfoPago_inArg_p_thisSolicitud',
+                    'Solicitud');
+                this.argSupInfAttNames = 'ae_solicitudes.numero_solicitud';
+                this.argSupInfAttTypes = [Field.dtString];
+                siuFound = true;
+                break;
+            case ModelConstants.Solicitud.siuutmarcarcompletada:
+                this.title = this.langMng.translateText('cls_Solicitud_svc_TMARCARCOMPLETADA',
+                    'Marcar completada');
+                this.serviceName = 'TMARCARCOMPLETADA';
+                this.argName = 'p_thissolicitud';
+                this.argNameInRequest = 'p_thissolicitud_oid';
+                this.argClassName = ModelConstants.Solicitud.name;
+                this.argAlias = this.langMng.translateText(
+                    'cls_Solicitud_svc_TMARCARCOMPLETADA_inArg_p_thisSolicitud',
+                    'Solicitud');
+                this.argSupInfAttNames = 'ae_solicitudes.numero_solicitud';
+                this.argSupInfAttTypes = [Field.dtString];
+                this.siuHasNoShow = true;
+                siuFound = true;
+                break;
+        }
+        return siuFound;
+    }
+
+    /**
+     * Configuration for class CuestionarioP
+     */
+    private configureClassCuestionarioP(): boolean {
+        let siuFound = false;
+        switch (this.serviceIUName) {
+            case ModelConstants.Cuestionariop.siuutcerrar:
+                this.title = this.langMng.translateText('cls_CuestionarioP_svc_TCERRAR',
+                    'Marcar como completado');
+                this.serviceName = 'TCERRAR';
+                this.argName = 'p_thiscuestionariop';
+                this.argNameInRequest = 'p_thiscuestionariop_oid';
+                this.argClassName = ModelConstants.Cuestionariop.name;
+                this.argAlias = this.langMng.translateText(
+                    'cls_CuestionarioP_svc_TCERRAR_inArg_p_thisCuestionarioP',
+                    'Cuestionario');
+                this.argSupInfAttNames = 'numero';
+                this.argSupInfAttTypes = [Field.dtAuto];
+                this.siuHasNoShow = true;
+                siuFound = true;
+                break;
+        }
+        return siuFound;
+    }
+
+    /**
+     * Configuration for class DocumentoG
+     */
+    private configureClassDocumentoG(): boolean {
+        let siuFound = false;
+        switch (this.serviceIUName) {
+            case ModelConstants.Documentog.siuuprevisualizarato:
+                this.title = this.langMng.translateText('cls_DocumentoG_svc_previsualizarATO',
+                    'Previsualizar');
+                this.serviceName = 'previsualizarATO';
+                this.argName = 'p_thisdocumentog';
+                this.argNameInRequest = 'p_thisdocumentog_oid';
+                this.argClassName = ModelConstants.Documentog.name;
+                this.argAlias = this.langMng.translateText(
+                    'cls_DocumentoG_svc_previsualizarATO_inArg_p_thisDocumentoG',
+                    'Documento gestor');
+                this.argSupInfAttNames = 'identificador';
+                this.argSupInfAttTypes = [Field.dtAuto];
+                this.siuHasNoShow = true;
+                siuFound = true;
+                break;
+        }
+        return siuFound;
     }
 }

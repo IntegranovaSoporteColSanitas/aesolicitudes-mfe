@@ -26,6 +26,7 @@ if (environment.standalone) {
         environment.msal.redirectUri = singleSpaProps.redirectUri;
         environment.version = singleSpaProps.version;
         environment.urlms = singleSpaProps.urlms;
+        environment.bhservicesinfo = singleSpaProps.bhservicesinfo;
       }
       singleSpaPropsSubject.next(singleSpaProps);
       return platformBrowserDynamic(getSingleSpaExtraProviders()).bootstrapModule(AppModule);

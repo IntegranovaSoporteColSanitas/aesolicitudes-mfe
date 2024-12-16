@@ -41,6 +41,33 @@ export class LoggedUserInfo {
     /** User cache  */
     public userCache: any;
 
+    /**
+     * Devuelve el valor de la propiedad si se encuentra en la cache:
+     * - userName
+     * - periodoConsultaSolicitudes
+     * - sizeAdjuntos
+     * - modDBasicosPersona
+     * - esIntegral
+     * - verContratoNovedad
+     * - verDBasicosPersona
+     * - verDocIdentificacionPersona
+     * - accesoValidadorUsuarios
+     * - expExcelBlockSize
+     * - expExcelBlockSize
+     * - expExcelTimeout
+     * @param clave 
+     */
+    public getValorDeCache(clave: string): any {
+        if (this.userCache && clave) {
+            for (const key of Object.keys(this.userCache)) {
+                if (clave.toLowerCase() === key.toLowerCase()) {
+                    return this.userCache[key];
+                }
+            }            
+        }
+        return undefined;
+    }
+
 
     /**
      * Deserialize the user information stored in session

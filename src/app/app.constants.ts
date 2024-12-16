@@ -26,6 +26,8 @@ export class Configuration {
             className: ModelConstants.Asesor.name,
             navKey: 'asesor',
             ius: [
+                { name: ModelConstants.Asesor.piuudirectoresuobs,
+                    navKey: 'piu_directores_obs' }
             ]
         }
         , {
@@ -92,6 +94,8 @@ export class Configuration {
             className: ModelConstants.Pregunta.name,
             navKey: 'pregunta',
             ius: [
+                { name: ModelConstants.Pregunta.piuupregunta,
+                    navKey: 'piu_pregunta' }
             ]
         }
         , {
@@ -182,6 +186,10 @@ export class Configuration {
             className: ModelConstants.Grupoasociado.name,
             navKey: 'grupoasociado',
             ius: [
+                { name: ModelConstants.Grupoasociado.piuugrupoasociado,
+                    navKey: 'piu_grupoasociado' }
+                , { name: ModelConstants.Grupoasociado.piuugrupoasociadobusqueda,
+                    navKey: 'piu_grupoasociadobusqueda' }
             ]
         }
         , {
@@ -206,7 +214,11 @@ export class Configuration {
             className: ModelConstants.Persona.name,
             navKey: 'persona',
             ius: [
-                { name: ModelConstants.Persona.piuupersona,
+                { name: ModelConstants.Persona.siuutaddusuarioasol,
+                    navKey: 'siu_taddusuarioasol' }
+                , { name: ModelConstants.Persona.siuuteliminar,
+                    navKey: 'siu_teliminar' }
+                , { name: ModelConstants.Persona.piuupersona,
                     navKey: 'piu_persona' }
             ]
         }
@@ -226,12 +238,16 @@ export class Configuration {
             className: ModelConstants.Tipodireccion.name,
             navKey: 'tipodireccion',
             ius: [
+                { name: ModelConstants.Tipodireccion.piuutipodireccion,
+                    navKey: 'piu_tipodireccion' }
             ]
         }
         , {
             className: ModelConstants.Estadopersona.name,
             navKey: 'estadopersona',
             ius: [
+                { name: ModelConstants.Estadopersona.piuuestadopersona,
+                    navKey: 'piu_estadopersona' }
             ]
         }
         , {
@@ -274,13 +290,67 @@ export class Configuration {
             className: ModelConstants.Aeusolicitudes.name,
             navKey: 'ae_solicitudes',
             ius: [
+                { name: ModelConstants.Aeusolicitudes.siuutnuevaafiliacion,
+                    navKey: 'siu_tnuevaafiliacion' }
             ]
         }
         , {
             className: ModelConstants.Solicitud.name,
             navKey: 'solicitud',
             ius: [
-                { name: ModelConstants.Solicitud.piuuconsultarradicado,
+                { name: ModelConstants.Solicitud.siuuanotarobservaciones,
+                    navKey: 'siu_anotarobservaciones' }
+                , { name: ModelConstants.Solicitud.siuudummyuredirigir,
+                    navKey: 'siu_dummy_redirigir' }
+                , { name: ModelConstants.Solicitud.siuuenviarsmsinfopago,
+                    navKey: '_GENERICSIU' }
+                , { name: ModelConstants.Solicitud.siuumodmarcacarnet,
+                    navKey: 'siu_modmarcacarnet' }
+                , { name: ModelConstants.Solicitud.siuutmodificarinfopago,
+                    navKey: 'siu_tmodificarinfopago' }
+                , { name: ModelConstants.Solicitud.siuutcrearomodfirma,
+                    navKey: 'siu_tcrearomodfirma' }
+                , { name: ModelConstants.Solicitud.siuutmostrardocumentos,
+                    navKey: 'siu_tmostrardocumentos' }
+                , { name: ModelConstants.Solicitud.siuutindicarcontratante2,
+                    navKey: 'siu_tindicarcontratante2' }
+                , { name: ModelConstants.Solicitud.siuutindicartitular2,
+                    navKey: 'siu_tindicartitular2' }
+                , { name: ModelConstants.Solicitud.siuutchgtitbenefcont,
+                    navKey: 'siu_tchgtitbenefcont' }
+                , { name: ModelConstants.Solicitud.siuutmarcarcompletada,
+                    navKey: '_GENERICSIU' }
+                , { name: ModelConstants.Solicitud.siuutmodencabezado,
+                    navKey: 'siu_tmodencabezado' }
+                , { name: ModelConstants.Solicitud.siuutmoddirscontratante,
+                    navKey: 'siu_tmoddirscontratante' }
+                , { name: ModelConstants.Solicitud.siuutmoddirstitular,
+                    navKey: 'siu_tmoddirstitular' }
+                , { name: ModelConstants.Solicitud.siuutmodencabezadoincl,
+                    navKey: 'siu_tmodencabezadoincl' }
+                , { name: ModelConstants.Solicitud.siuutcrearomodfirmacontinc,
+                    navKey: 'siu_tcrearomodfirmacontinc' }
+                , { name: ModelConstants.Solicitud.siuutsubirdocumentoato,
+                    navKey: 'siu_tsubirdocumentoato' }
+                , { name: ModelConstants.Solicitud.mdiuunuevaafiliacion,
+                    navKey: 'mdiu_nuevaafiliacion' }
+                , { name: ModelConstants.Solicitud.imdiuuinfocontratantepr,
+                    navKey: 'imdiu_infocontratantepr' }
+                , { name: ModelConstants.Solicitud.imdiuuinfocontratanteincl,
+                    navKey: 'imdiu_infocontratanteincl' }
+                , { name: ModelConstants.Solicitud.mdiuuusuariosincl,
+                    navKey: 'mdiu_usuariosincl' }
+                , { name: ModelConstants.Solicitud.mdiuuinclusionfamiliar,
+                    navKey: 'mdiu_inclusionfamiliar' }
+                , { name: ModelConstants.Solicitud.imdiuuinfocontratanteinccolect,
+                    navKey: 'imdiu_infocontratanteinccolect' }
+                , { name: ModelConstants.Solicitud.imdiuuinfocontratanteprcol,
+                    navKey: 'imdiu_infocontratanteprcol' }
+                , { name: ModelConstants.Solicitud.mdiuuinclusioncolectivo,
+                    navKey: 'mdiu_inclusioncolectivo' }
+                , { name: ModelConstants.Solicitud.piuuradicadosuobs,
+                    navKey: 'piu_radicados_obs' }
+                , { name: ModelConstants.Solicitud.piuuconsultarradicado,
                     navKey: 'piu_consultarradicado' }
             ]
         }
@@ -318,24 +388,48 @@ export class Configuration {
             className: ModelConstants.Pais.name,
             navKey: 'pais',
             ius: [
+                { name: ModelConstants.Pais.piuupais,
+                    navKey: 'piu_pais' }
             ]
         }
         , {
             className: ModelConstants.Protecciondatos.name,
             navKey: 'protecciondatos',
             ius: [
+                { name: ModelConstants.Protecciondatos.siuutcrearprotecciondatosna,
+                    navKey: 'siu_tcrearprotecciondatosna' }
+                , { name: ModelConstants.Protecciondatos.piuuprotecciondatosunull,
+                    navKey: 'piu_protecciondatos_null' }
             ]
         }
         , {
             className: ModelConstants.Usuario.name,
             navKey: 'usuario',
             ius: [
+                { name: ModelConstants.Usuario.siuushowcuesmedico,
+                    navKey: 'siu_showcuesmedico' }
+                , { name: ModelConstants.Usuario.siuutmodificarattr,
+                    navKey: 'siu_tmodificarattr' }
+                , { name: ModelConstants.Usuario.siuutmodusuario,
+                    navKey: 'siu_tmodusuario' }
+                , { name: ModelConstants.Usuario.siuutcrearomodanexomat,
+                    navKey: 'siu_tcrearomodanexomat' }
+                , { name: ModelConstants.Usuario.siuutcrearomodanexoneo,
+                    navKey: 'siu_tcrearomodanexoneo' }
+                , { name: ModelConstants.Usuario.piuuusuariounull,
+                    navKey: 'piu_usuario_null' }
             ]
         }
         , {
             className: ModelConstants.Cuestionariop.name,
             navKey: 'cuestionariop',
             ius: [
+                { name: ModelConstants.Cuestionariop.siuutcerrar,
+                    navKey: '_GENERICSIU' }
+                , { name: ModelConstants.Cuestionariop.iiuucuestionario,
+                    navKey: 'iiu_cuestionario' }
+                , { name: ModelConstants.Cuestionariop.piuucuestionariopunull,
+                    navKey: 'piu_cuestionariop_null' }
             ]
         }
         , {
@@ -444,6 +538,16 @@ export class Configuration {
             className: ModelConstants.Documentog.name,
             navKey: 'documentog',
             ius: [
+                { name: ModelConstants.Documentog.siuuprevisualizarato,
+                    navKey: '_GENERICSIU' }
+                , { name: ModelConstants.Documentog.siuutaprobar,
+                    navKey: 'siu_taprobar' }
+                , { name: ModelConstants.Documentog.siuutdevolver,
+                    navKey: 'siu_tdevolver' }
+                , { name: ModelConstants.Documentog.mdiuudocumentog,
+                    navKey: 'mdiu_documentog' }
+                , { name: ModelConstants.Documentog.piuudocumentog,
+                    navKey: 'piu_documentog' }
             ]
         }
         , {
@@ -780,6 +884,16 @@ export class Configuration {
             className: ModelConstants.Logcontratosexentosfingreso.name,
             navKey: 'logcontratosexentosfingreso',
             ius: [
+            ]
+        }
+        , {
+            className: 'globalservices',
+            navKey: 'globalservices',
+            ius: [
+                { name: ModelConstants.Globalservices.siuutgseleccontratoasoc,
+                    navKey: 'siu_tgseleccontratoasoc' }
+                , { name: ModelConstants.Globalservices.siuutgseleccontratoasoctit,
+                    navKey: 'siu_tgseleccontratoasoctit' }
             ]
         }
     ];

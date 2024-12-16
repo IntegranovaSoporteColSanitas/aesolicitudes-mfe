@@ -1,7 +1,7 @@
 ﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { DisplaySetItem } from '../common/queryIUElements';
+import { DisplaySetItem, AccNavItem } from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractPIU } from '../common/abstractPIU';
 import { SolicitudFilterFuSolicitudConsultaRadicado} from './filters/solicitudfilterfusolicitudconsultaradicado';
@@ -128,10 +128,64 @@ export class SolicitudPIUuConsultarRadicadoComponent extends AbstractPIU impleme
     }
 
     /**
+     * Initialize the action items
+     */
+    public override initializeActions(): void {
+        let accItem: AccNavItem;
+        accItem = new AccNavItem();
+        accItem.id = 0;
+        accItem.idXML = 'Clas_1431957012480960AccOfer_11ElemAcc_3';
+        accItem.alias = this.langMng.translateText(
+            'cls_Solicitud_act_A_Solicitud_PIUConsultaRad_item_Clas_1431957012480960AccOfer_11ElemAcc_3',
+            'Modificar trámite');
+        accItem.nounVerb = true;
+        accItem.multiSelection = false;
+        accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Areamedica.name, ModelConstants.Mesadeapoyo.name];
+        accItem.targetClass = ModelConstants.Solicitud.name;
+        accItem.targetUI = ModelConstants.Solicitud.siuudummyuredirigir;
+        accItem.setNoShowProperties('dummy_Redirigir', 'p_thissolicitud_oid', '', false);
+        accItem.preconditionAttributes.push(
+            { agents: [],
+              attributes: ['tramite'] });
+
+        this.actions.push(accItem);
+
+    }
+
+    /**
      * Initialize the order criterias
      */
     public override initializeOrderCriterias(): void {
         this.orderCriteriaList.push({key: 'OC_SolicitudFechaCreacion', value: 'Por fecha elaboración'});
         this.orderCriteria = 'OC_SolicitudFechaCreacion';
+    }
+
+    /**
+     * Evaluate in advance the associated service preconditions to the action element
+     * @param actionId Action element identification
+     * @param rows Rows to be check
+     */
+    public override checkPreconditionInAdvanceForRows(actionId: number, rows: any[]): boolean {
+        let isEnabled = true;
+
+        if (actionId === 0) {
+            isEnabled = this.checkPrecondicionInAdvanceNum0(rows);
+        }
+        return isEnabled;
+    }
+
+    /**
+     * Evaluate in advance the preconditions of the action element number 0
+     * @param rows Selected instances
+     */
+    private checkPrecondicionInAdvanceNum0(rows: any[]): boolean {
+        for (const row of rows) {
+            // Tramite = 1
+            if (!(this.util.valueEquals(this.util.getInt(this.getRowData(row, 'tramite')), 1))) {
+                return false;
+            }
+        }
+        return true;
     }
 }

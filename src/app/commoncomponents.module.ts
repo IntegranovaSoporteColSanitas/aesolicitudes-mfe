@@ -35,6 +35,8 @@ import { TICAGridComponent } from './common/tica/ticagrid.component';
 import { GenericSiuComponent } from './common/genericSiu.component';
 import { ChangePasswordComponent } from './common/changePassword.component';
 
+import { InputBlobSignatureComponent } from './common/fields/input.blob.signature'
+
 @NgModule({
     imports: [CommonModule, FormsModule, TableModule, DropdownModule,
         CalendarModule, MultiSelectModule, ListboxModule, RadioButtonModule, CheckboxModule, BlockUIModule, DialogModule, StepsModule,
@@ -45,7 +47,7 @@ import { ChangePasswordComponent } from './common/changePassword.component';
         TICAGridComponent, InputStringComponent, InputNumericComponent, InputDateComponent,
         InputDefinedSelectionComponent, InputRadioComponent, InputCheckComponent, InputBlobComponent,
         InputBlobImageComponent, ImesPDFViewerComponent, LenseComponent, LenseSearchComponent, PreloadComponent,
-        PreloadMultipleComponent, PreloadMultipleDropdownComponent, ErrorMessagesComponent
+        PreloadMultipleComponent, PreloadMultipleDropdownComponent, ErrorMessagesComponent, InputBlobSignatureComponent
     ],
     exports: [BreadCrumbMngComponent, WaitDialogComponent, ProgressBarComponent, ChangePasswordComponent,
         GridPreferencesComponent, ActionsNavigationsComponent, GridComponent, DetailsInRowGridComponent,
@@ -55,6 +57,7 @@ import { ChangePasswordComponent } from './common/changePassword.component';
         InputBlobImageComponent, ImesPDFViewerComponent, LenseComponent, LenseSearchComponent, PreloadComponent,
         PreloadMultipleComponent, PreloadMultipleDropdownComponent, ErrorMessagesComponent,
         FormsModule, TableModule, DropdownModule, CalendarModule, MultiSelectModule, ListboxModule,
-        RadioButtonModule, CheckboxModule, BlockUIModule, DialogModule, StepsModule, TriStateCheckboxModule, ConfirmDialogModule]
+        RadioButtonModule, CheckboxModule, BlockUIModule, DialogModule, StepsModule, TriStateCheckboxModule, ConfirmDialogModule,
+       InputBlobSignatureComponent]
 })
 export class CommonComponentsModule { }

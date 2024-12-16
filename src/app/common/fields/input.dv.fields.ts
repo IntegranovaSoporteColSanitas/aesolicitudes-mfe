@@ -249,6 +249,19 @@ export class InputDateComponent extends InputStringComponent {
      */
     public onSelect(): void {
         if (this.field){
+
+            // Comprobacion: Solo el dia 1 del mes
+            if (this.field.value && this.field.dataType === 'date' && this.field.editorCSSClasses.includes('soloDiaUno')) {
+                try {
+                    const dateType = new Date(this.field.value);
+                    if (dateType.getDate() !== 1) {
+                        alert('Fecha no válida');
+                        this.field.value = null;
+                        return;
+                    }
+                } catch (e) {
+                }
+            }
             if (!this.showSeconds && this.field.value) {
                 this.removeSeconds();
             }

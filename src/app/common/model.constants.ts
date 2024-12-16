@@ -5,7 +5,7 @@ export class ModelConstants {
     public static readonly Funcionario = {name : 'Funcionario'};
     public static readonly Admin = {name : 'Admin'};
     public static readonly Superadmin = {name : 'SuperAdmin'};
-    public static readonly Asesor = {name : 'Asesor'};
+    public static readonly Asesor = {name : 'Asesor', piuudirectoresuobs: 'piu_directores_obs'};
     public static readonly Areamedica = {name : 'AreaMedica'};
     public static readonly Afiliaciones = {name : 'Afiliaciones'};
     public static readonly Respregional = {name : 'RespRegional'};
@@ -16,7 +16,7 @@ export class ModelConstants {
     public static readonly Frecuenciaact = {name : 'FrecuenciaAct'};
     public static readonly Cuestionariomed = {name : 'CuestionarioMed'};
     public static readonly Seccion = {name : 'Seccion'};
-    public static readonly Pregunta = {name : 'Pregunta'};
+    public static readonly Pregunta = {name : 'Pregunta', piuupregunta: 'piu_pregunta'};
     public static readonly Valor = {name : 'Valor'};
     public static readonly Productos = {name : 'Productos'};
     public static readonly Planes = {name : 'Planes'};
@@ -31,32 +31,52 @@ export class ModelConstants {
     public static readonly Tarifa = {name : 'Tarifa'};
     public static readonly Regional = {name : 'Regional'};
     public static readonly Sucursal = {name : 'Sucursal'};
-    public static readonly Grupoasociado = {name : 'GrupoAsociado'};
+    public static readonly Grupoasociado = {name : 'GrupoAsociado', piuugrupoasociado: 'piu_grupoasociado',
+        piuugrupoasociadobusqueda: 'piu_grupoasociadobusqueda'};
     public static readonly Estadocivil = {name : 'EstadoCivil'};
     public static readonly Departamento = {name : 'Departamento'};
     public static readonly Tipoiva = {name : 'TipoIVA'};
-    public static readonly Persona = {name : 'Persona', piuupersona: 'piu_persona'};
+    public static readonly Persona = {name : 'Persona', siuutaddusuarioasol: 'siu_taddusuarioasol', siuuteliminar: 'siu_teliminar',
+        piuupersona: 'piu_persona'};
     public static readonly Companyia = {name : 'Companyia'};
     public static readonly Municipio = {name : 'Municipio'};
-    public static readonly Tipodireccion = {name : 'TipoDireccion'};
-    public static readonly Estadopersona = {name : 'EstadoPersona'};
+    public static readonly Tipodireccion = {name : 'TipoDireccion', piuutipodireccion: 'piu_tipodireccion'};
+    public static readonly Estadopersona = {name : 'EstadoPersona', piuuestadopersona: 'piu_estadopersona'};
     public static readonly Formapago = {name : 'FormaPago'};
     public static readonly Tipoidentificacion = {name : 'TipoIdentificacion'};
     public static readonly Eps = {name : 'Eps'};
     public static readonly Entidadfinancierac = {name : 'EntidadFinancieraC'};
     public static readonly Tipoentidadc = {name : 'TipoEntidadC'};
     public static readonly Tipoinstitucionc = {name : 'TipoInstitucionC'};
-    public static readonly Aeusolicitudes = {name : 'Ae_solicitudes'};
-    public static readonly Solicitud = {name : 'Solicitud', piuuconsultarradicado: 'piu_consultarradicado'};
+    public static readonly Aeusolicitudes = {name : 'Ae_solicitudes', siuutnuevaafiliacion: 'siu_tnuevaafiliacion'};
+    public static readonly Solicitud = {name : 'Solicitud', siuuanotarobservaciones: 'siu_anotarobservaciones',
+        siuudummyuredirigir: 'siu_dummy_redirigir', siuuenviarsmsinfopago: 'siu_enviarsmsinfopago',
+        siuumodmarcacarnet: 'siu_modmarcacarnet', siuutmodificarinfopago: 'siu_tmodificarinfopago',
+        siuutcrearomodfirma: 'siu_tcrearomodfirma', siuutmostrardocumentos: 'siu_tmostrardocumentos',
+        siuutindicarcontratante2: 'siu_tindicarcontratante2', siuutindicartitular2: 'siu_tindicartitular2',
+        siuutchgtitbenefcont: 'siu_tchgtitbenefcont', siuutmarcarcompletada: 'siu_tmarcarcompletada',
+        siuutmodencabezado: 'siu_tmodencabezado', siuutmoddirscontratante: 'siu_tmoddirscontratante',
+        siuutmoddirstitular: 'siu_tmoddirstitular', siuutmodencabezadoincl: 'siu_tmodencabezadoincl',
+        siuutcrearomodfirmacontinc: 'siu_tcrearomodfirmacontinc', siuutsubirdocumentoato: 'siu_tsubirdocumentoato',
+        piuuradicadosuobs: 'piu_radicados_obs', piuuconsultarradicado: 'piu_consultarradicado',
+        mdiuunuevaafiliacion: 'mdiu_nuevaafiliacion', imdiuuinfocontratantepr: 'imdiu_infocontratantepr',
+        imdiuuinfocontratanteincl: 'imdiu_infocontratanteincl', mdiuuusuariosincl: 'mdiu_usuariosincl',
+        mdiuuinclusionfamiliar: 'mdiu_inclusionfamiliar', imdiuuinfocontratanteinccolect: 'imdiu_infocontratanteinccolect',
+        imdiuuinfocontratanteprcol: 'imdiu_infocontratanteprcol', mdiuuinclusioncolectivo: 'mdiu_inclusioncolectivo'};
     public static readonly Personac = {name : 'PersonaC'};
     public static readonly Direccionc = {name : 'DireccionC'};
     public static readonly Telefonoc = {name : 'TelefonoC'};
     public static readonly Protecciondatosc = {name : 'ProteccionDatosC'};
     public static readonly Direccion = {name : 'Direccion'};
-    public static readonly Pais = {name : 'Pais'};
-    public static readonly Protecciondatos = {name : 'ProteccionDatos'};
-    public static readonly Usuario = {name : 'Usuario'};
-    public static readonly Cuestionariop = {name : 'CuestionarioP'};
+    public static readonly Pais = {name : 'Pais', piuupais: 'piu_pais'};
+    public static readonly Protecciondatos = {name : 'ProteccionDatos', siuutcrearprotecciondatosna: 'siu_tcrearprotecciondatosna',
+        piuuprotecciondatosunull: 'piu_protecciondatos_null'};
+    public static readonly Usuario = {name : 'Usuario', siuushowcuesmedico: 'siu_showcuesmedico',
+        siuutmodificarattr: 'siu_tmodificarattr', siuutmodusuario: 'siu_tmodusuario',
+        siuutcrearomodanexomat: 'siu_tcrearomodanexomat', siuutcrearomodanexoneo: 'siu_tcrearomodanexoneo',
+        piuuusuariounull: 'piu_usuario_null'};
+    public static readonly Cuestionariop = {name : 'CuestionarioP', siuutcerrar: 'siu_tcerrar', iiuucuestionario: 'iiu_cuestionario',
+        piuucuestionariopunull: 'piu_cuestionariop_null'};
     public static readonly Seccionp = {name : 'SeccionP'};
     public static readonly Preguntap = {name : 'PreguntaP'};
     public static readonly Contratante = {name : 'Contratante'};
@@ -74,7 +94,9 @@ export class ModelConstants {
     public static readonly Titular = {name : 'Titular'};
     public static readonly Preexistenciac = {name : 'PreexistenciaC'};
     public static readonly Preexistencia = {name : 'Preexistencia'};
-    public static readonly Documentog = {name : 'DocumentoG'};
+    public static readonly Documentog = {name : 'DocumentoG', siuuprevisualizarato: 'siu_previsualizarato',
+        siuutaprobar: 'siu_taprobar', siuutdevolver: 'siu_tdevolver', piuudocumentog: 'piu_documentog',
+        mdiuudocumentog: 'mdiu_documentog'};
     public static readonly Obsestado = {name : 'ObsEstado'};
     public static readonly Errorws = {name : 'ErrorWS'};
     public static readonly Parentescodom = {name : 'ParentescoDom'};
@@ -131,4 +153,6 @@ export class ModelConstants {
     public static readonly Logdatosdominio = {name : 'LogDatosDominio'};
     public static readonly Contratosexentosfingreso = {name : 'ContratosExentosFIngreso'};
     public static readonly Logcontratosexentosfingreso = {name : 'LogContratosExentosFIngreso'};
+    public static readonly Globalservices = {name : 'GlobalServices', siuutgseleccontratoasoc: 'siu_tgseleccontratoasoc',
+        siuutgseleccontratoasoctit: 'siu_tgseleccontratoasoctit'};
 }

@@ -18,6 +18,10 @@
                             (click)="navigateFromHat('0_0')">{{langMng.translateText('_fixed.hat.0_0', 'Consultar radicado')}}</a>
                     </ul>
                 </li>
+                <li class="nav-item" *ngIf="isNodeVisible('Vis_1727108743168555NodoJer_4',['SuperAdmin'])">
+                    <a class="nav-link" 
+                        (click)="navigateFromHat('1')">{{langMng.translateText('_fixed.hat.1', 'Nueva afiliación')}}</a>
+                </li>
             </ul>
 		
             <ul class="nav navbar-nav" *ngIf="loginVisible()">
