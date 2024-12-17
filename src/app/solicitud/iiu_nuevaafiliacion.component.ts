@@ -12,6 +12,7 @@ import { ConditionalNavigationMng } from '../common/conditionalNavigationMng';
 import { UserFunctions } from '../common/userFunctions';
 
 import { GlobalServicesServices } from '../globalservices/globalservices.services';
+import { ErrorInformation, LogicError } from '../common/answerRequestInformation';
 
 export class SolicitudIIUuNuevaAfiliacionComponent extends AbstractIIU {
 
@@ -178,7 +179,10 @@ export class SolicitudIIUuNuevaAfiliacionComponent extends AbstractIIU {
             const url = this.appGlobalInfo.APPCONSTANTS.BASE_URL + '/api/GlobalServicesApi/OGETREPORTE';
             this.util.callHttpPost(url, request, false).then((response: any) => {
                 this.setShowWait(false);
-                if (response.oaarchivo && response.oanombrearchivo) {
+                const posibleError = new LogicError(response);
+                if (posibleError.IsError()) {
+                    this.util.addErrorMessage(posibleError.message);
+                } else  if (response.oaarchivo && response.oanombrearchivo) {
                     this.util.openInNewWindow(response.oaarchivo, response.oanombrearchivo);
                 }
                 this.changeDetectorRef.markForCheck();

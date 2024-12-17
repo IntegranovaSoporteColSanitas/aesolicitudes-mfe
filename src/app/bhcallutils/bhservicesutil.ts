@@ -39,7 +39,7 @@ export class BHServicesUtil {
 
                         // Recorremos las personas dentro de contract.subject.patient hasta encontrar el contratante
                         role = '';
-                        for (const patient of contrato?.contract?.subject?.patient) {
+                        for (const patient of contrato.contract.subject.patient) {
                             if (BHServicesUtil.getValorElementoPorClave(patient?.identifier, 'type', 'TIPO_IDENTIFICACION', 'value') == tipoIdentificacion &&
                                 BHServicesUtil.getValorElementoPorClave(patient?.identifier, 'type', 'NUMERO_IDENTIFICACION', 'value') == numIdentificacion) {
                                 
@@ -155,22 +155,18 @@ export class BHServicesUtil {
                     const finVigencia = bene?.period?.end;
                     
                     // SOlo nos interesan los que tengan estado HABILITADO o NO HABILITADO
-                    if (estatus === 'NO HABILITADO' || estatus === 'HABILITADO') {
-
-                        if (estatus === 'NO HABILITADO') {
-                            // Los no habilitados, tan solo si su fecha es mayor de otro que ya exista
-                            const contratoExistente = mapaContratos.get(clave);
-                            if (contratoExistente && 'NO HABILITADO' === contratoExistente.coverage[0].status?.code &&
-                                finVigencia > contratoExistente.coverage[0].period?.end ) {
-                                    mapaContratos.set(clave, contrato);
-                            } else {
+                    if (estatus === 'NO HABILITADO') {
+                        // Los no habilitados, tan solo si su fecha es mayor de otro que ya exista
+                        const contratoExistente = mapaContratos.get(clave);
+                        if (contratoExistente && 'NO HABILITADO' === contratoExistente.coverage[0].status?.code &&
+                            finVigencia > contratoExistente.coverage[0].period?.end ) {
                                 mapaContratos.set(clave, contrato);
-                            }
-
-                        } else {
-                            // Los habilitados, los metemos directamente
-                            mapaContratos.set(clave, contrato);
                         }
+                    }
+
+                    if (estatus === 'HABILITADO') {
+                        // Los habilitados, los metemos directamente
+                        mapaContratos.set(clave, contrato);
                     }                    
                 }
             }
@@ -205,21 +201,18 @@ export class BHServicesUtil {
                 
 
                 // SOlo nos interesan los que tengan estado HABILITADO o NO HABILITADO
-                if (estatus === 'NO HABILITADO' || estatus === 'HABILITADO') {
-                    if (estatus === 'NO HABILITADO') {
-                        // Los no habilitados, tan solo si su fecha es mayor de otro que ya exista
-                        const contratoExistente = mapaContratos.get(clave);
-                        if (contratoExistente && 'NO HABILITADO' === contratoExistente.contract?.status &&
-                            finVigencia > contratoExistente.applies?.end ) {
-                                mapaContratos.set(clave, contrato);
-                        } else {
+                if (estatus === 'NO HABILITADO') {
+                    // Los no habilitados, tan solo si su fecha es mayor de otro que ya exista
+                    const contratoExistente = mapaContratos.get(clave);
+                    if (contratoExistente && 'NO HABILITADO' === contratoExistente.contract?.status &&
+                        finVigencia > contratoExistente.applies?.end ) {
                             mapaContratos.set(clave, contrato);
-                        }
-
-                    } else {
-                        // Los habilitados, los metemos directamente
-                        mapaContratos.set(clave, contrato);
                     }
+                }
+
+                if (estatus === 'HABILITADO') {
+                    // Los habilitados, los metemos directamente
+                    mapaContratos.set(clave, contrato);
                 }
             }
 
