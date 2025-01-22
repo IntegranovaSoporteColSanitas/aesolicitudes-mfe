@@ -1,0 +1,21 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: aesolicitudes-mfe
+  labels:
+    app: aesolicitudes-mfe
+    app.kubernetes.io/component: aesolicitudes-mfe
+    app.kubernetes.io/instance: aesolicitudes-mfe
+    app.kubernetes.io/name: aesolicitudes-mfe
+    app.kubernetes.io/part-of: ae-app-frontend
+    app.openshift.io/runtime: aesolicitudes-mfe
+spec:
+#INIHOST
+#  host: aesolicitudes-mfe-soporte-colsanitas-dev.apps.sandbox-m3.1530.p1.openshiftapps.com
+  host: aesolicitudes-mfe-soporte-colsanitas-dev.apps.rm3.7wse.p1.openshiftapps.com
+#FINHOST
+  to:
+    kind: Service
+    name: aesolicitudes-mfe
+  tls:
+    termination: edge

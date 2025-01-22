@@ -1,0 +1,26 @@
+﻿<waitDialog [showWait]="showWait"></waitDialog> 
+<form novalidate>
+    <ng-container *ngIf="visible">
+        <h2 class="title">{{title}}</h2>
+        <div class="siuRegion" [ngClass]="cssClasses">
+            <imes-preload [field]="ptupuagrProducto" *ngIf="ptupuagrProducto.visible" (selected)="onptupuagrproductoChange()"></imes-preload>
+            <imes-preload [field]="ptupuagrPlan" *ngIf="ptupuagrPlan.visible" (selected)="onptupuagrplanChange()"></imes-preload>
+            <imes-lense [field]="ptuProteccionDatos" *ngIf="ptuProteccionDatos.visible" (selected)="onptuprotecciondatosChange()"
+                (cleared)="cleanptuprotecciondatos()" (searched)="doSearchAction('ptuProteccionDatos')"></imes-lense>
+            <imes-input-string [field]="ptupuatrNumContratoInclusion" *ngIf="ptupuatrNumContratoInclusion.visible" (valueChanged)="onptupuatrnumcontratoinclusionChange()"></imes-input-string>
+            <imes-input-date [field]="ptupuatrFInicioContrato" *ngIf="ptupuatrFInicioContrato.visible"></imes-input-date>
+            <imes-input-string [field]="ptupuatrNumFamilia" *ngIf="ptupuatrNumFamilia.visible"></imes-input-string>
+            <imes-lensesearch [field]="pDirector" *ngIf="pDirector.visible"
+                (selected)="processpdirectorSelected($event)" (cleared)="cleanpdirector()"
+                (keypressLenseSearch)="onKeypressLenseSearch('onpdirectorChange')"
+                (searched)="doSearchAction('pDirector')"></imes-lensesearch>
+            <imes-input-radio [field]="ptMarcaCarnet" *ngIf="ptMarcaCarnet.visible" (valueChanged)="onptmarcacarnetChange()"></imes-input-radio>
+            <imes-input-string [field]="ptAvisoMarcaCarnet" *ngIf="ptAvisoMarcaCarnet.visible"></imes-input-string>
+
+        </div>
+        <div class="col-12 siuButtons">
+            <button type="button" class="btnOk btn btn-primary" (click)="saveChanges()">{{langMng.translateText('app_SIU_BTNOK', '')}}</button>
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_SIU_BTNCANCEL', '')}}</button>
+        </div>
+    </ng-container>
+</form>

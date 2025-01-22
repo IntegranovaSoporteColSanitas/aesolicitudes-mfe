@@ -1,0 +1,11 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: aesolicitudes-mfe
+  labels:
+    app: aesolicitudes-mfe
+    app.kubernetes.io/component: aesolicitudes-mfe
+    app.kubernetes.io/instance: aesolicitudes-mfe
+    app.kubernetes.io/name: aesolicitudes-mfe
+    app.kubernetes.io/part-of: ae-app-frontend
+    app.openshift.io/runtime: aesolicitudes-mfe

@@ -1,0 +1,27 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: aesolicitudes-mfe
+  labels:
+    app: aesolicitudes-mfe
+    app.kubernetes.io/component: aesolicitudes-mfe
+    app.kubernetes.io/instance: aesolicitudes-mfe
+    app.kubernetes.io/name: aesolicitudes-mfe
+    app.kubernetes.io/part-of: ae-app-frontend
+    app.openshift.io/runtime: aesolicitudes-mfe
+spec:
+  source:
+    type: Git
+    git:
+#INIGIT
+      uri: "git@github.com:IntegranovaSoporteColSanitas/aesolicitudes-mfe.git"
+      ref: "5.0.0"
+    sourceSecret:
+      name: ae-git-credentials
+#FINGIT
+  strategy:
+    type: Docker
+  output:
+    to:
+      kind: ImageStreamTag
+      name: aesolicitudes-mfe:latest

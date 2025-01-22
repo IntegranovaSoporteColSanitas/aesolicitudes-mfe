@@ -1,0 +1,38 @@
+﻿<waitDialog [showWait]="showWait"></waitDialog> 
+<form novalidate>
+    <ng-container *ngIf="visible">
+        <h2 class="title">{{title}}</h2>
+        <div class="siuRegion" [ngClass]="cssClasses">
+            <div class="card argumentGroup" *ngIf="isGroupVisible('0')">
+                <div class="card-header">{{getGroupAlias('0')}}</div>
+                <div class="card-body">
+                    <imes-input-string [field]="ptupuDireccionCompleta" *ngIf="ptupuDireccionCompleta.visible"></imes-input-string>
+                    <imes-preload [field]="ptupuevcDepartamento" *ngIf="ptupuevcDepartamento.visible" (selected)="onptupuevcdepartamentoChange()"></imes-preload>
+                    <imes-preload [field]="ptupuevcMunicipio" *ngIf="ptupuevcMunicipio.visible"></imes-preload>
+                    <imes-input-radio [field]="ptupuRural" *ngIf="ptupuRural.visible"></imes-input-radio>
+                    <imes-input-string [field]="ptupuTelefonoFijo" *ngIf="ptupuTelefonoFijo.visible"></imes-input-string>
+                    <imes-input-string [field]="ptupuTelefonoCelular" *ngIf="ptupuTelefonoCelular.visible"></imes-input-string>
+                </div>
+            </div>
+            <imes-input-radio [field]="ptReplicarDireccion" *ngIf="ptReplicarDireccion.visible" (valueChanged)="onptreplicardireccionChange()"></imes-input-radio>
+            <div class="card argumentGroup" *ngIf="isGroupVisible('2')">
+                <div class="card-header">{{getGroupAlias('2')}}</div>
+                <div class="card-body">
+                    <imes-input-string [field]="ptupDCDireccionCompleta" *ngIf="ptupDCDireccionCompleta.visible"></imes-input-string>
+                    <imes-preload [field]="ptupDCDepartamento" *ngIf="ptupDCDepartamento.visible" (selected)="onptupdcdepartamentoChange()"></imes-preload>
+                    <imes-preload [field]="ptupDCMunicipio" *ngIf="ptupDCMunicipio.visible"></imes-preload>
+                    <imes-input-radio [field]="ptupDCRural" *ngIf="ptupDCRural.visible"></imes-input-radio>
+                    <imes-input-string [field]="ptupDCTelefonoFijo" *ngIf="ptupDCTelefonoFijo.visible"></imes-input-string>
+                    <imes-input-string [field]="ptupDCTelefonoCelular" *ngIf="ptupDCTelefonoCelular.visible"></imes-input-string>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="col-12 siuButtons">
+            <button type="button" class="btnOk btn btn-primary" (click)="saveChanges()">{{langMng.translateText('app_SIU_BTNOK', '')}}</button>
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_SIU_BTNCANCEL', '')}}</button>
+        </div>
+    </ng-container>
+</form>

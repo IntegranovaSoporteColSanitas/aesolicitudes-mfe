@@ -1,0 +1,46 @@
+﻿<waitDialog [showWait]="showWait"></waitDialog> 
+<form novalidate>
+    <ng-container *ngIf="visible">
+        <h2 class="title">{{title}}</h2>
+        <div class="siuRegion" [ngClass]="cssClasses">
+            <div class="card argumentGroup" *ngIf="isGroupVisible('0')">
+                <div class="card-header">{{getGroupAlias('0')}}</div>
+                <div class="card-body">
+                    <imes-preload [field]="ptupuevcTipoIdentificacion" *ngIf="ptupuevcTipoIdentificacion.visible" (selected)="onptupuevctipoidentificacionChange()"></imes-preload>
+                    <imes-input-string [field]="ptupuNumIdentificacion" *ngIf="ptupuNumIdentificacion.visible"></imes-input-string>
+                    <imes-input-string [field]="ptupuPrimerNombre" *ngIf="ptupuPrimerNombre.visible"></imes-input-string>
+                    <imes-input-string [field]="ptupuSegundoNombre" *ngIf="ptupuSegundoNombre.visible"></imes-input-string>
+                    <imes-input-string [field]="ptupuPrimerApellido" *ngIf="ptupuPrimerApellido.visible"></imes-input-string>
+                    <imes-input-string [field]="ptupuSegundoApellido" *ngIf="ptupuSegundoApellido.visible"></imes-input-string>
+                    <imes-input-date [field]="ptupuFechaNacimiento" *ngIf="ptupuFechaNacimiento.visible"></imes-input-date>
+                    <imes-input-definedselection [field]="ptupuGenero" *ngIf="ptupuGenero.visible"></imes-input-definedselection>
+                    <imes-input-radio [field]="ptupuIndicadorExtranjero" *ngIf="ptupuIndicadorExtranjero.visible" (valueChanged)="onptupuindicadorextranjeroChange()"></imes-input-radio>
+                    <imes-preload [field]="ptupuevcDepartamentoNac" *ngIf="ptupuevcDepartamentoNac.visible" (selected)="onptupuevcdepartamentonacChange()"></imes-preload>
+                    <imes-preload [field]="ptupuevcMunicipioNac" *ngIf="ptupuevcMunicipioNac.visible"></imes-preload>
+                    <imes-preload [field]="ptupuevcEstadoCivil" *ngIf="ptupuevcEstadoCivil.visible"></imes-preload>
+                </div>
+            </div>
+            <div class="card argumentGroup" *ngIf="isGroupVisible('1')">
+                <div class="card-header">{{getGroupAlias('1')}}</div>
+                <div class="card-body">
+                    <imes-input-radio [field]="ptuReplicarDireccion" *ngIf="ptuReplicarDireccion.visible" (valueChanged)="onptureplicardireccionChange()"></imes-input-radio>
+                    <imes-preload [field]="ptuDireccion" *ngIf="ptuDireccion.visible" (selected)="onptudireccionChange()"></imes-preload>
+                    <imes-preload [field]="ptuDireccionUsuario" *ngIf="ptuDireccionUsuario.visible" (selected)="onptudireccionusuarioChange()"></imes-preload>
+                    <imes-input-string [field]="ptupuDireccionCompleta" *ngIf="ptupuDireccionCompleta.visible"></imes-input-string>
+                    <imes-preload [field]="ptupuevcDepartamento" *ngIf="ptupuevcDepartamento.visible" (selected)="onptupuevcdepartamentoChange()"></imes-preload>
+                    <imes-preload [field]="ptupuevcMunicipio" *ngIf="ptupuevcMunicipio.visible"></imes-preload>
+
+                    <imes-input-radio [field]="ptupuRural" *ngIf="ptupuRural.visible"></imes-input-radio>
+                    <imes-input-string [field]="ptupuCorreoElectronico" *ngIf="ptupuCorreoElectronico.visible"></imes-input-string>
+                    <imes-input-string [field]="ptupuTelefonoFijo" *ngIf="ptupuTelefonoFijo.visible"></imes-input-string>
+                    <imes-input-string [field]="ptupuTelefonoCelular" *ngIf="ptupuTelefonoCelular.visible"></imes-input-string>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-12 siuButtons">
+            <button type="button" class="btnOk btn btn-primary" (click)="saveChanges()">{{langMng.translateText('app_SIU_BTNOK', '')}}</button>
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_SIU_BTNCANCEL', '')}}</button>
+        </div>
+    </ng-container>
+</form>
