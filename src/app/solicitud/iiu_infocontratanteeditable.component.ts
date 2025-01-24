@@ -58,7 +58,6 @@ export class SolicitudIIUuInfoContratanteEditableComponent extends AbstractIIU {
 
     public override processAssociatedServiceExecutionSuccess(): void {
         this.util.addErrorMessage('Ejecución exitosa');
-        //super.processAssociatedServiceExecutionSuccess();
     }
 
     /**

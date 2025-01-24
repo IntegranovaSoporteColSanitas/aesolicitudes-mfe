@@ -1235,9 +1235,9 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
         }
     }
 
-    /**
-     * Process the selection backward navigation
-     */
+   /**
+    * Process the selection backward navigation
+    */
     public override processSelectionBackward(exchInfo: ExchangeInfo): void {
         if (!(exchInfo.selectedOids && exchInfo.selectedOids.length > 0)) {
             return;
@@ -1344,7 +1344,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
     private executeDependecyRules1puthisSolicitud(): void {
         this.cacheDependencyRules.counter++;
         this.addQueryInstanceFromField(this.puthisSolicitud,
-            'Ae_solicitudes.id_solicitud');
+                'Ae_solicitudes.id_solicitud');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
             this.notifyAnswerFromToTheBackEnd();
@@ -1355,8 +1355,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
                 this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
-            }
-        });
+            } });
         this.cacheDependencyRules.counter--;
     }
 
@@ -1382,8 +1381,8 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
     private executeDependecyRules2puthisSolicitud(): void {
         this.cacheDependencyRules.counter++;
         this.addQueryInstanceFromField(this.puthisSolicitud,
-            'direccion.Identificador,direccion.departamento.Codigo,direccion.municipio.Codigo,direccion.direccioncompleta' +
-            ',direccion.rural,direccion.pais.Codigo');
+                'direccion.Identificador,direccion.departamento.Codigo,direccion.municipio.Codigo,direccion.direccioncompleta' +
+                ',direccion.rural,direccion.pais.Codigo');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
             this.notifyAnswerFromToTheBackEnd();
@@ -1394,8 +1393,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
                 this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
-            }
-        });
+            } });
         this.cacheDependencyRules.counter--;
     }
 
@@ -1437,7 +1435,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
     private executeDependecyRules3puthisSolicitud(): void {
         this.cacheDependencyRules.counter++;
         this.addQueryInstanceFromField(this.puthisSolicitud,
-            'contratante.Solicitud.Ae_solicitudes.id_solicitud');
+                'contratante.Solicitud.Ae_solicitudes.id_solicitud');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
             this.notifyAnswerFromToTheBackEnd();
@@ -1448,8 +1446,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
                 this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
-            }
-        });
+            } });
         this.cacheDependencyRules.counter--;
     }
 
@@ -1475,8 +1472,8 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
     private executeDependecyRules4puthisSolicitud(): void {
         this.cacheDependencyRules.counter++;
         this.addQueryInstanceFromField(this.puthisSolicitud,
-            'contratantepersona.Identificador,contratantepersona.estadocivil.Codigo,contratantepersona.codigo' +
-            ',contratantepersona.tieneepssanitas,contratantepersona.estadopersona.Codigo,contratantepersona.rechazadoafiliacion');
+                'contratantepersona.Identificador,contratantepersona.estadocivil.Codigo,contratantepersona.codigo' +
+                ',contratantepersona.tieneepssanitas,contratantepersona.estadopersona.Codigo,contratantepersona.rechazadoafiliacion');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
             this.notifyAnswerFromToTheBackEnd();
@@ -1487,8 +1484,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
                 this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
-            }
-        });
+            } });
         this.cacheDependencyRules.counter--;
     }
 
@@ -1526,13 +1522,13 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
     private executeDependecyRules5puthisSolicitud(): void {
         this.cacheDependencyRules.counter++;
         this.addQueryInstanceFromField(this.puthisSolicitud,
-            'contratante.Solicitud.Ae_solicitudes.id_solicitud,contratante.tipoidentificacion.Codigo,contratante.numidentificacion' +
-            ',contratante.primernombre,contratante.segundonombre,contratante.primerapellido,contratante.segundoapellido' +
-            ',contratante.titularconbeneficios,contratante.drvbeneficiosactivo,contratante.fechanacimiento,contratante.genero' +
-            ',contratante.indicadorextranjero,contratante.departamentonac.Codigo,contratante.municipionac.Codigo' +
-            ',contratante.razonsocial,contratante.telefonofijores,contratante.telefonocelularres,contratante.correoelectronico' +
-            ',contratante.telefonofijo,contratante.telefonocelular,contratante.departamentores.Codigo' +
-            ',contratante.municipiores.Codigo,contratante.direccionres,contratante.ruraldirres');
+                'contratante.Solicitud.Ae_solicitudes.id_solicitud,contratante.tipoidentificacion.Codigo,contratante.numidentificacion' +
+                ',contratante.primernombre,contratante.segundonombre,contratante.primerapellido,contratante.segundoapellido' +
+                ',contratante.titularconbeneficios,contratante.drvbeneficiosactivo,contratante.fechanacimiento,contratante.genero' +
+                ',contratante.indicadorextranjero,contratante.departamentonac.Codigo,contratante.municipionac.Codigo' +
+                ',contratante.razonsocial,contratante.telefonofijores,contratante.telefonocelularres,contratante.correoelectronico' +
+                ',contratante.telefonofijo,contratante.telefonocelular,contratante.departamentores.Codigo' +
+                ',contratante.municipiores.Codigo,contratante.direccionres,contratante.ruraldirres');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
             this.notifyAnswerFromToTheBackEnd();
@@ -1543,8 +1539,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
                 this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
-            }
-        });
+            } });
         this.cacheDependencyRules.counter--;
     }
 
@@ -1629,25 +1624,25 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
                 this.puthisSolicitud.removeCSSClass('noResultsLenseSearch');
                 this.puthisSolicitud.lastText = searchText;
                 this.util.searchLenseSearch(ModelConstants.Solicitud.name, 'IC_Solicitud', searchText, [], null).then(
-                    (response: any) => {
-                        this.puthisSolicitud.removeCSSClass('noResultsLenseSearch');
-                        this.puthisSolicitud.searchResults = response.results;
-                        if (this.puthisSolicitud.searchResults &&
-                            this.puthisSolicitud.searchResults.length === 0) {
-                            this.puthisSolicitud.addCSSClass('noResultsLenseSearch');
-                        }
-                        if (this.puthisSolicitud.searchResults &&
-                            this.puthisSolicitud.searchResults.length === 1) {
-                            this.processputhissolicitudSelected(0);
-                        }
-                        this.changeDetectorRef.markForCheck();
-                    },
-                    (response: any) => {
-                        this.puthisSolicitud.removeCSSClass('noResultsLenseSearch');
-                        this.puthisSolicitud.searchResults = [];
-                        this.util.addErrorMessage(response.message);
-                        this.changeDetectorRef.markForCheck();
-                    });
+                        (response: any) => {
+                            this.puthisSolicitud.removeCSSClass('noResultsLenseSearch');
+                            this.puthisSolicitud.searchResults = response.results;
+                            if (this.puthisSolicitud.searchResults &&
+                                this.puthisSolicitud.searchResults.length === 0) {
+                                this.puthisSolicitud.addCSSClass('noResultsLenseSearch');
+                            }
+                            if (this.puthisSolicitud.searchResults &&
+                                this.puthisSolicitud.searchResults.length === 1) {
+                                this.processputhissolicitudSelected(0);
+                            }
+                            this.changeDetectorRef.markForCheck();
+                        },
+                        (response: any) => {
+                            this.puthisSolicitud.removeCSSClass('noResultsLenseSearch');
+                            this.puthisSolicitud.searchResults = [];
+                            this.util.addErrorMessage(response.message);
+                            this.changeDetectorRef.markForCheck();
+                        });
             }
         } else {
             this.puthisSolicitud.removeCSSClass('noResultsLenseSearch');
@@ -1760,7 +1755,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
     private executeDependecyRules2ptupuIndicadorExtranjero(): void {
         this.cacheDependencyRules.counter++;
         this.addQueryInstanceFromField(this.ptupuevcTipoIdentificacion,
-            'nit,Codigo');
+                'nit,Codigo');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
             this.notifyAnswerFromToTheBackEnd();
@@ -1771,8 +1766,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
                 this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
-            }
-        });
+            } });
         this.cacheDependencyRules.counter--;
     }
 
@@ -1781,7 +1775,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
      */
     private executeDependecyRules2ptupuIndicadorExtranjeroActions(): void {
         const varptupuevctipoidentificacion = this.getFirstInstanceFromCache(this.ptupuevcTipoIdentificacion);
-        // v <> NULL AND v = FALSE AND pt_p_evcTipoIdentificacion <> NULL AND pt_p_evctipoidentificacion.nit = FALSE
+        // v <> NULL AND v = false AND pt_p_evcTipoIdentificacion <> NULL AND pt_p_evctipoidentificacion.nit = false
         if (varptupuevctipoidentificacion && !this.util.isNull(this.util.getBool(this.ptupuIndicadorExtranjero.value)) &&
             this.util.valueEquals(this.util.getBool(this.ptupuIndicadorExtranjero.value), false) &&
             !this.util.isNull(varptupuevctipoidentificacion) &&
@@ -1897,7 +1891,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
     private executeDependecyRules2ptupuNumIdentificacion(): void {
         this.cacheDependencyRules.counter++;
         this.addQueryInstanceFromField(this.ptupuevcTipoIdentificacion,
-            'nit,Codigo');
+                'nit,Codigo');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
             this.notifyAnswerFromToTheBackEnd();
@@ -1908,8 +1902,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
                 this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
-            }
-        });
+            } });
         this.cacheDependencyRules.counter--;
     }
 
@@ -1918,7 +1911,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
      */
     private executeDependecyRules2ptupuNumIdentificacionActions(): void {
         const varptupuevctipoidentificacion = this.getFirstInstanceFromCache(this.ptupuevcTipoIdentificacion);
-        // v <> NULL AND pt_p_evcTipoIdentificacion <> NULL AND pt_p_evctipoidentificacion.nit = TRUE AND pt_p_CodigoCORE > 0
+        // v <> NULL AND pt_p_evcTipoIdentificacion <> NULL AND pt_p_evctipoidentificacion.nit = true AND pt_p_CodigoCORE > 0
         if (varptupuevctipoidentificacion && !this.util.isNull(this.ptupuNumIdentificacion.value) &&
             !this.util.isNull(varptupuevctipoidentificacion) &&
             this.util.valueEquals(this.util.getBool(varptupuevctipoidentificacion.get('nit')), true) &&
@@ -1968,7 +1961,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
     private executeDependecyRules3ptupuNumIdentificacion(): void {
         this.cacheDependencyRules.counter++;
         this.addQueryInstanceFromField(this.ptupuevcTipoIdentificacion,
-            'nit,Codigo');
+                'nit,Codigo');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
             this.notifyAnswerFromToTheBackEnd();
@@ -1979,8 +1972,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
                 this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
-            }
-        });
+            } });
         this.cacheDependencyRules.counter--;
     }
 
@@ -1989,7 +1981,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
      */
     private executeDependecyRules3ptupuNumIdentificacionActions(): void {
         const varptupuevctipoidentificacion = this.getFirstInstanceFromCache(this.ptupuevcTipoIdentificacion);
-        // v <> NULL AND pt_p_evcTipoIdentificacion <> NULL AND pt_p_evctipoidentificacion.nit = TRUE AND pt_p_CodigoCORE = NULL
+        // v <> NULL AND pt_p_evcTipoIdentificacion <> NULL AND pt_p_evctipoidentificacion.nit = true AND pt_p_CodigoCORE = NULL
         if (varptupuevctipoidentificacion && !this.util.isNull(this.ptupuNumIdentificacion.value) &&
             !this.util.isNull(varptupuevctipoidentificacion) &&
             this.util.valueEquals(this.util.getBool(varptupuevctipoidentificacion.get('nit')), true) &&
@@ -2080,7 +2072,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
     private executeDependecyRules1ptupuevcTipoIdentificacion(): void {
         this.cacheDependencyRules.counter++;
         this.addQueryInstanceFromField(this.ptupuevcTipoIdentificacion,
-            'Codigo');
+                'Codigo');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
             this.notifyAnswerFromToTheBackEnd();
@@ -2091,8 +2083,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
                 this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
-            }
-        });
+            } });
         this.cacheDependencyRules.counter--;
     }
 
@@ -2117,7 +2108,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
     private executeDependecyRules2ptupuevcTipoIdentificacion(): void {
         this.cacheDependencyRules.counter++;
         this.addQueryInstanceFromField(this.ptupuevcTipoIdentificacion,
-            'diplomatico');
+                'diplomatico');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
             this.notifyAnswerFromToTheBackEnd();
@@ -2128,8 +2119,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
                 this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
-            }
-        });
+            } });
         this.cacheDependencyRules.counter--;
     }
 
@@ -2153,7 +2143,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
     private executeDependecyRules3ptupuevcTipoIdentificacion(): void {
         this.cacheDependencyRules.counter++;
         this.addQueryInstanceFromField(this.ptupuevcTipoIdentificacion,
-            'nit');
+                'nit');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
             this.notifyAnswerFromToTheBackEnd();
@@ -2164,8 +2154,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
                 this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
-            }
-        });
+            } });
         this.cacheDependencyRules.counter--;
     }
 
@@ -2215,7 +2204,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
     private executeDependecyRules4ptupuevcTipoIdentificacion(): void {
         this.cacheDependencyRules.counter++;
         this.addQueryInstanceFromField(this.ptupuevcTipoIdentificacion,
-            'nit');
+                'nit');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
             this.notifyAnswerFromToTheBackEnd();
@@ -2226,8 +2215,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
                 this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
-            }
-        });
+            } });
         this.cacheDependencyRules.counter--;
     }
 
@@ -2333,25 +2321,25 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
                 this.ptupuPais.removeCSSClass('noResultsLenseSearch');
                 this.ptupuPais.lastText = searchText;
                 this.util.searchLenseSearch(ModelConstants.Pais.name, 'IC_Pais', searchText, [], null).then(
-                    (response: any) => {
-                        this.ptupuPais.removeCSSClass('noResultsLenseSearch');
-                        this.ptupuPais.searchResults = response.results;
-                        if (this.ptupuPais.searchResults &&
-                            this.ptupuPais.searchResults.length === 0) {
-                            this.ptupuPais.addCSSClass('noResultsLenseSearch');
-                        }
-                        if (this.ptupuPais.searchResults &&
-                            this.ptupuPais.searchResults.length === 1) {
-                            this.processptupupaisSelected(0);
-                        }
-                        this.changeDetectorRef.markForCheck();
-                    },
-                    (response: any) => {
-                        this.ptupuPais.removeCSSClass('noResultsLenseSearch');
-                        this.ptupuPais.searchResults = [];
-                        this.util.addErrorMessage(response.message);
-                        this.changeDetectorRef.markForCheck();
-                    });
+                        (response: any) => {
+                            this.ptupuPais.removeCSSClass('noResultsLenseSearch');
+                            this.ptupuPais.searchResults = response.results;
+                            if (this.ptupuPais.searchResults &&
+                                this.ptupuPais.searchResults.length === 0) {
+                                this.ptupuPais.addCSSClass('noResultsLenseSearch');
+                            }
+                            if (this.ptupuPais.searchResults &&
+                                this.ptupuPais.searchResults.length === 1) {
+                                this.processptupupaisSelected(0);
+                            }
+                            this.changeDetectorRef.markForCheck();
+                        },
+                        (response: any) => {
+                            this.ptupuPais.removeCSSClass('noResultsLenseSearch');
+                            this.ptupuPais.searchResults = [];
+                            this.util.addErrorMessage(response.message);
+                            this.changeDetectorRef.markForCheck();
+                        });
             }
         } else {
             this.ptupuPais.removeCSSClass('noResultsLenseSearch');
@@ -2433,8 +2421,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
                 this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
-            }
-        });
+            } });
         this.cacheDependencyRules.counter--;
     }
 
@@ -2447,10 +2434,10 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
             varAgentAsesor = this.cacheDependencyRules.getInstance(ModelConstants.Asesor.name,
                 this.appGlobalInfo.getLoggedUserInfo().oid);
         }
-        // v > 0  AND AGENT_Asesor <> NULL AND AGENT_Asesor.ModDBasicosPersona = FALSE
+        // v > 0 AND AGENT_Asesor <> NULL AND agent_asesor.moddbasicospersona = false
         if (varAgentAsesor && this.util.getInt(this.ptupuCodigoCORE.value) > this.util.getInt('0') &&
             !this.util.isNull(varAgentAsesor) && this.util.valueEquals(this.util.getBool(varAgentAsesor.get('moddbasicospersona')),
-                false)) {
+            false)) {
             // pt_p_evcDepartamentoNac.SetActive( FALSE )
             this.ptupuevcDepartamentoNac.enabled = false;
             // pt_p_evcMunicipioNac.SetActive( FALSE )
@@ -2593,25 +2580,25 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
                 this.pDCPais.removeCSSClass('noResultsLenseSearch');
                 this.pDCPais.lastText = searchText;
                 this.util.searchLenseSearch(ModelConstants.Pais.name, 'IC_Pais', searchText, [], null).then(
-                    (response: any) => {
-                        this.pDCPais.removeCSSClass('noResultsLenseSearch');
-                        this.pDCPais.searchResults = response.results;
-                        if (this.pDCPais.searchResults &&
-                            this.pDCPais.searchResults.length === 0) {
-                            this.pDCPais.addCSSClass('noResultsLenseSearch');
-                        }
-                        if (this.pDCPais.searchResults &&
-                            this.pDCPais.searchResults.length === 1) {
-                            this.processpdcpaisSelected(0);
-                        }
-                        this.changeDetectorRef.markForCheck();
-                    },
-                    (response: any) => {
-                        this.pDCPais.removeCSSClass('noResultsLenseSearch');
-                        this.pDCPais.searchResults = [];
-                        this.util.addErrorMessage(response.message);
-                        this.changeDetectorRef.markForCheck();
-                    });
+                        (response: any) => {
+                            this.pDCPais.removeCSSClass('noResultsLenseSearch');
+                            this.pDCPais.searchResults = response.results;
+                            if (this.pDCPais.searchResults &&
+                                this.pDCPais.searchResults.length === 0) {
+                                this.pDCPais.addCSSClass('noResultsLenseSearch');
+                            }
+                            if (this.pDCPais.searchResults &&
+                                this.pDCPais.searchResults.length === 1) {
+                                this.processpdcpaisSelected(0);
+                            }
+                            this.changeDetectorRef.markForCheck();
+                        },
+                        (response: any) => {
+                            this.pDCPais.removeCSSClass('noResultsLenseSearch');
+                            this.pDCPais.searchResults = [];
+                            this.util.addErrorMessage(response.message);
+                            this.changeDetectorRef.markForCheck();
+                        });
             }
         } else {
             this.pDCPais.removeCSSClass('noResultsLenseSearch');
@@ -2729,9 +2716,9 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
     private executeDependecyRules1ptReplicarDireccion(): void {
         this.cacheDependencyRules.counter++;
         this.addQueryInstanceFromField(this.ptupuevcDepartamento,
-            'Codigo');
+                'Codigo');
         this.addQueryInstanceFromField(this.ptupuevcMunicipio,
-            'Codigo');
+                'Codigo');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
             this.notifyAnswerFromToTheBackEnd();
@@ -2742,8 +2729,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
                 this.notifyAnswerFromToTheBackEnd();
                 this.executePendingDependencyRules();
                 this.changeDetectorRef.markForCheck();
-            }
-        });
+            } });
         this.cacheDependencyRules.counter--;
     }
 
@@ -2842,25 +2828,25 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
                 this.ptEstadoPersona.removeCSSClass('noResultsLenseSearch');
                 this.ptEstadoPersona.lastText = searchText;
                 this.util.searchLenseSearch(ModelConstants.Estadopersona.name, 'IC_EstadoPersona', searchText, [], null).then(
-                    (response: any) => {
-                        this.ptEstadoPersona.removeCSSClass('noResultsLenseSearch');
-                        this.ptEstadoPersona.searchResults = response.results;
-                        if (this.ptEstadoPersona.searchResults &&
-                            this.ptEstadoPersona.searchResults.length === 0) {
-                            this.ptEstadoPersona.addCSSClass('noResultsLenseSearch');
-                        }
-                        if (this.ptEstadoPersona.searchResults &&
-                            this.ptEstadoPersona.searchResults.length === 1) {
-                            this.processptestadopersonaSelected(0);
-                        }
-                        this.changeDetectorRef.markForCheck();
-                    },
-                    (response: any) => {
-                        this.ptEstadoPersona.removeCSSClass('noResultsLenseSearch');
-                        this.ptEstadoPersona.searchResults = [];
-                        this.util.addErrorMessage(response.message);
-                        this.changeDetectorRef.markForCheck();
-                    });
+                        (response: any) => {
+                            this.ptEstadoPersona.removeCSSClass('noResultsLenseSearch');
+                            this.ptEstadoPersona.searchResults = response.results;
+                            if (this.ptEstadoPersona.searchResults &&
+                                this.ptEstadoPersona.searchResults.length === 0) {
+                                this.ptEstadoPersona.addCSSClass('noResultsLenseSearch');
+                            }
+                            if (this.ptEstadoPersona.searchResults &&
+                                this.ptEstadoPersona.searchResults.length === 1) {
+                                this.processptestadopersonaSelected(0);
+                            }
+                            this.changeDetectorRef.markForCheck();
+                        },
+                        (response: any) => {
+                            this.ptEstadoPersona.removeCSSClass('noResultsLenseSearch');
+                            this.ptEstadoPersona.searchResults = [];
+                            this.util.addErrorMessage(response.message);
+                            this.changeDetectorRef.markForCheck();
+                        });
             }
         } else {
             this.ptEstadoPersona.removeCSSClass('noResultsLenseSearch');
@@ -2948,10 +2934,10 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
         this.executePendingDependencyRules();
     }
 
-    /**
-     * Process the click in the lense of any object-valued argument
-     * @param argumentName Name of the argument
-     */
+   /**
+    * Process the click in the lense of any object-valued argument
+    * @param argumentName Name of the argument
+    */
     public doSearchAction(argumentName: string): void {
         const exchInfo = this.getSelectionForwardExchInfo();
         exchInfo.originArgumentName = argumentName;
@@ -2986,43 +2972,43 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
 
         switch (groupId) {
             case '5':
-                isVisible = this.ptupuPrimerNombre.visible;
+                isVisible = this.ptupuPrimerNombre.visible ;
                 break;
             case '7':
                 isVisible = this.ptupuatrRazonSocial.visible;
                 break;
             case '8':
                 isVisible = this.ptuDireccionesXClass.visible ||
-                    this.ptupuDireccionCompleta.visible ||
-                    this.ptupuevcDepartamento.visible ||
-                    this.ptupuevcMunicipio.visible ||
-                    this.ptupuRural.visible ||
-                    this.ptupuTelefonoFijo.visible ||
-                    this.ptupuTelefonoCelular.visible ||
-                    this.ptReplicarDireccion.visible ||
-                    this.ptupDCDireccionCompleta.visible ||
-                    this.ptupDCDepartamento.visible ||
-                    this.ptupDCMunicipio.visible ||
-                    this.ptupDCRural.visible ||
-                    this.ptupDCTelefonoFijo.visible ||
-                    this.ptupDCTelefonoCelular.visible;
+                this.ptupuDireccionCompleta.visible ||
+                this.ptupuevcDepartamento.visible ||
+                this.ptupuevcMunicipio.visible ||
+                this.ptupuRural.visible ||
+                this.ptupuTelefonoFijo.visible ||
+                this.ptupuTelefonoCelular.visible ||
+                this.ptReplicarDireccion.visible ||
+                this.ptupDCDireccionCompleta.visible ||
+                this.ptupDCDepartamento.visible ||
+                this.ptupDCMunicipio.visible ||
+                this.ptupDCRural.visible ||
+                this.ptupDCTelefonoFijo.visible ||
+                this.ptupDCTelefonoCelular.visible;
                 break;
             case '8_0':
                 isVisible = this.ptuDireccionesXClass.visible ||
-                    this.ptupuDireccionCompleta.visible ||
-                    this.ptupuevcDepartamento.visible ||
-                    this.ptupuevcMunicipio.visible ||
-                    this.ptupuRural.visible ||
-                    this.ptupuTelefonoFijo.visible ||
-                    this.ptupuTelefonoCelular.visible;
+                this.ptupuDireccionCompleta.visible ||
+                this.ptupuevcDepartamento.visible ||
+                this.ptupuevcMunicipio.visible ||
+                this.ptupuRural.visible ||
+                this.ptupuTelefonoFijo.visible ||
+                this.ptupuTelefonoCelular.visible;
                 break;
             case '8_2':
                 isVisible = this.ptupDCDireccionCompleta.visible ||
-                    this.ptupDCDepartamento.visible ||
-                    this.ptupDCMunicipio.visible ||
-                    this.ptupDCRural.visible ||
-                    this.ptupDCTelefonoFijo.visible ||
-                    this.ptupDCTelefonoCelular.visible;
+                this.ptupDCDepartamento.visible ||
+                this.ptupDCMunicipio.visible ||
+                this.ptupDCRural.visible ||
+                this.ptupDCTelefonoFijo.visible ||
+                this.ptupDCTelefonoCelular.visible;
                 break;
             default:
                 isVisible = false;

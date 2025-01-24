@@ -696,7 +696,7 @@ export class SolicitudSIUuTSUBIRDOCUMENTOATOComponent extends AbstractServiceIU 
         const varptpersona = this.getFirstInstanceFromCache(this.ptPersona);
         // v <> NULL
         if (varptpersona && !this.util.isNull(varptpersona)) {
-            // ptNumIdentUsuario.SetValue( v.TipoIdentificacion.NombreCorto + v.NumIdentificacion )
+            // ptNumIdentUsuario.SetValue( v.tipoidentificacion.nombrecorto + v.numidentificacion )
             this.ptNumIdentUsuario.setValue(varptpersona.get('tipoidentificacion.nombrecorto') + varptpersona.get('numidentificacion'));
             this.executeDependecyRulesptnumidentusuario('SetValue', true);
         }

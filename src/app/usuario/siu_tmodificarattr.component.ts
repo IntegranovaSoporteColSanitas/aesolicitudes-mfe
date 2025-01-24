@@ -877,7 +877,7 @@ export class UsuarioSIUuTMODIFICARATTRComponent extends AbstractServiceIU implem
      */
     private executeDependecyRules11puthisAttrUsuarioActions(): void {
         const varputhisattrusuario = this.getFirstInstanceFromCache(this.puthisAttrUsuario);
-        // v <> NULL AND v.TipoIdentificacion.MenorSinIdentificar = TRUE
+        // v <> NULL AND v.tipoidentificacion.menorsinidentificar = true
         if (varputhisattrusuario && !this.util.isNull(varputhisattrusuario) &&
             this.util.valueEquals(this.util.getBool(varputhisattrusuario.get('tipoidentificacion.menorsinidentificar')), true)) {
             // pt_p_BebeGestante.SetValue( TRUE )
@@ -915,7 +915,7 @@ export class UsuarioSIUuTMODIFICARATTRComponent extends AbstractServiceIU implem
      */
     private executeDependecyRules12puthisAttrUsuarioActions(): void {
         const varputhisattrusuario = this.getFirstInstanceFromCache(this.puthisAttrUsuario);
-        // v <> NULL AND v.TipoIdentificacion.MenorSinIdentificar = FALSE
+        // v <> NULL AND v.tipoidentificacion.menorsinidentificar = false
         if (varputhisattrusuario && !this.util.isNull(varputhisattrusuario) &&
             this.util.valueEquals(this.util.getBool(varputhisattrusuario.get('tipoidentificacion.menorsinidentificar')), false)) {
             // pt_p_BebeGestante.SetActive( TRUE )

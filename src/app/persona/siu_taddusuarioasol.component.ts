@@ -428,7 +428,6 @@ export class PersonaSIUuTADDUSUARIOASOLComponent extends AbstractServiceIU imple
         }
     }    
 
-
     /**
      * Initialize the component using default values
      */
@@ -1134,7 +1133,7 @@ export class PersonaSIUuTADDUSUARIOASOLComponent extends AbstractServiceIU imple
             varAgentAsesor = this.cacheDependencyRules.getInstance(ModelConstants.Asesor.name,
                 this.appGlobalInfo.getLoggedUserInfo().oid);
         }
-        // v <> NULL AND v.nombrecorto <> "MS" AND (AGENT_Asesor = NULL OR AGENT_Asesor.ModDBasicosPersona = TRUE)
+        // v <> NULL AND v.nombrecorto <> "MS" AND (AGENT_Asesor = NULL OR agent_asesor.moddbasicospersona = true)
         if (varptupuagrtipoidentificacion && varAgentAsesor && !this.util.isNull(varptupuagrtipoidentificacion) &&
             !this.util.valueEquals(varptupuagrtipoidentificacion.get('nombrecorto'), 'MS') && (this.util.isNull(varAgentAsesor) ||
             this.util.valueEquals(this.util.getBool(varAgentAsesor.get('moddbasicospersona')), true))) {
@@ -1441,7 +1440,7 @@ export class PersonaSIUuTADDUSUARIOASOLComponent extends AbstractServiceIU imple
             varAgentAsesor = this.cacheDependencyRules.getInstance(ModelConstants.Asesor.name,
                 this.appGlobalInfo.getLoggedUserInfo().oid);
         }
-        // v > 0  AND AGENT_Asesor <> NULL AND AGENT_Asesor.ModDBasicosPersona = FALSE
+        // v > 0 AND AGENT_Asesor <> NULL AND agent_asesor.moddbasicospersona = false
         if (varAgentAsesor && this.util.getInt(this.ptupuCodigo.value) > this.util.getInt('0') && !this.util.isNull(varAgentAsesor) &&
             this.util.valueEquals(this.util.getBool(varAgentAsesor.get('moddbasicospersona')), false)) {
             // pt_p_agrDepartamentoNacimiento.SetActive( FALSE )

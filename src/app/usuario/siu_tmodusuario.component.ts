@@ -882,7 +882,7 @@ export class UsuarioSIUuTMODUSUARIOComponent extends AbstractServiceIU implement
             varAgentAsesor = this.cacheDependencyRules.getInstance(ModelConstants.Asesor.name,
                 this.appGlobalInfo.getLoggedUserInfo().oid);
         }
-        // v <> NULL AND v.UsuarioPersona.Codigo > 0 AND AGENT_Asesor <> NULL AND agent_asesor.moddbasicospersona = FALSE
+        // v <> NULL AND v.usuariopersona.codigo > 0 AND AGENT_Asesor <> NULL AND agent_asesor.moddbasicospersona = false
         if (varputhisusuario && varAgentAsesor && !this.util.isNull(varputhisusuario) &&
             this.util.getInt(varputhisusuario.get('usuariopersona.codigo')) > 0 && !this.util.isNull(varAgentAsesor) &&
             this.util.valueEquals(this.util.getBool(varAgentAsesor.get('moddbasicospersona')), false)) {
