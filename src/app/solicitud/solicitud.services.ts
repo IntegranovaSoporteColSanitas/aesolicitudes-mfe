@@ -11,6 +11,7 @@ export class SolicitudServices extends AbstractServices {
 
     private anotarObservacionesSrvName = 'anotarObservaciones';
     private dummyuRedirigirSrvName = 'dummy_Redirigir';
+    private dummyuGenerarSolicitudSrvName = 'dummy_GenerarSolicitud';
     private enviarSMSInfoPagoSrvName = 'enviarSMSInfoPago';
     private modMarcaCarnetSrvName = 'modMarcaCarnet';
     private tMODIFICARINFOPAGOSrvName = 'TMODIFICARINFOPAGO';
@@ -204,6 +205,28 @@ export class SolicitudServices extends AbstractServices {
         };
         return new Promise<void> ((resolve, reject) => {
              this.callService(this.dummyuRedirigirSrvName, request).then((response: any) => {
+                resolve();
+            }).catch( (errorInfo: ErrorInformation) => {
+                reject(errorInfo);
+            });
+        });
+    }
+
+    /**
+     * Call to the service 'dummy_GenerarSolicitud' in the backend
+     * Promise is resolved if service execution is successful and returns void.
+     * If service fails, promise is rejected and returned an instance of ErrorInformation
+     * @param puthisSolicitudInArg Mandatory argument 'p_thisSolicitud'. Oid of 'Solicitud' class
+     */
+    public dummyuGenerarSolicitud(
+        puthisSolicitudInArg: any): Promise<void> {
+        const request: {
+            p_thissolicitud_oid: any
+        } = {
+            p_thissolicitud_oid: puthisSolicitudInArg
+        };
+        return new Promise<void> ((resolve, reject) => {
+             this.callService(this.dummyuGenerarSolicitudSrvName, request).then((response: any) => {
                 resolve();
             }).catch( (errorInfo: ErrorInformation) => {
                 reject(errorInfo);

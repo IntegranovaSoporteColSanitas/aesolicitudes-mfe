@@ -268,31 +268,17 @@ export class SolicitudIIUuNuevaAfiliacionComponent extends AbstractIIU {
 
         accItem = new AccNavItem();
         accItem.id = 4;
-        accItem.idXML = 'Clas_1431957012480960AccOfer_8ElemAcc_11';
+        accItem.idXML = 'Clas_1431957012480960AccOfer_8ElemAcc_12';
         accItem.alias = this.langMng.translateText(
-            'cls_Solicitud_act_A_SolicitudIIUMaestroNuevaAfil_item_Clas_1431957012480960AccOfer_8ElemAcc_11',
-            'Marcar completada');
+            'cls_Solicitud_act_A_SolicitudIIUMaestroNuevaAfil_item_Clas_1431957012480960AccOfer_8ElemAcc_12',
+            'Generar solicitud');
         accItem.nounVerb = true;
-        accItem.multiSelection = true;
-        accItem.agents = [ModelConstants.Funcionario.name, ModelConstants.Admin.name, ModelConstants.Superadmin.name,
-            ModelConstants.Asesor.name, ModelConstants.Areamedica.name, ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name,
-            ModelConstants.Mesadeapoyo.name];
+        accItem.multiSelection = false;
+        accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Areamedica.name, ModelConstants.Afiliaciones.name, ModelConstants.Mesadeapoyo.name];
         accItem.targetClass = ModelConstants.Solicitud.name;
-        accItem.targetUI = ModelConstants.Solicitud.siuutmarcarcompletada;
-        accItem.setNoShowProperties('TMARCARCOMPLETADA', 'p_thissolicitud_oid', '', false);
-        accItem.preconditionAttributes.push(
-            { agents: ['Admin', 'SuperAdmin', 'Asesor', 'AreaMedica', 'Afiliaciones', 'Gestor', 'MesaDeApoyo'],
-              attributes: ['numcontrato'] });
-        accItem.preconditionAttributes.push(
-            { agents: ['Admin', 'SuperAdmin', 'Asesor', 'AreaMedica', 'Afiliaciones', 'Gestor', 'MesaDeApoyo'],
-              attributes: ['datospagook'] });
-        accItem.preconditionAttributes.push(
-            { agents: ['Admin', 'SuperAdmin', 'Asesor', 'AreaMedica', 'Afiliaciones', 'Gestor', 'MesaDeApoyo'],
-              attributes: ['drvyatienecontratante'] });
-        accItem.preconditionAttributes.push(
-            { agents: ['Admin', 'SuperAdmin', 'Asesor', 'AreaMedica', 'Afiliaciones', 'Gestor', 'MesaDeApoyo'],
-              attributes: ['tipocontrato', 'contratantepersona.tipopersona', 'drvcontratanteestitular', 'tramite'] });
-        accItem.closeOrigin = true;
+        accItem.targetUI = ModelConstants.Solicitud.siuudummyugenerarsolicitud;
+        accItem.setNoShowProperties('dummy_GenerarSolicitud', 'p_thissolicitud_oid', '', false);
         this.actions.push(accItem);
 
     }
@@ -330,9 +316,6 @@ export class SolicitudIIUuNuevaAfiliacionComponent extends AbstractIIU {
             if (actionId === 2) {
                 isEnabled = this.checkPrecondicionInAdvanceNum2(row);
             }
-            if (actionId === 4) {
-                isEnabled = this.checkPrecondicionInAdvanceNum4(row);
-            }
         }
         return isEnabled;
     }
@@ -346,15 +329,6 @@ export class SolicitudIIUuNuevaAfiliacionComponent extends AbstractIIU {
         if (!(this.util.valueEquals(this.util.getBool(this.getRowData(row, 'completada')), false))) {
             return false;
         }
-        return true;
-    }
-
-    /**
-     * Evaluate in advance the preconditions of the action element number 4
-     * @param row Instance data
-     */
-    private checkPrecondicionInAdvanceNum4(row: any): boolean {
-
         return true;
     }
 }

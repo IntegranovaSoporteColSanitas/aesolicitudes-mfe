@@ -51,19 +51,19 @@ export class ModelConstants {
     public static readonly Aeusolicitudes = {name : 'Ae_solicitudes', siuutnuevaafiliacion: 'siu_tnuevaafiliacion',
         siuutinclusionsc: 'siu_tinclusionsc'};
     public static readonly Solicitud = {name : 'Solicitud', siuuanotarobservaciones: 'siu_anotarobservaciones',
-        siuudummyuredirigir: 'siu_dummy_redirigir', siuuenviarsmsinfopago: 'siu_enviarsmsinfopago',
-        siuumodmarcacarnet: 'siu_modmarcacarnet', siuutmodificarinfopago: 'siu_tmodificarinfopago',
-        siuutcrearomodfirma: 'siu_tcrearomodfirma', siuutindicarcontratante2: 'siu_tindicarcontratante2',
-        siuutindicartitular2: 'siu_tindicartitular2', siuutchgtitbenefcont: 'siu_tchgtitbenefcont',
-        siuutmarcarcompletada: 'siu_tmarcarcompletada', siuutmodencabezado: 'siu_tmodencabezado',
-        siuutmoddirscontratante: 'siu_tmoddirscontratante', siuutmoddirstitular: 'siu_tmoddirstitular',
-        siuutmodencabezadoincl: 'siu_tmodencabezadoincl', siuutcrearomodfirmacontinc: 'siu_tcrearomodfirmacontinc',
-        siuutsubirdocumentoato: 'siu_tsubirdocumentoato', piuuradicadosuobs: 'piu_radicados_obs',
-        piuuconsultarradicado: 'piu_consultarradicado', mdiuunuevaafiliacion: 'mdiu_nuevaafiliacion',
-        imdiuuinfocontratantepr: 'imdiu_infocontratantepr', imdiuuinfocontratanteincl: 'imdiu_infocontratanteincl',
-        mdiuuusuariosincl: 'mdiu_usuariosincl', imdiuuinfocontratanteinccolect: 'imdiu_infocontratanteinccolect',
-        imdiuuinfocontratanteprcol: 'imdiu_infocontratanteprcol', mdiuuinclusioncolectivo: 'mdiu_inclusioncolectivo',
-        mdiuuinclusionfamiliar: 'mdiu_inclusionfamiliar'};
+        siuudummyuredirigir: 'siu_dummy_redirigir', siuudummyugenerarsolicitud: 'siu_dummy_generarsolicitud',
+        siuuenviarsmsinfopago: 'siu_enviarsmsinfopago', siuumodmarcacarnet: 'siu_modmarcacarnet',
+        siuutmodificarinfopago: 'siu_tmodificarinfopago', siuutcrearomodfirma: 'siu_tcrearomodfirma',
+        siuutindicarcontratante2: 'siu_tindicarcontratante2', siuutindicartitular2: 'siu_tindicartitular2',
+        siuutchgtitbenefcont: 'siu_tchgtitbenefcont', siuutmarcarcompletada: 'siu_tmarcarcompletada',
+        siuutmodencabezado: 'siu_tmodencabezado', siuutmoddirscontratante: 'siu_tmoddirscontratante',
+        siuutmoddirstitular: 'siu_tmoddirstitular', siuutmodencabezadoincl: 'siu_tmodencabezadoincl',
+        siuutcrearomodfirmacontinc: 'siu_tcrearomodfirmacontinc', siuutsubirdocumentoato: 'siu_tsubirdocumentoato',
+        piuuradicadosuobs: 'piu_radicados_obs', piuuconsultarradicado: 'piu_consultarradicado',
+        mdiuunuevaafiliacion: 'mdiu_nuevaafiliacion', imdiuuinfocontratantepr: 'imdiu_infocontratantepr',
+        imdiuuinfocontratanteincl: 'imdiu_infocontratanteincl', mdiuuusuariosincl: 'mdiu_usuariosincl',
+        imdiuuinfocontratanteinccolect: 'imdiu_infocontratanteinccolect', imdiuuinfocontratanteprcol: 'imdiu_infocontratanteprcol',
+        mdiuuinclusioncolectivo: 'mdiu_inclusioncolectivo', mdiuuinclusionfamiliar: 'mdiu_inclusionfamiliar'};
     public static readonly Personac = {name : 'PersonaC'};
     public static readonly Direccionc = {name : 'DireccionC'};
     public static readonly Telefonoc = {name : 'TelefonoC'};
@@ -104,7 +104,6 @@ export class ModelConstants {
     public static readonly Marcamedicac = {name : 'MarcaMedicaC'};
     public static readonly Tiposucursalc = {name : 'TipoSucursalC'};
     public static readonly Conceptoc = {name : 'ConceptoC'};
-    public static readonly Anonimo = {name : 'Anonimo'};
     public static readonly Detalletarifa = {name : 'DetalleTarifa'};
     public static readonly Agentexproducto = {name : 'AgentexProducto'};
     public static readonly Institucionmatneo = {name : 'InstitucionMatNeo'};
@@ -155,6 +154,8 @@ export class ModelConstants {
     public static readonly Contratosexentosfingreso = {name : 'ContratosExentosFIngreso'};
     public static readonly Logcontratosexentosfingreso = {name : 'LogContratosExentosFIngreso'};
     public static readonly Textoaviso = {name : 'TextoAviso'};
+    public static readonly Usuariosistemaexterno = {name : 'UsuarioSistemaExterno'};
     public static readonly Globalservices = {name : 'GlobalServices', siuuogsincgruposasociados: 'siu_ogsincgruposasociados',
-        siuutgseleccontratoasoc: 'siu_tgseleccontratoasoc', siuutgseleccontratoasoctit: 'siu_tgseleccontratoasoctit'};
+        siuutgseleccontratoasoc: 'siu_tgseleccontratoasoc', siuutgseleccontratoasoctit: 'siu_tgseleccontratoasoctit',
+        siuuogenerarsolicitud2: 'siu_ogenerarsolicitud2', siuuogenerarsolicitud2uout: 'siu_ogenerarsolicitud2_out'};
 }

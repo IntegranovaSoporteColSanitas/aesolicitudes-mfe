@@ -4,6 +4,7 @@ import { PopStateNavigationGuard } from '../common/popStateNavigationGuard';
 import { LoginGuard } from '../common/loginGuard';
 import { SolicitudSIUuanotarObservacionesComponent } from './siu_anotarobservaciones.component';
 import { SolicitudSIUudummyuRedirigirComponent } from './siu_dummy_redirigir.component';
+import { SolicitudSIUudummyuGenerarSolicitudComponent } from './siu_dummy_generarsolicitud.component';
 import { SolicitudSIUumodMarcaCarnetComponent } from './siu_modmarcacarnet.component';
 import { SolicitudSIUuTMODIFICARINFOPAGOComponent } from './siu_tmodificarinfopago.component';
 import { SolicitudSIUuTCREAROMODFIRMAComponent } from './siu_tcrearomodfirma.component';
@@ -31,6 +32,8 @@ const routes: Routes = [
     { path: 'siu_anotarobservaciones' , component: SolicitudSIUuanotarObservacionesComponent,
         canActivate: [LoginGuard], canDeactivate: [PopStateNavigationGuard] },
     { path: 'siu_dummy_redirigir' , component: SolicitudSIUudummyuRedirigirComponent,
+        canActivate: [LoginGuard], canDeactivate: [PopStateNavigationGuard] },
+    { path: 'siu_dummy_generarsolicitud' , component: SolicitudSIUudummyuGenerarSolicitudComponent,
         canActivate: [LoginGuard], canDeactivate: [PopStateNavigationGuard] },
     { path: 'siu_modmarcacarnet' , component: SolicitudSIUumodMarcaCarnetComponent,
         canActivate: [LoginGuard], canDeactivate: [PopStateNavigationGuard] },

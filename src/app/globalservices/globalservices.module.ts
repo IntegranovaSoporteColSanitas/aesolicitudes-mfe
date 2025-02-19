@@ -4,6 +4,8 @@ import { CommonComponentsModule } from '../commoncomponents.module';
 import { GlobalServicesRoutingModule } from './globalservices-routing.module';
 import { GSSIUuTGSELECCONTRATOASOCComponent } from './siu_tgseleccontratoasoc.component';
 import { GSSIUuTGSELECCONTRATOASOCTITComponent } from './siu_tgseleccontratoasoctit.component';
+import { GSSIUuOGENERARSOLICITUD2Component } from './siu_ogenerarsolicitud2.component';
+import { GSSIUuOGENERARSOLICITUD2uOutComponent } from './siu_ogenerarsolicitud2_out.component';
 
 @NgModule({
   imports: [
@@ -13,11 +15,15 @@ import { GSSIUuTGSELECCONTRATOASOCTITComponent } from './siu_tgseleccontratoasoc
   ],
   declarations: [
     GSSIUuTGSELECCONTRATOASOCComponent,
-    GSSIUuTGSELECCONTRATOASOCTITComponent
+    GSSIUuTGSELECCONTRATOASOCTITComponent,
+    GSSIUuOGENERARSOLICITUD2Component,
+    GSSIUuOGENERARSOLICITUD2uOutComponent
   ],
   exports: [
     GSSIUuTGSELECCONTRATOASOCComponent,
-    GSSIUuTGSELECCONTRATOASOCTITComponent
+    GSSIUuTGSELECCONTRATOASOCTITComponent,
+    GSSIUuOGENERARSOLICITUD2Component,
+    GSSIUuOGENERARSOLICITUD2uOutComponent
   ]
 })
 export class GlobalServicesModule { }

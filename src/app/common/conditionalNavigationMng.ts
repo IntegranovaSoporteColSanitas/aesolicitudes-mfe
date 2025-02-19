@@ -84,6 +84,10 @@ export class ConditionalNavigationMng {
             return this.condNavSolicituddummyuRedirigir(request,
                 response, previousContext, comeBackContext);
         }
+        if (serviceName === 'dummy_GenerarSolicitud') {
+            return this.condNavSolicituddummyuGenerarSolicitud(request,
+                response, previousContext, comeBackContext);
+        }
         return false;
     }
 
@@ -261,6 +265,59 @@ export class ConditionalNavigationMng {
                 exchInfo.selectedOidsClassName = ModelConstants.Solicitud.name;
                 exchInfo.selectedOids = [
                     request.p_thissolicitud_oid];
+                this.util.navigateTo(exchInfo);
+            }
+
+            if (!conditionFulfilled) {
+                this.util.navigateComeBack(comeBackContext);
+            }
+
+        });
+        return true;
+    }
+
+
+    /**
+     * Manages the conditional navigation of service dummy_GenerarSolicitud of class Solicitud
+     * @param request Service request
+     * @param response Service response
+     * @param previousContext Previous context
+     * @param comeBackContext Comeback context
+     */
+    private condNavSolicituddummyuGenerarSolicitud(request: any, response: any, previousContext: any, comeBackContext: any): boolean {
+
+        if (request.p_thissolicitud_oid) {
+            this.queriesCache.addQueryInstance(ModelConstants.Solicitud.name, request.p_thissolicitud_oid,
+                'Ae_solicitudes.PlanT.EsVoluntario');
+        }
+        this.queriesCache.searchAll().then(() => {
+        let varputhissolicitud!: InstanceCache;
+        if (request.p_thissolicitud_oid) {
+            varputhissolicitud = this.queriesCache.getInstance(ModelConstants.Solicitud.name, request.p_thissolicitud_oid);
+        }
+
+            let conditionFulfilled = false;
+            let exchInfo: ExchangeInfo;
+            // p_thisSolicitud.Ae_solicitudes.PlanT.EsVoluntario = true
+            if (this.util.valueEquals(this.util.getBool(varputhissolicitud.get('Ae_solicitudes.PlanT.EsVoluntario')), true) &&
+                this.appGlobalInfo.getLoggedUserInfo().isAgentOneOf(['Funcionario', 'Admin', 'SuperAdmin', 'Asesor', 'AreaMedica',
+                'Afiliaciones', 'Gestor', 'MesaDeApoyo'])) {
+                conditionFulfilled = true;
+                exchInfo = this.util.createExchangeInfoFromCondNavigation(ModelConstants.Solicitud.name,
+                    ModelConstants.Solicitud.siuutmarcarcompletada, previousContext, comeBackContext);
+                // p_thisSolicitud
+                exchInfo.customData.p_thissolicitud = request.p_thissolicitud_oid;
+                this.util.navigateTo(exchInfo);
+            }
+            // p_thisSolicitud.Ae_solicitudes.PlanT.EsVoluntario = false
+            if (!conditionFulfilled &&
+                this.util.valueEquals(this.util.getBool(varputhissolicitud.get('Ae_solicitudes.PlanT.EsVoluntario')), false) &&
+                this.appGlobalInfo.getLoggedUserInfo().isAgentOneOf(['Admin', 'SuperAdmin', 'Afiliaciones'])) {
+                conditionFulfilled = true;
+                exchInfo = this.util.createExchangeInfoFromCondNavigation(ModelConstants.Globalservices.name,
+                    ModelConstants.Globalservices.siuuogenerarsolicitud2, previousContext, comeBackContext);
+                // pt_p_SolicitudAE
+                exchInfo.customData.pt_p_solicitudae = request.p_thissolicitud_oid;
                 this.util.navigateTo(exchInfo);
             }
 

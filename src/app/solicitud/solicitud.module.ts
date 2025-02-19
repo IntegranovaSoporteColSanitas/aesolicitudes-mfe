@@ -4,6 +4,7 @@ import { CommonComponentsModule } from '../commoncomponents.module';
 import { SolicitudRoutingModule } from './solicitud-routing.module';
 import { SolicitudSIUuanotarObservacionesComponent } from './siu_anotarobservaciones.component';
 import { SolicitudSIUudummyuRedirigirComponent } from './siu_dummy_redirigir.component';
+import { SolicitudSIUudummyuGenerarSolicitudComponent } from './siu_dummy_generarsolicitud.component';
 import { SolicitudSIUumodMarcaCarnetComponent } from './siu_modmarcacarnet.component';
 import { SolicitudSIUuTMODIFICARINFOPAGOComponent } from './siu_tmodificarinfopago.component';
 import { SolicitudSIUuTCREAROMODFIRMAComponent } from './siu_tcrearomodfirma.component';
@@ -36,6 +37,7 @@ import { SolicitudPIUuConsultarRadicadoComponent } from './piu_consultarradicado
   declarations: [
     SolicitudSIUuanotarObservacionesComponent,
     SolicitudSIUudummyuRedirigirComponent,
+    SolicitudSIUudummyuGenerarSolicitudComponent,
     SolicitudSIUumodMarcaCarnetComponent,
     SolicitudSIUuTMODIFICARINFOPAGOComponent,
     SolicitudSIUuTCREAROMODFIRMAComponent,
@@ -62,6 +64,7 @@ import { SolicitudPIUuConsultarRadicadoComponent } from './piu_consultarradicado
   exports: [
     SolicitudSIUuanotarObservacionesComponent,
     SolicitudSIUudummyuRedirigirComponent,
+    SolicitudSIUudummyuGenerarSolicitudComponent,
     SolicitudSIUumodMarcaCarnetComponent,
     SolicitudSIUuTMODIFICARINFOPAGOComponent,
     SolicitudSIUuTCREAROMODFIRMAComponent,

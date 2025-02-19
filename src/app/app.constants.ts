@@ -310,6 +310,8 @@ export class Configuration {
                     navKey: 'siu_anotarobservaciones' }
                 , { name: ModelConstants.Solicitud.siuudummyuredirigir,
                     navKey: 'siu_dummy_redirigir' }
+                , { name: ModelConstants.Solicitud.siuudummyugenerarsolicitud,
+                    navKey: 'siu_dummy_generarsolicitud' }
                 , { name: ModelConstants.Solicitud.siuuenviarsmsinfopago,
                     navKey: '_GENERICSIU' }
                 , { name: ModelConstants.Solicitud.siuumodmarcacarnet,
@@ -595,12 +597,6 @@ export class Configuration {
         , {
             className: ModelConstants.Conceptoc.name,
             navKey: 'conceptoc',
-            ius: [
-            ]
-        }
-        , {
-            className: ModelConstants.Anonimo.name,
-            navKey: 'anonimo',
             ius: [
             ]
         }
@@ -905,6 +901,12 @@ export class Configuration {
             ]
         }
         , {
+            className: ModelConstants.Usuariosistemaexterno.name,
+            navKey: 'usuariosistemaexterno',
+            ius: [
+            ]
+        }
+        , {
             className: 'globalservices',
             navKey: 'globalservices',
             ius: [
@@ -914,6 +916,10 @@ export class Configuration {
                     navKey: 'siu_tgseleccontratoasoc' }
                 , { name: ModelConstants.Globalservices.siuutgseleccontratoasoctit,
                     navKey: 'siu_tgseleccontratoasoctit' }
+                , { name: ModelConstants.Globalservices.siuuogenerarsolicitud2,
+                    navKey: 'siu_ogenerarsolicitud2' }
+                , { name: ModelConstants.Globalservices.siuuogenerarsolicitud2uout,
+                    navKey: 'siu_ogenerarsolicitud2_out' }
             ]
         }
     ];

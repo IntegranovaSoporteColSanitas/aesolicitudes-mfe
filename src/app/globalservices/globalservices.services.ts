@@ -12,6 +12,7 @@ export class GlobalServicesServices extends AbstractServices {
     private oGSINCGRUPOSASOCIADOSSrvName = 'OGSINCGRUPOSASOCIADOS';
     private tGSELECCONTRATOASOCSrvName = 'TGSELECCONTRATOASOC';
     private tGSELECCONTRATOASOCTITSrvName = 'TGSELECCONTRATOASOCTIT';
+    private oGENERARSOLICITUD2SrvName = 'OGENERARSOLICITUD2';
 
     constructor(
         protected override readonly appGlobalInfo: AppGlobalInfo,
@@ -86,6 +87,41 @@ export class GlobalServicesServices extends AbstractServices {
         return new Promise<ErrorInformation | void> ((resolve, reject) => {
              this.callService(this.tGSELECCONTRATOASOCTITSrvName, request).then((response: any) => {
                 resolve();
+            }).catch( (errorInfo: ErrorInformation) => {
+                reject(errorInfo);
+            });
+        });
+    }
+
+    /**
+     * Call to the service 'OGENERARSOLICITUD2' in the backend
+     * Promise is resolved if service execution is successful and returns its outbound arguments in a JSON object.
+     * If service fails, promise is rejected and returned an instance of ErrorInformation
+     * @param ptupuSolicitudAEInArg Mandatory argument 'pt_p_SolicitudAE'. Oid of 'Solicitud' class
+     */
+    public oGENERARSOLICITUD2(
+        ptupuSolicitudAEInArg: any):
+        Promise<ErrorInformation | {
+            pt_ps_numsolicitud: string,
+            pt_ps_errorws: string,
+            pserror: boolean
+        }> {
+        const request: {
+            pt_p_solicitudae_oid: any
+        } = {
+            pt_p_solicitudae_oid: ptupuSolicitudAEInArg
+        };
+        return new Promise<ErrorInformation | {
+            pt_ps_numsolicitud: string,
+            pt_ps_errorws: string,
+            pserror: boolean
+        }> ((resolve, reject) => {
+            this.callService(this.oGENERARSOLICITUD2SrvName, request).then((response: any) => {
+                resolve({
+                    pt_ps_numsolicitud: response.pt_ps_numsolicitud,
+                    pt_ps_errorws: response.pt_ps_errorws,
+                    pserror: response.pserror
+                });
             }).catch( (errorInfo: ErrorInformation) => {
                 reject(errorInfo);
             });
