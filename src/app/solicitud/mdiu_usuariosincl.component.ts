@@ -98,7 +98,7 @@ export class SolicitudMDIUuUsuariosINCLComponent extends AbstractMDIU implements
             this.d0.title = this.langMng.translateText(
                 'cls_Solicitud_mdiu_MDIU_UsuariosINCL_detail_Clas_1431957012480960UIMaDet_7Det_1',
                 'Usuarios registrados');
-            this.d0.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('UsuarioReg',
+            this.d0.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('UsuarioReg',
                 this.master.getContext(), null, 'Solicitud', null, 'Solicitud', ''));
         }
         if (this.d1Visible && this.d1 != null) {
@@ -108,7 +108,7 @@ export class SolicitudMDIUuUsuariosINCLComponent extends AbstractMDIU implements
             this.d1.title = this.langMng.translateText(
                 'cls_Solicitud_mdiu_MDIU_UsuariosINCL_detail_Clas_1431957012480960UIMaDet_7Det_2',
                 'Nuevos usuarios');
-            this.d1.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Usuario',
+            this.d1.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Usuario',
                 this.master.getContext(), null, 'Solicitud', null, 'Solicitud', ''));
         }
         super.initializeComponents();

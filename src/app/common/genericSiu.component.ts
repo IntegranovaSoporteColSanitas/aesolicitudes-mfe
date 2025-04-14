@@ -313,6 +313,9 @@ export class GenericSiuComponent implements OnInit {
     private configureSIU(): boolean {
         let siuFound = false;
         switch (this.className) {
+            case ModelConstants.Grupoasociado.name:
+                siuFound = this.configureClassGrupoAsociado();
+                break;
             case ModelConstants.Solicitud.name:
                 siuFound = this.configureClassSolicitud();
                 break;
@@ -324,6 +327,31 @@ export class GenericSiuComponent implements OnInit {
                 break;
             case ModelConstants.Globalservices.name:
                 siuFound = this.configureGlobalServices();
+                break;
+        }
+        return siuFound;
+    }
+
+    /**
+     * Configuration for class GrupoAsociado
+     */
+    private configureClassGrupoAsociado(): boolean {
+        let siuFound = false;
+        switch (this.serviceIUName) {
+            case ModelConstants.Grupoasociado.siuueliminar:
+                this.title = this.langMng.translateText('cls_GrupoAsociado_svc_eliminar',
+                    'Eliminar grupo asociado');
+                this.serviceName = 'eliminar';
+                this.argName = 'p_thisgrupoasociado';
+                this.argNameInRequest = 'p_thisgrupoasociado_oid';
+                this.argClassName = ModelConstants.Grupoasociado.name;
+                this.argAlias = this.langMng.translateText(
+                    'cls_GrupoAsociado_svc_eliminar_inArg_p_thisGrupoAsociado',
+                    'Grupo Asociado');
+                this.argSupInfAttNames = 'codigolegal,descripcion';
+                this.argSupInfAttTypes = [Field.dtString, Field.dtString];
+                this.siuHasNoShow = true;
+                siuFound = true;
                 break;
         }
         return siuFound;

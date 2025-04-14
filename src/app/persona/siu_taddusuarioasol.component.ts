@@ -198,11 +198,42 @@ export class PersonaSIUuTADDUSUARIOASOLComponent extends AbstractServiceIU imple
         this.ptupuCodigo.value = datosPersona.basicData.id;
         this.executeDependecyRulesptupucodigo('SetValue', true);
        
-        // PTE
-        this.ptupuRechazadoAfiliacion.value = '';
+        // Rechazado Afiliacion
+        this.ptupuRechazadoAfiliacion.value = datosPersona?.rechazadoAfiliacion;
 
-        // PTE
-        // this.ptuTieneEPSSanitas = new FieldDefinedSelection(this.langMng);
+        // Tiene EPS Sanitas
+        this.gestionCache.getCodigoLegalTipoIdentificacion(this.ptupuagrTipoIdentificacion.getSelectedInstances()[0].jsonOID).then ((codLegal: string) => {
+            this.notifyCallToTheBackEnd();
+            this.bhServicesUtil.tieneEPSSanitas(codLegal, this.ptupuatrNumIdentificacion.value, numSol).then ( (tieneEPS: boolean) => {
+                this.ptupuTieneEPSSanitas.setValue(tieneEPS);
+                this.changeDetectorRef.markForCheck();
+                this.notifyAnswerFromToTheBackEnd();
+            }).catch( (err: Error) => {
+                this.notifyAnswerFromToTheBackEnd();
+                this.changeDetectorRef.markForCheck();
+                this.util.addErrorMessage(err);
+            });
+    
+        }).catch( (err: Error) => {
+            this.util.addErrorMessage(err);
+        });
+
+        // Tiene EPS Sanitas
+        this.gestionCache.getCodigoLegalTipoIdentificacion(this.ptupuagrTipoIdentificacion.getSelectedInstances()[0].jsonOID).then ((codLegal: string) => {
+            this.notifyCallToTheBackEnd();
+            this.bhServicesUtil.tieneEPSSanitas(codLegal, this.ptupuatrNumIdentificacion.value, numSol).then ( (tieneEPS: boolean) => {
+                this.ptupuTieneEPSSanitas.setValue(tieneEPS);
+                this.changeDetectorRef.markForCheck();
+                this.notifyAnswerFromToTheBackEnd();
+            }).catch( (err: Error) => {
+                this.notifyAnswerFromToTheBackEnd();
+                this.changeDetectorRef.markForCheck();
+                this.util.addErrorMessage(err);
+            });
+    
+        }).catch( (err: Error) => {
+            this.util.addErrorMessage(err);
+        });
 
         // Nombre
         this.ptupuatrPrimerNombre.value = datosPersona?.basicData?.name?.name?.firstName;
@@ -212,8 +243,11 @@ export class PersonaSIUuTADDUSUARIOASOLComponent extends AbstractServiceIU imple
         this.ptupuatrFechaNacimiento.value = this.util.getDate(datosPersona?.basicData?.birthDate);
         this.ptupuatrGenero.value = datosPersona?.basicData?.gender;
 
-        // PTE 
-        this.ptupuatrIndicadorExtranjero.value = false;
+        if (datosPersona?.basicData?.foreign) {
+            this.ptupuatrIndicadorExtranjero.value = true;
+        } else {
+            this.ptupuatrIndicadorExtranjero.value = false;
+        }
 
         this.ptupuatrTelefonoFijo.value = BHServicesUtil.getValorElementoPor2Claves(datosPersona?.contact?.telecom, 
                 'system', 'TELEFONO_CONTACTO_PRINCIPAL', 

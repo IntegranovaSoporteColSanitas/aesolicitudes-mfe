@@ -37,7 +37,7 @@ export class GrupoAsociadoSIUumodificarComponent extends AbstractServiceIU imple
         this.idXML = 'Clas_1431875354624341Ser_10UIServ_1';
         this.className = ModelConstants.Grupoasociado.name;
         this.iuName = ModelConstants.Grupoasociado.siuumodificar;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
         this.serviceName = 'modificar';
         this.title = this.langMng.translateText('cls_GrupoAsociado_svc_modificar',
             'Modificar grupo asociado');

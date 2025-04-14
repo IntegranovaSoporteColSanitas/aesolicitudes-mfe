@@ -110,6 +110,8 @@ export class Configuration {
             ius: [
                 { name: ModelConstants.Productos.piuuproducto,
                     navKey: 'piu_producto' }
+                , { name: ModelConstants.Productos.piuuproductosuobs,
+                    navKey: 'piu_productos_obs' }
             ]
         }
         , {
@@ -118,6 +120,8 @@ export class Configuration {
             ius: [
                 { name: ModelConstants.Planes.piuuplan,
                     navKey: 'piu_plan' }
+                , { name: ModelConstants.Planes.piuuplanesuobs,
+                    navKey: 'piu_planes_obs' }
             ]
         }
         , {
@@ -190,7 +194,11 @@ export class Configuration {
             className: ModelConstants.Grupoasociado.name,
             navKey: 'grupoasociado',
             ius: [
-                { name: ModelConstants.Grupoasociado.siuumodificar,
+                { name: ModelConstants.Grupoasociado.siuucrear,
+                    navKey: 'siu_crear' }
+                , { name: ModelConstants.Grupoasociado.siuueliminar,
+                    navKey: '_GENERICSIU' }
+                , { name: ModelConstants.Grupoasociado.siuumodificar,
                     navKey: 'siu_modificar' }
                 , { name: ModelConstants.Grupoasociado.piuugrupoasociado,
                     navKey: 'piu_grupoasociado' }

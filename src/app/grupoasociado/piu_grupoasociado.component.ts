@@ -49,7 +49,8 @@ export class GrupoAsociadoPIUuGrupoAsociadoComponent extends AbstractPIU impleme
         this.idXML = 'Clas_1431875354624341UIPobCl_1';
         this.className = ModelConstants.Grupoasociado.name;
         this.iuName = ModelConstants.Grupoasociado.piuugrupoasociado;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'Asesor']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
+            'Afiliaciones', 'Gestor', 'MesaDeApoyo']));
         this.title = this.langMng.translateText('cls_GrupoAsociado_piu_PIU_GrupoAsociado',
             'Grupos Asociados');
         this.f0 = new GrupoAsociadoFilterFuGrupoAsociadoVarios(this.appGlobalInfo,
@@ -82,7 +83,8 @@ export class GrupoAsociadoPIUuGrupoAsociadoComponent extends AbstractPIU impleme
         dsItem.alias = this.langMng.translateText(
             'cls_GrupoAsociado_ds_DS_GrupoAsociado_PIU_item_Clas_1431875354624341CjtoVis_2ICtjoVis_1',
             this.dsproductotddescripcion);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -94,7 +96,8 @@ export class GrupoAsociadoPIUuGrupoAsociadoComponent extends AbstractPIU impleme
         dsItem.alias = this.langMng.translateText(
             'cls_GrupoAsociado_ds_DS_GrupoAsociado_PIU_item_Clas_1431875354624341CjtoVis_2ICtjoVis_2',
             this.dsplantdnombre);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -106,7 +109,8 @@ export class GrupoAsociadoPIUuGrupoAsociadoComponent extends AbstractPIU impleme
         dsItem.alias = this.langMng.translateText(
             'cls_GrupoAsociado_ds_DS_GrupoAsociado_PIU_item_Clas_1431875354624341CjtoVis_2ICtjoVis_4',
             this.dscodigolegal);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -118,7 +122,8 @@ export class GrupoAsociadoPIUuGrupoAsociadoComponent extends AbstractPIU impleme
         dsItem.alias = this.langMng.translateText(
             'cls_GrupoAsociado_ds_DS_GrupoAsociado_PIU_item_Clas_1431875354624341CjtoVis_2ICtjoVis_5',
             this.dsdescripcion);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -130,7 +135,8 @@ export class GrupoAsociadoPIUuGrupoAsociadoComponent extends AbstractPIU impleme
         dsItem.alias = this.langMng.translateText(
             'cls_GrupoAsociado_ds_DS_GrupoAsociado_PIU_item_Clas_1431875354624341CjtoVis_2ICtjoVis_10',
             this.dscodtarifacore);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -141,7 +147,8 @@ export class GrupoAsociadoPIUuGrupoAsociadoComponent extends AbstractPIU impleme
         dsItem.alias = this.langMng.translateText(
             'cls_GrupoAsociado_ds_DS_GrupoAsociado_PIU_item_Clas_1431875354624341CjtoVis_2ICtjoVis_6',
             this.dsfinivigencia);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -152,7 +159,8 @@ export class GrupoAsociadoPIUuGrupoAsociadoComponent extends AbstractPIU impleme
         dsItem.alias = this.langMng.translateText(
             'cls_GrupoAsociado_ds_DS_GrupoAsociado_PIU_item_Clas_1431875354624341CjtoVis_2ICtjoVis_7',
             this.dsffinvigencia);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -163,7 +171,8 @@ export class GrupoAsociadoPIUuGrupoAsociadoComponent extends AbstractPIU impleme
         dsItem.alias = this.langMng.translateText(
             'cls_GrupoAsociado_ds_DS_GrupoAsociado_PIU_item_Clas_1431875354624341CjtoVis_2ICtjoVis_8',
             this.dsestado);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -174,7 +183,8 @@ export class GrupoAsociadoPIUuGrupoAsociadoComponent extends AbstractPIU impleme
         dsItem.alias = this.langMng.translateText(
             'cls_GrupoAsociado_ds_DS_GrupoAsociado_PIU_item_Clas_1431875354624341CjtoVis_2ICtjoVis_9',
             this.dsdisminucioncarencia);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
     }
 
@@ -185,20 +195,34 @@ export class GrupoAsociadoPIUuGrupoAsociadoComponent extends AbstractPIU impleme
         let accItem: AccNavItem;
         accItem = new AccNavItem();
         accItem.id = 0;
+        accItem.idXML = 'Clas_1431875354624341AccOfer_1ElemAcc_1';
+        accItem.alias = this.langMng.translateText(
+            'cls_GrupoAsociado_act_A_GrupoAsociado_PIU_item_Clas_1431875354624341AccOfer_1ElemAcc_1',
+            'Crear');
+        accItem.nounVerb = false;
+        accItem.multiSelection = true;
+        accItem.agents = [ModelConstants.Superadmin.name];
+        accItem.targetClass = ModelConstants.Grupoasociado.name;
+        accItem.targetUI = ModelConstants.Grupoasociado.siuucrear;
+
+        this.actions.push(accItem);
+
+        accItem = new AccNavItem();
+        accItem.id = 1;
         accItem.idXML = 'Clas_1431875354624341AccOfer_1ElemAcc_4';
         accItem.alias = this.langMng.translateText(
             'cls_GrupoAsociado_act_A_GrupoAsociado_PIU_item_Clas_1431875354624341AccOfer_1ElemAcc_4',
             'Modificar');
         accItem.nounVerb = true;
         accItem.multiSelection = false;
-        accItem.agents = [ModelConstants.Admin.name];
+        accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Grupoasociado.name;
         accItem.targetUI = ModelConstants.Grupoasociado.siuumodificar;
 
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
-        accItem.id = 1;
+        accItem.id = 2;
         accItem.idXML = 'Clas_1431875354624341AccOfer_1ElemAcc_2';
         accItem.alias = this.langMng.translateText(
             'cls_GrupoAsociado_act_A_GrupoAsociado_PIU_item_Clas_1431875354624341AccOfer_1ElemAcc_2',
@@ -209,6 +233,21 @@ export class GrupoAsociadoPIUuGrupoAsociadoComponent extends AbstractPIU impleme
         accItem.targetClass = ModelConstants.Globalservices.name;
         accItem.targetUI = ModelConstants.Globalservices.siuuogsincgruposasociados;
         accItem.setNoShowProperties('OGSINCGRUPOSASOCIADOS', '', '', false);
+
+        this.actions.push(accItem);
+
+        accItem = new AccNavItem();
+        accItem.id = 3;
+        accItem.idXML = 'Clas_1431875354624341AccOfer_1ElemAcc_3';
+        accItem.alias = this.langMng.translateText(
+            'cls_GrupoAsociado_act_A_GrupoAsociado_PIU_item_Clas_1431875354624341AccOfer_1ElemAcc_3',
+            'Eliminar');
+        accItem.nounVerb = true;
+        accItem.multiSelection = true;
+        accItem.agents = [ModelConstants.Superadmin.name];
+        accItem.targetClass = ModelConstants.Grupoasociado.name;
+        accItem.targetUI = ModelConstants.Grupoasociado.siuueliminar;
+        accItem.setNoShowProperties('eliminar', 'p_thisgrupoasociado_oid', '', false);
 
         this.actions.push(accItem);
 

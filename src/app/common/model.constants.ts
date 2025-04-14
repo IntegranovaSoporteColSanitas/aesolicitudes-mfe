@@ -18,8 +18,8 @@ export class ModelConstants {
     public static readonly Seccion = {name : 'Seccion'};
     public static readonly Pregunta = {name : 'Pregunta', piuupregunta: 'piu_pregunta'};
     public static readonly Valor = {name : 'Valor'};
-    public static readonly Productos = {name : 'Productos', piuuproducto: 'piu_producto'};
-    public static readonly Planes = {name : 'Planes', piuuplan: 'piu_plan'};
+    public static readonly Productos = {name : 'Productos', piuuproducto: 'piu_producto', piuuproductosuobs: 'piu_productos_obs'};
+    public static readonly Planes = {name : 'Planes', piuuplan: 'piu_plan', piuuplanesuobs: 'piu_planes_obs'};
     public static readonly Parentesco = {name : 'Parentesco'};
     public static readonly Periodicidad = {name : 'Periodicidad'};
     public static readonly Rol = {name : 'Rol'};
@@ -31,8 +31,9 @@ export class ModelConstants {
     public static readonly Tarifa = {name : 'Tarifa'};
     public static readonly Regional = {name : 'Regional'};
     public static readonly Sucursal = {name : 'Sucursal'};
-    public static readonly Grupoasociado = {name : 'GrupoAsociado', siuumodificar: 'siu_modificar',
-        piuugrupoasociado: 'piu_grupoasociado', piuugrupoasociadobusqueda: 'piu_grupoasociadobusqueda'};
+    public static readonly Grupoasociado = {name : 'GrupoAsociado', siuucrear: 'siu_crear', siuueliminar: 'siu_eliminar',
+        siuumodificar: 'siu_modificar', piuugrupoasociado: 'piu_grupoasociado',
+        piuugrupoasociadobusqueda: 'piu_grupoasociadobusqueda'};
     public static readonly Estadocivil = {name : 'EstadoCivil'};
     public static readonly Departamento = {name : 'Departamento'};
     public static readonly Tipoiva = {name : 'TipoIVA'};

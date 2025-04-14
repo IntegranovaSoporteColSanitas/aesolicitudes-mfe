@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CommonComponentsModule } from '../commoncomponents.module';
 import { ProductosRoutingModule } from './productos-routing.module';
 import { ProductosPIUuProductoComponent } from './piu_producto.component';
+import { ProductosPIUuProductosuObsComponent } from './piu_productos_obs.component';
 
 @NgModule({
   imports: [
@@ -11,10 +12,12 @@ import { ProductosPIUuProductoComponent } from './piu_producto.component';
     ProductosRoutingModule
   ],
   declarations: [
-    ProductosPIUuProductoComponent
+    ProductosPIUuProductoComponent,
+    ProductosPIUuProductosuObsComponent
   ],
   exports: [
-    ProductosPIUuProductoComponent
+    ProductosPIUuProductoComponent,
+    ProductosPIUuProductosuObsComponent
   ]
 })
 export class ProductosModule { }

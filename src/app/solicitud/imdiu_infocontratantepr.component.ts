@@ -85,7 +85,7 @@ export class SolicitudIMDIUuInfoContratantePRComponent extends AbstractMDIU impl
             this.d0.title = this.langMng.translateText(
                 'cls_Solicitud_mdiu_iMDIU_InfoContratantePR_detail_Clas_1431957012480960UIMaDet_3Det_3',
                 'Persona jurídica');
-            this.d0.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Solicitud',
+            this.d0.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Solicitud',
                 this.master.getContext(), null, '', null, 'Solicitud', ''));
         }
         super.initializeComponents();

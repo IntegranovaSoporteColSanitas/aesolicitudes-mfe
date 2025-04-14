@@ -123,7 +123,7 @@ export class SolicitudMDIUuInclusionFamiliarComponent extends AbstractMDIU imple
             this.d0.title = this.langMng.translateText(
                 'cls_Solicitud_mdiu_MDIU_InclusionFamiliar_detail_Clas_1431957012480960UIMaDet_8Det_1',
                 'Información de Contratante');
-            this.d0.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Solicitud',
+            this.d0.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Solicitud',
                 this.master.getContext(), null, '', null, 'Solicitud', ''));
         }
         if (this.d1Visible && this.d1 != null) {
@@ -133,7 +133,7 @@ export class SolicitudMDIUuInclusionFamiliarComponent extends AbstractMDIU imple
             this.d1.title = this.langMng.translateText(
                 'cls_Solicitud_mdiu_MDIU_InclusionFamiliar_detail_Clas_1431957012480960UIMaDet_8Det_3',
                 'Información personas a Afiliar');
-            this.d1.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Solicitud',
+            this.d1.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Solicitud',
                 this.master.getContext(), null, '', null, 'Solicitud', ''));
         }
         if (this.d2Visible && this.d2 != null) {
@@ -143,7 +143,7 @@ export class SolicitudMDIUuInclusionFamiliarComponent extends AbstractMDIU imple
             this.d2.title = this.langMng.translateText(
                 'cls_Solicitud_mdiu_MDIU_InclusionFamiliar_detail_Clas_1431957012480960UIMaDet_8Det_4',
                 'Observaciones');
-            this.d2.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Solicitud',
+            this.d2.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Solicitud',
                 this.master.getContext(), null, '', null, 'Solicitud', ''));
         }
         if (this.d3Visible && this.d3 != null) {
@@ -153,7 +153,7 @@ export class SolicitudMDIUuInclusionFamiliarComponent extends AbstractMDIU imple
             this.d3.title = this.langMng.translateText(
                 'cls_Solicitud_mdiu_MDIU_InclusionFamiliar_detail_Clas_1431957012480960UIMaDet_8Det_5',
                 'Información del pago');
-            this.d3.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Solicitud',
+            this.d3.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Solicitud',
                 this.master.getContext(), null, '', null, 'Solicitud', ''));
         }
         super.initializeComponents();

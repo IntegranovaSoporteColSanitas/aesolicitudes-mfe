@@ -98,7 +98,7 @@ export class SolicitudIMDIUuInfoContratanteINCLComponent extends AbstractMDIU im
             this.d0.title = this.langMng.translateText(
                 'cls_Solicitud_mdiu_iMDIU_InfoContratanteINCL_detail_Clas_1431957012480960UIMaDet_5Det_6',
                 'Información de Contratante');
-            this.d0.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Solicitud',
+            this.d0.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Solicitud',
                 this.master.getContext(), null, '', null, 'Solicitud', ''));
         }
         if (this.d1Visible && this.d1 != null) {
@@ -108,7 +108,7 @@ export class SolicitudIMDIUuInfoContratanteINCLComponent extends AbstractMDIU im
             this.d1.title = this.langMng.translateText(
                 'cls_Solicitud_mdiu_iMDIU_InfoContratanteINCL_detail_Clas_1431957012480960UIMaDet_5Det_3',
                 'Datos de contacto');
-            this.d1.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Solicitud',
+            this.d1.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Solicitud',
                 this.master.getContext(), null, '', null, 'Solicitud', ''));
         }
         super.initializeComponents();

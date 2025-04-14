@@ -268,11 +268,42 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
         this.ptupuCodigoCORE.value = datosPersona.basicData.id;
         this.executeDependecyRulesptupucodigocore('SetValue', true);
 
-        // PTE
-        this.ptuRechazadoAfiliacion.value = '';
+        // Rechazado Afiliacion
+        this.ptuRechazadoAfiliacion.value = datosPersona?.rechazadoAfiliacion;
 
-        // PTE
-        // this.ptuTieneEPSSanitas = new FieldDefinedSelection(this.langMng);
+        // Tiene EPS Sanitas
+        this.gestionCache.getCodigoLegalTipoIdentificacion(this.ptupuevcTipoIdentificacion.getSelectedInstances()[0].jsonOID).then ((codLegal: string) => {
+            this.notifyCallToTheBackEnd();
+            this.bhServicesUtil.tieneEPSSanitas(codLegal, this.ptupuNumIdentificacion.value, numSol).then ( (tieneEPS: boolean) => {
+                this.ptuTieneEPSSanitas.setValue(tieneEPS);
+                this.notifyAnswerFromToTheBackEnd();
+                this.changeDetectorRef.markForCheck();
+            }).catch( (err: Error) => {
+                this.notifyAnswerFromToTheBackEnd();
+                this.util.addErrorMessage(err);
+                this.changeDetectorRef.markForCheck();
+            });
+    
+        }).catch( (err: Error) => {
+            this.util.addErrorMessage(err);
+        });
+
+        // Tiene EPS Sanitas
+        this.gestionCache.getCodigoLegalTipoIdentificacion(this.ptupuevcTipoIdentificacion.getSelectedInstances()[0].jsonOID).then ((codLegal: string) => {
+            this.notifyCallToTheBackEnd();
+            this.bhServicesUtil.tieneEPSSanitas(codLegal, this.ptupuNumIdentificacion.value, numSol).then ( (tieneEPS: boolean) => {
+                this.ptuTieneEPSSanitas.setValue(tieneEPS);
+                this.notifyAnswerFromToTheBackEnd();
+                this.changeDetectorRef.markForCheck();
+            }).catch( (err: Error) => {
+                this.notifyAnswerFromToTheBackEnd();
+                this.util.addErrorMessage(err);
+                this.changeDetectorRef.markForCheck();
+            });
+    
+        }).catch( (err: Error) => {
+            this.util.addErrorMessage(err);
+        });
 
         // Nombre
         this.ptupuPrimerNombre.value = datosPersona?.basicData?.name?.name?.firstName;
@@ -282,8 +313,11 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
         this.ptupuFechaNacimiento.value = this.util.getDate(datosPersona?.basicData?.birthDate);
         this.ptupuGenero.value = datosPersona?.basicData?.gender;
 
-        // PTE 
-        this.ptupuIndicadorExtranjero.value = false;
+        if (datosPersona?.basicData?.foreign) {
+            this.ptupuIndicadorExtranjero.value = true;
+        } else {
+            this.ptupuIndicadorExtranjero.value = false;
+        }
 
         this.ptupuTelefonoFijo.value = BHServicesUtil.getValorElementoPor2Claves(datosPersona?.contact?.telecom,
             'system', 'TELEFONO_CONTACTO_PRINCIPAL',
@@ -311,6 +345,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
                         this.loadPreloadptupuevcmunicipionac();
                         if (codLegalMun) {
                             // Buscamos el municipio por codigo legal
+                            this.notifyCallToTheBackEnd();
                             this.gestionCache.getOidMunicipioPorCodigoLegal(codLegalMun).then((oidMun: string) => {
                                 this.notifyAnswerFromToTheBackEnd();
                                 this.ptupuevcMunicipioNac.setValue(JSON.parse(oidMun));
@@ -319,6 +354,8 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
                                 this.util.addErrorMessage(err);
                             });
                         }
+                    }).catch( (err: Error) => {
+                        this.notifyAnswerFromToTheBackEnd();
                     });
                 }
             }
@@ -343,6 +380,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
                     this.loadPreloadptupuevcmunicipio();
                     if (codLegalMun) {
                         // Buscamos el municipio por codigo legal
+                        this.notifyCallToTheBackEnd();
                         this.gestionCache.getOidMunicipioPorCodigoLegal(codLegalMun).then((oidMun: string) => {
                             this.notifyAnswerFromToTheBackEnd();
                             this.ptupuevcMunicipio.setValue(JSON.parse(oidMun));
@@ -351,6 +389,8 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
                             this.util.addErrorMessage(err);
                         });
                     }
+                }).catch( (err: Error) => {
+                    this.notifyAnswerFromToTheBackEnd();
                 });
             }
             // Pais
@@ -388,6 +428,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
                     this.loadPreloadptupdcmunicipio();
                     if (codLegalMun) {
                         // Buscamos el municipio por codigo legal
+                        this.notifyCallToTheBackEnd();
                         this.gestionCache.getOidMunicipioPorCodigoLegal(codLegalMun).then((oidMun: string) => {
                             this.notifyAnswerFromToTheBackEnd();
                             this.ptupDCMunicipio.setValue(JSON.parse(oidMun));

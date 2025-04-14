@@ -215,11 +215,42 @@ export class SolicitudSIUuTINDICARTITULAR2Component extends AbstractServiceIU im
         // Codigo del CORE
         this.ptupuCodigo.value = datosPersona.basicData.id;
        
-        // PTE
-        this.ptupuRechazadoAfiliacion.value = '';
+        // Rechazado Afiliacion
+        this.ptupuRechazadoAfiliacion.value = datosPersona?.rechazadoAfiliacion;
 
-        // PTE
-        // this.ptuTieneEPSSanitas = new FieldDefinedSelection(this.langMng);
+        // Tiene EPS Sanitas
+        this.gestionCache.getCodigoLegalTipoIdentificacion(this.ptupuagrTipoIdentificacion.getSelectedInstances()[0].jsonOID).then ((codLegal: string) => {
+            this.notifyCallToTheBackEnd();
+            this.bhServicesUtil.tieneEPSSanitas(codLegal, this.ptupuatrNumIdentificacion.value, numSol).then ( (tieneEPS: boolean) => {
+                this.ptupuTieneEPSSanitas.setValue(tieneEPS);
+                this.notifyAnswerFromToTheBackEnd();
+                this.changeDetectorRef.markForCheck();
+            }).catch( (err: Error) => {
+                this.notifyAnswerFromToTheBackEnd();
+                this.util.addErrorMessage(err);
+                this.changeDetectorRef.markForCheck();
+            });
+    
+        }).catch( (err: Error) => {
+            this.util.addErrorMessage(err);
+        });
+
+        // Tiene EPS Sanitas
+        this.gestionCache.getCodigoLegalTipoIdentificacion(this.ptupuagrTipoIdentificacion.getSelectedInstances()[0].jsonOID).then ((codLegal: string) => {
+            this.notifyCallToTheBackEnd();
+            this.bhServicesUtil.tieneEPSSanitas(codLegal, this.ptupuatrNumIdentificacion.value, numSol).then ( (tieneEPS: boolean) => {
+                this.ptupuTieneEPSSanitas.setValue(tieneEPS);
+                this.notifyAnswerFromToTheBackEnd();
+                this.changeDetectorRef.markForCheck();
+            }).catch( (err: Error) => {
+                this.notifyAnswerFromToTheBackEnd();
+                this.util.addErrorMessage(err);
+                this.changeDetectorRef.markForCheck();
+            });
+    
+        }).catch( (err: Error) => {
+            this.util.addErrorMessage(err);
+        });
 
         // Nombre
         this.ptupuatrPrimerNombre.value = datosPersona?.basicData?.name?.name?.firstName;
@@ -229,8 +260,11 @@ export class SolicitudSIUuTINDICARTITULAR2Component extends AbstractServiceIU im
         this.ptupuatrFechaNacimiento.value = this.util.getDate(datosPersona?.basicData?.birthDate);
         this.ptupuatrGenero.value = datosPersona?.basicData?.gender;
 
-        // PTE 
-        this.ptupuatrIndicadorExtranjero.value = false;
+        if (datosPersona?.basicData?.foreign) {
+            this.ptupuatrIndicadorExtranjero.value = true;
+        } else {
+            this.ptupuatrIndicadorExtranjero.value = false;
+        }
 
         this.ptupuatrTelefonoFijo.value = BHServicesUtil.getValorElementoPor2Claves(datosPersona?.contact?.telecom, 
                 'system', 'TELEFONO_CONTACTO_PRINCIPAL', 
@@ -266,6 +300,8 @@ export class SolicitudSIUuTINDICARTITULAR2Component extends AbstractServiceIU im
                                 this.util.addErrorMessage(err);
                             });
                         }
+                    }).catch( (err: Error) => {
+                        this.notifyAnswerFromToTheBackEnd();
                     });
                 }
             }
@@ -298,6 +334,8 @@ export class SolicitudSIUuTINDICARTITULAR2Component extends AbstractServiceIU im
                             this.util.addErrorMessage(err);
                         });
                     }
+                }).catch((err: Error) => {
+                    this.notifyAnswerFromToTheBackEnd();
                 });
             }
             // Pais

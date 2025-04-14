@@ -84,7 +84,7 @@ export class DocumentoGMDIUuDocumentoGComponent extends AbstractMDIU implements 
             this.d0.title = this.langMng.translateText(
                 'cls_DocumentoG_mdiu_MDIU_DocumentoG_detail_Clas_1434446200832109UIMaDet_1Det_1',
                 'Observaciones');
-            this.d0.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('ObsEstado',
+            this.d0.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('ObsEstado',
                 this.master.getContext(), null, 'DocumentoG', null, 'DocumentoG', ''));
         }
         super.initializeComponents();

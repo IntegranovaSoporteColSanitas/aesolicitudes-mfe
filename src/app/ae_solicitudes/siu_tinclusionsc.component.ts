@@ -965,7 +965,7 @@ export class AeusolicitudesSIUuTINCLUSIONSCComponent extends AbstractServiceIU i
                             this.ptupuatrNumFamilia.value = '1';
                             this.ptupuatrNumFamilia.enabled = false;
                         } else {
-                            this.ptupuatrNumFamilia.value = '';
+                            this.ptupuatrNumFamilia.value = null;
                             this.ptupuatrNumFamilia.enabled = true;
                         }
                     } else {

@@ -127,7 +127,7 @@ export class SolicitudMDIUuNuevaAfiliacionComponent extends AbstractMDIU impleme
             this.d0.title = this.langMng.translateText(
                 'cls_Solicitud_mdiu_MDIU_NuevaAfiliacion_detail_Clas_1431957012480960UIMaDet_1Det_6',
                 'Información del contratante');
-            this.d0.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Solicitud',
+            this.d0.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Solicitud',
                 this.master.getContext(), null, '', null, 'Solicitud', ''));
         }
         if (this.d1Visible && this.d1 != null) {
@@ -137,7 +137,7 @@ export class SolicitudMDIUuNuevaAfiliacionComponent extends AbstractMDIU impleme
             this.d1.title = this.langMng.translateText(
                 'cls_Solicitud_mdiu_MDIU_NuevaAfiliacion_detail_Clas_1431957012480960UIMaDet_1Det_3',
                 'Información Personas a Afiliar');
-            this.d1.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Usuario',
+            this.d1.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Usuario',
                 this.master.getContext(), null, 'Solicitud', null, 'Solicitud', ''));
         }
         if (this.d2Visible && this.d2 != null) {
@@ -147,7 +147,7 @@ export class SolicitudMDIUuNuevaAfiliacionComponent extends AbstractMDIU impleme
             this.d2.title = this.langMng.translateText(
                 'cls_Solicitud_mdiu_MDIU_NuevaAfiliacion_detail_Clas_1431957012480960UIMaDet_1Det_4',
                 'Observaciones');
-            this.d2.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Solicitud',
+            this.d2.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Solicitud',
                 this.master.getContext(), null, '', null, 'Solicitud', ''));
         }
         if (this.d3Visible && this.d3 != null) {
@@ -157,7 +157,7 @@ export class SolicitudMDIUuNuevaAfiliacionComponent extends AbstractMDIU impleme
             this.d3.title = this.langMng.translateText(
                 'cls_Solicitud_mdiu_MDIU_NuevaAfiliacion_detail_Clas_1431957012480960UIMaDet_1Det_5',
                 'Información del Pago');
-            this.d3.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Solicitud',
+            this.d3.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('Solicitud',
                 this.master.getContext(), null, '', null, 'Solicitud', ''));
         }
         super.initializeComponents();

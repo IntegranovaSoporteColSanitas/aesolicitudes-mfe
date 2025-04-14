@@ -42,7 +42,8 @@ export class GrupoAsociadoPIUuGrupoAsociadoBusquedaComponent extends AbstractPIU
         this.idXML = 'Clas_1431875354624341UIPobCl_2';
         this.className = ModelConstants.Grupoasociado.name;
         this.iuName = ModelConstants.Grupoasociado.piuugrupoasociadobusqueda;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'Asesor']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
+            'Afiliaciones', 'Gestor', 'MesaDeApoyo']));
         this.title = this.langMng.translateText('cls_GrupoAsociado_piu_PIU_GrupoAsociadoBusqueda',
             'Grupos Asociados');
         this.f0 = new GrupoAsociadoFilterFuGrupoAsociadouBusqueda(this.appGlobalInfo,
@@ -75,7 +76,8 @@ export class GrupoAsociadoPIUuGrupoAsociadoBusquedaComponent extends AbstractPIU
         dsItem.alias = this.langMng.translateText(
             'cls_GrupoAsociado_ds_DS_GrupoAsociado_PIUBusqueda_item_Clas_1431875354624341CjtoVis_3ICtjoVis_1',
             this.dscodigolegal);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -87,7 +89,8 @@ export class GrupoAsociadoPIUuGrupoAsociadoBusquedaComponent extends AbstractPIU
         dsItem.alias = this.langMng.translateText(
             'cls_GrupoAsociado_ds_DS_GrupoAsociado_PIUBusqueda_item_Clas_1431875354624341CjtoVis_3ICtjoVis_2',
             this.dsdescripcion);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
     }
 
