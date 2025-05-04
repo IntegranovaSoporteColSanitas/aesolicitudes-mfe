@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Field, FieldDefinedSelection, FieldOVLenseSearch, FieldOVPreload } from '../common/baseIUElements';
 import { AbstractServiceIU } from '../common/abstractSIU';
@@ -217,23 +217,6 @@ export class SolicitudSIUuTINDICARTITULAR2Component extends AbstractServiceIU im
        
         // Rechazado Afiliacion
         this.ptupuRechazadoAfiliacion.value = datosPersona?.rechazadoAfiliacion;
-
-        // Tiene EPS Sanitas
-        this.gestionCache.getCodigoLegalTipoIdentificacion(this.ptupuagrTipoIdentificacion.getSelectedInstances()[0].jsonOID).then ((codLegal: string) => {
-            this.notifyCallToTheBackEnd();
-            this.bhServicesUtil.tieneEPSSanitas(codLegal, this.ptupuatrNumIdentificacion.value, numSol).then ( (tieneEPS: boolean) => {
-                this.ptupuTieneEPSSanitas.setValue(tieneEPS);
-                this.notifyAnswerFromToTheBackEnd();
-                this.changeDetectorRef.markForCheck();
-            }).catch( (err: Error) => {
-                this.notifyAnswerFromToTheBackEnd();
-                this.util.addErrorMessage(err);
-                this.changeDetectorRef.markForCheck();
-            });
-    
-        }).catch( (err: Error) => {
-            this.util.addErrorMessage(err);
-        });
 
         // Tiene EPS Sanitas
         this.gestionCache.getCodigoLegalTipoIdentificacion(this.ptupuagrTipoIdentificacion.getSelectedInstances()[0].jsonOID).then ((codLegal: string) => {

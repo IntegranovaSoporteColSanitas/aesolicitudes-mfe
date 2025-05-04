@@ -1,4 +1,4 @@
-ï»¿import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { AppExchangeInfo } from './common/app.exchangeinfo';
@@ -70,7 +70,7 @@ export class LoggedUserInfo {
 
     public puedeVerDatosPersona(): boolean {
         const puede = this.getValorDeCache('verDBasicosPersona');
-        // Si no existe el valor de la clave, asumimos que sÃ­ que puede
+        // Si no existe el valor de la clave, asumimos que sí que puede
         if (puede === null || puede === undefined || puede === '') {
             return true;
         }
@@ -79,7 +79,7 @@ export class LoggedUserInfo {
 
     public puedeModificarDatosPersona(): boolean {
         const puede = this.getValorDeCache('modDBasicosPersona');
-        // Si no existe el valor de la clave, asumimos que sÃ­ que puede
+        // Si no existe el valor de la clave, asumimos que sí que puede
         if (puede === null || puede === undefined || puede === '') {
             return true;
         }

@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { CacheDependencyRules, InstanceCache } from '../common/app.cachedependencyrules';
 import { Field, FieldDefinedSelection, FieldOVLenseSearch } from '../common/baseIUElements';
@@ -12,6 +12,9 @@ import { LanguageMng } from '../common/languageMng';
 import { ConditionalNavigationMng } from '../common/conditionalNavigationMng';
 import { UserFunctions } from '../common/userFunctions';
 
+/**
+ * « Implements global SIU SIU_TGSELECCONTRATOASOC »
+ */
 import { BHServicesUtil } from '../bhcallutils/bhservicesutil';
 import { GestionCache } from '../common/gestionCache';
 import { formatDate } from '@angular/common';

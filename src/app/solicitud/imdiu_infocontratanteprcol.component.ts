@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 import { AbstractMDIU } from '../common/abstractMDIU';
@@ -11,6 +11,9 @@ import { SolicitudIIUuInfoContratanteJURColComponent } from './iiu_infocontratan
 
 import { UserFunctions } from '../common/userFunctions';
 
+/**
+ * « Implements MDIU iMDIU_InfoContratantePRCOL of Solicitud »
+ */
 @Component({
     selector: 'imes-solicitud-imdiu-infocontratanteprcol',
     templateUrl: './imdiu_infocontratanteprcol.component.html',

@@ -1,4 +1,4 @@
-﻿import { ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 import { AccNavItem } from '../common/queryIUElements';
@@ -11,6 +11,9 @@ import { ConditionalNavigationMng } from '../common/conditionalNavigationMng';
 import { SolicitudSIUuTINDICARCONTRATANTE2Component } from './siu_tindicarcontratante2.component';
 import { UserFunctions } from '../common/userFunctions';
 
+/**
+ * « Implements IIU IIU_InfoContratanteEditable of Solicitud »
+ */
 import { BHServicesUtil } from '../bhcallutils/bhservicesutil';
 import { GestionCache } from '../common/gestionCache';
 

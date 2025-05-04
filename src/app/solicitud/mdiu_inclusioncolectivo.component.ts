@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 import { AbstractMDIU } from '../common/abstractMDIU';
@@ -14,6 +14,9 @@ import { SolicitudIIUuInfoObservacionesComponent } from './iiu_infoobservaciones
 
 import { UserFunctions } from '../common/userFunctions';
 
+/**
+ * « Implements MDIU MDIU_InclusionColectivo of Solicitud »
+ */
 import { GestionCache } from '../common/gestionCache';
 import { BHServicesUtil } from '../bhcallutils/bhservicesutil';
 

@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 import { AbstractMDIU } from '../common/abstractMDIU';
@@ -14,6 +14,9 @@ import { SolicitudIIUuInfoPagoComponent } from './iiu_infopago.component';
 
 import { UserFunctions } from '../common/userFunctions';
 
+/**
+ * « Implements MDIU MDIU_InclusionFamiliar of Solicitud »
+ */
 @Component({
     selector: 'imes-solicitud-mdiu-inclusionfamiliar',
     templateUrl: './mdiu_inclusionfamiliar.component.html',

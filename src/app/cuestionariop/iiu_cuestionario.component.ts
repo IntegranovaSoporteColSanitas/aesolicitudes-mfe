@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 import { AccNavItem } from '../common/queryIUElements';
@@ -10,6 +10,9 @@ import { LanguageMng } from '../common/languageMng';
 import { ConditionalNavigationMng } from '../common/conditionalNavigationMng';
 import { UserFunctions } from '../common/userFunctions';
 
+/**
+ * « Implements IIU IIU_Cuestionario of CuestionarioP »
+ */
 import { LogicError, QueryResponse, RequestError } from '../common/answerRequestInformation';
 import { CuestionarioPServices } from './cuestionariop.services';
 

@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 import { AbstractMDIU } from '../common/abstractMDIU';
@@ -12,6 +12,9 @@ import { UsuarioPIUuUsuariosDeContratoComponent } from '../usuario/piu_usuariosd
 
 import { UserFunctions } from '../common/userFunctions';
 
+/**
+ * « Implements MDIU MDIU_UsuariosINCL of Solicitud »
+ */
 @Component({
     selector: 'imes-solicitud-mdiu-usuariosincl',
     templateUrl: './mdiu_usuariosincl.component.html',
