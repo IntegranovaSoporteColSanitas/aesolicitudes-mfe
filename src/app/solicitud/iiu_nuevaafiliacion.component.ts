@@ -62,6 +62,7 @@ export class SolicitudIIUuNuevaAfiliacionComponent extends AbstractIIU {
         this.dseFirmaImagenFirma = new FieldBlob(this.langMng);
 
         this.globalServices = new GlobalServicesServices(appGlobalInfo, util);        
+        this.cssClasses += 'cssNavPrimero';
     }
 
     /**
@@ -155,7 +156,7 @@ export class SolicitudIIUuNuevaAfiliacionComponent extends AbstractIIU {
             'cls_Solicitud_ds_DS_Solicitud_IIUNuevaAfil_item_Clas_1431957012480960CjtoVis_4ICtjoVis_11',
             'Firma');
         this.dseFirmaImagenFirma.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1431957012480960CjtoVis_4ICtjoVis_11', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones']);
+            'Clas_1431957012480960CjtoVis_4ICtjoVis_11', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dseFirmaImagenFirma.enabled = false;
         this.dseFirmaImagenFirma.mandatory = false;
         this.dseFirmaImagenFirma.dataType = Field.dtBlob;
@@ -300,7 +301,7 @@ export class SolicitudIIUuNuevaAfiliacionComponent extends AbstractIIU {
         navItem.nounVerb = true;
         navItem.multiSelection = false;
         navItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         navItem.targetClass = ModelConstants.Documentog.name;
         navItem.targetUI = ModelConstants.Documentog.piuudocumentog;
         navItem.rolePath = 'Solicitud';

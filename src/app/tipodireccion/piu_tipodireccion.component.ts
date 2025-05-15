@@ -44,7 +44,8 @@ export class TipoDireccionPIUuTipoDireccionComponent extends AbstractPIU impleme
         this.idXML = 'Clas_1431940628480765UIPobCl_1';
         this.className = ModelConstants.Tipodireccion.name;
         this.iuName = ModelConstants.Tipodireccion.piuutipodireccion;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['SuperAdmin', 'Asesor']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['SuperAdmin', 'Asesor', 'Afiliaciones',
+            'Gestor', 'MesaDeApoyo']));
         this.title = this.langMng.translateText('cls_TipoDireccion_piu_PIU_TipoDireccion',
             'Tipos de dirección');
         this.queryURL = '/api/TipoDireccionApi/GetPopulationDynamic';
@@ -72,7 +73,8 @@ export class TipoDireccionPIUuTipoDireccionComponent extends AbstractPIU impleme
         dsItem.alias = this.langMng.translateText(
             'cls_TipoDireccion_ds__Auto__item_Clas_1431940628480765CjtoVis_AutoICtjoVis_1',
             this.dscodigo);
-        dsItem.agents = [ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Superadmin.name, ModelConstants.Asesor.name, ModelConstants.Afiliaciones.name,
+            ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -84,7 +86,8 @@ export class TipoDireccionPIUuTipoDireccionComponent extends AbstractPIU impleme
         dsItem.alias = this.langMng.translateText(
             'cls_TipoDireccion_ds__Auto__item_Clas_1431940628480765CjtoVis_AutoICtjoVis_2',
             this.dsdescripcion);
-        dsItem.agents = [ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Superadmin.name, ModelConstants.Asesor.name, ModelConstants.Afiliaciones.name,
+            ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -95,7 +98,8 @@ export class TipoDireccionPIUuTipoDireccionComponent extends AbstractPIU impleme
         dsItem.alias = this.langMng.translateText(
             'cls_TipoDireccion_ds__Auto__item_Clas_1431940628480765CjtoVis_AutoICtjoVis_3',
             this.dsesresidencia);
-        dsItem.agents = [ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Superadmin.name, ModelConstants.Asesor.name, ModelConstants.Afiliaciones.name,
+            ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         dsItem.options = DefinedSelections.DS_SINO;
         this.displaySet.push(dsItem);
 
@@ -107,7 +111,8 @@ export class TipoDireccionPIUuTipoDireccionComponent extends AbstractPIU impleme
         dsItem.alias = this.langMng.translateText(
             'cls_TipoDireccion_ds__Auto__item_Clas_1431940628480765CjtoVis_AutoICtjoVis_4',
             this.dsescorrespondencia);
-        dsItem.agents = [ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Superadmin.name, ModelConstants.Asesor.name, ModelConstants.Afiliaciones.name,
+            ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         dsItem.options = DefinedSelections.DS_SINO;
         this.displaySet.push(dsItem);
     }

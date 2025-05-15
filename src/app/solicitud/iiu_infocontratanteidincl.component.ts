@@ -37,7 +37,7 @@ export class SolicitudIIUuInfoContratanteIDINCLComponent extends AbstractIIU {
         this.idXML = 'Clas_1431957012480960UIInst_10';
         this.className = ModelConstants.Solicitud.name;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
-            'Afiliaciones', 'Gestor']));
+            'Afiliaciones', 'Gestor', 'MesaDeApoyo']));
         this.title = this.langMng.translateText('cls_Solicitud_iiu_IIU_InfoContratanteIDINCL',
             'Identificación');
         this.queryURL = '/api/SolicitudApi/GetPopulationDynamic';
@@ -55,7 +55,7 @@ export class SolicitudIIUuInfoContratanteIDINCLComponent extends AbstractIIU {
             'cls_Solicitud_ds_DS_SolicitudInfoContratanteID_item_Clas_1431957012480960CjtoVis_6ICtjoVis_21',
             'Tipo y Nº documento');
         this.dseContratantedrvIdentificacion.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1431957012480960CjtoVis_6ICtjoVis_21', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor']);
+            'Clas_1431957012480960CjtoVis_6ICtjoVis_21', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dseContratantedrvIdentificacion.enabled = false;
         this.dseContratantedrvIdentificacion.mandatory = false;
         this.dseContratantedrvIdentificacion.dataType = Field.dtString;
@@ -68,7 +68,7 @@ export class SolicitudIIUuInfoContratanteIDINCLComponent extends AbstractIIU {
             'cls_Solicitud_ds_DS_SolicitudInfoContratanteID_item_Clas_1431957012480960CjtoVis_6ICtjoVis_22',
             'NIT');
         this.dseContratanteTipoIdentificacionNIT.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1431957012480960CjtoVis_6ICtjoVis_22', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor']);
+            'Clas_1431957012480960CjtoVis_6ICtjoVis_22', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dseContratanteTipoIdentificacionNIT.enabled = false;
         this.dseContratanteTipoIdentificacionNIT.mandatory = false;
         this.dseContratanteTipoIdentificacionNIT.dataType = Field.dtBool;

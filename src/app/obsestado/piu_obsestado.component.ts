@@ -40,7 +40,8 @@ export class ObsEstadoPIUuObsEstadoComponent extends AbstractPIU {
         this.idXML = 'Clas_1434446856192292UIPobCl_1';
         this.className = ModelConstants.Obsestado.name;
         this.iuName = 'PIU_ObsEstado';
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
+            'Afiliaciones', 'Gestor', 'MesaDeApoyo']));
         this.title = this.langMng.translateText('cls_ObsEstado_piu_PIU_ObsEstado',
             'Observaciones');
         this.queryURL = '/api/ObsEstadoApi/GetPopulationDynamic';
@@ -61,7 +62,8 @@ export class ObsEstadoPIUuObsEstadoComponent extends AbstractPIU {
         dsItem.alias = this.langMng.translateText(
             'cls_ObsEstado_ds_DS_ObsEstado_PIU_item_Clas_1434446856192292CjtoVis_1ICtjoVis_1',
             this.dsfecha);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -72,7 +74,8 @@ export class ObsEstadoPIUuObsEstadoComponent extends AbstractPIU {
         dsItem.alias = this.langMng.translateText(
             'cls_ObsEstado_ds_DS_ObsEstado_PIU_item_Clas_1434446856192292CjtoVis_1ICtjoVis_2',
             this.dsestadoanterior);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         dsItem.options = DefinedSelections.DS_ESTADODOCUMENTOG;
         this.displaySet.push(dsItem);
 
@@ -84,7 +87,8 @@ export class ObsEstadoPIUuObsEstadoComponent extends AbstractPIU {
         dsItem.alias = this.langMng.translateText(
             'cls_ObsEstado_ds_DS_ObsEstado_PIU_item_Clas_1434446856192292CjtoVis_1ICtjoVis_3',
             this.dsestadonuevo);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         dsItem.options = DefinedSelections.DS_ESTADODOCUMENTOG;
         this.displaySet.push(dsItem);
 
@@ -97,7 +101,8 @@ export class ObsEstadoPIUuObsEstadoComponent extends AbstractPIU {
         dsItem.alias = this.langMng.translateText(
             'cls_ObsEstado_ds_DS_ObsEstado_PIU_item_Clas_1434446856192292CjtoVis_1ICtjoVis_4',
             this.dsagenteddrvnombrecompleto);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -109,7 +114,8 @@ export class ObsEstadoPIUuObsEstadoComponent extends AbstractPIU {
         dsItem.alias = this.langMng.translateText(
             'cls_ObsEstado_ds_DS_ObsEstado_PIU_item_Clas_1434446856192292CjtoVis_1ICtjoVis_5',
             this.dsobservacions);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
     }
 

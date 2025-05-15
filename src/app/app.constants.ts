@@ -920,6 +920,10 @@ export class Configuration {
             ius: [
                 { name: ModelConstants.Globalservices.siuuogsincgruposasociados,
                     navKey: '_GENERICSIU' }
+                , { name: ModelConstants.Globalservices.siuutgsincestadospersona,
+                    navKey: '_GENERICSIU' }
+                , { name: ModelConstants.Globalservices.siuutgsincpaises,
+                    navKey: '_GENERICSIU' }
                 , { name: ModelConstants.Globalservices.siuutgseleccontratoasoc,
                     navKey: 'siu_tgseleccontratoasoc' }
                 , { name: ModelConstants.Globalservices.siuutgseleccontratoasoctit,

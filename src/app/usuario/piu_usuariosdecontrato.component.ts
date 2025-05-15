@@ -42,7 +42,7 @@ export class UsuarioPIUuUsuariosDeContratoComponent extends AbstractPIU {
         this.className = ModelConstants.Usuario.name;
         this.iuName = 'PIU_UsuariosDeContrato';
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
-            'Afiliaciones']));
+            'Afiliaciones', 'Gestor', 'MesaDeApoyo']));
         this.title = this.langMng.translateText('cls_Usuario_piu_PIU_UsuariosDeContrato',
             'Información Personas a Afiliar');
         this.queryURL = '/api/UsuarioApi/GetPopulationDynamic';
@@ -64,7 +64,7 @@ export class UsuarioPIUuUsuariosDeContratoComponent extends AbstractPIU {
             'cls_Usuario_ds_DS_UsuarioPIUUsuariosCont_item_Clas_1432633737216826CjtoVis_2ICtjoVis_1',
             this.dsidentificador);
         dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -77,7 +77,7 @@ export class UsuarioPIUuUsuariosDeContratoComponent extends AbstractPIU {
             'cls_Usuario_ds_DS_UsuarioPIUUsuariosCont_item_Clas_1432633737216826CjtoVis_2ICtjoVis_2',
             this.dsdrvidentificacion);
         dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -90,7 +90,7 @@ export class UsuarioPIUuUsuariosDeContratoComponent extends AbstractPIU {
             'cls_Usuario_ds_DS_UsuarioPIUUsuariosCont_item_Clas_1432633737216826CjtoVis_2ICtjoVis_3',
             this.dsprimernombre);
         dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -103,7 +103,7 @@ export class UsuarioPIUuUsuariosDeContratoComponent extends AbstractPIU {
             'cls_Usuario_ds_DS_UsuarioPIUUsuariosCont_item_Clas_1432633737216826CjtoVis_2ICtjoVis_4',
             this.dssegundonombre);
         dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -116,7 +116,7 @@ export class UsuarioPIUuUsuariosDeContratoComponent extends AbstractPIU {
             'cls_Usuario_ds_DS_UsuarioPIUUsuariosCont_item_Clas_1432633737216826CjtoVis_2ICtjoVis_5',
             this.dsprimerapellido);
         dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -129,7 +129,7 @@ export class UsuarioPIUuUsuariosDeContratoComponent extends AbstractPIU {
             'cls_Usuario_ds_DS_UsuarioPIUUsuariosCont_item_Clas_1432633737216826CjtoVis_2ICtjoVis_6',
             this.dssegundoapellido);
         dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -142,7 +142,7 @@ export class UsuarioPIUuUsuariosDeContratoComponent extends AbstractPIU {
             'cls_Usuario_ds_DS_UsuarioPIUUsuariosCont_item_Clas_1432633737216826CjtoVis_2ICtjoVis_7',
             this.dsparentescoddescripcion);
         dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
     }
 
@@ -174,7 +174,8 @@ export class UsuarioPIUuUsuariosDeContratoComponent extends AbstractPIU {
             'Modificar Usuario');
         accItem.nounVerb = true;
         accItem.multiSelection = false;
-        accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Mesadeapoyo.name];
         accItem.targetClass = ModelConstants.Usuario.name;
         accItem.targetUI = ModelConstants.Usuario.siuutmodusuario;
 
@@ -188,7 +189,8 @@ export class UsuarioPIUuUsuariosDeContratoComponent extends AbstractPIU {
             'Atributos Usuario');
         accItem.nounVerb = true;
         accItem.multiSelection = false;
-        accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Mesadeapoyo.name];
         accItem.targetClass = ModelConstants.Usuario.name;
         accItem.targetUI = ModelConstants.Usuario.siuutmodificarattr;
         accItem.setShowInModalProperties('imes-usuario-siu-tmodificarattr',
@@ -214,6 +216,9 @@ export class UsuarioPIUuUsuariosDeContratoComponent extends AbstractPIU {
             this.langMng.translateText(
             'cls_Persona_svc_TELIMINAR',
             '¿Está seguro de que desea eliminar al usuario?'));
+        accItem.preconditionAttributes.push(
+            { agents: [],
+                attributes: ['drveseltitular', 'solicitud.drvtitularconbeneficios' ] });
 
         this.actions.push(accItem);
 
@@ -225,7 +230,8 @@ export class UsuarioPIUuUsuariosDeContratoComponent extends AbstractPIU {
             'Cuestionario médico');
         accItem.nounVerb = true;
         accItem.multiSelection = false;
-        accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Mesadeapoyo.name];
         accItem.targetClass = ModelConstants.Usuario.name;
         accItem.targetUI = ModelConstants.Usuario.siuushowcuesmedico;
         accItem.setNoShowProperties('showCuesMedico', 'p_thisusuario_oid', '', false);
@@ -243,7 +249,8 @@ export class UsuarioPIUuUsuariosDeContratoComponent extends AbstractPIU {
             'Anexo de maternidad');
         accItem.nounVerb = true;
         accItem.multiSelection = false;
-        accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Mesadeapoyo.name];
         accItem.targetClass = ModelConstants.Usuario.name;
         accItem.targetUI = ModelConstants.Usuario.siuutcrearomodanexomat;
         accItem.setShowInModalProperties('imes-usuario-siu-tcrearomodanexomat',
@@ -270,7 +277,8 @@ export class UsuarioPIUuUsuariosDeContratoComponent extends AbstractPIU {
             'Anexo neonatal');
         accItem.nounVerb = true;
         accItem.multiSelection = false;
-        accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Mesadeapoyo.name];
         accItem.targetClass = ModelConstants.Usuario.name;
         accItem.targetUI = ModelConstants.Usuario.siuutcrearomodanexoneo;
         accItem.setShowInModalProperties('imes-usuario-siu-tcrearomodanexoneo',
@@ -309,6 +317,10 @@ export class UsuarioPIUuUsuariosDeContratoComponent extends AbstractPIU {
     public override checkPreconditionInAdvanceForRows(actionId: number, rows: any[]): boolean {
         let isEnabled = true;
 
+        if (actionId === 3) {
+            isEnabled = this.checkPrecondicionInAdvanceTELIMINAR(rows);
+        }
+
         if (actionId === 4) {
             isEnabled = this.checkPrecondicionInAdvanceNum4(rows);
         }
@@ -321,6 +333,18 @@ export class UsuarioPIUuUsuariosDeContratoComponent extends AbstractPIU {
             isEnabled = this.checkPrecondicionInAdvanceNum6(rows);
         }
         return isEnabled;
+    }
+
+
+    private checkPrecondicionInAdvanceTELIMINAR(rows: any[]): boolean {
+        for (const row of rows) {
+            // Solicitud.drvTitularConBeneficios = FALSE OR drvEsElTitular = FALSE  'drveseltitular', 'solicitud.drvtitularconbeneficios' 
+            if (!(this.util.valueEquals(this.util.getBool(this.getRowData(row, 'solicitud-drvtitularconbeneficios')), false) ||
+                this.util.valueEquals(this.util.getBool(this.getRowData(row, 'drveseltitular')), false))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**

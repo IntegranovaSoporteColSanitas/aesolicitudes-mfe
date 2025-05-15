@@ -36,7 +36,8 @@ export class UsuarioSIUushowCuesMedicoComponent extends AbstractServiceIU implem
         this.idXML = 'Clas_1432633737216826Ser_21UIServ_1';
         this.className = ModelConstants.Usuario.name;
         this.iuName = ModelConstants.Usuario.siuushowcuesmedico;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
+            'MesaDeApoyo']));
         this.serviceName = 'showCuesMedico';
         this.title = this.langMng.translateText('cls_Usuario_svc_showCuesMedico',
             'Cuestionario médico');

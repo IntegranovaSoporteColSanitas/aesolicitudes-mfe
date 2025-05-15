@@ -63,7 +63,7 @@ export class SolicitudMDIUuUsuariosINCLComponent extends AbstractMDIU implements
         this.master.masterDetailContainer = this;
         this.masterAbstract = this.master;
         this.d0Visible = this.appGlobalInfo.getLoggedUserInfo().isDetailVisible(this.idXML, 'Clas_1431957012480960UIMaDet_7Det_1',
-            ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones']);
+            ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.d0 = new UsuarioRegPIUuUsuarioRegComponent(appGlobalInfo, util, changeDetectorRef, langMng, stdFun,
             condNavMng, usrFunc);
         this.d0.masterDetailContainer = this;
@@ -71,7 +71,7 @@ export class SolicitudMDIUuUsuariosINCLComponent extends AbstractMDIU implements
             this.details.push(this.d0);
         }
         this.d1Visible = this.appGlobalInfo.getLoggedUserInfo().isDetailVisible(this.idXML, 'Clas_1431957012480960UIMaDet_7Det_2',
-            ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones']);
+            ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.d1 = new UsuarioPIUuUsuariosDeContratoComponent(appGlobalInfo, util, changeDetectorRef, langMng, stdFun,
             condNavMng, usrFunc);
         this.d1.masterDetailContainer = this;

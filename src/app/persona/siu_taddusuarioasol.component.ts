@@ -714,7 +714,7 @@ export class PersonaSIUuTADDUSUARIOASOLComponent extends AbstractServiceIU imple
             'Direcciones');
         this.ptDireccionesXClass.mandatory = false;
         this.ptDireccionesXClass.dataType = Field.dtString;
-        this.ptDireccionesXClass.options = DefinedSelections.DS_GENERO;
+        this.ptDireccionesXClass.options = [];
         this.ptDireccionesXClass.maxLength = 1;
         this.ptDireccionesXClass.assignCSS();
         this.fields.push(this.ptDireccionesXClass);
@@ -1062,14 +1062,6 @@ export class PersonaSIUuTADDUSUARIOASOLComponent extends AbstractServiceIU imple
         if ('SetValue' === event && !internal) {
             this.executeDependecyRules2ptupuagrTipoIdentificacion();
         }
-        // Rule 3
-        if ('SetValue' === event) {
-            this.executeDependecyRules3ptupuagrTipoIdentificacion();
-        }
-        // Rule 4
-        if ('SetValue' === event) {
-            this.executeDependecyRules4ptupuagrTipoIdentificacion();
-        }
         this.executePendingDependencyRules();
     }
 
@@ -1150,7 +1142,7 @@ export class PersonaSIUuTADDUSUARIOASOLComponent extends AbstractServiceIU imple
             varAgentAsesor = this.cacheDependencyRules.getInstance(ModelConstants.Asesor.name,
                 this.appGlobalInfo.getLoggedUserInfo().oid);
         }
-        // v <> NULL AND v.nombrecorto <> "MS" AND (AGENT_Asesor = NULL OR agent_asesor.moddbasicospersona = true)
+        // v <> NULL AND v.nombrecorto <> "MS" AND (AGENT_Asesor = NULL OR agent_asesor.moddbasicospersona = TRUE)
         if (varptupuagrtipoidentificacion && varAgentAsesor && !this.util.isNull(varptupuagrtipoidentificacion) &&
             !this.util.valueEquals(varptupuagrtipoidentificacion.get('nombrecorto'), 'MS') && (this.util.isNull(varAgentAsesor) ||
             this.util.valueEquals(this.util.getBool(varAgentAsesor.get('moddbasicospersona')), true))) {
@@ -1158,83 +1150,6 @@ export class PersonaSIUuTADDUSUARIOASOLComponent extends AbstractServiceIU imple
             this.ptupuatrPrimerNombre.enabled = true;
             // pt_p_atrFechaNacimiento.SetActive( TRUE )
             this.ptupuatrFechaNacimiento.enabled = true;
-        }
-        this.executePendingDependencyRules();
-        this.changeDetectorRef.markForCheck();
-    }
-
-    /**
-     * Dependency rule 3 for pt_p_agrTipoIdentificacion argument
-     */
-    private executeDependecyRules3ptupuagrTipoIdentificacion(): void {
-        this.cacheDependencyRules.counter++;
-        this.addQueryInstanceFromField(this.ptupuagrTipoIdentificacion,
-                'nit');
-        this.notifyCallToTheBackEnd();
-        this.cacheDependencyRules.searchAll().then(() => {
-            this.notifyAnswerFromToTheBackEnd();
-            try {
-                this.executeDependecyRules3ptupuagrTipoIdentificacionActions();
-            } catch (e) {
-                console.log(e);
-                this.notifyAnswerFromToTheBackEnd();
-                this.executePendingDependencyRules();
-                this.changeDetectorRef.markForCheck();
-            } });
-        this.cacheDependencyRules.counter--;
-    }
-
-    /**
-     * Actions of dependency rule 3 for pt_p_agrTipoIdentificacion argument
-     */
-    private executeDependecyRules3ptupuagrTipoIdentificacionActions(): void {
-        const varptupuagrtipoidentificacion = this.getFirstInstanceFromCache(this.ptupuagrTipoIdentificacion);
-        // v <> NULL AND v.nit = true
-        if (varptupuagrtipoidentificacion && !this.util.isNull(varptupuagrtipoidentificacion) &&
-            this.util.valueEquals(this.util.getBool(varptupuagrtipoidentificacion.get('nit')), true)) {
-            // ptReplicarDireccion.SetValue( FALSE )
-            this.ptReplicarDireccion.setValue(false);
-            this.executeDependecyRulesptreplicardireccion('SetValue', true);
-            // ptReplicarDireccion.SetActive( FALSE )
-            this.ptReplicarDireccion.enabled = false;
-            this.executeDependecyRulesptreplicardireccion('SetActive', true);
-        }
-        this.executePendingDependencyRules();
-        this.changeDetectorRef.markForCheck();
-    }
-
-    /**
-     * Dependency rule 4 for pt_p_agrTipoIdentificacion argument
-     */
-    private executeDependecyRules4ptupuagrTipoIdentificacion(): void {
-        this.cacheDependencyRules.counter++;
-        this.addQueryInstanceFromField(this.ptupuagrTipoIdentificacion,
-                'nit');
-        this.notifyCallToTheBackEnd();
-        this.cacheDependencyRules.searchAll().then(() => {
-            this.notifyAnswerFromToTheBackEnd();
-            try {
-                this.executeDependecyRules4ptupuagrTipoIdentificacionActions();
-            } catch (e) {
-                console.log(e);
-                this.notifyAnswerFromToTheBackEnd();
-                this.executePendingDependencyRules();
-                this.changeDetectorRef.markForCheck();
-            } });
-        this.cacheDependencyRules.counter--;
-    }
-
-    /**
-     * Actions of dependency rule 4 for pt_p_agrTipoIdentificacion argument
-     */
-    private executeDependecyRules4ptupuagrTipoIdentificacionActions(): void {
-        const varptupuagrtipoidentificacion = this.getFirstInstanceFromCache(this.ptupuagrTipoIdentificacion);
-        // v <> NULL AND v.nit = false
-        if (varptupuagrtipoidentificacion && !this.util.isNull(varptupuagrtipoidentificacion) &&
-            this.util.valueEquals(this.util.getBool(varptupuagrtipoidentificacion.get('nit')), false)) {
-            // ptReplicarDireccion.SetActive( TRUE )
-            this.ptReplicarDireccion.enabled = true;
-            this.executeDependecyRulesptreplicardireccion('SetActive', true);
         }
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();

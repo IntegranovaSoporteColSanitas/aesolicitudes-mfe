@@ -41,7 +41,7 @@ export class UsuarioPIUuUsuariouNullComponent extends AbstractPIU implements OnI
         this.className = ModelConstants.Usuario.name;
         this.iuName = ModelConstants.Usuario.piuuusuariounull;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
-            'Afiliaciones']));
+            'Afiliaciones', 'Gestor', 'MesaDeApoyo']));
         this.title = this.langMng.translateText('cls_Usuario_piu_PIU_Usuario_Null',
             'Usuario');
         this.queryURL = '/api/UsuarioApi/GetPopulationDynamic';
@@ -70,7 +70,7 @@ export class UsuarioPIUuUsuariouNullComponent extends AbstractPIU implements OnI
             'cls_Usuario_ds_DS_Usuario_NUll_item_Clas_1432633737216826CjtoVis_5ICtjoVis_1',
             this.dsidentificador);
         dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
     }
 

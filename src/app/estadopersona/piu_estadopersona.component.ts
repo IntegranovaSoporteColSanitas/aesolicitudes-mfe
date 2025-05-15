@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { DisplaySetItem } from '../common/queryIUElements';
+import { DisplaySetItem, AccNavItem } from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractPIU } from '../common/abstractPIU';
 import { DefinedSelections } from '../common/definedSelection';
@@ -46,7 +46,7 @@ export class EstadoPersonaPIUuEstadoPersonaComponent extends AbstractPIU impleme
         this.idXML = 'Clas_1431941021696517UIPobCl_1';
         this.className = ModelConstants.Estadopersona.name;
         this.iuName = ModelConstants.Estadopersona.piuuestadopersona;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, []));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Gestor', 'MesaDeApoyo']));
         this.title = this.langMng.translateText('cls_EstadoPersona_piu_PIU_EstadoPersona',
             'Estados de persona');
         this.queryURL = '/api/EstadoPersonaApi/GetPopulationDynamic';
@@ -74,7 +74,7 @@ export class EstadoPersonaPIUuEstadoPersonaComponent extends AbstractPIU impleme
         dsItem.alias = this.langMng.translateText(
             'cls_EstadoPersona_ds__Auto__item_Clas_1431941021696517CjtoVis_AutoICtjoVis_1',
             this.dscodigo);
-        dsItem.agents = [];
+        dsItem.agents = [ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -86,7 +86,7 @@ export class EstadoPersonaPIUuEstadoPersonaComponent extends AbstractPIU impleme
         dsItem.alias = this.langMng.translateText(
             'cls_EstadoPersona_ds__Auto__item_Clas_1431941021696517CjtoVis_AutoICtjoVis_2',
             this.dsdescripcion);
-        dsItem.agents = [];
+        dsItem.agents = [ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -97,7 +97,7 @@ export class EstadoPersonaPIUuEstadoPersonaComponent extends AbstractPIU impleme
         dsItem.alias = this.langMng.translateText(
             'cls_EstadoPersona_ds__Auto__item_Clas_1431941021696517CjtoVis_AutoICtjoVis_3',
             this.dsunbeneficiariodistino);
-        dsItem.agents = [];
+        dsItem.agents = [ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         dsItem.options = DefinedSelections.DS_SINO;
         this.displaySet.push(dsItem);
 
@@ -109,7 +109,7 @@ export class EstadoPersonaPIUuEstadoPersonaComponent extends AbstractPIU impleme
         dsItem.alias = this.langMng.translateText(
             'cls_EstadoPersona_ds__Auto__item_Clas_1431941021696517CjtoVis_AutoICtjoVis_4',
             this.dsprohibidobeneficiarios);
-        dsItem.agents = [];
+        dsItem.agents = [ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         dsItem.options = DefinedSelections.DS_SINO;
         this.displaySet.push(dsItem);
 
@@ -121,7 +121,7 @@ export class EstadoPersonaPIUuEstadoPersonaComponent extends AbstractPIU impleme
         dsItem.alias = this.langMng.translateText(
             'cls_EstadoPersona_ds__Auto__item_Clas_1431941021696517CjtoVis_AutoICtjoVis_5',
             this.dsprohibidocontratante);
-        dsItem.agents = [];
+        dsItem.agents = [ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         dsItem.options = DefinedSelections.DS_SINO;
         this.displaySet.push(dsItem);
 
@@ -133,9 +133,31 @@ export class EstadoPersonaPIUuEstadoPersonaComponent extends AbstractPIU impleme
         dsItem.alias = this.langMng.translateText(
             'cls_EstadoPersona_ds__Auto__item_Clas_1431941021696517CjtoVis_AutoICtjoVis_6',
             this.dsprohibidotitular);
-        dsItem.agents = [];
+        dsItem.agents = [ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         dsItem.options = DefinedSelections.DS_SINO;
         this.displaySet.push(dsItem);
+    }
+
+    /**
+     * Initialize the action items
+     */
+    public override initializeActions(): void {
+        let accItem: AccNavItem;
+        accItem = new AccNavItem();
+        accItem.id = 0;
+        accItem.idXML = 'Clas_1431941021696517AccOfer_1ElemAcc_3';
+        accItem.alias = this.langMng.translateText(
+            'cls_EstadoPersona_act_A_EstadoPersona_PIU_item_Clas_1431941021696517AccOfer_1ElemAcc_3',
+            'Sincronizar');
+        accItem.nounVerb = false;
+        accItem.multiSelection = true;
+        accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
+        accItem.targetClass = ModelConstants.Globalservices.name;
+        accItem.targetUI = ModelConstants.Globalservices.siuutgsincestadospersona;
+        accItem.setNoShowProperties('TGSINCESTADOSPERSONA', '', '', false);
+
+        this.actions.push(accItem);
+
     }
 
     /**

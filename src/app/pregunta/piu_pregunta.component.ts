@@ -55,7 +55,8 @@ export class PreguntaPIUuPreguntaComponent extends AbstractPIU implements OnInit
         this.idXML = 'Clas_1431633788928040UIPobCl_1';
         this.className = ModelConstants.Pregunta.name;
         this.iuName = ModelConstants.Pregunta.piuupregunta;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
+            'Afiliaciones', 'MesaDeApoyo']));
         this.title = this.langMng.translateText('cls_Pregunta_piu_PIU_Pregunta',
             'Preguntas');
         this.queryURL = '/api/PreguntaApi/GetPopulationDynamic';
@@ -83,7 +84,8 @@ export class PreguntaPIUuPreguntaComponent extends AbstractPIU implements OnInit
         dsItem.alias = this.langMng.translateText(
             'cls_Pregunta_ds__Auto__item_Clas_1431633788928040CjtoVis_AutoICtjoVis_1',
             this.dsnumero);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -94,7 +96,8 @@ export class PreguntaPIUuPreguntaComponent extends AbstractPIU implements OnInit
         dsItem.alias = this.langMng.translateText(
             'cls_Pregunta_ds__Auto__item_Clas_1431633788928040CjtoVis_AutoICtjoVis_2',
             this.dsnumorden);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -106,7 +109,8 @@ export class PreguntaPIUuPreguntaComponent extends AbstractPIU implements OnInit
         dsItem.alias = this.langMng.translateText(
             'cls_Pregunta_ds__Auto__item_Clas_1431633788928040CjtoVis_AutoICtjoVis_3',
             this.dsdescripcion);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -117,7 +121,8 @@ export class PreguntaPIUuPreguntaComponent extends AbstractPIU implements OnInit
         dsItem.alias = this.langMng.translateText(
             'cls_Pregunta_ds__Auto__item_Clas_1431633788928040CjtoVis_AutoICtjoVis_4',
             this.dsvalorsnobliga);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Mesadeapoyo.name];
         dsItem.options = DefinedSelections.DS_SINO;
         this.displaySet.push(dsItem);
 
@@ -129,7 +134,8 @@ export class PreguntaPIUuPreguntaComponent extends AbstractPIU implements OnInit
         dsItem.alias = this.langMng.translateText(
             'cls_Pregunta_ds__Auto__item_Clas_1431633788928040CjtoVis_AutoICtjoVis_5',
             this.dsobsoblig);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Mesadeapoyo.name];
         dsItem.options = DefinedSelections.DS_SINO;
         this.displaySet.push(dsItem);
 
@@ -141,7 +147,8 @@ export class PreguntaPIUuPreguntaComponent extends AbstractPIU implements OnInit
         dsItem.alias = this.langMng.translateText(
             'cls_Pregunta_ds__Auto__item_Clas_1431633788928040CjtoVis_AutoICtjoVis_6',
             this.dsesnumero);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Mesadeapoyo.name];
         dsItem.options = DefinedSelections.DS_SINO;
         this.displaySet.push(dsItem);
 
@@ -153,7 +160,8 @@ export class PreguntaPIUuPreguntaComponent extends AbstractPIU implements OnInit
         dsItem.alias = this.langMng.translateText(
             'cls_Pregunta_ds__Auto__item_Clas_1431633788928040CjtoVis_AutoICtjoVis_7',
             this.dsvalormax);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -164,7 +172,8 @@ export class PreguntaPIUuPreguntaComponent extends AbstractPIU implements OnInit
         dsItem.alias = this.langMng.translateText(
             'cls_Pregunta_ds__Auto__item_Clas_1431633788928040CjtoVis_AutoICtjoVis_8',
             this.dsvalormin);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -175,7 +184,8 @@ export class PreguntaPIUuPreguntaComponent extends AbstractPIU implements OnInit
         dsItem.alias = this.langMng.translateText(
             'cls_Pregunta_ds__Auto__item_Clas_1431633788928040CjtoVis_AutoICtjoVis_9',
             this.dssolohombres);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Mesadeapoyo.name];
         dsItem.options = DefinedSelections.DS_SINO;
         this.displaySet.push(dsItem);
 
@@ -187,7 +197,8 @@ export class PreguntaPIUuPreguntaComponent extends AbstractPIU implements OnInit
         dsItem.alias = this.langMng.translateText(
             'cls_Pregunta_ds__Auto__item_Clas_1431633788928040CjtoVis_AutoICtjoVis_10',
             this.dssolomujeres);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Mesadeapoyo.name];
         dsItem.options = DefinedSelections.DS_SINO;
         this.displaySet.push(dsItem);
 
@@ -199,7 +210,8 @@ export class PreguntaPIUuPreguntaComponent extends AbstractPIU implements OnInit
         dsItem.alias = this.langMng.translateText(
             'cls_Pregunta_ds__Auto__item_Clas_1431633788928040CjtoVis_AutoICtjoVis_11',
             this.dsrespmultiple);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Mesadeapoyo.name];
         dsItem.options = DefinedSelections.DS_SINO;
         this.displaySet.push(dsItem);
 
@@ -212,7 +224,8 @@ export class PreguntaPIUuPreguntaComponent extends AbstractPIU implements OnInit
         dsItem.alias = this.langMng.translateText(
             'cls_Pregunta_ds__Auto__item_Clas_1431633788928040CjtoVis_AutoICtjoVis_12',
             this.dsdrvvaloresposibles);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -223,7 +236,8 @@ export class PreguntaPIUuPreguntaComponent extends AbstractPIU implements OnInit
         dsItem.alias = this.langMng.translateText(
             'cls_Pregunta_ds__Auto__item_Clas_1431633788928040CjtoVis_AutoICtjoVis_13',
             this.dsseenviaalcore);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Mesadeapoyo.name];
         dsItem.options = DefinedSelections.DS_SINO;
         this.displaySet.push(dsItem);
 
@@ -235,7 +249,7 @@ export class PreguntaPIUuPreguntaComponent extends AbstractPIU implements OnInit
         dsItem.alias = this.langMng.translateText(
             'cls_Pregunta_ds__Auto__item_Clas_1431633788928040CjtoVis_AutoICtjoVis_14',
             this.dscondicionedad);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Mesadeapoyo.name];
         dsItem.options = DefinedSelections.DS_CONDICIONADAEDAD;
         this.displaySet.push(dsItem);
 
@@ -247,7 +261,7 @@ export class PreguntaPIUuPreguntaComponent extends AbstractPIU implements OnInit
         dsItem.alias = this.langMng.translateText(
             'cls_Pregunta_ds__Auto__item_Clas_1431633788928040CjtoVis_AutoICtjoVis_15',
             this.dscondicionedadanyos);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
     }
 

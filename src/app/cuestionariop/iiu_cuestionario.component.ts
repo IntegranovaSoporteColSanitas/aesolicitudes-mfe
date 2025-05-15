@@ -83,7 +83,8 @@ export class CuestionarioPIIUuCuestionarioComponent extends AbstractIIU implemen
         this.idXML = 'Clas_1432647237632788UIInst_1';
         this.className = ModelConstants.Cuestionariop.name;
         this.iuName = ModelConstants.Cuestionariop.iiuucuestionario;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
+            'Afiliaciones', 'Gestor', 'MesaDeApoyo']));
         this.title = this.langMng.translateText('cls_CuestionarioP_iiu_IIU_Cuestionario',
             'Cuestionario médico');
         this.queryURL = '/api/CuestionarioPApi/GetPopulationDynamic';
@@ -520,7 +521,7 @@ export class CuestionarioPIIUuCuestionarioComponent extends AbstractIIU implemen
             'cls_CuestionarioP_ds_DS_CuestionarioP_IIU_item_Clas_1432647237632788CjtoVis_1ICtjoVis_5',
             'Usuario');
         this.dseUsuariodrvNombreCompleto.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1432647237632788CjtoVis_1ICtjoVis_5', ['Admin', 'SuperAdmin', 'Asesor']);
+            'Clas_1432647237632788CjtoVis_1ICtjoVis_5', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dseUsuariodrvNombreCompleto.enabled = false;
         this.dseUsuariodrvNombreCompleto.mandatory = false;
         this.dseUsuariodrvNombreCompleto.dataType = Field.dtString;
@@ -533,7 +534,7 @@ export class CuestionarioPIIUuCuestionarioComponent extends AbstractIIU implemen
             'cls_CuestionarioP_ds_DS_CuestionarioP_IIU_item_Clas_1432647237632788CjtoVis_1ICtjoVis_6',
             'Ya diligenciado');
         this.dseYaDiligenciado.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1432647237632788CjtoVis_1ICtjoVis_6', ['Admin', 'SuperAdmin', 'Asesor']);
+            'Clas_1432647237632788CjtoVis_1ICtjoVis_6', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dseYaDiligenciado.enabled = false;
         this.dseYaDiligenciado.mandatory = false;
         this.dseYaDiligenciado.dataType = Field.dtBool;
@@ -555,7 +556,8 @@ export class CuestionarioPIIUuCuestionarioComponent extends AbstractIIU implemen
             'Marcar como completado');
         accItem.nounVerb = true;
         accItem.multiSelection = true;
-        accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Mesadeapoyo.name];
         accItem.targetClass = ModelConstants.Cuestionariop.name;
         accItem.targetUI = ModelConstants.Cuestionariop.siuutcerrar;
         accItem.setNoShowProperties('TCERRAR', 'p_thiscuestionariop_oid', '', false);

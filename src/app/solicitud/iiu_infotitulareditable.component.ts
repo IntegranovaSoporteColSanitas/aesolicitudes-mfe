@@ -102,6 +102,10 @@ export class SolicitudIIUuInfoTitularEditableComponent extends AbstractIIU {
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
         accItem.targetClass = ModelConstants.Globalservices.name;
         accItem.targetUI = ModelConstants.Globalservices.siuutgseleccontratoasoctit;
+        accItem.setShowInModalProperties('imes-gs-siu-tgseleccontratoasoctit',
+            this.langMng.translateText(
+            'gs_TGSELECCONTRATOASOCTIT',
+            'Contratos asociados'));
         this.actions.push(accItem);
 
         accItem = new AccNavItem();

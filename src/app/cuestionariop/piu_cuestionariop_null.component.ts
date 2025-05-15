@@ -40,7 +40,8 @@ export class CuestionarioPPIUuCuestionarioPuNullComponent extends AbstractPIU im
         this.idXML = 'Clas_1432647237632788UIPobCl_1';
         this.className = ModelConstants.Cuestionariop.name;
         this.iuName = ModelConstants.Cuestionariop.piuucuestionariopunull;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
+            'Afiliaciones', 'Gestor', 'MesaDeApoyo']));
         this.title = this.langMng.translateText('cls_CuestionarioP_piu_PIU_CuestionarioP_Null',
             'Cuestionario');
         this.queryURL = '/api/CuestionarioPApi/GetPopulationDynamic';
@@ -68,7 +69,8 @@ export class CuestionarioPPIUuCuestionarioPuNullComponent extends AbstractPIU im
         dsItem.alias = this.langMng.translateText(
             'cls_CuestionarioP_ds_DS_CuestionarioP_Null_item_Clas_1432647237632788CjtoVis_2ICtjoVis_1',
             this.dsnumero);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
     }
 

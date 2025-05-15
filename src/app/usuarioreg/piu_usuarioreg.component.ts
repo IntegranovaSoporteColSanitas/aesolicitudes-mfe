@@ -44,7 +44,7 @@ export class UsuarioRegPIUuUsuarioRegComponent extends AbstractPIU {
         this.className = ModelConstants.Usuarioreg.name;
         this.iuName = 'PIU_UsuarioReg';
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
-            'Afiliaciones']));
+            'Afiliaciones', 'Gestor', 'MesaDeApoyo']));
         this.title = this.langMng.translateText('cls_UsuarioReg_piu_PIU_UsuarioReg',
             'Usuarios registrados');
         this.queryURL = '/api/UsuarioRegApi/GetPopulationDynamic';
@@ -66,7 +66,7 @@ export class UsuarioRegPIUuUsuarioRegComponent extends AbstractPIU {
             'cls_UsuarioReg_ds_DS_UsuarioReg_PIU_item_Clas_1433848250368895CjtoVis_1ICtjoVis_9',
             this.dsnumusuario);
         dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -79,7 +79,7 @@ export class UsuarioRegPIUuUsuarioRegComponent extends AbstractPIU {
             'cls_UsuarioReg_ds_DS_UsuarioReg_PIU_item_Clas_1433848250368895CjtoVis_1ICtjoVis_2',
             this.dstipoynumdoc);
         dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -92,7 +92,7 @@ export class UsuarioRegPIUuUsuarioRegComponent extends AbstractPIU {
             'cls_UsuarioReg_ds_DS_UsuarioReg_PIU_item_Clas_1433848250368895CjtoVis_1ICtjoVis_3',
             this.dsprimernombre);
         dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -105,7 +105,7 @@ export class UsuarioRegPIUuUsuarioRegComponent extends AbstractPIU {
             'cls_UsuarioReg_ds_DS_UsuarioReg_PIU_item_Clas_1433848250368895CjtoVis_1ICtjoVis_4',
             this.dssegundonombre);
         dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -118,7 +118,7 @@ export class UsuarioRegPIUuUsuarioRegComponent extends AbstractPIU {
             'cls_UsuarioReg_ds_DS_UsuarioReg_PIU_item_Clas_1433848250368895CjtoVis_1ICtjoVis_5',
             this.dsprimerapellido);
         dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -131,7 +131,7 @@ export class UsuarioRegPIUuUsuarioRegComponent extends AbstractPIU {
             'cls_UsuarioReg_ds_DS_UsuarioReg_PIU_item_Clas_1433848250368895CjtoVis_1ICtjoVis_6',
             this.dssegundoapellido);
         dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -144,7 +144,7 @@ export class UsuarioRegPIUuUsuarioRegComponent extends AbstractPIU {
             'cls_UsuarioReg_ds_DS_UsuarioReg_PIU_item_Clas_1433848250368895CjtoVis_1ICtjoVis_10',
             this.dsparentescoddescripcion);
         dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -156,7 +156,8 @@ export class UsuarioRegPIUuUsuarioRegComponent extends AbstractPIU {
         dsItem.alias = this.langMng.translateText(
             'cls_UsuarioReg_ds_DS_UsuarioReg_PIU_item_Clas_1433848250368895CjtoVis_1ICtjoVis_8',
             this.dsestadobeneficiarioddescripcion);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -168,7 +169,7 @@ export class UsuarioRegPIUuUsuarioRegComponent extends AbstractPIU {
             'cls_UsuarioReg_ds_DS_UsuarioReg_PIU_item_Clas_1433848250368895CjtoVis_1ICtjoVis_11',
             this.dsfechanacimiento);
         dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
     }
 

@@ -49,7 +49,7 @@ export class DocumentoGMDIUuDocumentoGComponent extends AbstractMDIU implements 
         this.className = ModelConstants.Documentog.name;
         this.iuName = ModelConstants.Documentog.mdiuudocumentog;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
-            'Afiliaciones']));
+            'Afiliaciones', 'Gestor', 'MesaDeApoyo']));
         this.title = this.langMng.translateText('cls_DocumentoG_mdiu_MDIU_DocumentoG',
             'Detalles');
         // Create the details and assign the master detail container
@@ -58,7 +58,7 @@ export class DocumentoGMDIUuDocumentoGComponent extends AbstractMDIU implements 
         this.master.masterDetailContainer = this;
         this.masterAbstract = this.master;
         this.d0Visible = this.appGlobalInfo.getLoggedUserInfo().isDetailVisible(this.idXML, 'Clas_1434446200832109UIMaDet_1Det_1',
-            ['Admin', 'SuperAdmin', 'Asesor']);
+            ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.d0 = new ObsEstadoPIUuObsEstadoComponent(appGlobalInfo, util, changeDetectorRef, langMng, stdFun,
             condNavMng, usrFunc);
         this.d0.masterDetailContainer = this;

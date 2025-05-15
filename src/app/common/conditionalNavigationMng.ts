@@ -384,7 +384,8 @@ export class ConditionalNavigationMng {
     private condNavUsuarioshowCuesMedico(request: any, response: any, previousContext: any, comeBackContext: any): boolean {
 
         let exchInfo: ExchangeInfo;
-        if (this.appGlobalInfo.getLoggedUserInfo().isAgentOneOf(['Admin', 'SuperAdmin', 'Asesor'])) {
+        if (this.appGlobalInfo.getLoggedUserInfo().isAgentOneOf(['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor',
+            'MesaDeApoyo'])) {
             exchInfo = this.util.createExchangeInfoFromCondNavigation(ModelConstants.Cuestionariop.name,
                 ModelConstants.Cuestionariop.iiuucuestionario, previousContext, comeBackContext);
             exchInfo.selectedOidsClassName = ModelConstants.Cuestionariop.name;

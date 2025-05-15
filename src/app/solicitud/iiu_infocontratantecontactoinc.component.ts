@@ -40,7 +40,7 @@ export class SolicitudIIUuInfoContratanteContactoINCComponent extends AbstractII
         this.idXML = 'Clas_1431957012480960UIInst_11';
         this.className = ModelConstants.Solicitud.name;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
-            'Afiliaciones', 'Gestor']));
+            'Gestor', 'MesaDeApoyo', 'Afiliaciones']));
         this.title = this.langMng.translateText('cls_Solicitud_iiu_IIU_InfoContratanteContactoINC',
             'Datos de contacto');
         this.queryURL = '/api/SolicitudApi/GetPopulationDynamic';
@@ -62,7 +62,7 @@ export class SolicitudIIUuInfoContratanteContactoINCComponent extends AbstractII
             'cls_Solicitud_ds_DS_SolicitudIIUInfoContraConta_item_Clas_1431957012480960CjtoVis_8ICtjoVis_1',
             'Dirección completa');
         this.dseDireccionDireccionCompleta.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1431957012480960CjtoVis_8ICtjoVis_1', ['Admin', 'SuperAdmin', 'Asesor']);
+            'Clas_1431957012480960CjtoVis_8ICtjoVis_1', ['Admin', 'SuperAdmin', 'Asesor', 'Gestor', 'MesaDeApoyo']);
         this.dseDireccionDireccionCompleta.enabled = false;
         this.dseDireccionDireccionCompleta.mandatory = false;
         this.dseDireccionDireccionCompleta.dataType = Field.dtString;
@@ -75,7 +75,7 @@ export class SolicitudIIUuInfoContratanteContactoINCComponent extends AbstractII
             'cls_Solicitud_ds_DS_SolicitudIIUInfoContraConta_item_Clas_1431957012480960CjtoVis_8ICtjoVis_2',
             'Departamento');
         this.dseDireccionDepartamentoDescripcion.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1431957012480960CjtoVis_8ICtjoVis_2', ['Admin', 'SuperAdmin', 'Asesor']);
+            'Clas_1431957012480960CjtoVis_8ICtjoVis_2', ['Admin', 'SuperAdmin', 'Asesor', 'Gestor', 'MesaDeApoyo']);
         this.dseDireccionDepartamentoDescripcion.enabled = false;
         this.dseDireccionDepartamentoDescripcion.mandatory = false;
         this.dseDireccionDepartamentoDescripcion.dataType = Field.dtString;
@@ -88,7 +88,7 @@ export class SolicitudIIUuInfoContratanteContactoINCComponent extends AbstractII
             'cls_Solicitud_ds_DS_SolicitudIIUInfoContraConta_item_Clas_1431957012480960CjtoVis_8ICtjoVis_3',
             'Municipio');
         this.dseDireccionMunicipioDescripcion.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1431957012480960CjtoVis_8ICtjoVis_3', ['Admin', 'SuperAdmin', 'Asesor']);
+            'Clas_1431957012480960CjtoVis_8ICtjoVis_3', ['Admin', 'SuperAdmin', 'Asesor', 'Gestor', 'MesaDeApoyo']);
         this.dseDireccionMunicipioDescripcion.enabled = false;
         this.dseDireccionMunicipioDescripcion.mandatory = false;
         this.dseDireccionMunicipioDescripcion.dataType = Field.dtString;
@@ -101,7 +101,7 @@ export class SolicitudIIUuInfoContratanteContactoINCComponent extends AbstractII
             'cls_Solicitud_ds_DS_SolicitudIIUInfoContraConta_item_Clas_1431957012480960CjtoVis_8ICtjoVis_4',
             'Teléfono fijo');
         this.dseContratanteTelefonoFijo.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1431957012480960CjtoVis_8ICtjoVis_4', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor']);
+            'Clas_1431957012480960CjtoVis_8ICtjoVis_4', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dseContratanteTelefonoFijo.enabled = false;
         this.dseContratanteTelefonoFijo.mandatory = false;
         this.dseContratanteTelefonoFijo.dataType = Field.dtString;
@@ -114,7 +114,7 @@ export class SolicitudIIUuInfoContratanteContactoINCComponent extends AbstractII
             'cls_Solicitud_ds_DS_SolicitudIIUInfoContraConta_item_Clas_1431957012480960CjtoVis_8ICtjoVis_5',
             'Teléfono celular');
         this.dseContratanteTelefonoCelular.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1431957012480960CjtoVis_8ICtjoVis_5', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor']);
+            'Clas_1431957012480960CjtoVis_8ICtjoVis_5', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dseContratanteTelefonoCelular.enabled = false;
         this.dseContratanteTelefonoCelular.mandatory = false;
         this.dseContratanteTelefonoCelular.dataType = Field.dtString;
@@ -127,7 +127,7 @@ export class SolicitudIIUuInfoContratanteContactoINCComponent extends AbstractII
             'cls_Solicitud_ds_DS_SolicitudIIUInfoContraConta_item_Clas_1431957012480960CjtoVis_8ICtjoVis_6',
             'Correo electrónico');
         this.dseContratanteCorreoElectronico.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1431957012480960CjtoVis_8ICtjoVis_6', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor']);
+            'Clas_1431957012480960CjtoVis_8ICtjoVis_6', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dseContratanteCorreoElectronico.enabled = false;
         this.dseContratanteCorreoElectronico.mandatory = false;
         this.dseContratanteCorreoElectronico.dataType = Field.dtString;

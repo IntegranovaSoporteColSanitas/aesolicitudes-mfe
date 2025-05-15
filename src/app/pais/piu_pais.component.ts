@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { DisplaySetItem } from '../common/queryIUElements';
+import { DisplaySetItem, AccNavItem } from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractPIU } from '../common/abstractPIU';
 import { Field } from '../common/baseIUElements';
@@ -41,7 +41,7 @@ export class PaisPIUuPaisComponent extends AbstractPIU implements OnInit {
         this.idXML = 'Clas_1432206704640584UIPobCl_1';
         this.className = ModelConstants.Pais.name;
         this.iuName = ModelConstants.Pais.piuupais;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, []));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Gestor']));
         this.title = this.langMng.translateText('cls_Pais_piu_PIU_Pais',
             'Paises');
         this.queryURL = '/api/PaisApi/GetPopulationDynamic';
@@ -70,7 +70,7 @@ export class PaisPIUuPaisComponent extends AbstractPIU implements OnInit {
         dsItem.alias = this.langMng.translateText(
             'cls_Pais_ds__Auto__item_Clas_1432206704640584CjtoVis_AutoICtjoVis_1',
             this.dscodigo);
-        dsItem.agents = [];
+        dsItem.agents = [ModelConstants.Gestor.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -82,8 +82,30 @@ export class PaisPIUuPaisComponent extends AbstractPIU implements OnInit {
         dsItem.alias = this.langMng.translateText(
             'cls_Pais_ds__Auto__item_Clas_1432206704640584CjtoVis_AutoICtjoVis_2',
             this.dsdescripcion);
-        dsItem.agents = [];
+        dsItem.agents = [ModelConstants.Gestor.name];
         this.displaySet.push(dsItem);
+    }
+
+    /**
+     * Initialize the action items
+     */
+    public override initializeActions(): void {
+        let accItem: AccNavItem;
+        accItem = new AccNavItem();
+        accItem.id = 0;
+        accItem.idXML = 'Clas_1432206704640584AccOfer_1ElemAcc_3';
+        accItem.alias = this.langMng.translateText(
+            'cls_Pais_act_A_Pais_PIU_item_Clas_1432206704640584AccOfer_1ElemAcc_3',
+            'Sincronizar');
+        accItem.nounVerb = false;
+        accItem.multiSelection = true;
+        accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
+        accItem.targetClass = ModelConstants.Globalservices.name;
+        accItem.targetUI = ModelConstants.Globalservices.siuutgsincpaises;
+        accItem.setNoShowProperties('TGSINCPAISES', '', '', false);
+
+        this.actions.push(accItem);
+
     }
 
     /**

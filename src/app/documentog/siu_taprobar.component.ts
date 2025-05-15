@@ -37,7 +37,8 @@ export class DocumentoGSIUuTAPROBARComponent extends AbstractServiceIU implement
         this.idXML = 'Clas_1434446200832109Ser_11UIServ_1';
         this.className = ModelConstants.Documentog.name;
         this.iuName = ModelConstants.Documentog.siuutaprobar;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['SuperAdmin', 'Afiliaciones']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['SuperAdmin', 'Afiliaciones',
+            'MesaDeApoyo']));
         this.serviceName = 'TAPROBAR';
         this.title = this.langMng.translateText('cls_DocumentoG_svc_TAPROBAR',
             'Aprobar documento');

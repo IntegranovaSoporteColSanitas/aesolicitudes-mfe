@@ -157,6 +157,7 @@ export class ModelConstants {
     public static readonly Textoaviso = {name : 'TextoAviso'};
     public static readonly Usuariosistemaexterno = {name : 'UsuarioSistemaExterno'};
     public static readonly Globalservices = {name : 'GlobalServices', siuuogsincgruposasociados: 'siu_ogsincgruposasociados',
+        siuutgsincestadospersona: 'siu_tgsincestadospersona', siuutgsincpaises: 'siu_tgsincpaises',
         siuutgseleccontratoasoc: 'siu_tgseleccontratoasoc', siuutgseleccontratoasoctit: 'siu_tgseleccontratoasoctit',
         siuuogenerarsolicitud2: 'siu_ogenerarsolicitud2', siuuogenerarsolicitud2uout: 'siu_ogenerarsolicitud2_out'};
 }

@@ -44,7 +44,8 @@ export class UsuarioSIUuTMODIFICARATTRComponent extends AbstractServiceIU implem
         this.idXML = 'Clas_1432633737216826Ser_12UIServ_1';
         this.className = ModelConstants.Usuario.name;
         this.iuName = ModelConstants.Usuario.siuutmodificarattr;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
+            'MesaDeApoyo']));
         this.serviceName = 'TMODIFICARATTR';
         this.title = this.langMng.translateText('cls_Usuario_svc_TMODIFICARATTR',
             'Modificar atributos de usuario');

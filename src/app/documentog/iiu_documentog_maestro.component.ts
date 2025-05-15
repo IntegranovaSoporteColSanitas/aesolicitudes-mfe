@@ -50,7 +50,7 @@ export class DocumentoGIIUuDocumentoGuMaestroComponent extends AbstractIIU {
         this.idXML = 'Clas_1434446200832109UIInst_1';
         this.className = ModelConstants.Documentog.name;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
-            'Afiliaciones']));
+            'Afiliaciones', 'Gestor', 'MesaDeApoyo']));
         this.title = this.langMng.translateText('cls_DocumentoG_iiu_IIU_DocumentoG_Maestro',
             'Detalles');
         this.queryURL = '/api/DocumentoGApi/GetPopulationDynamic';
@@ -103,7 +103,7 @@ export class DocumentoGIIUuDocumentoGuMaestroComponent extends AbstractIIU {
             'cls_DocumentoG_ds_DS_DocumentoG_IIU_item_Clas_1434446200832109CjtoVis_2ICtjoVis_14',
             'Nº Solicitud');
         this.dseSolicitudAeusolicitudesNumerousolicitud.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1434446200832109CjtoVis_2ICtjoVis_14', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones']);
+            'Clas_1434446200832109CjtoVis_2ICtjoVis_14', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dseSolicitudAeusolicitudesNumerousolicitud.enabled = false;
         this.dseSolicitudAeusolicitudesNumerousolicitud.mandatory = false;
         this.dseSolicitudAeusolicitudesNumerousolicitud.dataType = Field.dtString;
@@ -116,7 +116,7 @@ export class DocumentoGIIUuDocumentoGuMaestroComponent extends AbstractIIU {
             'cls_DocumentoG_ds_DS_DocumentoG_IIU_item_Clas_1434446200832109CjtoVis_2ICtjoVis_13',
             'Nº Contrato');
         this.dseDrvNumContrato.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1434446200832109CjtoVis_2ICtjoVis_13', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones']);
+            'Clas_1434446200832109CjtoVis_2ICtjoVis_13', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dseDrvNumContrato.enabled = false;
         this.dseDrvNumContrato.mandatory = false;
         this.dseDrvNumContrato.dataType = Field.dtString;
@@ -129,7 +129,7 @@ export class DocumentoGIIUuDocumentoGuMaestroComponent extends AbstractIIU {
             'cls_DocumentoG_ds_DS_DocumentoG_IIU_item_Clas_1434446200832109CjtoVis_2ICtjoVis_3',
             'Tipo y Nº Doc.');
         this.dsePersonadrvTipoNumDoc.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1434446200832109CjtoVis_2ICtjoVis_3', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones']);
+            'Clas_1434446200832109CjtoVis_2ICtjoVis_3', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dsePersonadrvTipoNumDoc.enabled = false;
         this.dsePersonadrvTipoNumDoc.mandatory = false;
         this.dsePersonadrvTipoNumDoc.dataType = Field.dtString;
@@ -142,7 +142,7 @@ export class DocumentoGIIUuDocumentoGuMaestroComponent extends AbstractIIU {
             'cls_DocumentoG_ds_DS_DocumentoG_IIU_item_Clas_1434446200832109CjtoVis_2ICtjoVis_4',
             'Persona');
         this.dsePersonadrvNombreCompleto.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1434446200832109CjtoVis_2ICtjoVis_4', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones']);
+            'Clas_1434446200832109CjtoVis_2ICtjoVis_4', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dsePersonadrvNombreCompleto.enabled = false;
         this.dsePersonadrvNombreCompleto.mandatory = false;
         this.dsePersonadrvNombreCompleto.dataType = Field.dtString;
@@ -155,7 +155,7 @@ export class DocumentoGIIUuDocumentoGuMaestroComponent extends AbstractIIU {
             'cls_DocumentoG_ds_DS_DocumentoG_IIU_item_Clas_1434446200832109CjtoVis_2ICtjoVis_6',
             'Estado');
         this.dseEstado.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1434446200832109CjtoVis_2ICtjoVis_6', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones']);
+            'Clas_1434446200832109CjtoVis_2ICtjoVis_6', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dseEstado.enabled = false;
         this.dseEstado.mandatory = false;
         this.dseEstado.dataType = Field.dtNat;
@@ -168,7 +168,7 @@ export class DocumentoGIIUuDocumentoGuMaestroComponent extends AbstractIIU {
             'cls_DocumentoG_ds_DS_DocumentoG_IIU_item_Clas_1434446200832109CjtoVis_2ICtjoVis_7',
             'Tipo');
         this.dseTipo.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1434446200832109CjtoVis_2ICtjoVis_7', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones']);
+            'Clas_1434446200832109CjtoVis_2ICtjoVis_7', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dseTipo.enabled = false;
         this.dseTipo.mandatory = false;
         this.dseTipo.dataType = Field.dtNat;
@@ -181,7 +181,7 @@ export class DocumentoGIIUuDocumentoGuMaestroComponent extends AbstractIIU {
             'cls_DocumentoG_ds_DS_DocumentoG_IIU_item_Clas_1434446200832109CjtoVis_2ICtjoVis_8',
             'Descripción');
         this.dseDescripcion.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1434446200832109CjtoVis_2ICtjoVis_8', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones']);
+            'Clas_1434446200832109CjtoVis_2ICtjoVis_8', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dseDescripcion.enabled = false;
         this.dseDescripcion.mandatory = false;
         this.dseDescripcion.dataType = Field.dtString;
@@ -194,7 +194,7 @@ export class DocumentoGIIUuDocumentoGuMaestroComponent extends AbstractIIU {
             'cls_DocumentoG_ds_DS_DocumentoG_IIU_item_Clas_1434446200832109CjtoVis_2ICtjoVis_5',
             'Fecha subida');
         this.dseFechaSubida.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1434446200832109CjtoVis_2ICtjoVis_5', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones']);
+            'Clas_1434446200832109CjtoVis_2ICtjoVis_5', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dseFechaSubida.enabled = false;
         this.dseFechaSubida.mandatory = false;
         this.dseFechaSubida.dataType = Field.dtDatetime;
@@ -206,7 +206,7 @@ export class DocumentoGIIUuDocumentoGuMaestroComponent extends AbstractIIU {
             'cls_DocumentoG_ds_DS_DocumentoG_IIU_item_Clas_1434446200832109CjtoVis_2ICtjoVis_12',
             'Id. En Gestor');
         this.dseIdDocEnGestor.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1434446200832109CjtoVis_2ICtjoVis_12', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones']);
+            'Clas_1434446200832109CjtoVis_2ICtjoVis_12', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dseIdDocEnGestor.enabled = false;
         this.dseIdDocEnGestor.mandatory = false;
         this.dseIdDocEnGestor.dataType = Field.dtString;
@@ -219,7 +219,7 @@ export class DocumentoGIIUuDocumentoGuMaestroComponent extends AbstractIIU {
             'cls_DocumentoG_ds_DS_DocumentoG_IIU_item_Clas_1434446200832109CjtoVis_2ICtjoVis_11',
             'Resultado');
         this.dseResultadoSubida.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1434446200832109CjtoVis_2ICtjoVis_11', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones']);
+            'Clas_1434446200832109CjtoVis_2ICtjoVis_11', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dseResultadoSubida.enabled = false;
         this.dseResultadoSubida.mandatory = false;
         this.dseResultadoSubida.dataType = Field.dtText;
@@ -231,7 +231,7 @@ export class DocumentoGIIUuDocumentoGuMaestroComponent extends AbstractIIU {
             'cls_DocumentoG_ds_DS_DocumentoG_IIU_item_Clas_1434446200832109CjtoVis_2ICtjoVis_10',
             'Envío email devuelto');
         this.dseEmailEnvioDevuelto.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1434446200832109CjtoVis_2ICtjoVis_10', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones']);
+            'Clas_1434446200832109CjtoVis_2ICtjoVis_10', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dseEmailEnvioDevuelto.enabled = false;
         this.dseEmailEnvioDevuelto.mandatory = false;
         this.dseEmailEnvioDevuelto.dataType = Field.dtString;
@@ -244,7 +244,7 @@ export class DocumentoGIIUuDocumentoGuMaestroComponent extends AbstractIIU {
             'cls_DocumentoG_ds_DS_DocumentoG_IIU_item_Clas_1434446200832109CjtoVis_2ICtjoVis_9',
             'Nº Descargas');
         this.dseNumDescargas.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1434446200832109CjtoVis_2ICtjoVis_9', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones']);
+            'Clas_1434446200832109CjtoVis_2ICtjoVis_9', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dseNumDescargas.enabled = false;
         this.dseNumDescargas.mandatory = false;
         this.dseNumDescargas.dataType = Field.dtInt;
@@ -267,7 +267,7 @@ export class DocumentoGIIUuDocumentoGuMaestroComponent extends AbstractIIU {
         accItem.nounVerb = true;
         accItem.multiSelection = true;
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         accItem.targetClass = ModelConstants.Documentog.name;
         accItem.targetUI = ModelConstants.Documentog.siuuprevisualizarato;
         accItem.setNoShowProperties('previsualizarATO', 'p_thisdocumentog_oid', '', false);

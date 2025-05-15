@@ -52,7 +52,7 @@ export class DocumentoGPIUuDocumentoGComponent extends AbstractPIU implements On
         this.className = ModelConstants.Documentog.name;
         this.iuName = ModelConstants.Documentog.piuudocumentog;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
-            'Afiliaciones']));
+            'Afiliaciones', 'Gestor', 'MesaDeApoyo']));
         this.title = this.langMng.translateText('cls_DocumentoG_piu_PIU_DocumentoG',
             'Documentos');
         this.queryURL = '/api/DocumentoGApi/GetPopulationDynamic';
@@ -107,7 +107,7 @@ export class DocumentoGPIUuDocumentoGComponent extends AbstractPIU implements On
             'cls_DocumentoG_ds_DS_DocumentoG_PIU_item_Clas_1434446200832109CjtoVis_1ICtjoVis_7',
             this.dssolicituddaeusolicitudesdnumerousolicitud);
         dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -120,7 +120,7 @@ export class DocumentoGPIUuDocumentoGComponent extends AbstractPIU implements On
             'cls_DocumentoG_ds_DS_DocumentoG_PIU_item_Clas_1434446200832109CjtoVis_1ICtjoVis_2',
             this.dspersonaddrvtiponumdoc);
         dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -132,7 +132,7 @@ export class DocumentoGPIUuDocumentoGComponent extends AbstractPIU implements On
             'cls_DocumentoG_ds_DS_DocumentoG_PIU_item_Clas_1434446200832109CjtoVis_1ICtjoVis_10',
             this.dspersonadtieneepssanitas);
         dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         dsItem.options = DefinedSelections.DS_SINO;
         this.displaySet.push(dsItem);
 
@@ -145,7 +145,7 @@ export class DocumentoGPIUuDocumentoGComponent extends AbstractPIU implements On
             'cls_DocumentoG_ds_DS_DocumentoG_PIU_item_Clas_1434446200832109CjtoVis_1ICtjoVis_3',
             this.dsfechasubida);
         dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -157,7 +157,7 @@ export class DocumentoGPIUuDocumentoGComponent extends AbstractPIU implements On
             'cls_DocumentoG_ds_DS_DocumentoG_PIU_item_Clas_1434446200832109CjtoVis_1ICtjoVis_5',
             this.dstipo);
         dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         dsItem.options = DefinedSelections.DS_TIPODOCUMENTOG;
         this.displaySet.push(dsItem);
 
@@ -171,7 +171,7 @@ export class DocumentoGPIUuDocumentoGComponent extends AbstractPIU implements On
             'cls_DocumentoG_ds_DS_DocumentoG_PIU_item_Clas_1434446200832109CjtoVis_1ICtjoVis_8',
             this.dsnombre);
         dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         dsItem.linkIndex = 1;
         dsItem.linkIsAction = true;
         this.displaySet.push(dsItem);
@@ -185,7 +185,7 @@ export class DocumentoGPIUuDocumentoGComponent extends AbstractPIU implements On
             'cls_DocumentoG_ds_DS_DocumentoG_PIU_item_Clas_1434446200832109CjtoVis_1ICtjoVis_4',
             this.dsestado);
         dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         dsItem.options = DefinedSelections.DS_ESTADODOCUMENTOG;
         this.displaySet.push(dsItem);
 
@@ -199,7 +199,7 @@ export class DocumentoGPIUuDocumentoGComponent extends AbstractPIU implements On
             'cls_DocumentoG_ds_DS_DocumentoG_PIU_item_Clas_1434446200832109CjtoVis_1ICtjoVis_6',
             this.dsdescripcion);
         dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -211,7 +211,7 @@ export class DocumentoGPIUuDocumentoGComponent extends AbstractPIU implements On
             'cls_DocumentoG_ds_DS_DocumentoG_PIU_item_Clas_1434446200832109CjtoVis_1ICtjoVis_9',
             this.dspersonaddatosbasicosmod);
         dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         dsItem.options = DefinedSelections.DS_SINO;
         this.displaySet.push(dsItem);
     }
@@ -245,7 +245,7 @@ export class DocumentoGPIUuDocumentoGComponent extends AbstractPIU implements On
         accItem.nounVerb = true;
         accItem.multiSelection = true;
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         accItem.targetClass = ModelConstants.Documentog.name;
         accItem.targetUI = ModelConstants.Documentog.siuuprevisualizarato;
         accItem.setNoShowProperties('previsualizarATO', 'p_thisdocumentog_oid', '', false);
@@ -262,7 +262,7 @@ export class DocumentoGPIUuDocumentoGComponent extends AbstractPIU implements On
             'Aprobar');
         accItem.nounVerb = true;
         accItem.multiSelection = false;
-        accItem.agents = [ModelConstants.Superadmin.name, ModelConstants.Afiliaciones.name];
+        accItem.agents = [ModelConstants.Superadmin.name, ModelConstants.Afiliaciones.name, ModelConstants.Mesadeapoyo.name];
         accItem.targetClass = ModelConstants.Documentog.name;
         accItem.targetUI = ModelConstants.Documentog.siuutaprobar;
         accItem.preconditionAttributes.push(
@@ -282,7 +282,7 @@ export class DocumentoGPIUuDocumentoGComponent extends AbstractPIU implements On
             'Devolver');
         accItem.nounVerb = true;
         accItem.multiSelection = false;
-        accItem.agents = [ModelConstants.Superadmin.name, ModelConstants.Afiliaciones.name];
+        accItem.agents = [ModelConstants.Superadmin.name, ModelConstants.Afiliaciones.name, ModelConstants.Mesadeapoyo.name];
         accItem.targetClass = ModelConstants.Documentog.name;
         accItem.targetUI = ModelConstants.Documentog.siuutdevolver;
         accItem.preconditionAttributes.push(
@@ -313,7 +313,7 @@ export class DocumentoGPIUuDocumentoGComponent extends AbstractPIU implements On
         navItem.nounVerb = true;
         navItem.multiSelection = false;
         navItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         navItem.targetClass = ModelConstants.Documentog.name;
         navItem.targetUI = ModelConstants.Documentog.mdiuudocumentog;
         navItem.rolePath = '';

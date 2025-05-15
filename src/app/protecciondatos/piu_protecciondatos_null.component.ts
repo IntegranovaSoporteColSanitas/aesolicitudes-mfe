@@ -40,7 +40,8 @@ export class ProteccionDatosPIUuProteccionDatosuNullComponent extends AbstractPI
         this.idXML = 'Clas_1432207097856829UIPobCl_1';
         this.className = ModelConstants.Protecciondatos.name;
         this.iuName = ModelConstants.Protecciondatos.piuuprotecciondatosunull;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
+            'Afiliaciones', 'Gestor', 'MesaDeApoyo']));
         this.title = this.langMng.translateText('cls_ProteccionDatos_piu_PIU_ProteccionDatos_Null',
             'Protección de datos');
         this.queryURL = '/api/ProteccionDatosApi/GetPopulationDynamic';
@@ -68,7 +69,8 @@ export class ProteccionDatosPIUuProteccionDatosuNullComponent extends AbstractPI
         dsItem.alias = this.langMng.translateText(
             'cls_ProteccionDatos_ds_DS_ProteccionDatos_Null_item_Clas_1432207097856829CjtoVis_1ICtjoVis_1',
             this.dsidentificador);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
     }
 

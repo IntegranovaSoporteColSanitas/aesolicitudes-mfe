@@ -35,7 +35,7 @@ export class SolicitudIIUuInfoContratanteJURComponent extends AbstractIIU {
         this.idXML = 'Clas_1431957012480960UIInst_5';
         this.className = ModelConstants.Solicitud.name;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
-            'Afiliaciones', 'Gestor']));
+            'Afiliaciones', 'Gestor', 'MesaDeApoyo']));
         this.title = this.langMng.translateText('cls_Solicitud_iiu_IIU_InfoContratanteJUR',
             'Persona jurídica');
         this.queryURL = '/api/SolicitudApi/GetPopulationDynamic';
@@ -52,7 +52,7 @@ export class SolicitudIIUuInfoContratanteJURComponent extends AbstractIIU {
             'cls_Solicitud_ds_DS_SolicitudIIUInfoContratJUR_item_Clas_1431957012480960CjtoVis_7ICtjoVis_1',
             'Razón Social');
         this.dseContratanteRazonSocial.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1431957012480960CjtoVis_7ICtjoVis_1', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor']);
+            'Clas_1431957012480960CjtoVis_7ICtjoVis_1', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dseContratanteRazonSocial.enabled = false;
         this.dseContratanteRazonSocial.mandatory = false;
         this.dseContratanteRazonSocial.dataType = Field.dtString;

@@ -54,7 +54,7 @@ export class SolicitudIMDIUuInfoContratanteINCLComponent extends AbstractMDIU im
         this.className = ModelConstants.Solicitud.name;
         this.iuName = ModelConstants.Solicitud.imdiuuinfocontratanteincl;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
-            'Afiliaciones', 'Gestor']));
+            'Afiliaciones', 'Gestor', 'MesaDeApoyo']));
         this.title = this.langMng.translateText('cls_Solicitud_mdiu_iMDIU_InfoContratanteINCL',
             'Información de Contratante');
         // Create the details and assign the master detail container
@@ -63,7 +63,7 @@ export class SolicitudIMDIUuInfoContratanteINCLComponent extends AbstractMDIU im
         this.master.masterDetailContainer = this;
         this.masterAbstract = this.master;
         this.d0Visible = this.appGlobalInfo.getLoggedUserInfo().isDetailVisible(this.idXML, 'Clas_1431957012480960UIMaDet_5Det_6',
-            ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'AreaMedica', 'MesaDeApoyo']);
+            ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo', 'AreaMedica']);
         this.d0 = new SolicitudIMDIUuInfoContratantePRComponent(appGlobalInfo, util, changeDetectorRef, langMng, stdFun,
             condNavMng, usrFunc);
         this.d0.masterDetailContainer = this;
@@ -71,7 +71,7 @@ export class SolicitudIMDIUuInfoContratanteINCLComponent extends AbstractMDIU im
             this.details.push(this.d0);
         }
         this.d1Visible = this.appGlobalInfo.getLoggedUserInfo().isDetailVisible(this.idXML, 'Clas_1431957012480960UIMaDet_5Det_3',
-            ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor']);
+            ['Admin', 'SuperAdmin', 'Asesor', 'Gestor', 'MesaDeApoyo', 'Afiliaciones']);
         this.d1 = new SolicitudIIUuInfoContratanteContactoINCComponent(appGlobalInfo, util, changeDetectorRef, langMng, stdFun,
             condNavMng, usrFunc);
         this.d1.masterDetailContainer = this;

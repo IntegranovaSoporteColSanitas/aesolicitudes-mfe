@@ -10,6 +10,8 @@ import { JsonUtility } from '../common/jsonUtility';
 export class GlobalServicesServices extends AbstractServices {
 
     private oGSINCGRUPOSASOCIADOSSrvName = 'OGSINCGRUPOSASOCIADOS';
+    private tGSINCESTADOSPERSONASrvName = 'TGSINCESTADOSPERSONA';
+    private tGSINCPAISESSrvName = 'TGSINCPAISES';
     private tGSELECCONTRATOASOCSrvName = 'TGSELECCONTRATOASOC';
     private tGSELECCONTRATOASOCTITSrvName = 'TGSELECCONTRATOASOCTIT';
     private oGENERARSOLICITUD2SrvName = 'OGENERARSOLICITUD2';
@@ -30,6 +32,40 @@ export class GlobalServicesServices extends AbstractServices {
         const request = {};
         return new Promise<ErrorInformation | void> ((resolve, reject) => {
              this.callService(this.oGSINCGRUPOSASOCIADOSSrvName, request).then((response: any) => {
+                resolve();
+            }).catch( (errorInfo: ErrorInformation) => {
+                reject(errorInfo);
+            });
+        });
+    }
+
+    /**
+     * Call to the service 'TGSINCESTADOSPERSONA' in the backend
+     * Promise is resolved if service execution is successful and returns void.
+     * If service fails, promise is rejected and returned an instance of ErrorInformation
+     */
+    public tGSINCESTADOSPERSONA(
+        ): Promise<ErrorInformation | void> {
+        const request = {};
+        return new Promise<ErrorInformation | void> ((resolve, reject) => {
+             this.callService(this.tGSINCESTADOSPERSONASrvName, request).then((response: any) => {
+                resolve();
+            }).catch( (errorInfo: ErrorInformation) => {
+                reject(errorInfo);
+            });
+        });
+    }
+
+    /**
+     * Call to the service 'TGSINCPAISES' in the backend
+     * Promise is resolved if service execution is successful and returns void.
+     * If service fails, promise is rejected and returned an instance of ErrorInformation
+     */
+    public tGSINCPAISES(
+        ): Promise<ErrorInformation | void> {
+        const request = {};
+        return new Promise<ErrorInformation | void> ((resolve, reject) => {
+             this.callService(this.tGSINCPAISESSrvName, request).then((response: any) => {
                 resolve();
             }).catch( (errorInfo: ErrorInformation) => {
                 reject(errorInfo);

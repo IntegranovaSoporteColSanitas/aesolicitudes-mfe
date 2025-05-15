@@ -77,7 +77,7 @@ export class SolicitudMDIUuInclusionColectivoComponent extends AbstractMDIU impl
         this.master.masterDetailContainer = this;
         this.masterAbstract = this.master;
         this.d0Visible = this.appGlobalInfo.getLoggedUserInfo().isDetailVisible(this.idXML, 'Clas_1431957012480960UIMaDet_4Det_6',
-            ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor']);
+            ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.d0 = new SolicitudIMDIUuInfoContratanteINCColectComponent(appGlobalInfo, util, changeDetectorRef, langMng, stdFun,
             condNavMng, usrFunc);
         this.d0.masterDetailContainer = this;

@@ -37,7 +37,8 @@ export class DocumentoGSIUuTDEVOLVERComponent extends AbstractServiceIU implemen
         this.idXML = 'Clas_1434446200832109Ser_12UIServ_1';
         this.className = ModelConstants.Documentog.name;
         this.iuName = ModelConstants.Documentog.siuutdevolver;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['SuperAdmin', 'Afiliaciones']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['SuperAdmin', 'Afiliaciones',
+            'MesaDeApoyo']));
         this.serviceName = 'TDEVOLVER';
         this.title = this.langMng.translateText('cls_DocumentoG_svc_TDEVOLVER',
             'Devolver documento');

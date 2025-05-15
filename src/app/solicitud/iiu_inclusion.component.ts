@@ -61,6 +61,7 @@ export class SolicitudIIUuInclusionComponent extends AbstractIIU {
         this.dseNumFamilia = new Field(this.langMng);
         this.dseEnvioCarnetFisico = new FieldDefinedSelection(this.langMng);
         this.dseFirmaImagenFirma = new FieldBlob(this.langMng);
+        this.cssClasses += 'cssNavPrimero';
     }
 
     public override doAction(actionId: number): void {
@@ -217,7 +218,7 @@ export class SolicitudIIUuInclusionComponent extends AbstractIIU {
             'cls_Solicitud_ds_DS_Solicitud_IIUInclusion_item_Clas_1431957012480960CjtoVis_12ICtjoVis_14',
             'Firma');
         this.dseFirmaImagenFirma.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1431957012480960CjtoVis_12ICtjoVis_14', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones']);
+            'Clas_1431957012480960CjtoVis_12ICtjoVis_14', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dseFirmaImagenFirma.enabled = false;
         this.dseFirmaImagenFirma.mandatory = false;
         this.dseFirmaImagenFirma.dataType = Field.dtBlob;
@@ -340,7 +341,7 @@ export class SolicitudIIUuInclusionComponent extends AbstractIIU {
         navItem.nounVerb = true;
         navItem.multiSelection = false;
         navItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         navItem.targetClass = ModelConstants.Documentog.name;
         navItem.targetUI = ModelConstants.Documentog.piuudocumentog;
         navItem.rolePath = 'Solicitud';

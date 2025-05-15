@@ -459,6 +459,20 @@ export class GenericSiuComponent implements OnInit {
                 this.siuHasNoShow = true;
                 siuFound = true;
                 break;
+            case ModelConstants.Globalservices.siuutgsincestadospersona:
+                this.title = this.langMng.translateText('gs_TGSINCESTADOSPERSONA',
+                    'Sincronizar estados de persona');
+                this.serviceName = 'TGSINCESTADOSPERSONA';
+                this.siuHasNoShow = true;
+                siuFound = true;
+                break;
+            case ModelConstants.Globalservices.siuutgsincpaises:
+                this.title = this.langMng.translateText('gs_TGSINCPAISES',
+                    'Sincronizar países');
+                this.serviceName = 'TGSINCPAISES';
+                this.siuHasNoShow = true;
+                siuFound = true;
+                break;
         }
         return siuFound;
     }

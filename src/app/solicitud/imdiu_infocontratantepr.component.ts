@@ -49,7 +49,7 @@ export class SolicitudIMDIUuInfoContratantePRComponent extends AbstractMDIU impl
         this.className = ModelConstants.Solicitud.name;
         this.iuName = ModelConstants.Solicitud.imdiuuinfocontratantepr;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
-            'Afiliaciones', 'Gestor', 'AreaMedica', 'MesaDeApoyo']));
+            'Afiliaciones', 'Gestor', 'MesaDeApoyo', 'AreaMedica']));
         this.title = this.langMng.translateText('cls_Solicitud_mdiu_iMDIU_InfoContratantePR',
             'Información de Contratante');
         // Create the details and assign the master detail container
@@ -58,7 +58,7 @@ export class SolicitudIMDIUuInfoContratantePRComponent extends AbstractMDIU impl
         this.master.masterDetailContainer = this;
         this.masterAbstract = this.master;
         this.d0Visible = this.appGlobalInfo.getLoggedUserInfo().isDetailVisible(this.idXML, 'Clas_1431957012480960UIMaDet_3Det_3',
-            ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor']);
+            ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.d0 = new SolicitudIIUuInfoContratanteJURComponent(appGlobalInfo, util, changeDetectorRef, langMng, stdFun,
             condNavMng, usrFunc);
         this.d0.masterDetailContainer = this;

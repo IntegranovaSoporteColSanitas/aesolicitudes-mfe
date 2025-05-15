@@ -122,7 +122,8 @@ export class AsesorPIUuDirectoresuObsComponent extends AbstractPIU implements On
         dsItem.alias = this.langMng.translateText(
             'cls_Asesor_ds_DS_Directores_Obs_item_Clas_1431886233600794CjtoVis_8ICtjoVis_13',
             this.dstipoidentificaciondnombrecorto);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -134,7 +135,8 @@ export class AsesorPIUuDirectoresuObsComponent extends AbstractPIU implements On
         dsItem.alias = this.langMng.translateText(
             'cls_Asesor_ds_DS_Directores_Obs_item_Clas_1431886233600794CjtoVis_8ICtjoVis_14',
             this.dsnumidentificacion);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
     }
 

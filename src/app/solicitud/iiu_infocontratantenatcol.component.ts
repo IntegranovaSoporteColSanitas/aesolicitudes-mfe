@@ -47,7 +47,7 @@ export class SolicitudIIUuInfoContratanteNATColComponent extends AbstractIIU {
         this.idXML = 'Clas_1431957012480960UIInst_23';
         this.className = ModelConstants.Solicitud.name;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
-            'Afiliaciones', 'Gestor', 'AreaMedica', 'MesaDeApoyo']));
+            'Afiliaciones', 'Gestor', 'MesaDeApoyo', 'AreaMedica']));
         this.title = this.langMng.translateText('cls_Solicitud_iiu_IIU_InfoContratanteNATCol',
             'Persona natural');
         this.queryURL = '/api/SolicitudApi/GetPopulationDynamic';
@@ -74,7 +74,7 @@ export class SolicitudIIUuInfoContratanteNATColComponent extends AbstractIIU {
             'cls_Solicitud_ds_DS_SolicitudIIUInfoContratNAT_item_Clas_1431957012480960CjtoVis_5ICtjoVis_20',
             'Diplomático');
         this.dseContratanteDiplomatico.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1431957012480960CjtoVis_5ICtjoVis_20', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor']);
+            'Clas_1431957012480960CjtoVis_5ICtjoVis_20', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dseContratanteDiplomatico.enabled = false;
         this.dseContratanteDiplomatico.mandatory = false;
         this.dseContratanteDiplomatico.dataType = Field.dtBool;
@@ -87,7 +87,7 @@ export class SolicitudIIUuInfoContratanteNATColComponent extends AbstractIIU {
             'cls_Solicitud_ds_DS_SolicitudIIUInfoContratNAT_item_Clas_1431957012480960CjtoVis_5ICtjoVis_6',
             'Primer nombre');
         this.dseContratantePrimerNombre.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1431957012480960CjtoVis_5ICtjoVis_6', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor']);
+            'Clas_1431957012480960CjtoVis_5ICtjoVis_6', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dseContratantePrimerNombre.enabled = false;
         this.dseContratantePrimerNombre.mandatory = false;
         this.dseContratantePrimerNombre.dataType = Field.dtString;
@@ -100,7 +100,7 @@ export class SolicitudIIUuInfoContratanteNATColComponent extends AbstractIIU {
             'cls_Solicitud_ds_DS_SolicitudIIUInfoContratNAT_item_Clas_1431957012480960CjtoVis_5ICtjoVis_7',
             'Segundo nombre');
         this.dseContratanteSegundoNombre.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1431957012480960CjtoVis_5ICtjoVis_7', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor']);
+            'Clas_1431957012480960CjtoVis_5ICtjoVis_7', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dseContratanteSegundoNombre.enabled = false;
         this.dseContratanteSegundoNombre.mandatory = false;
         this.dseContratanteSegundoNombre.dataType = Field.dtString;
@@ -113,7 +113,7 @@ export class SolicitudIIUuInfoContratanteNATColComponent extends AbstractIIU {
             'cls_Solicitud_ds_DS_SolicitudIIUInfoContratNAT_item_Clas_1431957012480960CjtoVis_5ICtjoVis_8',
             'Primer apellido');
         this.dseContratantePrimerApellido.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1431957012480960CjtoVis_5ICtjoVis_8', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor']);
+            'Clas_1431957012480960CjtoVis_5ICtjoVis_8', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dseContratantePrimerApellido.enabled = false;
         this.dseContratantePrimerApellido.mandatory = false;
         this.dseContratantePrimerApellido.dataType = Field.dtString;
@@ -126,7 +126,7 @@ export class SolicitudIIUuInfoContratanteNATColComponent extends AbstractIIU {
             'cls_Solicitud_ds_DS_SolicitudIIUInfoContratNAT_item_Clas_1431957012480960CjtoVis_5ICtjoVis_9',
             'Segundo apellido');
         this.dseContratanteSegundoApellido.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1431957012480960CjtoVis_5ICtjoVis_9', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor']);
+            'Clas_1431957012480960CjtoVis_5ICtjoVis_9', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dseContratanteSegundoApellido.enabled = false;
         this.dseContratanteSegundoApellido.mandatory = false;
         this.dseContratanteSegundoApellido.dataType = Field.dtString;
@@ -139,7 +139,7 @@ export class SolicitudIIUuInfoContratanteNATColComponent extends AbstractIIU {
             'cls_Solicitud_ds_DS_SolicitudIIUInfoContratNAT_item_Clas_1431957012480960CjtoVis_5ICtjoVis_10',
             'Fecha nacimiento');
         this.dseContratanteFechaNacimiento.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1431957012480960CjtoVis_5ICtjoVis_10', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor']);
+            'Clas_1431957012480960CjtoVis_5ICtjoVis_10', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dseContratanteFechaNacimiento.enabled = false;
         this.dseContratanteFechaNacimiento.mandatory = false;
         this.dseContratanteFechaNacimiento.dataType = Field.dtDate;
@@ -151,7 +151,7 @@ export class SolicitudIIUuInfoContratanteNATColComponent extends AbstractIIU {
             'cls_Solicitud_ds_DS_SolicitudIIUInfoContratNAT_item_Clas_1431957012480960CjtoVis_5ICtjoVis_11',
             'Género');
         this.dseContratanteGenero.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1431957012480960CjtoVis_5ICtjoVis_11', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor']);
+            'Clas_1431957012480960CjtoVis_5ICtjoVis_11', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dseContratanteGenero.enabled = false;
         this.dseContratanteGenero.mandatory = false;
         this.dseContratanteGenero.dataType = Field.dtString;
@@ -165,7 +165,7 @@ export class SolicitudIIUuInfoContratanteNATColComponent extends AbstractIIU {
             'cls_Solicitud_ds_DS_SolicitudIIUInfoContratNAT_item_Clas_1431957012480960CjtoVis_5ICtjoVis_21',
             'Indicador extranjero');
         this.dseContratanteIndicadorExtranjero.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1431957012480960CjtoVis_5ICtjoVis_21', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor']);
+            'Clas_1431957012480960CjtoVis_5ICtjoVis_21', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dseContratanteIndicadorExtranjero.enabled = false;
         this.dseContratanteIndicadorExtranjero.mandatory = false;
         this.dseContratanteIndicadorExtranjero.dataType = Field.dtBool;
@@ -178,7 +178,7 @@ export class SolicitudIIUuInfoContratanteNATColComponent extends AbstractIIU {
             'cls_Solicitud_ds_DS_SolicitudIIUInfoContratNAT_item_Clas_1431957012480960CjtoVis_5ICtjoVis_13',
             'Departamento nacimiento');
         this.dseContratanteDepartamentoNacDescripcion.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1431957012480960CjtoVis_5ICtjoVis_13', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones']);
+            'Clas_1431957012480960CjtoVis_5ICtjoVis_13', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dseContratanteDepartamentoNacDescripcion.enabled = false;
         this.dseContratanteDepartamentoNacDescripcion.mandatory = false;
         this.dseContratanteDepartamentoNacDescripcion.dataType = Field.dtString;
@@ -191,7 +191,7 @@ export class SolicitudIIUuInfoContratanteNATColComponent extends AbstractIIU {
             'cls_Solicitud_ds_DS_SolicitudIIUInfoContratNAT_item_Clas_1431957012480960CjtoVis_5ICtjoVis_14',
             'Municipio nacimiento');
         this.dseContratanteMunicipioNacDescripcion.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1431957012480960CjtoVis_5ICtjoVis_14', ['Admin', 'SuperAdmin', 'Asesor']);
+            'Clas_1431957012480960CjtoVis_5ICtjoVis_14', ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.dseContratanteMunicipioNacDescripcion.enabled = false;
         this.dseContratanteMunicipioNacDescripcion.mandatory = false;
         this.dseContratanteMunicipioNacDescripcion.dataType = Field.dtString;

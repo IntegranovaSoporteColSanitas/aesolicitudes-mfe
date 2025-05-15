@@ -39,7 +39,8 @@ export class UsuarioSIUuTCREAROMODANEXOMATComponent extends AbstractServiceIU im
         this.idXML = 'Clas_1432633737216826Ser_20UIServ_1';
         this.className = ModelConstants.Usuario.name;
         this.iuName = ModelConstants.Usuario.siuutcrearomodanexomat;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
+            'MesaDeApoyo']));
         this.serviceName = 'TCREAROMODANEXOMAT';
         this.title = this.langMng.translateText('cls_Usuario_svc_TCREAROMODANEXOMAT',
             'Anexo de maternidad');
