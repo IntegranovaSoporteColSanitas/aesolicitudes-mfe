@@ -206,6 +206,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
         this.ptupuFechaNacimiento.clean();
         this.ptupuGenero.clean();
         this.ptupuIndicadorExtranjero.value = false;
+        this.executeDependecyRulesptupuindicadorextranjero('SetValue', true);
         this.ptupuTelefonoFijo.clean();
         this.ptupuTelefonoCelular.clean();
         this.ptupuCorreoElectronico.clean();
@@ -301,6 +302,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
         } else {
             this.ptupuIndicadorExtranjero.value = false;
         }
+        this.executeDependecyRulesptupuindicadorextranjero('SetValue', true);
 
         this.ptupuTelefonoFijo.value = BHServicesUtil.getValorElementoPor2Claves(datosPersona?.contact?.telecom,
             'system', 'TELEFONO_CONTACTO_PRINCIPAL',

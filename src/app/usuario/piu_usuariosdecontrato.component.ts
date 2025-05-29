@@ -309,6 +309,19 @@ export class UsuarioPIUuUsuariosDeContratoComponent extends AbstractPIU {
         this.orderCriteria = '';
     }
 
+    private checkPrecondicionInAdvanceTELIMINAR(rows: any[]): boolean {
+        for (const row of rows) {
+            // Solicitud.drvTitularConBeneficios = FALSE OR drvEsElTitular = FALSE  'drveseltitular', 'solicitud.drvtitularconbeneficios' 
+            if (!(this.util.valueEquals(this.util.getBool(this.getRowData(row, 'solicitud-drvtitularconbeneficios')), false) ||
+                this.util.valueEquals(this.util.getBool(this.getRowData(row, 'drveseltitular')), false))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+
     /**
      * Evaluate in advance the associated service preconditions to the action element
      * @param actionId Action element identification
@@ -333,18 +346,6 @@ export class UsuarioPIUuUsuariosDeContratoComponent extends AbstractPIU {
             isEnabled = this.checkPrecondicionInAdvanceNum6(rows);
         }
         return isEnabled;
-    }
-
-
-    private checkPrecondicionInAdvanceTELIMINAR(rows: any[]): boolean {
-        for (const row of rows) {
-            // Solicitud.drvTitularConBeneficios = FALSE OR drvEsElTitular = FALSE  'drveseltitular', 'solicitud.drvtitularconbeneficios' 
-            if (!(this.util.valueEquals(this.util.getBool(this.getRowData(row, 'solicitud-drvtitularconbeneficios')), false) ||
-                this.util.valueEquals(this.util.getBool(this.getRowData(row, 'drveseltitular')), false))) {
-                return false;
-            }
-        }
-        return true;
     }
 
     /**

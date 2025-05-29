@@ -163,6 +163,7 @@ export class PersonaSIUuTADDUSUARIOASOLComponent extends AbstractServiceIU imple
         this.ptupuatrFechaNacimiento.clean();
         this.ptupuatrGenero.clean();
         this.ptupuatrIndicadorExtranjero.value = false;
+        this.executeDependecyRulesptupuatrindicadorextranjero('SetValue', true);
         this.ptupuatrTelefonoFijo.clean();
         this.ptupuatrTelefonoCelular.clean();
         this.ptupuatrCorreoElectronico.clean();
@@ -231,6 +232,7 @@ export class PersonaSIUuTADDUSUARIOASOLComponent extends AbstractServiceIU imple
         } else {
             this.ptupuatrIndicadorExtranjero.value = false;
         }
+        this.executeDependecyRulesptupuatrindicadorextranjero('SetValue', true);
 
         this.ptupuatrTelefonoFijo.value = BHServicesUtil.getValorElementoPor2Claves(datosPersona?.contact?.telecom, 
                 'system', 'TELEFONO_CONTACTO_PRINCIPAL', 
@@ -1603,6 +1605,10 @@ export class PersonaSIUuTADDUSUARIOASOLComponent extends AbstractServiceIU imple
         if ('SetValue' === event) {
             this.executeDependecyRules1ptSolicitud();
         }
+        // Rule 2
+        if ('SetValue' === event) {
+            this.executeDependecyRules2ptSolicitud();
+        }
         this.executePendingDependencyRules();
     }
 
@@ -1647,7 +1653,7 @@ export class PersonaSIUuTADDUSUARIOASOLComponent extends AbstractServiceIU imple
     private executeDependecyRules1ptSolicitud(): void {
         this.cacheDependencyRules.counter++;
         this.addQueryInstanceFromField(this.ptSolicitud,
-                'titular.Solicitud.Ae_solicitudes.id_solicitud,titular.tipopersona');
+                'titularpersona.tipopersona');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
             this.notifyAnswerFromToTheBackEnd();
@@ -1667,23 +1673,63 @@ export class PersonaSIUuTADDUSUARIOASOLComponent extends AbstractServiceIU imple
      */
     private executeDependecyRules1ptSolicitudActions(): void {
         const varptsolicitud = this.getFirstInstanceFromCache(this.ptSolicitud);
-        // v <> NULL AND v.titular <> NULL AND v.titular.tipopersona <> "N"
-        if (varptsolicitud && !this.util.isNull(varptsolicitud) && !this.util.isNull(this.util.oidBuilder.buildOidTitular(
-            this.util.getInt(varptsolicitud.get('titular.Solicitud.Ae_solicitudes.id_solicitud')))) &&
-            !this.util.valueEquals(varptsolicitud.get('titular.tipopersona'), 'N')) {
+        // v <> NULL AND v.TitularPersona.TipoPersona = "N"
+        if (varptsolicitud && !this.util.isNull(varptsolicitud) &&
+            this.util.valueEquals(varptsolicitud.get('titularpersona.tipopersona'), 'N')) {
+            // ptReplicarDireccion.SetVisible( TRUE )
+            this.ptReplicarDireccion.visible = true;
+            // ptReplicarDireccion.SetValue( FALSE )
+            this.ptReplicarDireccion.setValue(false);
+            this.executeDependecyRulesptreplicardireccion('SetValue', true);
+            // ptDireccionesTitular.SetVisible( TRUE )
+            this.ptDireccionesTitular.visible = true;
+            // pt_p_atrIndicadorExtranjero.SetValue( FALSE )
+            this.ptupuatrIndicadorExtranjero.setValue(false);
+            this.executeDependecyRulesptupuatrindicadorextranjero('SetValue', true);
+        }
+        this.executePendingDependencyRules();
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Dependency rule 2 for ptSolicitud argument
+     */
+    private executeDependecyRules2ptSolicitud(): void {
+        this.cacheDependencyRules.counter++;
+        this.addQueryInstanceFromField(this.ptSolicitud,
+                'titularpersona.tipopersona');
+        this.notifyCallToTheBackEnd();
+        this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
+            try {
+                this.executeDependecyRules2ptSolicitudActions();
+            } catch (e) {
+                console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
+                this.executePendingDependencyRules();
+                this.changeDetectorRef.markForCheck();
+            } });
+        this.cacheDependencyRules.counter--;
+    }
+
+    /**
+     * Actions of dependency rule 2 for ptSolicitud argument
+     */
+    private executeDependecyRules2ptSolicitudActions(): void {
+        const varptsolicitud = this.getFirstInstanceFromCache(this.ptSolicitud);
+        // v <> NULL AND v.TitularPersona.TipoPersona <> "N"
+        if (varptsolicitud && !this.util.isNull(varptsolicitud) &&
+            !this.util.valueEquals(varptsolicitud.get('titularpersona.tipopersona'), 'N')) {
             // ptReplicarDireccion.SetVisible( FALSE )
             this.ptReplicarDireccion.visible = false;
             // ptReplicarDireccion.SetValue( FALSE )
             this.ptReplicarDireccion.setValue(false);
             this.executeDependecyRulesptreplicardireccion('SetValue', true);
+            // ptDireccionesTitular.SetVisible( FALSE )
+            this.ptDireccionesTitular.visible = false;
             // ptDireccionesTitular.SetValue( NULL )
             this.ptDireccionesTitular.setValue(null);
             this.executeDependecyRulesptdireccionestitular('SetValue', true);
-            // ptDireccionesTitular.SetVisible( FALSE )
-            this.ptDireccionesTitular.visible = false;
-            // pt_p_atrIndicadorExtranjero.SetValue( FALSE )
-            this.ptupuatrIndicadorExtranjero.setValue(false);
-            this.executeDependecyRulesptupuatrindicadorextranjero('SetValue', true);
         }
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();

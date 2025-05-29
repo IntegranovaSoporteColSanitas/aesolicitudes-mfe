@@ -711,6 +711,10 @@ export class UsuarioSIUuTMODUSUARIOComponent extends AbstractServiceIU implement
         if ('SetValue' === event) {
             this.executeDependecyRules4puthisUsuario();
         }
+        // Rule 5
+        if ('SetValue' === event) {
+            this.executeDependecyRules5puthisUsuario();
+        }
         this.executePendingDependencyRules();
     }
 
@@ -919,7 +923,7 @@ export class UsuarioSIUuTMODUSUARIOComponent extends AbstractServiceIU implement
     private executeDependecyRules3puthisUsuario(): void {
         this.cacheDependencyRules.counter++;
         this.addQueryInstanceFromField(this.puthisUsuario,
-                'solicitud.titular.Solicitud.Ae_solicitudes.id_solicitud,solicitud.titular.tipopersona');
+                'solicitud.titularpersona.tipopersona');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
             this.notifyAnswerFromToTheBackEnd();
@@ -939,16 +943,16 @@ export class UsuarioSIUuTMODUSUARIOComponent extends AbstractServiceIU implement
      */
     private executeDependecyRules3puthisUsuarioActions(): void {
         const varputhisusuario = this.getFirstInstanceFromCache(this.puthisUsuario);
-        // v <> NULL AND v.solicitud.titular <> NULL AND v.solicitud.titular.tipopersona <> "N"
-        if (varputhisusuario && !this.util.isNull(varputhisusuario) && !this.util.isNull(this.util.oidBuilder.buildOidTitular(
-            this.util.getInt(varputhisusuario.get('solicitud.titular.Solicitud.Ae_solicitudes.id_solicitud')))) &&
-            !this.util.valueEquals(varputhisusuario.get('solicitud.titular.tipopersona'), 'N')) {
-            // pt_Direccion.SetVisible( FALSE )
-            this.ptuDireccion.visible = false;
-            // pt_ReplicarDireccion.SetVisible( FALSE )
-            this.ptuReplicarDireccion.visible = false;
-            // pt_DireccionUsuario.SetVisible( TRUE )
-            this.ptuDireccionUsuario.visible = true;
+        // v <> NULL AND v.Solicitud.TitularPersona.TipoPersona =  "N"
+        if (varputhisusuario && !this.util.isNull(varputhisusuario) &&
+            this.util.valueEquals(varputhisusuario.get('solicitud.titularpersona.tipopersona'), 'N')) {
+            // pt_Direccion.SetVisible( TRUE )
+            this.ptuDireccion.visible = true;
+            // pt_ReplicarDireccion.SetVisible( TRUE )
+            this.ptuReplicarDireccion.visible = true;
+            // pt_ReplicarDireccion.SetValue( FALSE )
+            this.ptuReplicarDireccion.setValue(false);
+            this.executeDependecyRulesptureplicardireccion('SetValue', true);
         }
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
@@ -960,7 +964,7 @@ export class UsuarioSIUuTMODUSUARIOComponent extends AbstractServiceIU implement
     private executeDependecyRules4puthisUsuario(): void {
         this.cacheDependencyRules.counter++;
         this.addQueryInstanceFromField(this.puthisUsuario,
-                'drveseltitular');
+                'solicitud.titularpersona.tipopersona');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
             this.notifyAnswerFromToTheBackEnd();
@@ -979,6 +983,47 @@ export class UsuarioSIUuTMODUSUARIOComponent extends AbstractServiceIU implement
      * Actions of dependency rule 4 for p_thisUsuario argument
      */
     private executeDependecyRules4puthisUsuarioActions(): void {
+        const varputhisusuario = this.getFirstInstanceFromCache(this.puthisUsuario);
+        // v <> NULL AND v.Solicitud.TitularPersona.TipoPersona <> "N"
+        if (varputhisusuario && !this.util.isNull(varputhisusuario) &&
+            !this.util.valueEquals(varputhisusuario.get('solicitud.titularpersona.tipopersona'), 'N')) {
+            // pt_Direccion.SetVisible( FALSE )
+            this.ptuDireccion.visible = false;
+            // pt_ReplicarDireccion.SetVisible( FALSE )
+            this.ptuReplicarDireccion.visible = false;
+            // pt_ReplicarDireccion.SetValue( FALSE )
+            this.ptuReplicarDireccion.setValue(false);
+            this.executeDependecyRulesptureplicardireccion('SetValue', true);
+        }
+        this.executePendingDependencyRules();
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Dependency rule 5 for p_thisUsuario argument
+     */
+    private executeDependecyRules5puthisUsuario(): void {
+        this.cacheDependencyRules.counter++;
+        this.addQueryInstanceFromField(this.puthisUsuario,
+                'drveseltitular');
+        this.notifyCallToTheBackEnd();
+        this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
+            try {
+                this.executeDependecyRules5puthisUsuarioActions();
+            } catch (e) {
+                console.log(e);
+                this.notifyAnswerFromToTheBackEnd();
+                this.executePendingDependencyRules();
+                this.changeDetectorRef.markForCheck();
+            } });
+        this.cacheDependencyRules.counter--;
+    }
+
+    /**
+     * Actions of dependency rule 5 for p_thisUsuario argument
+     */
+    private executeDependecyRules5puthisUsuarioActions(): void {
         const varputhisusuario = this.getFirstInstanceFromCache(this.puthisUsuario);
         // v <> NULL AND v.drveseltitular = TRUE
         if (varputhisusuario && !this.util.isNull(varputhisusuario) &&
@@ -1337,7 +1382,7 @@ export class UsuarioSIUuTMODUSUARIOComponent extends AbstractServiceIU implement
      * Actions of dependency rule 1 for pt_ReplicarDireccion argument
      */
     private executeDependecyRules1ptuReplicarDireccionActions(): void {
-        // v = true
+        // v = TRUE
         if (this.util.valueEquals(this.util.getBool(this.ptuReplicarDireccion.value), true)) {
             // pt_Direccion.SetActive( TRUE )
             this.ptuDireccion.enabled = true;
@@ -1372,7 +1417,7 @@ export class UsuarioSIUuTMODUSUARIOComponent extends AbstractServiceIU implement
      * Actions of dependency rule 2 for pt_ReplicarDireccion argument
      */
     private executeDependecyRules2ptuReplicarDireccionActions(): void {
-        // v = false
+        // v = FALSE
         if (this.util.valueEquals(this.util.getBool(this.ptuReplicarDireccion.value), false)) {
             // pt_Direccion.SetValue( NULL )
             this.ptuDireccion.setValue(null);
