@@ -2,12 +2,14 @@ import { ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../../app.appglobalinfo';
 import { Util } from '../../common/app.utils';
 import { ModelConstants } from '../../common/model.constants';
-import { Field, FieldOVPreload } from '../../common/baseIUElements';
+import { Field, FieldOVLenseSearch, FieldOVPreload } from '../../common/baseIUElements';
 import { AbstractFilter } from '../../common/abstractFilter';
+import { ExchangeInfo } from '../../common/app.exchangeinfo';
 import { StandardFunctions } from '../../common/standardFunctions';
 import { LanguageMng } from '../../common/languageMng';
 import { UserFunctions } from '../../common/userFunctions';
 import { AbstractPIU } from '../../common/abstractPIU';
+import { QueryResponse } from 'src/app/common/answerRequestInformation';
 
 /**
  * Manages the filter F_SolicitudConsultaRadicado of class Solicitud
@@ -19,6 +21,7 @@ export class SolicitudFilterFuSolicitudConsultaRadicado extends AbstractFilter {
     public vfHasta: Field;
     public vouTipoDoc: FieldOVPreload;
     public vuNumDoc: Field;
+    public voPersona: FieldOVLenseSearch;
 
     /**
      * Component constructor
@@ -43,6 +46,7 @@ export class SolicitudFilterFuSolicitudConsultaRadicado extends AbstractFilter {
         this.vfHasta = new Field(this.langMng);
         this.vouTipoDoc = new FieldOVPreload(this.langMng);
         this.vuNumDoc = new Field(this.langMng);
+        this.voPersona = new FieldOVLenseSearch(this.langMng);
     }
 
     public override canBeExecuted(): boolean {
@@ -118,6 +122,46 @@ export class SolicitudFilterFuSolicitudConsultaRadicado extends AbstractFilter {
         this.vuNumDoc.maxLength = 60;
         this.vuNumDoc.assignCSS(this.populationContainer !== undefined);
         this.variables.push(this.vuNumDoc);
+
+        this.voPersona.nameInRequest = 'vopersona';
+        this.voPersona.alias = this.langMng.translateText(
+            'cls_Solicitud_filter_F_SolicitudConsultaRadicado_fvar_voPersona',
+            'Persona');
+        this.voPersona.visible = true;
+        this.voPersona.enabled = true;
+        this.voPersona.mandatory = false;
+        this.voPersona.dataType = ModelConstants.Persona.name;
+        this.voPersona.text = '';
+        this.voPersona.searchResults = [];
+        this.voPersona.allowMultiSelect = false;
+        this.voPersona.maxLength = 454;
+        this.voPersona.assignCSS(this.populationContainer !== undefined);
+        this.variables.push(this.voPersona);
+        this.voPersona.enabled = false;
+    }
+
+    public buscarPersona(): void {
+        this.voPersona.clean();
+        const tipoIdent = this.vouTipoDoc.getSingleValue();
+
+        if (tipoIdent && this.vuNumDoc.value) {
+            // Buscamos a la apersona por tipo y numero de identificacion 
+            // Si existe, le pasamos el Oid a la ariable voPersona
+            let filtro = this.util.getFilter('F_PersonaConsultarCORE');
+            filtro = this.util.addFilterVariable(filtro, 'vo_TipoIdentificacion', tipoIdent);
+            filtro = this.util.addFilterVariable(filtro, 'v_NumIdentificacion', this.vuNumDoc.value);
+            const query = this.util.getQueryRequest('identificador',[filtro],'',1);
+            this.util.callQuery(ModelConstants.Persona.name, query).then( (resultado: QueryResponse) => {
+                if (resultado.results.length > 0) {
+                    this.voPersona.setValue(JSON.parse(resultado.results[0].oid));
+                    this.executeDependecyRulesvopersona('SetValue', true);
+                    this.search();
+                }
+            }).catch( (error: Error) => {
+
+            });
+
+        }
     }
 
     /**
@@ -158,6 +202,84 @@ export class SolicitudFilterFuSolicitudConsultaRadicado extends AbstractFilter {
             }
             this.changeDetectorRef.markForCheck();
         });
+    }
+
+   /**
+    * Process the selection backward navigation
+    */
+    public override processSelectionBackward(exchInfo: ExchangeInfo): void {
+        if (exchInfo.originArgumentName === 'voPersona' && exchInfo.selectedOids && exchInfo.selectedOids.length > 0) {
+            this.voPersona.setValue(exchInfo.selectedOids);
+            this.executeDependecyRulesvopersona('SetValue', true);
+        }
+
+    }
+
+   /**
+    * Process the click in the lense of any object-valued argument
+    * @param argumentName Name of the argument
+    */
+    public doSearchAction(argumentName: string): void {
+        const exchInfo = this.getSelectionForwardExchInfo();
+        exchInfo.originArgumentName = argumentName;
+        if ('voPersona'.toLowerCase() === argumentName.toLowerCase()) {
+            this.voPersona.completeSelectionForwardExchInfo(exchInfo);
+            exchInfo.targetIUName = 'PIU_Persona';
+            exchInfo.navigationalFilterIdentity = ['Solicitud_F_SolicitudConsultaRadicado_voPersona_NavFilter'];
+            exchInfo.navigationalFilterVariables = this.getNavigationFilterVariables();
+            this.util.navigateSelectionForward(exchInfo);
+        }
+    }
+
+    /**
+     * Process the change in the search text in the voPersona variable
+     */
+    public onvopersonaChange() {
+        this.executeLenseSearch(this.voPersona, ModelConstants.Persona.name, 'IC_PersonaNombresApellidos',
+            ['Solicitud_F_SolicitudConsultaRadicado_voPersona_NavFilter']);
+        this.executeDependecyRulesvopersona('SetValue', false);
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Process the selection in the voPersona variable
+     */
+    public processvopersonaSelected(index: number): void {
+        this.voPersona.processIndexSelected(index);
+        this.executeDependecyRulesvopersona('SetValue', false);
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Clean the value of the p_thisCliente lense search argument
+     */
+    public cleanvopersona(): void {
+        this.clearValidationMessages();
+        this.voPersona.clean();
+        this.executeDependecyRulesvopersona('SetValue', false);
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Set the supplementary information to the voPersona argument
+     */
+    private setSuppInfovopersona(): void {
+        this.setSuplementaryInformationToField(this.voPersona, ModelConstants.Persona.name, 'RazonSocial,PrimerNombre,SegundoNombre,PrimerApellido,SegundoApellido');
+        this.executePendingDependencyRules();
+        this.changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * Evaluate dependendy rules for voPersona variable
+     * @param event Rule event
+     * @param internal Internal or External
+     */
+    private executeDependecyRulesvopersona(event: string, internal: boolean): void {
+        // Suplementary information
+        if ('SetValue' === event) {
+            this.setSuppInfovopersona();
+        }
+        this.executePendingDependencyRules();
     }
 
     public override loadPreload(): void {

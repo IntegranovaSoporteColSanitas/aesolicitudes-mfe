@@ -161,7 +161,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
                     this.notifyAnswerFromToTheBackEnd();
                     if (respuesta?.getOrganizationResponse?.entry &&
                         "0" != respuesta?.getOrganizationResponse.total) {
-                        this.cargarPersonaJuridicaDesdeCORE(respuesta.getOrganizationResponse.entry[0]);
+                        this.cargarPersonaJuridicaDesdeCORE(respuesta);
                     } else {
                         this.setShowWait(false);
                         this.util.addErrorMessage('La persona no existe');
@@ -240,16 +240,85 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
         this.executeDependecyRulesptupuevctipoidentificacion('SetValue', true);
     }
 
-    private cargarPersonaJuridicaDesdeCORE(entry: any) {
+    private cargarPersonaJuridicaDesdeCORE(respuesta: any) {
 
+        this.limpiarCampos();
+
+        this.ptupuCodigoCORE.value = 0;
+
+        // Inhabilitamos los campos prque no se puede modificar a una persona juridica
+        this.ptupuatrRazonSocial.enabled = false;
+        this.ptupuCorreoElectronico.enabled = false;
+        this.ptupuDireccionCompleta.enabled = false;
+        this.ptupDCDireccionCompleta.enabled = false;
+        this.ptupuevcDepartamento.enabled = false;
+        this.ptupDCDepartamento.enabled = false;
+        this.ptupuevcMunicipio.enabled = false;
+        this.ptupDCMunicipio.enabled = false;
+        this.ptupuRural.enabled = false;
+        this.ptupuRural.value = false;
+        this.ptupDCRural.enabled = false;
+        this.ptupDCRural.value = false;
+        this.ptupuTelefonoFijo.enabled = false;
+        this.ptupuTelefonoCelular.enabled = false;
+        this.ptupDCTelefonoFijo.enabled = false;
+        this.ptupDCTelefonoCelular.enabled = false;
+        this.ptuDireccionesXClass.enabled = false;
+        this.ptReplicarDireccion.enabled = false;
+        this.ptReplicarDireccion.value = false;
+
+
+        const entry = respuesta.getOrganizationResponse.entry[0];
         // No puede tener beneficios
         this.puTitularBeneficios.value = false;
 
         this.ptupuatrRazonSocial.value = entry.resource?.schema?.name;
 
         // Correo electronico
-        this.ptupuCorreoElectronico.value = BHServicesUtil.getValorElementoPorClave(entry.resource?.schema?.telecom, 'system', 'email', 'value');
+        this.ptupuCorreoElectronico.value = respuesta.email;
+        //this.ptupuCorreoElectronico.value =  BHServicesUtil.getValorElementoPorClave(entry.resource?.schema?.telecom, 'system', 'email', 'value');
 
+        // Direccion, de residencia y correspondencia
+        if (respuesta?.direccion) {
+            this.ptupuDireccionCompleta.value = respuesta?.direccion.line;
+            this.ptupDCDireccionCompleta.value = respuesta?.direccion.line;
+            // Tenemos los codigos legales de departamento y municipio
+            const codLegalDep = respuesta?.direccion.state;
+            const codLegalMun = respuesta?.direccion.city;
+            if (codLegalDep) {
+                this.notifyCallToTheBackEnd();
+                this.gestionCache.getOidDepartamentoPorCodigoLegal(codLegalDep).then((oidDep: string) => {
+                    this.notifyAnswerFromToTheBackEnd();
+                    // Asignamos el valor el argumento y precargamos los municipios
+                    this.ptupuevcDepartamento.setValue(JSON.parse(oidDep));
+                    this.ptupDCDepartamento.setValue(JSON.parse(oidDep));
+                    this.loadPreloadptupdcmunicipio();
+                    this.loadPreloadptupuevcmunicipio();
+
+                    if (codLegalMun) {
+                        // Buscamos el municipio por codigo legal
+                        this.notifyCallToTheBackEnd();
+                        this.gestionCache.getOidMunicipioPorCodigoLegal(codLegalMun).then((oidMun: string) => {
+                            this.notifyAnswerFromToTheBackEnd();
+                            this.ptupuevcMunicipio.setValue(JSON.parse(oidMun));
+                            this.ptupDCMunicipio.setValue(JSON.parse(oidMun));
+                        }).catch((err: Error) => {
+                            this.notifyAnswerFromToTheBackEnd();
+                            this.util.addErrorMessage(err);
+                        });
+                    }
+                }).catch( (err: Error) => {
+                    this.notifyAnswerFromToTheBackEnd();
+                });
+            }
+        }        
+
+        // Telefonos
+        this.ptupuTelefonoFijo.value = respuesta?.telefonoFijo;
+        //this.ptupuTelefonoCelular.value = respuesta?.telefonoCelular;
+
+        this.ptupDCTelefonoFijo.value = respuesta?.telefonoFijo;
+        //this.ptupDCTelefonoCelular.value = respuesta?.telefonoCelular;
     }
 
     private cargarPersonaNaturalDesdeCORE(datosPersona: any): void {
@@ -257,6 +326,25 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
         // Lista de promesas a las que tenemos que esperar para terminar
         this.setShowWait(true);
         this.limpiarCampos();
+
+        // Habilitamos los campos 
+        this.ptupuatrRazonSocial.enabled = true;
+        this.ptupuCorreoElectronico.enabled = true;
+        this.ptupuDireccionCompleta.enabled = true;
+        this.ptupDCDireccionCompleta.enabled = true;
+        this.ptupuevcDepartamento.enabled = true;
+        this.ptupDCDepartamento.enabled = true;
+        this.ptupuevcMunicipio.enabled = true;
+        this.ptupDCMunicipio.enabled = true;
+        this.ptupuRural.enabled = true;
+        this.ptupDCRural.enabled = true;
+        this.ptupuTelefonoFijo.enabled = true;
+        this.ptupuTelefonoCelular.enabled = true;
+        this.ptupDCTelefonoFijo.enabled = true;
+        this.ptupDCTelefonoCelular.enabled = true;
+        this.ptuDireccionesXClass.enabled = true;
+        this.ptReplicarDireccion.enabled = true;
+        
 
         const varputhissolicitud = this.getFirstInstanceFromCache(this.puthisSolicitud);
         const permiteRechazados = varputhissolicitud.get('drvPermiteRechazados');
@@ -2189,7 +2277,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
      */
     private executeDependecyRules3ptupuevcTipoIdentificacionActions(): void {
         const varptupuevctipoidentificacion = this.getFirstInstanceFromCache(this.ptupuevcTipoIdentificacion);
-        // v <> NULL AND v.nit = true
+        // v <> NULL AND v.nit = TRUE
         if (varptupuevctipoidentificacion && !this.util.isNull(varptupuevctipoidentificacion) &&
             this.util.valueEquals(this.util.getBool(varptupuevctipoidentificacion.get('nit')), true)) {
             // p_TitularBeneficios.SetValue( FALSE )
@@ -2250,7 +2338,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
      */
     private executeDependecyRules4ptupuevcTipoIdentificacionActions(): void {
         const varptupuevctipoidentificacion = this.getFirstInstanceFromCache(this.ptupuevcTipoIdentificacion);
-        // v <> NULL AND v.nit = false
+        // v <> NULL AND v.nit = FALSE
         if (varptupuevctipoidentificacion && !this.util.isNull(varptupuevctipoidentificacion) &&
             this.util.valueEquals(this.util.getBool(varptupuevctipoidentificacion.get('nit')), false)) {
             // pt_p_PrimerNombre.SetMandatory( TRUE )

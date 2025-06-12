@@ -43,15 +43,18 @@ export class SolicitudServices extends AbstractServices {
      * @param vfHastaVar Variable vfHasta
      * @param vouTipoDocVar Variable vo_TipoDoc
      * @param vuNumDocVar Variable v_NumDoc
+     * @param voPersonaVar Variable voPersona
      */
     public queryByFilterFuSolicitudConsultaRadicado(
         displaySetItems: string, orderCriteria: string, instancesPerPage: number, pageNumber: number,
-        vfDesdeVar: Date | null, vfHastaVar: Date | null, vouTipoDocVar: any, vuNumDocVar: string | null): Promise<QueryResponse> {
+        vfDesdeVar: Date | null, vfHastaVar: Date | null, vouTipoDocVar: any, vuNumDocVar: string | null,
+        voPersonaVar: any): Promise<QueryResponse> {
         const filter = this.util.getFilter('F_SolicitudConsultaRadicado');
         this.util.addFilterVariable(filter, 'vfdesde', JsonUtility.date2Json(vfDesdeVar));
         this.util.addFilterVariable(filter, 'vfhasta', JsonUtility.date2Json(vfHastaVar));
         this.util.addFilterVariable(filter, 'vo_tipodoc', vouTipoDocVar);
         this.util.addFilterVariable(filter, 'v_numdoc', vuNumDocVar);
+        this.util.addFilterVariable(filter, 'vopersona', voPersonaVar);
         return this.queryByFilter(displaySetItems, orderCriteria, instancesPerPage, pageNumber, filter);
     }
 

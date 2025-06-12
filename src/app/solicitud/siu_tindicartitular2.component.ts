@@ -138,28 +138,53 @@ export class SolicitudSIUuTINDICARTITULAR2Component extends AbstractServiceIU im
     private buscarPersonaenCOREAux(oidJSONTipoIdentificacion: string): void {
 
         // Recuperamos los datos necesarios para tratar los datos
+        this.addQueryInstanceFromField(this.ptupuagrTipoIdentificacion, 'nit');
         this.addQueryInstanceFromField(this.puthisSolicitud, 'NumRadicado,drvPermiteRechazados,AE_SOLICITUDES.PlanT.EsVoluntario');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
+            this.notifyAnswerFromToTheBackEnd();
             const varputhissolicitud = this.getFirstInstanceFromCache(this.puthisSolicitud);
+            const varTipoIdent = this.getFirstInstanceFromCache(this.ptupuagrTipoIdentificacion);
             const numSol = varputhissolicitud.get('NumRadicado');
             
-            this.notifyCallToTheBackEnd();                
-            this.bhServicesUtil.buscarPersonaPorOidTipoIdent(oidJSONTipoIdentificacion, this.ptupuatrNumIdentificacion.value, numSol).then (( datosPersona: any) => {
-                this.notifyAnswerFromToTheBackEnd();
-                if (datosPersona?.basicData) {
-                    this.cargarPersonaNaturalDesdeCORE(datosPersona);
-                } else {
-                    this.setShowWait(false);
-                    this.util.addErrorMessage('La persona no existe');
-                    this.limpiarCampos();
-                }
-                }).catch( (err: Error) => {
+            if (varTipoIdent.get('nit')) {
+                this.notifyCallToTheBackEnd();
+                this.bhServicesUtil.buscarPersonaJuridicaPorOidTipoIdent(oidJSONTipoIdentificacion, this.ptupuatrNumIdentificacion.value, numSol).then((respuesta: any) => {
+                    this.notifyAnswerFromToTheBackEnd();
+                    if (respuesta?.getOrganizationResponse?.entry &&
+                        "0" != respuesta?.getOrganizationResponse.total) {
+                        this.cargarPersonaJuridicaDesdeCORE(respuesta);
+                    } else {
+                        this.setShowWait(false);
+                        this.util.addErrorMessage('La persona no existe');
+                        this.limpiarCampos();
+                        this.changeDetectorRef.markForCheck();
+                    }
+                }).catch((err: Error) => {
                     this.notifyAnswerFromToTheBackEnd();
                     this.setShowWait(false);
                     this.util.addErrorMessage(err);
+                    this.changeDetectorRef.markForCheck();
                 }
-            );
+                );
+            } else {
+                this.notifyCallToTheBackEnd();
+                this.bhServicesUtil.buscarPersonaPorOidTipoIdent(oidJSONTipoIdentificacion, this.ptupuatrNumIdentificacion.value, numSol).then (( datosPersona: any) => {
+                    this.notifyAnswerFromToTheBackEnd();
+                    if (datosPersona?.basicData) {
+                        this.cargarPersonaNaturalDesdeCORE(datosPersona);
+                    } else {
+                        this.setShowWait(false);
+                        this.util.addErrorMessage('La persona no existe');
+                        this.limpiarCampos();
+                    }
+                    }).catch( (err: Error) => {
+                        this.notifyAnswerFromToTheBackEnd();
+                        this.setShowWait(false);
+                        this.util.addErrorMessage(err);
+                    }
+                );
+            }
         });
     }
 
@@ -197,14 +222,112 @@ export class SolicitudSIUuTINDICARTITULAR2Component extends AbstractServiceIU im
         this.ptupuRechazadoAfiliacion.value = false;
         this.ptupuTitularBeneficios.value = true;
         this.ptEstadoPersona.clean();
-        //this.executeDependecyRules1ptupuagrTipoIdentificacion('SetValue', true);
+        this.executeDependecyRulesptupuagrtipoidentificacion('SetValue', true);
     }
 
+    private cargarPersonaJuridicaDesdeCORE(respuesta: any) {
+
+        this.limpiarCampos();
+
+        this.ptupuCodigo.value = 0;
+
+        // Inhabilitamos los campos prque no se puede modificar a una persona juridica
+        this.ptupuatrFechaNacimiento.mandatory = false;
+        this.ptupuagrMunicipioNacimiento.mandatory = false;
+        this.ptupuagrMunicipioNacimiento.mandatory = false;
+        this.ptRazonSocial.enabled = false;
+        this.ptupuatrCorreoElectronico.enabled = false;
+        this.ptupuatrDireccionCompleta.enabled = false;
+        this.ptDCDireccionCompleta.enabled = false;
+        this.ptupuagrDepartamento.enabled = false;
+        this.ptDCDepartamento.enabled = false;
+        this.ptupuagrMunicipio.enabled = false;
+        this.ptDCMunicipio.enabled = false;
+        this.ptupuatrRural.enabled = false;
+        this.ptupuatrRural.value = false;
+        this.ptDCRural.enabled = false;
+        this.ptDCRural.value = false;
+        this.ptupuatrTelefonoFijo.enabled = false;
+        this.ptupuatrTelefonoCelular.enabled = false;
+        this.ptDCTelefonoFijo.enabled = false;
+        this.ptDCTelefonoCelular.enabled = false;
+        this.ptReplicarDir.enabled = false;
+        this.ptReplicarDir.value = false;
+
+
+        const entry = respuesta.getOrganizationResponse.entry[0];
+
+        this.ptRazonSocial.value = entry.resource?.schema?.name;
+
+        // Correo electronico
+        this.ptupuatrCorreoElectronico.value = respuesta.email;
+        //this.ptupuCorreoElectronico.value =  BHServicesUtil.getValorElementoPorClave(entry.resource?.schema?.telecom, 'system', 'email', 'value');
+
+        // Direccion, de residencia y correspondencia
+        if (respuesta?.direccion) {
+            this.ptupuatrDireccionCompleta.value = respuesta?.direccion.line;
+            this.ptDCDireccionCompleta.value = respuesta?.direccion.line;
+            // Tenemos los codigos legales de departamento y municipio
+            const codLegalDep = respuesta?.direccion.state;
+            const codLegalMun = respuesta?.direccion.city;
+            if (codLegalDep) {
+                this.notifyCallToTheBackEnd();
+                this.gestionCache.getOidDepartamentoPorCodigoLegal(codLegalDep).then((oidDep: string) => {
+                    this.notifyAnswerFromToTheBackEnd();
+                    // Asignamos el valor el argumento y precargamos los municipios
+                    this.ptupuagrDepartamento.setValue(JSON.parse(oidDep));
+                    this.ptDCDepartamento.setValue(JSON.parse(oidDep));
+                    this.loadPreloadptupuagrmunicipio();
+                    this.loadPreloadptdcmunicipio();
+
+                    if (codLegalMun) {
+                        // Buscamos el municipio por codigo legal
+                        this.notifyCallToTheBackEnd();
+                        this.gestionCache.getOidMunicipioPorCodigoLegal(codLegalMun).then((oidMun: string) => {
+                            this.notifyAnswerFromToTheBackEnd();
+                            this.ptupuagrMunicipio.setValue(JSON.parse(oidMun));
+                            this.ptDCMunicipio.setValue(JSON.parse(oidMun));
+                        }).catch((err: Error) => {
+                            this.notifyAnswerFromToTheBackEnd();
+                            this.util.addErrorMessage(err);
+                        });
+                    }
+                }).catch( (err: Error) => {
+                    this.notifyAnswerFromToTheBackEnd();
+                });
+            }
+        }        
+
+        // Telefonos
+        this.ptupuatrTelefonoFijo.value = respuesta?.telefonoFijo;
+        //this.ptupuTelefonoCelular.value = respuesta?.telefonoCelular;
+
+        this.ptDCTelefonoFijo.value = respuesta?.telefonoFijo;
+        //this.ptupDCTelefonoCelular.value = respuesta?.telefonoCelular;
+    }    
     private cargarPersonaNaturalDesdeCORE(datosPersona: any): void {
 
         // Lista de promesas a las que tenemos que esperar para terminar
         this.setShowWait(true);
         this.limpiarCampos();
+
+        // Habilitamos campos
+        this.ptRazonSocial.enabled = true;
+        this.ptupuatrCorreoElectronico.enabled = true;
+        this.ptupuatrDireccionCompleta.enabled = true;
+        this.ptDCDireccionCompleta.enabled = true;
+        this.ptupuagrDepartamento.enabled = true;
+        this.ptDCDepartamento.enabled = true;
+        this.ptupuagrMunicipio.enabled = true;
+        this.ptDCMunicipio.enabled = true;
+        this.ptupuatrRural.enabled = true;
+        this.ptupuatrRural.value = true;
+        this.ptDCRural.enabled = true;
+        this.ptupuatrTelefonoFijo.enabled = true;
+        this.ptupuatrTelefonoCelular.enabled = true;
+        this.ptDCTelefonoFijo.enabled = true;
+        this.ptDCTelefonoCelular.enabled = true;
+        this.ptReplicarDir.enabled = true;
 
         const varputhissolicitud = this.getFirstInstanceFromCache(this.puthisSolicitud);
         const permiteRechazados = varputhissolicitud.get('drvPermiteRechazados');
