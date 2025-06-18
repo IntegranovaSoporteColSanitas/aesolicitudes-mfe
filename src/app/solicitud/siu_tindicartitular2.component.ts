@@ -122,7 +122,7 @@ export class SolicitudSIUuTINDICARTITULAR2Component extends AbstractServiceIU im
     }
 
     private buscarPersonaenCORE(): void {
-    	// Si el usuario no puede ver los datos básicos de persona, no hacemos nada
+    	// Si el usuario no puede ver los datos bÃ¡sicos de persona, no hacemos nada
     	if (!this.appGlobalInfo.getLoggedUserInfo().puedeVerDatosPersona()) {
     		return;
     	}
@@ -527,7 +527,7 @@ export class SolicitudSIUuTINDICARTITULAR2Component extends AbstractServiceIU im
         }
 
         // Titular con beneficios
-        // Condiciones, que sea persona natural y no esté rechazado en Afiliación
+        // Condiciones, que sea persona natural y no esta rechazado en Afiliacion
         if (esPersonaNatural && (permiteRechazados || !this.ptupuRechazadoAfiliacion.value) ){
             this.ptupuTitularBeneficios.value = true;
             this.ptupuTitularBeneficios.enabled = true;
@@ -537,7 +537,7 @@ export class SolicitudSIUuTINDICARTITULAR2Component extends AbstractServiceIU im
         }
 
         // Si la persona existe y el plan de la solicitud es voluntario, buscamos los contratos existentes
-        // Planes Voluntarios - Req. 5: Validación de afiliado - Referencia: HU-AEEPS-04
+        // Planes Voluntarios - Req. 5: Validacion de afiliado - Referencia: HU-AEEPS-04
         if (this.ptupuTitularBeneficios.value && planVoluntario) {
             this.notifyCallToTheBackEnd();
             this.bhServicesUtil.consultarBeneficiario( 

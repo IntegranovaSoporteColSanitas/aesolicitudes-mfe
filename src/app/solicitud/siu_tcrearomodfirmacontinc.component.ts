@@ -119,6 +119,7 @@ export class SolicitudSIUuTCREAROMODFIRMACONTINCComponent extends AbstractServic
         this.ptuTexto.mandatory = false;
         this.ptuTexto.dataType = Field.dtText;
         this.ptuTexto.assignCSS();
+        this.ptuTexto.addCSSClass('avisoProDatos');
         this.fields.push(this.ptuTexto);
     }
 

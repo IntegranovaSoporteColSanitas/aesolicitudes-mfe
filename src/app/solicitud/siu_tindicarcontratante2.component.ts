@@ -131,7 +131,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
 
     private buscarPersonaenCORE(): void {
 
-        // Si el usuario no puede ver los datos básicos de persona, no hacemos nada
+        // Si el usuario no puede ver los datos bÃ¡sicos de persona, no hacemos nada
         if (!this.appGlobalInfo.getLoggedUserInfo().puedeVerDatosPersona()) {
             return;
         }
@@ -548,7 +548,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
         }
 
         // Titular con beneficios
-        // Condiciones, que sea persona natural y no esté rechazado en Afiliación
+        // Condiciones, que sea persona natural y no esta rechazado en Afiliacion
         if (esPersonaNatural && (permiteRechazados || !this.ptuRechazadoAfiliacion.value)) {
             this.puTitularBeneficios.value = true;
             this.puTitularBeneficios.enabled = true;
@@ -558,7 +558,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
         }
 
         // Cargamos todas las direcciones recibidas en el combo
-        // Si el usuario no puede ver los datos básicos de persona, no hacemos nada
+        // Si el usuario no puede ver los datos basicos de persona, no hacemos nada
         if (this.appGlobalInfo.getLoggedUserInfo().userCache?.modDBasicosPersona && datosPersona?.contact?.address) {
             let i = 1;
             for (const dir of datosPersona.contact.address) {
@@ -580,7 +580,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
 
 
         // Si la persona existe y el plan de la solicitud es voluntario, buscamos los contratos existentes
-        // Planes Voluntarios - Req. 5: Validación de afiliado - Referencia: HU-AEEPS-04
+        // Planes Voluntarios - Req. 5: Validacion de afiliado - Referencia: HU-AEEPS-04
         if (this.puTitularBeneficios.value && planVoluntario) {
             this.notifyCallToTheBackEnd();
             this.bhServicesUtil.consultarBeneficiario(
@@ -609,7 +609,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
     }
 
     private asignarDireccionSeleccionada(): void {
-        // Asignamos la dirección seleccionada en el combo
+        // Asignamos la direccion seleccionada en el combo
         if (!this.ptuDireccionesXClass.value) {
             return;
         }
