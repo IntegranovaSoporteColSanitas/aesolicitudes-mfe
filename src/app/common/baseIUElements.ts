@@ -1293,6 +1293,9 @@ export class FieldOVPreload extends FieldOV {
             instance.jsonOID = element.jsonOID;
             this.preloadValues.push({ label: instance.supplementaryInfo, value: instance });
         });
+        if (this.value && !this.possibleValue) {
+            this.possibleValue = this.value.oid;
+        }
         if (this.possibleValue && this.preloadValues.length > 0) {
             this.setValue(this.possibleValue);
             this.possibleValue = null;
@@ -1350,6 +1353,7 @@ export class FieldOVPreload extends FieldOV {
                     this.setOids(newValue);
                 }
             } else {
+
                 if (newValue instanceof Instance) {
                     this.addInstances(newValue);
                 } else if (newValue instanceof InstanceCache) {

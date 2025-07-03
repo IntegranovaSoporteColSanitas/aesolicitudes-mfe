@@ -447,6 +447,11 @@ export class PersonaSIUuTADDUSUARIOASOLComponent extends AbstractServiceIU imple
         }
     }    
 
+    public override saveChanges(): void {
+        this.ptDireccionesXClass.clean();
+        super.saveChanges();
+    }
+
     /**
      * Initialize the component using default values
      */

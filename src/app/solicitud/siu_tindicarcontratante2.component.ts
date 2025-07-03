@@ -679,6 +679,11 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
         }
     }
 
+    public override saveChanges(): void {
+        this.ptuDireccionesXClass.clean();
+        super.saveChanges();
+    }
+
     /**
      * Initialize the component using default values
      */
