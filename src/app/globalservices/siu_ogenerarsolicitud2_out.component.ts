@@ -48,7 +48,7 @@ export class GSSIUuOGENERARSOLICITUD2uOutComponent  extends AbstractIU implement
         this.className = ModelConstants.Globalservices.name;
         this.iuName = 'siu_ogenerarsolicitud2_out';
         this.title = this.langMng.translateText('gs_OGENERARSOLICITUD2',
-            'Generar solicitud');
+            'Replicar solicitud');
 
         // Create outbound argument components
         this.ptupsuNumSolicitud = new Field(this.langMng);
@@ -100,6 +100,14 @@ export class GSSIUuOGENERARSOLICITUD2uOutComponent  extends AbstractIU implement
             this.serviceResponse[this.ptupsuNumSolicitud.nameInRequest];
         this.ptupsuErrorWS.value =
             this.serviceResponse[this.ptupsuErrorWS.nameInRequest];
+    }
+
+    public override processCancel(lastExecutionSuccess?: boolean): void {
+        if (this.context?.exchangeInfo?.comeBackContext?.exchangeInfo?.targetIUName?.toLowerCase().startsWith('piu') ) {
+            super.processCancel(lastExecutionSuccess);
+        } else {
+            this.util.navigateToMain();
+        }
     }
 
     /**

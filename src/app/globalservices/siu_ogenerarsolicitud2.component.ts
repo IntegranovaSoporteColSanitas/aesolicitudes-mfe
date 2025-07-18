@@ -44,11 +44,10 @@ export class GSSIUuOGENERARSOLICITUD2Component extends AbstractServiceIU impleme
         this.idXML = 'IGl_1462185885696764UIServ_1';
         this.className = ModelConstants.Globalservices.name;
         this.iuName = ModelConstants.Globalservices.siuuogenerarsolicitud2;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin',
-            'Afiliaciones']));
+        this.setUserVisibility(true);
         this.serviceName = 'OGENERARSOLICITUD2';
         this.title = this.langMng.translateText('gs_OGENERARSOLICITUD2',
-            'Generar solicitud');
+            'Replicar solicitud');
         this.noShow = true;
 
         // Create inbound argument components

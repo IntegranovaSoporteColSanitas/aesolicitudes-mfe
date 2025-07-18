@@ -809,13 +809,7 @@ export class Util {
         return returnvalue;
     }
 
-    /**
-     * Returns a safe url form images
-     * @param url Image url
-     */
-    public getSafeUrl(url: string): SafeUrl {
-        return this.sanitizer.bypassSecurityTrustUrl(url);
-    }
+
 
     /**
      * Saves a file using the data in base 64 format
@@ -1797,7 +1791,13 @@ export class Util {
                         if (res.body && res.body.resultCode === '666') {
                             this.navigateToWrongVersionPage();
                         } else {
-                            resolve(res.body);
+                            if (res.body && res.body.resultCode === '777') {
+                                // Sesion abierta en otro dispositivo
+                                this.appGlobalInfo.setLogOut();
+                                reject( new ErrorInformation(false, '', '','', []) );
+                            } else {
+                                resolve(res.body);
+                            }
                         }
                     },
                     error: (msg: any) => {
