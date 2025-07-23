@@ -618,6 +618,11 @@ export class SolicitudSIUuTMODIFICARINFOPAGOComponent extends AbstractServiceIU 
         this.cacheDependencyRules.counter++;
         this.addQueryInstanceFromField(this.ptupuevcPeriodicidad,
                 'drvnumpagos,Codigo');
+        
+        const solicitud = this.cacheDependencyRules.getInstance(ModelConstants.Solicitud.name, this.puthisSolicitud.getSingleValue());
+        if (solicitud) {
+            solicitud.quitarDeCache('drvimptarifaplanvol');
+        }
         this.addQueryInstanceFromField(this.puthisSolicitud,
                 'ae_solicitudes.plant.esvoluntario,drvimptarifaplanvol');
         this.notifyCallToTheBackEnd();
@@ -747,6 +752,10 @@ export class SolicitudSIUuTMODIFICARINFOPAGOComponent extends AbstractServiceIU 
      */
     private executeDependecyRules1ptupuevcPeriodicidad(): void {
         this.cacheDependencyRules.counter++;
+        const solicitud = this.cacheDependencyRules.getInstance(ModelConstants.Solicitud.name, this.puthisSolicitud.getSingleValue());
+        if (solicitud) {
+            solicitud.quitarDeCache('drvimptarifaplanvol');
+        }
         this.addQueryInstanceFromField(this.puthisSolicitud,
                 'ae_solicitudes.plant.esvoluntario,drvimptarifaplanvol,Ae_solicitudes.id_solicitud');
         this.addQueryInstanceFromField(this.ptupuevcPeriodicidad,

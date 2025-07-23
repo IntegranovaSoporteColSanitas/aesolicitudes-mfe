@@ -303,6 +303,11 @@ export class ConditionalNavigationMng {
                 this.appGlobalInfo.getLoggedUserInfo().isAgentOneOf(['Funcionario', 'Admin', 'SuperAdmin', 'Asesor', 'AreaMedica',
                 'Afiliaciones', 'Gestor', 'MesaDeApoyo'])) {
                 conditionFulfilled = true;
+                // Volvemos al escenarios anterior del anterior
+                if (!comeBackContext?.exchangeInfo?.targetIUName?.toLowerCase().startsWith('piu') ) {
+                    comeBackContext = comeBackContext?.exchangeInfo?.comeBackContext;
+                }
+        
                 exchInfo = this.util.createExchangeInfoFromCondNavigation(ModelConstants.Solicitud.name,
                     ModelConstants.Solicitud.siuutmarcarcompletada, previousContext, comeBackContext);
                 // p_thisSolicitud

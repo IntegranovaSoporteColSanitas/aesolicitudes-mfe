@@ -244,6 +244,17 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
 
         this.limpiarCampos();
 
+        // Inhabilitamos la opcion de contratos asociados
+        if (this.queryContainer && this.queryContainer.actions){
+            for (const action of this.queryContainer.actions) {
+                if (action.targetClass === ModelConstants.Globalservices.name && 
+                    (action.targetUI === ModelConstants.Globalservices.siuutgseleccontratoasoc ||
+                     action.targetUI === ModelConstants.Globalservices.siuutgseleccontratoasoctit) ) {
+                        action.visible = false;
+                     }
+            }
+        }
+
         this.ptupuCodigoCORE.value = 0;
 
         // Inhabilitamos los campos prque no se puede modificar a una persona juridica
@@ -326,6 +337,17 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
         // Lista de promesas a las que tenemos que esperar para terminar
         this.setShowWait(true);
         this.limpiarCampos();
+
+        // Habilitamos la opcion de contratos asociados
+        if (this.queryContainer && this.queryContainer.actions){
+            for (const action of this.queryContainer.actions) {
+                if (action.targetClass === ModelConstants.Globalservices.name && 
+                    (action.targetUI === ModelConstants.Globalservices.siuutgseleccontratoasoc ||
+                        action.targetUI === ModelConstants.Globalservices.siuutgseleccontratoasoctit) ) {
+                        action.visible = true;
+                }
+            }
+        }        
 
         // Habilitamos los campos 
         this.ptupuatrRazonSocial.enabled = true;
@@ -589,7 +611,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
                 numSol).then((contratos: string[]) => {
                     // Recorremos los contratos encontrados
                     this.notifyAnswerFromToTheBackEnd();
-                    if (contratos) {
+                    if (contratos && contratos.length > 0) {
                         // Recorremos los contratos 
                         let mensaje = '';
 

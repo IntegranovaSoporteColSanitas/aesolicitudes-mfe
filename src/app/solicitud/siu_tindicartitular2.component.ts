@@ -229,6 +229,17 @@ export class SolicitudSIUuTINDICARTITULAR2Component extends AbstractServiceIU im
 
         this.limpiarCampos();
 
+        // Inhabilitamos la opcion de contratos asociados
+        if (this.queryContainer && this.queryContainer.actions){
+            for (const action of this.queryContainer.actions) {
+                if (action.targetClass === ModelConstants.Globalservices.name && 
+                    (action.targetUI === ModelConstants.Globalservices.siuutgseleccontratoasoc ||
+                        action.targetUI === ModelConstants.Globalservices.siuutgseleccontratoasoctit) ) {
+                        action.visible = false;
+                }
+            }
+        }        
+
         this.ptupuCodigo.value = 0;
 
         // Inhabilitamos los campos prque no se puede modificar a una persona juridica
@@ -310,6 +321,17 @@ export class SolicitudSIUuTINDICARTITULAR2Component extends AbstractServiceIU im
         // Lista de promesas a las que tenemos que esperar para terminar
         this.setShowWait(true);
         this.limpiarCampos();
+
+        // Habilitamos la opcion de contratos asociados
+        if (this.queryContainer && this.queryContainer.actions){
+            for (const action of this.queryContainer.actions) {
+                if (action.targetClass === ModelConstants.Globalservices.name && 
+                    (action.targetUI === ModelConstants.Globalservices.siuutgseleccontratoasoc ||
+                        action.targetUI === ModelConstants.Globalservices.siuutgseleccontratoasoctit) ) {
+                        action.visible = true;
+                }
+            }
+        }        
 
         // Habilitamos campos
         this.ptRazonSocial.enabled = true;
