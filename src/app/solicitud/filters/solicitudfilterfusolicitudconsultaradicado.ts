@@ -173,7 +173,7 @@ export class SolicitudFilterFuSolicitudConsultaRadicado extends AbstractFilter {
 
         // vfDesde
         const defValvfDesde = new Promise<void>((resolveDefValue) => {
-            let rtnFuncvfDesde0;
+            let rtnFuncvfDesde0: any;
             this.usrFunc.fuGetFechaDesdeVarFiltro().then((res) => {
                 rtnFuncvfDesde0 = res;
 

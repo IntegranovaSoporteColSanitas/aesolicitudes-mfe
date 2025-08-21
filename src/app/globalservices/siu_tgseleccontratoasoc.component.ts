@@ -79,48 +79,53 @@ export class GSSIUuTGSELECCONTRATOASOCComponent extends AbstractServiceIU implem
         const numIdent = varpusolicitud.get('Contratante.NumIdentificacion');
         const numRadicado = varpusolicitud.get('NumRadicado');
         
-        this.setShowWait(true);
-        this.bhServicesUtil.consultarContratosAsociadosDePersona(tipoIdent,numIdent,numRadicado).then( (contratos: any[]) => {
-            
-            if (contratos)  {
-                const listaContratos: any[] = [];
-                let textoMostrar = '';
-                for (const contrato of contratos) {
-                    // Anyadimos el contrato a la lista y como texto concatenamos varios valores
-                    // Num. Contrato
-                    textoMostrar = BHServicesUtil.getValorElementoPorClave(contrato?.contract?.identifier, 'type', 'CONTRATO', 'value');
-                    // Fecha Inicio Vigencia
-                    const fecha = contrato?.contract?.applies?.start;
-                    textoMostrar += fecha ? ' ' + formatDate(fecha, 'dd/MM/yyyy', 'es-ES') : '';
-                    // Estado del contrato (descripción)
-                    const estado = contrato?.contract?.status;
-                    textoMostrar += estado ? ' ' + estado : '';
-                    // Codigo legal Producto
-                    const clProd = BHServicesUtil.getValorElementoPorClave(contrato.insurancePlan?.identifier, 'type', 'CODIGO_PRODUCTO', 'value');
-                    textoMostrar += clProd ? ' ' + clProd : '';
-                    // Codigo legal Plan
-                    const clPlan = BHServicesUtil.getValorElementoPorClave(contrato.contract?.identifier, 'type', 'PLAN', 'value');
-                    textoMostrar += clPlan ? ' ' + clPlan : '';
-                    // Num. Familia
-                    const numFam = BHServicesUtil.getValorElementoPorClave(contrato.contract?.identifier, 'type', 'FAMILIA', 'value');
-                    textoMostrar += numFam ? ' ' + numFam : '';
+        if (tipoIdent && numIdent) {
+            this.setShowWait(true);
+            this.bhServicesUtil.consultarContratosAsociadosDePersona(tipoIdent,numIdent,numRadicado).then( (contratos: any[]) => {
+                
+                if (contratos)  {
+                    const listaContratos: any[] = [];
+                    let textoMostrar = '';
+                    for (const contrato of contratos) {
+                        // Anyadimos el contrato a la lista y como texto concatenamos varios valores
+                        // Num. Contrato
+                        textoMostrar = BHServicesUtil.getValorElementoPorClave(contrato?.contract?.identifier, 'type', 'CONTRATO', 'value');
+                        // Fecha Inicio Vigencia
+                        const fecha = contrato?.contract?.applies?.start;
+                        textoMostrar += fecha ? ' ' + formatDate(fecha, 'dd/MM/yyyy', 'es-ES') : '';
+                        // Estado del contrato (descripción)
+                        const estado = contrato?.contract?.status;
+                        textoMostrar += estado ? ' ' + estado : '';
+                        // Codigo legal Producto
+                        const clProd = BHServicesUtil.getValorElementoPorClave(contrato.insurancePlan?.identifier, 'type', 'CODIGO_PRODUCTO', 'value');
+                        textoMostrar += clProd ? ' ' + clProd : '';
+                        // Codigo legal Plan
+                        const clPlan = BHServicesUtil.getValorElementoPorClave(contrato.contract?.identifier, 'type', 'PLAN', 'value');
+                        textoMostrar += clPlan ? ' ' + clPlan : '';
+                        // Num. Familia
+                        const numFam = BHServicesUtil.getValorElementoPorClave(contrato.contract?.identifier, 'type', 'FAMILIA', 'value');
+                        textoMostrar += numFam ? ' ' + numFam : '';
 
-                    listaContratos.push({key: contrato, value:textoMostrar});
+                        listaContratos.push({key: contrato, value:textoMostrar});
+                    }
+                    this.ptNumContrato.options = listaContratos;
+                    if (listaContratos.length === 0) {
+                        this.util.addErrorMessage('El contratante no tiene contratos asociados');    
+                    }
+                } else {
+                    this.util.addErrorMessage('El contratante no tiene contratos asociados');
                 }
-                this.ptNumContrato.options = listaContratos;
-                if (listaContratos.length === 0) {
-                    this.util.addErrorMessage('El contratante no tiene contratos asociados');    
-                }
-            } else {
-                this.util.addErrorMessage('El contratante no tiene contratos asociados');
-            }
-            this.changeDetectorRef.markForCheck();
-            this.setShowWait(false);
-        }).catch( (err: Error) => {
-            this.setShowWait(false);
-            this.util.addErrorMessage(err);
-            this.changeDetectorRef.markForCheck();
-        });
+                this.changeDetectorRef.markForCheck();
+                this.setShowWait(false);
+            }).catch( (err: Error) => {
+                this.setShowWait(false);
+                this.util.addErrorMessage(err);
+                this.changeDetectorRef.markForCheck();
+            });
+        } else {
+            this.util.addErrorMessage('Debe indicar primero el contratante');
+            this.processCancel(false);
+        }
 
         this.changeDetectorRef.markForCheck();
     }

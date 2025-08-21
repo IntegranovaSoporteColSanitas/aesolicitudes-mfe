@@ -229,17 +229,6 @@ export class SolicitudSIUuTINDICARTITULAR2Component extends AbstractServiceIU im
 
         this.limpiarCampos();
 
-        // Inhabilitamos la opcion de contratos asociados
-        if (this.queryContainer && this.queryContainer.actions){
-            for (const action of this.queryContainer.actions) {
-                if (action.targetClass === ModelConstants.Globalservices.name && 
-                    (action.targetUI === ModelConstants.Globalservices.siuutgseleccontratoasoc ||
-                        action.targetUI === ModelConstants.Globalservices.siuutgseleccontratoasoctit) ) {
-                        action.visible = false;
-                }
-            }
-        }        
-
         this.ptupuCodigo.value = 0;
 
         // Inhabilitamos los campos prque no se puede modificar a una persona juridica
@@ -321,17 +310,6 @@ export class SolicitudSIUuTINDICARTITULAR2Component extends AbstractServiceIU im
         // Lista de promesas a las que tenemos que esperar para terminar
         this.setShowWait(true);
         this.limpiarCampos();
-
-        // Habilitamos la opcion de contratos asociados
-        if (this.queryContainer && this.queryContainer.actions){
-            for (const action of this.queryContainer.actions) {
-                if (action.targetClass === ModelConstants.Globalservices.name && 
-                    (action.targetUI === ModelConstants.Globalservices.siuutgseleccontratoasoc ||
-                        action.targetUI === ModelConstants.Globalservices.siuutgseleccontratoasoctit) ) {
-                        action.visible = true;
-                }
-            }
-        }        
 
         // Habilitamos campos
         this.ptRazonSocial.enabled = true;
@@ -1974,10 +1952,10 @@ export class SolicitudSIUuTINDICARTITULAR2Component extends AbstractServiceIU im
             this.ptupuatrSegundoNombre.visible = true;
             // ptRazonSocial.SetVisible( FALSE )
             this.ptRazonSocial.visible = false;
-            // pt_p_agrDepartamentoNacimiento.SetMandatory( TRUE )
-            this.ptupuagrDepartamentoNacimiento.mandatory = true;
-            // pt_p_agrMunicipioNacimiento.SetMandatory( TRUE )
-            this.ptupuagrMunicipioNacimiento.mandatory = true;
+            // pt_p_agrDepartamentoNacimiento.SetMandatory( pt_p_atrIndicadorExtranjero = FALSE )
+            this.ptupuagrDepartamentoNacimiento.mandatory = this.util.valueEquals(this.util.getBool(this.ptupuatrIndicadorExtranjero.value), false);
+            // pt_p_agrMunicipioNacimiento.SetMandatory( pt_p_atrIndicadorExtranjero = FALSE )
+            this.ptupuagrMunicipioNacimiento.mandatory = this.util.valueEquals(this.util.getBool(this.ptupuatrIndicadorExtranjero.value), false);
             // pt_p_agrEstadoCivil.SetMandatory( TRUE )
             this.ptupuagrEstadoCivil.mandatory = true;
             // pt_p_atrFechaNacimiento.SetMandatory( TRUE )

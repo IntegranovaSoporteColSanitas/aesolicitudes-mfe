@@ -306,7 +306,8 @@ export class UsuarioPIUuUsuariosDeContratoComponent extends AbstractPIU {
      * Initialize the order criterias
      */
     public override initializeOrderCriterias(): void {
-        this.orderCriteria = '';
+        this.orderCriteriaList.push({key: 'OC_PorId', value: 'Identificador'});
+        this.orderCriteria = 'OC_PorId';
     }
 
     private checkPrecondicionInAdvanceTELIMINAR(rows: any[]): boolean {

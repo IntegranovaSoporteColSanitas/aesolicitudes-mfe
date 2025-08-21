@@ -244,17 +244,6 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
 
         this.limpiarCampos();
 
-        // Inhabilitamos la opcion de contratos asociados
-        if (this.queryContainer && this.queryContainer.actions){
-            for (const action of this.queryContainer.actions) {
-                if (action.targetClass === ModelConstants.Globalservices.name && 
-                    (action.targetUI === ModelConstants.Globalservices.siuutgseleccontratoasoc ||
-                     action.targetUI === ModelConstants.Globalservices.siuutgseleccontratoasoctit) ) {
-                        action.visible = false;
-                     }
-            }
-        }
-
         this.ptupuCodigoCORE.value = 0;
 
         // Inhabilitamos los campos prque no se puede modificar a una persona juridica
@@ -337,17 +326,6 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
         // Lista de promesas a las que tenemos que esperar para terminar
         this.setShowWait(true);
         this.limpiarCampos();
-
-        // Habilitamos la opcion de contratos asociados
-        if (this.queryContainer && this.queryContainer.actions){
-            for (const action of this.queryContainer.actions) {
-                if (action.targetClass === ModelConstants.Globalservices.name && 
-                    (action.targetUI === ModelConstants.Globalservices.siuutgseleccontratoasoc ||
-                        action.targetUI === ModelConstants.Globalservices.siuutgseleccontratoasoctit) ) {
-                        action.visible = true;
-                }
-            }
-        }        
 
         // Habilitamos los campos 
         this.ptupuatrRazonSocial.enabled = true;
@@ -1916,7 +1894,7 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
      */
     private executeDependecyRules2ptupuIndicadorExtranjeroActions(): void {
         const varptupuevctipoidentificacion = this.getFirstInstanceFromCache(this.ptupuevcTipoIdentificacion);
-        // v <> NULL AND v = false AND pt_p_evcTipoIdentificacion <> NULL AND pt_p_evctipoidentificacion.nit = false
+        // v <> NULL AND v = FALSE AND pt_p_evcTipoIdentificacion <> NULL AND pt_p_evctipoidentificacion.nit = FALSE
         if (varptupuevctipoidentificacion && !this.util.isNull(this.util.getBool(this.ptupuIndicadorExtranjero.value)) &&
             this.util.valueEquals(this.util.getBool(this.ptupuIndicadorExtranjero.value), false) &&
             !this.util.isNull(varptupuevctipoidentificacion) &&
@@ -2380,10 +2358,10 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
             this.ptupuFechaNacimiento.mandatory = true;
             // pt_Diplomatico.SetVisible( TRUE )
             this.ptuDiplomatico.visible = true;
-            // pt_p_evcDepartamentoNac.SetMandatory( TRUE )
-            this.ptupuevcDepartamentoNac.mandatory = true;
-            // pt_p_evcMunicipioNac.SetMandatory( TRUE )
-            this.ptupuevcMunicipioNac.mandatory = true;
+            // pt_p_evcDepartamentoNac.SetMandatory( pt_p_IndicadorExtranjero = FALSE )
+            this.ptupuevcDepartamentoNac.mandatory = this.util.valueEquals(this.util.getBool(this.ptupuIndicadorExtranjero.value), false);
+            // pt_p_evcMunicipioNac.SetMandatory( pt_p_IndicadorExtranjero = FALSE )
+            this.ptupuevcMunicipioNac.mandatory = this.util.valueEquals(this.util.getBool(this.ptupuIndicadorExtranjero.value), false);
             // pt_p_PrimerNombre.SetVisible( TRUE )
             this.ptupuPrimerNombre.visible = true;
             // pt_p_atrRazonSocial.SetVisible( FALSE )

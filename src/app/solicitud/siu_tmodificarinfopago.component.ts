@@ -424,10 +424,6 @@ export class SolicitudSIUuTMODIFICARINFOPAGOComponent extends AbstractServiceIU 
         if ('SetValue' === event) {
             this.executeDependecyRules3puthisSolicitud();
         }
-        // Rule 4
-        if ('SetValue' === event) {
-            this.executeDependecyRules4puthisSolicitud();
-        }
         this.executePendingDependencyRules();
     }
 
@@ -601,56 +597,11 @@ export class SolicitudSIUuTMODIFICARINFOPAGOComponent extends AbstractServiceIU 
      */
     private executeDependecyRules3puthisSolicitudActions(): void {
         const varputhissolicitud = this.getFirstInstanceFromCache(this.puthisSolicitud);
-        // v <> NULL AND v.Ae_solicitudes.plant.esvoluntario = true
+        // v <> NULL AND v.Ae_solicitudes.plant.esvoluntario = TRUE
         if (varputhissolicitud && !this.util.isNull(varputhissolicitud) &&
             this.util.valueEquals(this.util.getBool(varputhissolicitud.get('ae_solicitudes.plant.esvoluntario')), true)) {
             // pt_p_valorCuota.SetActive( false )
             this.ptupuvalorCuota.enabled = false;
-        }
-        this.executePendingDependencyRules();
-        this.changeDetectorRef.markForCheck();
-    }
-
-    /**
-     * Dependency rule 4 for p_thisSolicitud argument
-     */
-    private executeDependecyRules4puthisSolicitud(): void {
-        this.cacheDependencyRules.counter++;
-        this.addQueryInstanceFromField(this.ptupuevcPeriodicidad,
-                'drvnumpagos,Codigo');
-        
-        const solicitud = this.cacheDependencyRules.getInstance(ModelConstants.Solicitud.name, this.puthisSolicitud.getSingleValue());
-        if (solicitud) {
-            solicitud.quitarDeCache('drvimptarifaplanvol');
-        }
-        this.addQueryInstanceFromField(this.puthisSolicitud,
-                'ae_solicitudes.plant.esvoluntario,drvimptarifaplanvol');
-        this.notifyCallToTheBackEnd();
-        this.cacheDependencyRules.searchAll().then(() => {
-            this.notifyAnswerFromToTheBackEnd();
-            try {
-                this.executeDependecyRules4puthisSolicitudActions();
-            } catch (e) {
-                console.log(e);
-                this.notifyAnswerFromToTheBackEnd();
-                this.executePendingDependencyRules();
-                this.changeDetectorRef.markForCheck();
-            } });
-        this.cacheDependencyRules.counter--;
-    }
-
-    /**
-     * Actions of dependency rule 4 for p_thisSolicitud argument
-     */
-    private executeDependecyRules4puthisSolicitudActions(): void {
-        const varptupuevcperiodicidad = this.getFirstInstanceFromCache(this.ptupuevcPeriodicidad);
-        const varputhissolicitud = this.getFirstInstanceFromCache(this.puthisSolicitud);
-        // v <> NULL AND v.ae_solicitudes.plant.esvoluntario = true AND pt_p_evcPeriodicidad <> NULL
-        if (varptupuevcperiodicidad && varputhissolicitud && !this.util.isNull(varputhissolicitud) &&
-            this.util.valueEquals(this.util.getBool(varputhissolicitud.get('ae_solicitudes.plant.esvoluntario')), true) &&
-            !this.util.isNull(varptupuevcperiodicidad)) {
-            // pt_p_valorCuota.SetValue( round(v.drvimptarifaplanvol / pt_p_evcperiodicidad.drvnumpagos) )
-            this.ptupuvalorCuota.setValue(this.stdFun.round(this.util.getReal(varputhissolicitud.get('drvimptarifaplanvol')) / this.util.getInt(varptupuevcperiodicidad.get('drvnumpagos'))));
         }
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
@@ -741,7 +692,7 @@ export class SolicitudSIUuTMODIFICARINFOPAGOComponent extends AbstractServiceIU 
             return;
         }
         // Rule 1
-        if ('SetValue' === event && !internal) {
+        if ('SetValue' === event) {
             this.executeDependecyRules1ptupuevcPeriodicidad();
         }
         this.executePendingDependencyRules();
@@ -780,7 +731,7 @@ export class SolicitudSIUuTMODIFICARINFOPAGOComponent extends AbstractServiceIU 
     private executeDependecyRules1ptupuevcPeriodicidadActions(): void {
         const varputhissolicitud = this.getFirstInstanceFromCache(this.puthisSolicitud);
         const varptupuevcperiodicidad = this.getFirstInstanceFromCache(this.ptupuevcPeriodicidad);
-        // v <> NULL AND p_thissolicitud.ae_solicitudes.plant.esvoluntario = true
+        // v <> NULL AND p_thissolicitud.ae_solicitudes.plant.esvoluntario = TRUE
         if (varputhissolicitud && varptupuevcperiodicidad && !this.util.isNull(varptupuevcperiodicidad) &&
             this.util.valueEquals(this.util.getBool(varputhissolicitud.get('ae_solicitudes.plant.esvoluntario')), true)) {
             // pt_p_valorCuota.SetValue( round(p_thissolicitud.drvimptarifaplanvol / v.drvnumpagos) )
