@@ -54,7 +54,7 @@ export class GSSIUuTGSELECCONTRATOASOCComponent extends AbstractServiceIU implem
         this.idXML = 'IGl_1433189875712803UIServ_1';
         this.className = ModelConstants.Globalservices.name;
         this.iuName = ModelConstants.Globalservices.siuutgseleccontratoasoc;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor']));
         this.serviceName = 'TGSELECCONTRATOASOC';
         this.title = this.langMng.translateText('gs_TGSELECCONTRATOASOC',
             'Contratos asociados');

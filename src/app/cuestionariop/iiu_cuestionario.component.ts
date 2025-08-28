@@ -82,6 +82,8 @@ export class CuestionarioPIIUuCuestionarioComponent extends AbstractIIU implemen
         super(appGlobalInfo, util, changeDetectorRef, condNavMng);
         this.idXML = 'Clas_1432647237632788UIInst_1';
         this.className = ModelConstants.Cuestionariop.name;
+        this.classAlias = this.langMng.translateText('cls_CuestionarioP',
+            'Cuestionario');
         this.iuName = ModelConstants.Cuestionariop.iiuucuestionario;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
             'Afiliaciones', 'Gestor', 'MesaDeApoyo']));

@@ -40,9 +40,13 @@ export class UsuarioPIUuUsuariosDeContratoComponent extends AbstractPIU {
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1432633737216826UIPobCl_1';
         this.className = ModelConstants.Usuario.name;
+        this.classAlias = this.langMng.translateText('cls_Usuario',
+            'Usuario');
+        this.supplementaryInfoAtt.push('tipoidentificacion.nombrecorto');
+        this.supplementaryInfoAtt.push('numidentificacion');
         this.iuName = 'PIU_UsuariosDeContrato';
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
-            'Afiliaciones', 'Gestor', 'MesaDeApoyo']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Funcionario', 'Admin', 'SuperAdmin',
+            'Asesor', 'AreaMedica', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']));
         this.title = this.langMng.translateText('cls_Usuario_piu_PIU_UsuariosDeContrato',
             'Información Personas a Afiliar');
         this.queryURL = '/api/UsuarioApi/GetPopulationDynamic';
@@ -63,8 +67,9 @@ export class UsuarioPIUuUsuariosDeContratoComponent extends AbstractPIU {
         dsItem.alias = this.langMng.translateText(
             'cls_Usuario_ds_DS_UsuarioPIUUsuariosCont_item_Clas_1432633737216826CjtoVis_2ICtjoVis_1',
             this.dsidentificador);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
+        dsItem.agents = [ModelConstants.Funcionario.name, ModelConstants.Admin.name, ModelConstants.Superadmin.name,
+            ModelConstants.Asesor.name, ModelConstants.Areamedica.name, ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name,
+            ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();

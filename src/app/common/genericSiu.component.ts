@@ -300,9 +300,9 @@ export class GenericSiuComponent implements OnInit {
 							textValue += ' ';
 						}
 						if (this.argSupInfAttTypes && this.argSupInfAttTypes.length > i) {
-							textValue += this.util.applyDefaultFormat(instance[att.replace('.', '-')], this.argSupInfAttTypes[i]);
+							textValue += this.util.applyDefaultFormat(instance[att.replace(new RegExp('[.]', 'g'), '-')], this.argSupInfAttTypes[i]);
 						} else {
-							textValue += this.util.valueToString(instance[att.replace('.', '-')]);
+							textValue += this.util.valueToString(instance[att.replace(new RegExp('[.]', 'g'), '-')]);
 						}
 						i++;
 					}
@@ -366,7 +366,7 @@ export class GenericSiuComponent implements OnInit {
                     'cls_GrupoAsociado_svc_eliminar_inArg_p_thisGrupoAsociado',
                     'Grupo Asociado');
                 this.argSupInfAttNames = 'codigolegal,descripcion';
-                this.argSupInfAttTypes = [Field.dtString, Field.dtString];
+                this.argSupInfAttTypes = [Field.dtString,Field.dtString];
                 this.siuHasNoShow = true;
                 siuFound = true;
                 break;

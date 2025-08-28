@@ -44,6 +44,10 @@ export class GrupoAsociadoPIUuGrupoAsociadoBusquedaComponent extends AbstractPIU
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431875354624341UIPobCl_2';
         this.className = ModelConstants.Grupoasociado.name;
+        this.classAlias = this.langMng.translateText('cls_GrupoAsociado',
+            'Grupo Asociado');
+        this.supplementaryInfoAtt.push('codigolegal');
+        this.supplementaryInfoAtt.push('descripcion');
         this.iuName = ModelConstants.Grupoasociado.piuugrupoasociadobusqueda;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
             'Afiliaciones', 'Gestor', 'MesaDeApoyo']));

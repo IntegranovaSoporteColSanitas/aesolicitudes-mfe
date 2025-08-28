@@ -39,6 +39,8 @@ export class ObsEstadoPIUuObsEstadoComponent extends AbstractPIU {
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1434446856192292UIPobCl_1';
         this.className = ModelConstants.Obsestado.name;
+        this.classAlias = this.langMng.translateText('cls_ObsEstado',
+            'Observaciones');
         this.iuName = 'PIU_ObsEstado';
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
             'Afiliaciones', 'Gestor', 'MesaDeApoyo']));

@@ -49,6 +49,8 @@ export class DocumentoGIIUuDocumentoGuMaestroComponent extends AbstractIIU {
         super(appGlobalInfo, util, changeDetectorRef, condNavMng);
         this.idXML = 'Clas_1434446200832109UIInst_1';
         this.className = ModelConstants.Documentog.name;
+        this.classAlias = this.langMng.translateText('cls_DocumentoG',
+            'Documento gestor');
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
             'Afiliaciones', 'Gestor', 'MesaDeApoyo']));
         this.title = this.langMng.translateText('cls_DocumentoG_iiu_IIU_DocumentoG_Maestro',

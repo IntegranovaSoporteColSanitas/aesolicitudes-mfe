@@ -321,6 +321,9 @@ export class InputDefinedSelectionComponent {
     /** Change value event */
     @Output() valueChanged = new EventEmitter<void>();
 
+    /** Action event, tipically Enter key */
+    @Output() doAction = new EventEmitter<void>();
+
     constructor(
         public readonly langMng: LanguageMng) {
     }
@@ -331,6 +334,21 @@ export class InputDefinedSelectionComponent {
     public onFieldChange() {
         this.valueChanged.emit();
     }
+
+    /**
+     * Manages the key down event
+     */
+    public onKeyDown(event: KeyboardEvent): void {
+        if (event.key === 'Enter' || event.key === 'NumpadEnter' || event.keyCode === 13) {
+            event.preventDefault();
+            if (this.doAction.observed) {
+                this.doAction.emit();
+            }
+            if (this.field) {
+                this.field.onKeyDown(event.key);
+            }
+        }
+    }    
 }
 
 @Component({

@@ -43,9 +43,12 @@ export class TipoDireccionPIUuTipoDireccionComponent extends AbstractPIU impleme
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431940628480765UIPobCl_1';
         this.className = ModelConstants.Tipodireccion.name;
+        this.classAlias = this.langMng.translateText('cls_TipoDireccion',
+            'Tipo dirección');
+        this.supplementaryInfoAtt.push('descripcion');
         this.iuName = ModelConstants.Tipodireccion.piuutipodireccion;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['SuperAdmin', 'Asesor', 'Afiliaciones',
-            'Gestor', 'MesaDeApoyo']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Funcionario', 'Admin', 'SuperAdmin',
+            'Asesor', 'AreaMedica', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']));
         this.title = this.langMng.translateText('cls_TipoDireccion_piu_PIU_TipoDireccion',
             'Tipos de dirección');
         this.queryURL = '/api/TipoDireccionApi/GetPopulationDynamic';
@@ -73,8 +76,9 @@ export class TipoDireccionPIUuTipoDireccionComponent extends AbstractPIU impleme
         dsItem.alias = this.langMng.translateText(
             'cls_TipoDireccion_ds__Auto__item_Clas_1431940628480765CjtoVis_AutoICtjoVis_1',
             this.dscodigo);
-        dsItem.agents = [ModelConstants.Superadmin.name, ModelConstants.Asesor.name, ModelConstants.Afiliaciones.name,
-            ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
+        dsItem.agents = [ModelConstants.Funcionario.name, ModelConstants.Admin.name, ModelConstants.Superadmin.name,
+            ModelConstants.Asesor.name, ModelConstants.Areamedica.name, ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name,
+            ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();

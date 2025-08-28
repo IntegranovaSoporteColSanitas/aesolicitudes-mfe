@@ -89,7 +89,7 @@ export class SolicitudMDIUuInclusionFamiliarComponent extends AbstractMDIU imple
             this.details.push(this.d1);
         }
         this.d2Visible = this.appGlobalInfo.getLoggedUserInfo().isDetailVisible(this.idXML, 'Clas_1431957012480960UIMaDet_8Det_4',
-            ['Admin', 'SuperAdmin', 'Asesor', 'AreaMedica', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
+            ['Funcionario', 'Admin', 'SuperAdmin', 'Asesor', 'AreaMedica', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.d2 = new SolicitudIIUuInfoObservacionesComponent(appGlobalInfo, util, changeDetectorRef, langMng, stdFun,
             condNavMng, usrFunc);
         this.d2.masterDetailContainer = this;
@@ -97,7 +97,7 @@ export class SolicitudMDIUuInclusionFamiliarComponent extends AbstractMDIU imple
             this.details.push(this.d2);
         }
         this.d3Visible = this.appGlobalInfo.getLoggedUserInfo().isDetailVisible(this.idXML, 'Clas_1431957012480960UIMaDet_8Det_5',
-            ['Admin', 'SuperAdmin', 'Asesor', 'AreaMedica', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
+            ['Funcionario', 'Admin', 'SuperAdmin', 'Asesor', 'AreaMedica', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.d3 = new SolicitudIIUuInfoPagoComponent(appGlobalInfo, util, changeDetectorRef, langMng, stdFun,
             condNavMng, usrFunc);
         this.d3.masterDetailContainer = this;

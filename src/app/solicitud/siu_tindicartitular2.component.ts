@@ -1927,7 +1927,7 @@ export class SolicitudSIUuTINDICARTITULAR2Component extends AbstractServiceIU im
      */
     private executeDependecyRules3ptupuagrTipoIdentificacionActions(): void {
         const varptupuagrtipoidentificacion = this.getFirstInstanceFromCache(this.ptupuagrTipoIdentificacion);
-        // v <> NULL AND v.nit = false
+        // v <> NULL AND v.nit = FALSE
         if (varptupuagrtipoidentificacion && !this.util.isNull(varptupuagrtipoidentificacion) &&
             this.util.valueEquals(this.util.getBool(varptupuagrtipoidentificacion.get('nit')), false)) {
             // pt_p_agrDepartamentoNacimiento.SetVisible( TRUE )

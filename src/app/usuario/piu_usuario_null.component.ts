@@ -39,9 +39,13 @@ export class UsuarioPIUuUsuariouNullComponent extends AbstractPIU implements OnI
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1432633737216826UIPobCl_4';
         this.className = ModelConstants.Usuario.name;
+        this.classAlias = this.langMng.translateText('cls_Usuario',
+            'Usuario');
+        this.supplementaryInfoAtt.push('tipoidentificacion.nombrecorto');
+        this.supplementaryInfoAtt.push('numidentificacion');
         this.iuName = ModelConstants.Usuario.piuuusuariounull;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
-            'Afiliaciones', 'Gestor', 'MesaDeApoyo']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Funcionario', 'Admin', 'SuperAdmin',
+            'Asesor', 'AreaMedica', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']));
         this.title = this.langMng.translateText('cls_Usuario_piu_PIU_Usuario_Null',
             'Usuario');
         this.queryURL = '/api/UsuarioApi/GetPopulationDynamic';
@@ -69,8 +73,9 @@ export class UsuarioPIUuUsuariouNullComponent extends AbstractPIU implements OnI
         dsItem.alias = this.langMng.translateText(
             'cls_Usuario_ds_DS_Usuario_NUll_item_Clas_1432633737216826CjtoVis_5ICtjoVis_1',
             this.dsidentificador);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
+        dsItem.agents = [ModelConstants.Funcionario.name, ModelConstants.Admin.name, ModelConstants.Superadmin.name,
+            ModelConstants.Asesor.name, ModelConstants.Areamedica.name, ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name,
+            ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
     }
 

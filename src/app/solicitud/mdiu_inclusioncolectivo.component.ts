@@ -101,7 +101,7 @@ export class SolicitudMDIUuInclusionColectivoComponent extends AbstractMDIU impl
             this.details.push(this.d2);
         }
         this.d3Visible = this.appGlobalInfo.getLoggedUserInfo().isDetailVisible(this.idXML, 'Clas_1431957012480960UIMaDet_4Det_4',
-            ['Admin', 'SuperAdmin', 'Asesor', 'AreaMedica', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
+            ['Funcionario', 'Admin', 'SuperAdmin', 'Asesor', 'AreaMedica', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.d3 = new SolicitudIIUuInfoObservacionesComponent(appGlobalInfo, util, changeDetectorRef, langMng, stdFun,
             condNavMng, usrFunc);
         this.d3.masterDetailContainer = this;

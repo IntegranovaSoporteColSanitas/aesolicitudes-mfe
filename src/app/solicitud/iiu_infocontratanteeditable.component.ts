@@ -43,6 +43,9 @@ export class SolicitudIIUuInfoContratanteEditableComponent extends AbstractIIU {
         super(appGlobalInfo, util, changeDetectorRef, condNavMng);
         this.idXML = 'Clas_1431957012480960UIInst_18';
         this.className = ModelConstants.Solicitud.name;
+        this.classAlias = this.langMng.translateText('cls_Solicitud',
+            'Solicitud');
+        this.supplementaryInfoAtt.push('ae_solicitudes.numero_solicitud');
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
             'AreaMedica', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']));
         this.title = this.langMng.translateText('cls_Solicitud_iiu_IIU_InfoContratanteEditable',
@@ -99,7 +102,7 @@ export class SolicitudIIUuInfoContratanteEditableComponent extends AbstractIIU {
             'Contratos asociados');
         accItem.nounVerb = true;
         accItem.multiSelection = false;
-        accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name];
+        accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
         accItem.targetClass = ModelConstants.Globalservices.name;
         accItem.targetUI = ModelConstants.Globalservices.siuutgseleccontratoasoc;
         accItem.setShowInModalProperties('imes-gs-siu-tgseleccontratoasoc',

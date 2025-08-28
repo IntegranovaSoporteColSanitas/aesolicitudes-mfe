@@ -50,6 +50,8 @@ export class DocumentoGPIUuDocumentoGComponent extends AbstractPIU implements On
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1434446200832109UIPobCl_1';
         this.className = ModelConstants.Documentog.name;
+        this.classAlias = this.langMng.translateText('cls_DocumentoG',
+            'Documento gestor');
         this.iuName = ModelConstants.Documentog.piuudocumentog;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
             'Afiliaciones', 'Gestor', 'MesaDeApoyo']));

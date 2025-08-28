@@ -71,7 +71,7 @@ export class SolicitudMDIUuUsuariosINCLComponent extends AbstractMDIU implements
             this.details.push(this.d0);
         }
         this.d1Visible = this.appGlobalInfo.getLoggedUserInfo().isDetailVisible(this.idXML, 'Clas_1431957012480960UIMaDet_7Det_2',
-            ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
+            ['Admin', 'SuperAdmin', 'Asesor', 'AreaMedica', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.d1 = new UsuarioPIUuUsuariosDeContratoComponent(appGlobalInfo, util, changeDetectorRef, langMng, stdFun,
             condNavMng, usrFunc);
         this.d1.masterDetailContainer = this;

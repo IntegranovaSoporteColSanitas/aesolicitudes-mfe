@@ -39,6 +39,8 @@ export class CuestionarioPPIUuCuestionarioPuNullComponent extends AbstractPIU im
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1432647237632788UIPobCl_1';
         this.className = ModelConstants.Cuestionariop.name;
+        this.classAlias = this.langMng.translateText('cls_CuestionarioP',
+            'Cuestionario');
         this.iuName = ModelConstants.Cuestionariop.piuucuestionariopunull;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
             'Afiliaciones', 'Gestor', 'MesaDeApoyo']));

@@ -85,7 +85,7 @@ export class SolicitudMDIUuNuevaAfiliacionComponent extends AbstractMDIU impleme
             this.details.push(this.d0);
         }
         this.d1Visible = this.appGlobalInfo.getLoggedUserInfo().isDetailVisible(this.idXML, 'Clas_1431957012480960UIMaDet_1Det_3',
-            ['Admin', 'SuperAdmin', 'Asesor', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
+            ['Admin', 'SuperAdmin', 'Asesor', 'AreaMedica', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.d1 = new UsuarioPIUuUsuariosDeContratoComponent(appGlobalInfo, util, changeDetectorRef, langMng, stdFun,
             condNavMng, usrFunc);
         this.d1.masterDetailContainer = this;
@@ -93,7 +93,7 @@ export class SolicitudMDIUuNuevaAfiliacionComponent extends AbstractMDIU impleme
             this.details.push(this.d1);
         }
         this.d2Visible = this.appGlobalInfo.getLoggedUserInfo().isDetailVisible(this.idXML, 'Clas_1431957012480960UIMaDet_1Det_4',
-            ['Admin', 'SuperAdmin', 'Asesor', 'AreaMedica', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
+            ['Funcionario', 'Admin', 'SuperAdmin', 'Asesor', 'AreaMedica', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.d2 = new SolicitudIIUuInfoObservacionesComponent(appGlobalInfo, util, changeDetectorRef, langMng, stdFun,
             condNavMng, usrFunc);
         this.d2.masterDetailContainer = this;
@@ -101,7 +101,7 @@ export class SolicitudMDIUuNuevaAfiliacionComponent extends AbstractMDIU impleme
             this.details.push(this.d2);
         }
         this.d3Visible = this.appGlobalInfo.getLoggedUserInfo().isDetailVisible(this.idXML, 'Clas_1431957012480960UIMaDet_1Det_5',
-            ['Admin', 'SuperAdmin', 'Asesor', 'AreaMedica', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
+            ['Funcionario', 'Admin', 'SuperAdmin', 'Asesor', 'AreaMedica', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']);
         this.d3 = new SolicitudIIUuInfoPagoComponent(appGlobalInfo, util, changeDetectorRef, langMng, stdFun,
             condNavMng, usrFunc);
         this.d3.masterDetailContainer = this;

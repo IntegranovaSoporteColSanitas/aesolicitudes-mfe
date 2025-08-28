@@ -38,8 +38,11 @@ export class SolicitudIIUuInfoObservacionesComponent extends AbstractIIU {
         super(appGlobalInfo, util, changeDetectorRef, condNavMng);
         this.idXML = 'Clas_1431957012480960UIInst_7';
         this.className = ModelConstants.Solicitud.name;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
-            'AreaMedica', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']));
+        this.classAlias = this.langMng.translateText('cls_Solicitud',
+            'Solicitud');
+        this.supplementaryInfoAtt.push('ae_solicitudes.numero_solicitud');
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Funcionario', 'Admin', 'SuperAdmin',
+            'Asesor', 'AreaMedica', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']));
         this.title = this.langMng.translateText('cls_Solicitud_iiu_IIU_InfoObservaciones',
             'Observaciones');
         this.queryURL = '/api/SolicitudApi/GetPopulationDynamic';
@@ -63,8 +66,8 @@ export class SolicitudIIUuInfoObservacionesComponent extends AbstractIIU {
             'cls_Solicitud_ds_DS_SolicitudIIUInfoObservacion_item_Clas_1431957012480960CjtoVis_9ICtjoVis_2',
             'Nº Solicitud');
         this.dseNumRadicado.visible = this.appGlobalInfo.getLoggedUserInfo().isAttributeVisible(this.idXML,
-            'Clas_1431957012480960CjtoVis_9ICtjoVis_2', ['Admin', 'SuperAdmin', 'Asesor', 'AreaMedica', 'Afiliaciones', 'Gestor',
-            'MesaDeApoyo']);
+            'Clas_1431957012480960CjtoVis_9ICtjoVis_2', ['Funcionario', 'Admin', 'SuperAdmin', 'Asesor', 'AreaMedica', 'Afiliaciones',
+            'Gestor', 'MesaDeApoyo']);
         this.dseNumRadicado.enabled = false;
         this.dseNumRadicado.mandatory = false;
         this.dseNumRadicado.dataType = Field.dtInt;

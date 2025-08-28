@@ -42,6 +42,8 @@ export class UsuarioRegPIUuUsuarioRegComponent extends AbstractPIU {
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1433848250368895UIPobCl_1';
         this.className = ModelConstants.Usuarioreg.name;
+        this.classAlias = this.langMng.translateText('cls_UsuarioReg',
+            'Usuario');
         this.iuName = 'PIU_UsuarioReg';
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
             'Afiliaciones', 'Gestor', 'MesaDeApoyo']));

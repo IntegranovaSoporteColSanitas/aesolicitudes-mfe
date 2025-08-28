@@ -47,6 +47,9 @@ export class SolicitudPIUuConsultarRadicadoComponent extends AbstractPIU impleme
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431957012480960UIPobCl_2';
         this.className = ModelConstants.Solicitud.name;
+        this.classAlias = this.langMng.translateText('cls_Solicitud',
+            'Solicitud');
+        this.supplementaryInfoAtt.push('ae_solicitudes.numero_solicitud');
         this.iuName = ModelConstants.Solicitud.piuuconsultarradicado;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
             'AreaMedica', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']));

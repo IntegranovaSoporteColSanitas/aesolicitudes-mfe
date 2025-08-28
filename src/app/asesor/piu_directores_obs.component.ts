@@ -47,6 +47,11 @@ export class AsesorPIUuDirectoresuObsComponent extends AbstractPIU implements On
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1431886233600794UIPobCl_8';
         this.className = ModelConstants.Asesor.name;
+        this.classAlias = this.langMng.translateText('cls_Asesor',
+            'Asesor');
+        this.supplementaryInfoAtt.push('primernombre');
+        this.supplementaryInfoAtt.push('segundonombre');
+        this.supplementaryInfoAtt.push('primerapellido');
         this.iuName = ModelConstants.Asesor.piuudirectoresuobs;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Funcionario', 'Admin', 'SuperAdmin',
             'Asesor', 'AreaMedica', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']));
@@ -135,8 +140,9 @@ export class AsesorPIUuDirectoresuObsComponent extends AbstractPIU implements On
         dsItem.alias = this.langMng.translateText(
             'cls_Asesor_ds_DS_Directores_Obs_item_Clas_1431886233600794CjtoVis_8ICtjoVis_14',
             this.dsnumidentificacion);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
+        dsItem.agents = [ModelConstants.Funcionario.name, ModelConstants.Admin.name, ModelConstants.Superadmin.name,
+            ModelConstants.Asesor.name, ModelConstants.Areamedica.name, ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name,
+            ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
     }
 
