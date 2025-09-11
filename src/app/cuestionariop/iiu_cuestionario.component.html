@@ -82,9 +82,13 @@
                                                     <ng-container *ngFor="let opcion of pre.opciones">
                                                         <div class="exMeOpcionRespMultiple">
                                                             <label>{{opcion.valor}}</label>
-                                                            <p-checkbox [(ngModel)]="opcion.seleccionado" 
-                                                            [disabled]="soloLectura() || editorDisabled(pre)"
-                                                            [binary]="true" ></p-checkbox>                                                        
+
+                                                            <!-- <input type="checkbox" class="form-control" (checked)="opcion.seleccionado" [(ngModel)]="opcion.seleccionado"
+                                                            [disabled]="soloLectura() || editorDisabled(pre)" /> -->
+                                                            
+                                                            <p-checkbox  [(ngModel)]="opcion.seleccionado" 
+                                                                [disabled]="soloLectura() || editorDisabled(pre)"
+                                                                [binary]="true" ></p-checkbox>                                                        
                                                         </div>
                                                     </ng-container>
                                                 </div>

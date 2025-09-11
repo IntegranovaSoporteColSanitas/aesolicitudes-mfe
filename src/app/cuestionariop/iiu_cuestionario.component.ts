@@ -261,7 +261,7 @@ export class CuestionarioPIIUuCuestionarioComponent extends AbstractIIU implemen
                     for(const valor of listaValores){
                         if (valor) {
                             let resp = pregunta.opciones.find( (opc: Respuesta) => 
-                                valor.toLowerCase === opc.valor.toLowerCase()
+                                valor.toLowerCase() === opc.valor.toLowerCase()
                             );
                             // Si no lo encontramos lo añadimos
                             if (resp) {
@@ -273,7 +273,7 @@ export class CuestionarioPIIUuCuestionarioComponent extends AbstractIIU implemen
                     }
                 } else{
                     let resp = pregunta.opciones.find( (opc: Respuesta) => 
-                        valores.toLowerCase === opc.valor.toLowerCase()
+                        valores.toLowerCase() === opc.valor.toLowerCase()
                     );
                     if (resp) {
                         resp.seleccionado = true;

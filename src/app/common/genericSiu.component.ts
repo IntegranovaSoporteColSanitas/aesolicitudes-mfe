@@ -366,7 +366,7 @@ export class GenericSiuComponent implements OnInit {
                     'cls_GrupoAsociado_svc_eliminar_inArg_p_thisGrupoAsociado',
                     'Grupo Asociado');
                 this.argSupInfAttNames = 'codigolegal,descripcion';
-                this.argSupInfAttTypes = [Field.dtString,Field.dtString];
+                this.argSupInfAttTypes = [Field.dtString, Field.dtString];
                 this.siuHasNoShow = true;
                 siuFound = true;
                 break;

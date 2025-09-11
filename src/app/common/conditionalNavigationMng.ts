@@ -310,7 +310,6 @@ export class ConditionalNavigationMng {
                 this.util.navigateTo(exchInfo);
             }
             // p_thisSolicitud.Ae_solicitudes.PlanT.EsVoluntario = false
-            // p_thisSolicitud.Ae_solicitudes.PlanT.EsVoluntario = false
             if (!conditionFulfilled &&
                 this.util.valueEquals(this.util.getBool(varputhissolicitud.get('Ae_solicitudes.PlanT.EsVoluntario')), false) ) {
                 conditionFulfilled = true;
