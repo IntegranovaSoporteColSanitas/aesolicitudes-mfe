@@ -97,12 +97,12 @@ export class PersonaSIUuTADDUSUARIOASOLComponent extends AbstractServiceIU imple
         this.ptupuCodigo = new Field(this.langMng);
         this.ptupuTieneEPSSanitas = new Field(this.langMng);
         this.ptupuRechazadoAfiliacion = new Field(this.langMng);
-        this.ptupuagrPais = new FieldOVLenseSearch(this.langMng);
-        this.ptSolicitud = new FieldOVLenseSearch(this.langMng);
+        this.ptupuagrPais = new FieldOVLenseSearch(this.langMng, this.util);
+        this.ptSolicitud = new FieldOVLenseSearch(this.langMng, this.util);
         this.ptDireccionesTitular = new FieldOVPreload(this.langMng);
         this.ptReplicarDireccion = new FieldDefinedSelection(this.langMng);
         this.ptDireccionesXClass = new FieldDefinedSelection(this.langMng);
-        this.ptEstadoPersona = new FieldOVLenseSearch(this.langMng);
+        this.ptEstadoPersona = new FieldOVLenseSearch(this.langMng, this.util);
 
     }
 
@@ -1512,44 +1512,20 @@ export class PersonaSIUuTADDUSUARIOASOLComponent extends AbstractServiceIU imple
             });
         }
     }
-
     /**
      * Process the change in the pt_p_agrPais lense search argument
      */
     public onptupuagrpaisChange(): void {
-
-        const searchText = this.ptupuagrPais.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.ptupuagrPais.lastText) {
-                this.ptupuagrPais.removeCSSClass('noResultsLenseSearch');
-                this.ptupuagrPais.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Pais.name, 'IC_Pais', searchText, [], null).then(
-                        (response: any) => {
-                            this.ptupuagrPais.removeCSSClass('noResultsLenseSearch');
-                            this.ptupuagrPais.searchResults = response.results;
-                            if (this.ptupuagrPais.searchResults &&
-                                this.ptupuagrPais.searchResults.length === 0) {
-                                this.ptupuagrPais.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.ptupuagrPais.searchResults &&
-                                this.ptupuagrPais.searchResults.length === 1) {
-                                this.processptupuagrpaisSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.ptupuagrPais.removeCSSClass('noResultsLenseSearch');
-                            this.ptupuagrPais.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.ptupuagrPais, ModelConstants.Pais.name, 'IC_Pais',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanptupuagrpais();
             }
-        } else {
-            this.ptupuagrPais.removeCSSClass('noResultsLenseSearch');
-            this.ptupuagrPais.searchResults = [];
-            this.cleanptupuagrpais();
-        }
-
+            if (foundInstances === 1) {
+                this.processptupuagrpaisSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -1569,7 +1545,7 @@ export class PersonaSIUuTADDUSUARIOASOLComponent extends AbstractServiceIU imple
                 this.ptupuagrPais.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.ptupuagrPais.getSelectedInstances().push(selectedInstance);
+            this.ptupuagrPais.addInstances(selectedInstance);
         }
         this.executeDependecyRulesptupuagrpais('SetValue', false);
         this.changeDetectorRef.markForCheck();
@@ -1739,44 +1715,20 @@ export class PersonaSIUuTADDUSUARIOASOLComponent extends AbstractServiceIU imple
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the ptSolicitud lense search argument
      */
     public onptsolicitudChange(): void {
-
-        const searchText = this.ptSolicitud.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.ptSolicitud.lastText) {
-                this.ptSolicitud.removeCSSClass('noResultsLenseSearch');
-                this.ptSolicitud.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Solicitud.name, 'IC_Solicitud', searchText, [], null).then(
-                        (response: any) => {
-                            this.ptSolicitud.removeCSSClass('noResultsLenseSearch');
-                            this.ptSolicitud.searchResults = response.results;
-                            if (this.ptSolicitud.searchResults &&
-                                this.ptSolicitud.searchResults.length === 0) {
-                                this.ptSolicitud.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.ptSolicitud.searchResults &&
-                                this.ptSolicitud.searchResults.length === 1) {
-                                this.processptsolicitudSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.ptSolicitud.removeCSSClass('noResultsLenseSearch');
-                            this.ptSolicitud.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.ptSolicitud, ModelConstants.Solicitud.name, 'IC_Solicitud',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanptsolicitud();
             }
-        } else {
-            this.ptSolicitud.removeCSSClass('noResultsLenseSearch');
-            this.ptSolicitud.searchResults = [];
-            this.cleanptsolicitud();
-        }
-
+            if (foundInstances === 1) {
+                this.processptsolicitudSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -1796,7 +1748,7 @@ export class PersonaSIUuTADDUSUARIOASOLComponent extends AbstractServiceIU imple
                 this.ptSolicitud.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.ptSolicitud.getSelectedInstances().push(selectedInstance);
+            this.ptSolicitud.addInstances(selectedInstance);
         }
         this.executeDependecyRulesptsolicitud('SetValue', false);
         this.changeDetectorRef.markForCheck();
@@ -2090,44 +2042,20 @@ export class PersonaSIUuTADDUSUARIOASOLComponent extends AbstractServiceIU imple
             });
         }
     }
-
     /**
      * Process the change in the ptEstadoPersona lense search argument
      */
     public onptestadopersonaChange(): void {
-
-        const searchText = this.ptEstadoPersona.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.ptEstadoPersona.lastText) {
-                this.ptEstadoPersona.removeCSSClass('noResultsLenseSearch');
-                this.ptEstadoPersona.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Estadopersona.name, 'IC_EstadoPersona', searchText, [], null).then(
-                        (response: any) => {
-                            this.ptEstadoPersona.removeCSSClass('noResultsLenseSearch');
-                            this.ptEstadoPersona.searchResults = response.results;
-                            if (this.ptEstadoPersona.searchResults &&
-                                this.ptEstadoPersona.searchResults.length === 0) {
-                                this.ptEstadoPersona.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.ptEstadoPersona.searchResults &&
-                                this.ptEstadoPersona.searchResults.length === 1) {
-                                this.processptestadopersonaSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.ptEstadoPersona.removeCSSClass('noResultsLenseSearch');
-                            this.ptEstadoPersona.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.ptEstadoPersona, ModelConstants.Estadopersona.name, 'IC_EstadoPersona',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanptestadopersona();
             }
-        } else {
-            this.ptEstadoPersona.removeCSSClass('noResultsLenseSearch');
-            this.ptEstadoPersona.searchResults = [];
-            this.cleanptestadopersona();
-        }
-
+            if (foundInstances === 1) {
+                this.processptestadopersonaSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -2147,7 +2075,7 @@ export class PersonaSIUuTADDUSUARIOASOLComponent extends AbstractServiceIU imple
                 this.ptEstadoPersona.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.ptEstadoPersona.getSelectedInstances().push(selectedInstance);
+            this.ptEstadoPersona.addInstances(selectedInstance);
         }
         this.executeDependecyRulesptestadopersona('SetValue', false);
         this.changeDetectorRef.markForCheck();

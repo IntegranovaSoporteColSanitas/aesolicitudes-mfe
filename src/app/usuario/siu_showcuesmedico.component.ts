@@ -44,7 +44,7 @@ export class UsuarioSIUushowCuesMedicoComponent extends AbstractServiceIU implem
         this.noShow = true;
 
         // Create inbound argument components
-        this.puthisUsuario = new FieldOVLenseSearch(this.langMng);
+        this.puthisUsuario = new FieldOVLenseSearch(this.langMng, this.util);
 
     }
 
@@ -145,44 +145,20 @@ export class UsuarioSIUushowCuesMedicoComponent extends AbstractServiceIU implem
             });
         }
     }
-
     /**
      * Process the change in the p_thisUsuario lense search argument
      */
     public onputhisusuarioChange(): void {
-
-        const searchText = this.puthisUsuario.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisUsuario.lastText) {
-                this.puthisUsuario.removeCSSClass('noResultsLenseSearch');
-                this.puthisUsuario.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Usuario.name, 'IC_Usuario', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisUsuario.removeCSSClass('noResultsLenseSearch');
-                            this.puthisUsuario.searchResults = response.results;
-                            if (this.puthisUsuario.searchResults &&
-                                this.puthisUsuario.searchResults.length === 0) {
-                                this.puthisUsuario.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisUsuario.searchResults &&
-                                this.puthisUsuario.searchResults.length === 1) {
-                                this.processputhisusuarioSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisUsuario.removeCSSClass('noResultsLenseSearch');
-                            this.puthisUsuario.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisUsuario, ModelConstants.Usuario.name, 'IC_Usuario',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhisusuario();
             }
-        } else {
-            this.puthisUsuario.removeCSSClass('noResultsLenseSearch');
-            this.puthisUsuario.searchResults = [];
-            this.cleanputhisusuario();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhisusuarioSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -202,7 +178,7 @@ export class UsuarioSIUushowCuesMedicoComponent extends AbstractServiceIU implem
                 this.puthisUsuario.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisUsuario.getSelectedInstances().push(selectedInstance);
+            this.puthisUsuario.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhisusuario('SetValue', false);
         this.changeDetectorRef.markForCheck();

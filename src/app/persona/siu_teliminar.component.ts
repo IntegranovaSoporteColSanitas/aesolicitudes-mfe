@@ -44,8 +44,8 @@ export class PersonaSIUuTELIMINARComponent extends AbstractServiceIU implements 
             '¿Está seguro de que desea eliminar al usuario?');
 
         // Create inbound argument components
-        this.puthisPersona = new FieldOVLenseSearch(this.langMng);
-        this.ptUsuario = new FieldOVLenseSearch(this.langMng);
+        this.puthisPersona = new FieldOVLenseSearch(this.langMng, this.util);
+        this.ptUsuario = new FieldOVLenseSearch(this.langMng, this.util);
 
     }
 
@@ -161,44 +161,20 @@ export class PersonaSIUuTELIMINARComponent extends AbstractServiceIU implements 
             });
         }
     }
-
     /**
      * Process the change in the p_thisPersona lense search argument
      */
     public onputhispersonaChange(): void {
-
-        const searchText = this.puthisPersona.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisPersona.lastText) {
-                this.puthisPersona.removeCSSClass('noResultsLenseSearch');
-                this.puthisPersona.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Persona.name, 'IC_Persona', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisPersona.removeCSSClass('noResultsLenseSearch');
-                            this.puthisPersona.searchResults = response.results;
-                            if (this.puthisPersona.searchResults &&
-                                this.puthisPersona.searchResults.length === 0) {
-                                this.puthisPersona.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisPersona.searchResults &&
-                                this.puthisPersona.searchResults.length === 1) {
-                                this.processputhispersonaSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisPersona.removeCSSClass('noResultsLenseSearch');
-                            this.puthisPersona.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisPersona, ModelConstants.Persona.name, 'IC_Persona',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhispersona();
             }
-        } else {
-            this.puthisPersona.removeCSSClass('noResultsLenseSearch');
-            this.puthisPersona.searchResults = [];
-            this.cleanputhispersona();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhispersonaSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -218,7 +194,7 @@ export class PersonaSIUuTELIMINARComponent extends AbstractServiceIU implements 
                 this.puthisPersona.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisPersona.getSelectedInstances().push(selectedInstance);
+            this.puthisPersona.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhispersona('SetValue', false);
         this.changeDetectorRef.markForCheck();
@@ -332,44 +308,20 @@ export class PersonaSIUuTELIMINARComponent extends AbstractServiceIU implements 
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the ptUsuario lense search argument
      */
     public onptusuarioChange(): void {
-
-        const searchText = this.ptUsuario.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.ptUsuario.lastText) {
-                this.ptUsuario.removeCSSClass('noResultsLenseSearch');
-                this.ptUsuario.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Usuario.name, 'IC_Usuario', searchText, [], null).then(
-                        (response: any) => {
-                            this.ptUsuario.removeCSSClass('noResultsLenseSearch');
-                            this.ptUsuario.searchResults = response.results;
-                            if (this.ptUsuario.searchResults &&
-                                this.ptUsuario.searchResults.length === 0) {
-                                this.ptUsuario.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.ptUsuario.searchResults &&
-                                this.ptUsuario.searchResults.length === 1) {
-                                this.processptusuarioSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.ptUsuario.removeCSSClass('noResultsLenseSearch');
-                            this.ptUsuario.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.ptUsuario, ModelConstants.Usuario.name, 'IC_Usuario',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanptusuario();
             }
-        } else {
-            this.ptUsuario.removeCSSClass('noResultsLenseSearch');
-            this.ptUsuario.searchResults = [];
-            this.cleanptusuario();
-        }
-
+            if (foundInstances === 1) {
+                this.processptusuarioSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -389,7 +341,7 @@ export class PersonaSIUuTELIMINARComponent extends AbstractServiceIU implements 
                 this.ptUsuario.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.ptUsuario.getSelectedInstances().push(selectedInstance);
+            this.ptUsuario.addInstances(selectedInstance);
         }
         this.executeDependecyRulesptusuario('SetValue', false);
         this.changeDetectorRef.markForCheck();

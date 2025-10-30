@@ -51,7 +51,7 @@ export class GSSIUuOGENERARSOLICITUD2Component extends AbstractServiceIU impleme
         this.noShow = true;
 
         // Create inbound argument components
-        this.ptupuSolicitudAE = new FieldOVLenseSearch(this.langMng);
+        this.ptupuSolicitudAE = new FieldOVLenseSearch(this.langMng, this.util);
     }
 
     public ngOnInit(): void {
@@ -135,44 +135,20 @@ export class GSSIUuOGENERARSOLICITUD2Component extends AbstractServiceIU impleme
             });
         }
     }
-
     /**
      * Process the change in the pt_p_SolicitudAE lense search argument
      */
     public onptupusolicitudaeChange(): void {
-
-        const searchText = this.ptupuSolicitudAE.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.ptupuSolicitudAE.lastText) {
-                this.ptupuSolicitudAE.removeCSSClass('noResultsLenseSearch');
-                this.ptupuSolicitudAE.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Solicitud.name, 'IC_Solicitud', searchText, [], null).then(
-                        (response: any) => {
-                            this.ptupuSolicitudAE.removeCSSClass('noResultsLenseSearch');
-                            this.ptupuSolicitudAE.searchResults = response.results;
-                            if (this.ptupuSolicitudAE.searchResults &&
-                                this.ptupuSolicitudAE.searchResults.length === 0) {
-                                this.ptupuSolicitudAE.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.ptupuSolicitudAE.searchResults &&
-                                this.ptupuSolicitudAE.searchResults.length === 1) {
-                                this.processptupusolicitudaeSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.ptupuSolicitudAE.removeCSSClass('noResultsLenseSearch');
-                            this.ptupuSolicitudAE.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.ptupuSolicitudAE, ModelConstants.Solicitud.name, 'IC_Solicitud',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanptupusolicitudae();
             }
-        } else {
-            this.ptupuSolicitudAE.removeCSSClass('noResultsLenseSearch');
-            this.ptupuSolicitudAE.searchResults = [];
-            this.cleanptupusolicitudae();
-        }
-
+            if (foundInstances === 1) {
+                this.processptupusolicitudaeSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -192,7 +168,7 @@ export class GSSIUuOGENERARSOLICITUD2Component extends AbstractServiceIU impleme
                 this.ptupuSolicitudAE.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.ptupuSolicitudAE.getSelectedInstances().push(selectedInstance);
+            this.ptupuSolicitudAE.addInstances(selectedInstance);
         }
         this.executeDependecyRulesptupusolicitudae('SetValue', false);
         this.changeDetectorRef.markForCheck();

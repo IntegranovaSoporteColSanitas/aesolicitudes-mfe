@@ -47,7 +47,7 @@ export class SolicitudFilterFuSolicitudConsultaRadicado extends AbstractFilter {
         this.vfHasta = new Field(this.langMng);
         this.vouTipoDoc = new FieldOVPreload(this.langMng);
         this.vuNumDoc = new Field(this.langMng);
-        this.voPersona = new FieldOVLenseSearch(this.langMng);
+        this.voPersona = new FieldOVLenseSearch(this.langMng, this.util);
     }
 
     public override canBeExecuted(): boolean {
@@ -237,8 +237,15 @@ export class SolicitudFilterFuSolicitudConsultaRadicado extends AbstractFilter {
      */
     public onvopersonaChange() {
         this.executeLenseSearch(this.voPersona, ModelConstants.Persona.name, 'IC_PersonaNombresApellidos',
-            ['Solicitud_F_SolicitudConsultaRadicado_voPersona_NavFilter']);
-        this.executeDependecyRulesvopersona('SetValue', false);
+            ['Solicitud_F_SolicitudConsultaRadicado_voPersona_NavFilter']).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanvopersona();
+            }
+            if (foundInstances === 1) {
+                this.processvopersonaSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 

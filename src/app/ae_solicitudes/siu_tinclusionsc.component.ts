@@ -62,7 +62,7 @@ export class AeusolicitudesSIUuTINCLUSIONSCComponent extends AbstractServiceIU i
         this.ptupuatrFInicioContrato = new Field(this.langMng);
         this.ptupuatrNumContratoInclusion = new Field(this.langMng);
         this.ptupuatrNumFamilia = new Field(this.langMng);
-        this.pDirector = new FieldOVLenseSearch(this.langMng);
+        this.pDirector = new FieldOVLenseSearch(this.langMng, this.util);
         this.ptMarcaCarnet = new FieldDefinedSelection(this.langMng);
         this.ptAvisoMarcaCarnet = new Field(this.langMng);
         this.ptSoloDiaUno = new Field(this.langMng);
@@ -959,7 +959,7 @@ export class AeusolicitudesSIUuTINCLUSIONSCComponent extends AbstractServiceIU i
             this.bhServicesUtil.consultarContrato(varptupuagrproducto.get('CodigoLegal'), varptupuagrplan.get('CodigoLegal'),
                 this.ptupuatrNumContratoInclusion.value, '').then( (coverResponse: any) => {
                     this.notifyAnswerFromToTheBackEnd();
-                    if (coverResponse) {
+                    if (coverResponse && (coverResponse?.coverFamilyResponse || coverResponse?.coverResponse)) {
                         // Si es familiar incializamos el numero de familia y bloqueamos
                         if (coverResponse?.coverFamilyResponse) {
                             this.ptupuatrNumFamilia.value = '1';
@@ -1086,47 +1086,22 @@ export class AeusolicitudesSIUuTINCLUSIONSCComponent extends AbstractServiceIU i
             });
         }
     }
-
     /**
      * Process the change in the pDirector lense search argument
      */
     public onpdirectorChange(): void {
-
-        const searchText = this.pDirector.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.pDirector.lastText) {
-                const navFilters: string[] = [];
-                navFilters.push('Ae_solicitudes_TINCLUSIONSC_pDirector_NavFilter0');
-                this.pDirector.removeCSSClass('noResultsLenseSearch');
-                this.pDirector.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Asesor.name, 'IC_Asesor', searchText, navFilters,
-                    this.getNavigationFilterVariables()).then(
-                        (response: any) => {
-                            this.pDirector.removeCSSClass('noResultsLenseSearch');
-                            this.pDirector.searchResults = response.results;
-                            if (this.pDirector.searchResults &&
-                                this.pDirector.searchResults.length === 0) {
-                                this.pDirector.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.pDirector.searchResults &&
-                                this.pDirector.searchResults.length === 1) {
-                                this.processpdirectorSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.pDirector.removeCSSClass('noResultsLenseSearch');
-                            this.pDirector.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        const navFilters: string[] = [];
+        navFilters.push('Ae_solicitudes_TINCLUSIONSC_pDirector_NavFilter0');
+        this.executeLenseSearch(this.pDirector, ModelConstants.Asesor.name, 'IC_Asesor',
+            navFilters).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanpdirector();
             }
-        } else {
-            this.pDirector.removeCSSClass('noResultsLenseSearch');
-            this.pDirector.searchResults = [];
-            this.cleanpdirector();
-        }
-
+            if (foundInstances === 1) {
+                this.processpdirectorSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -1146,7 +1121,7 @@ export class AeusolicitudesSIUuTINCLUSIONSCComponent extends AbstractServiceIU i
                 this.pDirector.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.pDirector.getSelectedInstances().push(selectedInstance);
+            this.pDirector.addInstances(selectedInstance);
         }
         this.executeDependecyRulespdirector('SetValue', false);
         this.changeDetectorRef.markForCheck();

@@ -51,7 +51,7 @@ export class UsuarioSIUuTMODIFICARATTRComponent extends AbstractServiceIU implem
             'Modificar atributos de usuario');
 
         // Create inbound argument components
-        this.puthisAttrUsuario = new FieldOVLenseSearch(this.langMng);
+        this.puthisAttrUsuario = new FieldOVLenseSearch(this.langMng, this.util);
         this.ptupuBebeGestante = new FieldDefinedSelection(this.langMng);
         this.ptupuevcCompanyia = new FieldOVPreload(this.langMng);
         this.ptupuevcEPS = new FieldOVPreload(this.langMng);
@@ -925,44 +925,20 @@ export class UsuarioSIUuTMODIFICARATTRComponent extends AbstractServiceIU implem
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the p_thisAttrUsuario lense search argument
      */
     public onputhisattrusuarioChange(): void {
-
-        const searchText = this.puthisAttrUsuario.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisAttrUsuario.lastText) {
-                this.puthisAttrUsuario.removeCSSClass('noResultsLenseSearch');
-                this.puthisAttrUsuario.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Usuario.name, 'IC_Usuario', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisAttrUsuario.removeCSSClass('noResultsLenseSearch');
-                            this.puthisAttrUsuario.searchResults = response.results;
-                            if (this.puthisAttrUsuario.searchResults &&
-                                this.puthisAttrUsuario.searchResults.length === 0) {
-                                this.puthisAttrUsuario.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisAttrUsuario.searchResults &&
-                                this.puthisAttrUsuario.searchResults.length === 1) {
-                                this.processputhisattrusuarioSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisAttrUsuario.removeCSSClass('noResultsLenseSearch');
-                            this.puthisAttrUsuario.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisAttrUsuario, ModelConstants.Usuario.name, 'IC_Usuario',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhisattrusuario();
             }
-        } else {
-            this.puthisAttrUsuario.removeCSSClass('noResultsLenseSearch');
-            this.puthisAttrUsuario.searchResults = [];
-            this.cleanputhisattrusuario();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhisattrusuarioSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -982,7 +958,7 @@ export class UsuarioSIUuTMODIFICARATTRComponent extends AbstractServiceIU implem
                 this.puthisAttrUsuario.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisAttrUsuario.getSelectedInstances().push(selectedInstance);
+            this.puthisAttrUsuario.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhisattrusuario('SetValue', false);
         this.changeDetectorRef.markForCheck();

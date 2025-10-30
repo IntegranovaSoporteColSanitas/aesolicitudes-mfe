@@ -60,7 +60,7 @@ export class GSSIUuTGSELECCONTRATOASOCComponent extends AbstractServiceIU implem
             'Contratos asociados');
 
         // Create inbound argument components
-        this.puSolicitud = new FieldOVLenseSearch(this.langMng);
+        this.puSolicitud = new FieldOVLenseSearch(this.langMng, this.util);
         this.ptNumContrato = new FieldDefinedSelection(this.langMng);
         this.ptCodLegalProducto = new Field(this.langMng);
         this.ptCodLegalPlan = new Field(this.langMng);
@@ -322,44 +322,20 @@ export class GSSIUuTGSELECCONTRATOASOCComponent extends AbstractServiceIU implem
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the p_Solicitud lense search argument
      */
     public onpusolicitudChange(): void {
-
-        const searchText = this.puSolicitud.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puSolicitud.lastText) {
-                this.puSolicitud.removeCSSClass('noResultsLenseSearch');
-                this.puSolicitud.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Solicitud.name, 'IC_Solicitud', searchText, [], null).then(
-                        (response: any) => {
-                            this.puSolicitud.removeCSSClass('noResultsLenseSearch');
-                            this.puSolicitud.searchResults = response.results;
-                            if (this.puSolicitud.searchResults &&
-                                this.puSolicitud.searchResults.length === 0) {
-                                this.puSolicitud.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puSolicitud.searchResults &&
-                                this.puSolicitud.searchResults.length === 1) {
-                                this.processpusolicitudSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puSolicitud.removeCSSClass('noResultsLenseSearch');
-                            this.puSolicitud.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puSolicitud, ModelConstants.Solicitud.name, 'IC_Solicitud',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanpusolicitud();
             }
-        } else {
-            this.puSolicitud.removeCSSClass('noResultsLenseSearch');
-            this.puSolicitud.searchResults = [];
-            this.cleanpusolicitud();
-        }
-
+            if (foundInstances === 1) {
+                this.processpusolicitudSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -379,7 +355,7 @@ export class GSSIUuTGSELECCONTRATOASOCComponent extends AbstractServiceIU implem
                 this.puSolicitud.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puSolicitud.getSelectedInstances().push(selectedInstance);
+            this.puSolicitud.addInstances(selectedInstance);
         }
         this.executeDependecyRulespusolicitud('SetValue', false);
         this.changeDetectorRef.markForCheck();

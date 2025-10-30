@@ -58,10 +58,10 @@ export class AeusolicitudesSIUuTNUEVAAFILIACIONComponent extends AbstractService
         this.ptupuagrProducto = new FieldOVPreload(this.langMng);
         this.ptupuagrPlan = new FieldOVPreload(this.langMng);
         this.ptuProteccionDatos = new FieldOVLense(this.langMng);
-        this.ptupuagrGrupoAsociado = new FieldOVLenseSearch(this.langMng);
+        this.ptupuagrGrupoAsociado = new FieldOVLenseSearch(this.langMng, this.util);
         this.ptupuatrFInicioContrato = new Field(this.langMng);
         this.ptupuatrEsTraslado = new FieldDefinedSelection(this.langMng);
-        this.pDirector = new FieldOVLenseSearch(this.langMng);
+        this.pDirector = new FieldOVLenseSearch(this.langMng, this.util);
         this.ptProrrateo = new FieldOVPreload(this.langMng);
         this.ptTipoFactura = new FieldOVPreload(this.langMng);
         this.ptMarcaCarnet = new FieldDefinedSelection(this.langMng);
@@ -1257,47 +1257,22 @@ export class AeusolicitudesSIUuTNUEVAAFILIACIONComponent extends AbstractService
             });
         }
     }
-
     /**
      * Process the change in the pt_p_agrGrupoAsociado lense search argument
      */
     public onptupuagrgrupoasociadoChange(): void {
-
-        const searchText = this.ptupuagrGrupoAsociado.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.ptupuagrGrupoAsociado.lastText) {
-                const navFilters: string[] = [];
-                navFilters.push('Ae_solicitudes_TNUEVAAFILIACION_pt_p_agrGrupoAsociado_NavFilter0');
-                this.ptupuagrGrupoAsociado.removeCSSClass('noResultsLenseSearch');
-                this.ptupuagrGrupoAsociado.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Grupoasociado.name, 'IC_GrupoAsociado', searchText, navFilters,
-                    this.getNavigationFilterVariables()).then(
-                        (response: any) => {
-                            this.ptupuagrGrupoAsociado.removeCSSClass('noResultsLenseSearch');
-                            this.ptupuagrGrupoAsociado.searchResults = response.results;
-                            if (this.ptupuagrGrupoAsociado.searchResults &&
-                                this.ptupuagrGrupoAsociado.searchResults.length === 0) {
-                                this.ptupuagrGrupoAsociado.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.ptupuagrGrupoAsociado.searchResults &&
-                                this.ptupuagrGrupoAsociado.searchResults.length === 1) {
-                                this.processptupuagrgrupoasociadoSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.ptupuagrGrupoAsociado.removeCSSClass('noResultsLenseSearch');
-                            this.ptupuagrGrupoAsociado.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        const navFilters: string[] = [];
+        navFilters.push('Ae_solicitudes_TNUEVAAFILIACION_pt_p_agrGrupoAsociado_NavFilter0');
+        this.executeLenseSearch(this.ptupuagrGrupoAsociado, ModelConstants.Grupoasociado.name, 'IC_GrupoAsociado',
+            navFilters).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanptupuagrgrupoasociado();
             }
-        } else {
-            this.ptupuagrGrupoAsociado.removeCSSClass('noResultsLenseSearch');
-            this.ptupuagrGrupoAsociado.searchResults = [];
-            this.cleanptupuagrgrupoasociado();
-        }
-
+            if (foundInstances === 1) {
+                this.processptupuagrgrupoasociadoSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -1317,7 +1292,7 @@ export class AeusolicitudesSIUuTNUEVAAFILIACIONComponent extends AbstractService
                 this.ptupuagrGrupoAsociado.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.ptupuagrGrupoAsociado.getSelectedInstances().push(selectedInstance);
+            this.ptupuagrGrupoAsociado.addInstances(selectedInstance);
         }
         this.executeDependecyRulesptupuagrgrupoasociado('SetValue', false);
         this.changeDetectorRef.markForCheck();
@@ -1504,47 +1479,22 @@ export class AeusolicitudesSIUuTNUEVAAFILIACIONComponent extends AbstractService
             });
         }
     }
-
     /**
      * Process the change in the pDirector lense search argument
      */
     public onpdirectorChange(): void {
-
-        const searchText = this.pDirector.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.pDirector.lastText) {
-                const navFilters: string[] = [];
-                navFilters.push('Ae_solicitudes_TNUEVAAFILIACION_pDirector_NavFilter0');
-                this.pDirector.removeCSSClass('noResultsLenseSearch');
-                this.pDirector.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Asesor.name, 'IC_Asesor', searchText, navFilters,
-                    this.getNavigationFilterVariables()).then(
-                        (response: any) => {
-                            this.pDirector.removeCSSClass('noResultsLenseSearch');
-                            this.pDirector.searchResults = response.results;
-                            if (this.pDirector.searchResults &&
-                                this.pDirector.searchResults.length === 0) {
-                                this.pDirector.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.pDirector.searchResults &&
-                                this.pDirector.searchResults.length === 1) {
-                                this.processpdirectorSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.pDirector.removeCSSClass('noResultsLenseSearch');
-                            this.pDirector.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        const navFilters: string[] = [];
+        navFilters.push('Ae_solicitudes_TNUEVAAFILIACION_pDirector_NavFilter0');
+        this.executeLenseSearch(this.pDirector, ModelConstants.Asesor.name, 'IC_Asesor',
+            navFilters).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanpdirector();
             }
-        } else {
-            this.pDirector.removeCSSClass('noResultsLenseSearch');
-            this.pDirector.searchResults = [];
-            this.cleanpdirector();
-        }
-
+            if (foundInstances === 1) {
+                this.processpdirectorSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -1564,7 +1514,7 @@ export class AeusolicitudesSIUuTNUEVAAFILIACIONComponent extends AbstractService
                 this.pDirector.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.pDirector.getSelectedInstances().push(selectedInstance);
+            this.pDirector.addInstances(selectedInstance);
         }
         this.executeDependecyRulespdirector('SetValue', false);
         this.changeDetectorRef.markForCheck();

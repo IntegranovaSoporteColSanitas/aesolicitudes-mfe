@@ -58,14 +58,14 @@ export class SolicitudSIUuTMODDIRSTITULARComponent extends AbstractServiceIU imp
             'Modificar direcciones');
 
         // Create inbound argument components
-        this.puthisSolicitud = new FieldOVLenseSearch(this.langMng);
+        this.puthisSolicitud = new FieldOVLenseSearch(this.langMng, this.util);
         this.ptupuatrTelefonoFijo = new Field(this.langMng);
         this.ptupuatrTelefonoCelular = new Field(this.langMng);
         this.ptupuagrDepartamento = new FieldOVPreload(this.langMng);
         this.ptupuagrMunicipio = new FieldOVPreload(this.langMng);
         this.ptupuatrDireccionCompleta = new Field(this.langMng);
         this.ptupuatrRural = new FieldDefinedSelection(this.langMng);
-        this.ptupuagrPais = new FieldOVLenseSearch(this.langMng);
+        this.ptupuagrPais = new FieldOVLenseSearch(this.langMng, this.util);
         this.ptDCDepartamento = new FieldOVPreload(this.langMng);
         this.ptDCMunicipio = new FieldOVPreload(this.langMng);
         this.ptDCDireccionCompleta = new Field(this.langMng);
@@ -695,44 +695,20 @@ export class SolicitudSIUuTMODDIRSTITULARComponent extends AbstractServiceIU imp
         this.executePendingDependencyRules();
         this.changeDetectorRef.markForCheck();
     }
-
     /**
      * Process the change in the p_thisSolicitud lense search argument
      */
     public onputhissolicitudChange(): void {
-
-        const searchText = this.puthisSolicitud.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisSolicitud.lastText) {
-                this.puthisSolicitud.removeCSSClass('noResultsLenseSearch');
-                this.puthisSolicitud.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Solicitud.name, 'IC_Solicitud', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisSolicitud.removeCSSClass('noResultsLenseSearch');
-                            this.puthisSolicitud.searchResults = response.results;
-                            if (this.puthisSolicitud.searchResults &&
-                                this.puthisSolicitud.searchResults.length === 0) {
-                                this.puthisSolicitud.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisSolicitud.searchResults &&
-                                this.puthisSolicitud.searchResults.length === 1) {
-                                this.processputhissolicitudSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisSolicitud.removeCSSClass('noResultsLenseSearch');
-                            this.puthisSolicitud.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisSolicitud, ModelConstants.Solicitud.name, 'IC_Solicitud',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhissolicitud();
             }
-        } else {
-            this.puthisSolicitud.removeCSSClass('noResultsLenseSearch');
-            this.puthisSolicitud.searchResults = [];
-            this.cleanputhissolicitud();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhissolicitudSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -752,7 +728,7 @@ export class SolicitudSIUuTMODDIRSTITULARComponent extends AbstractServiceIU imp
                 this.puthisSolicitud.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisSolicitud.getSelectedInstances().push(selectedInstance);
+            this.puthisSolicitud.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhissolicitud('SetValue', false);
         this.changeDetectorRef.markForCheck();
@@ -815,44 +791,20 @@ export class SolicitudSIUuTMODDIRSTITULARComponent extends AbstractServiceIU imp
             });
         }
     }
-
     /**
      * Process the change in the pt_p_agrPais lense search argument
      */
     public onptupuagrpaisChange(): void {
-
-        const searchText = this.ptupuagrPais.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.ptupuagrPais.lastText) {
-                this.ptupuagrPais.removeCSSClass('noResultsLenseSearch');
-                this.ptupuagrPais.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Pais.name, 'IC_Pais', searchText, [], null).then(
-                        (response: any) => {
-                            this.ptupuagrPais.removeCSSClass('noResultsLenseSearch');
-                            this.ptupuagrPais.searchResults = response.results;
-                            if (this.ptupuagrPais.searchResults &&
-                                this.ptupuagrPais.searchResults.length === 0) {
-                                this.ptupuagrPais.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.ptupuagrPais.searchResults &&
-                                this.ptupuagrPais.searchResults.length === 1) {
-                                this.processptupuagrpaisSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.ptupuagrPais.removeCSSClass('noResultsLenseSearch');
-                            this.ptupuagrPais.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.ptupuagrPais, ModelConstants.Pais.name, 'IC_Pais',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanptupuagrpais();
             }
-        } else {
-            this.ptupuagrPais.removeCSSClass('noResultsLenseSearch');
-            this.ptupuagrPais.searchResults = [];
-            this.cleanptupuagrpais();
-        }
-
+            if (foundInstances === 1) {
+                this.processptupuagrpaisSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -872,7 +824,7 @@ export class SolicitudSIUuTMODDIRSTITULARComponent extends AbstractServiceIU imp
                 this.ptupuagrPais.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.ptupuagrPais.getSelectedInstances().push(selectedInstance);
+            this.ptupuagrPais.addInstances(selectedInstance);
         }
         this.executeDependecyRulesptupuagrpais('SetValue', false);
         this.changeDetectorRef.markForCheck();
