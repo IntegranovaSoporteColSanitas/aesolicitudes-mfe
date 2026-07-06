@@ -4,7 +4,7 @@ import { Util } from '../common/app.utils';
 import { ErrorInformation, QueryResponse } from '../common/answerRequestInformation';
 
 /**
- * Service and queries of class 'DocumentoG'
+ * « Service and queries of class 'DocumentoG' »
  */
 export class DocumentoGServices extends AbstractServices {
 
@@ -69,7 +69,9 @@ export class DocumentoGServices extends AbstractServices {
     public previsualizarATO(
         puthisDocumentoGInArg: any):
         Promise<{
-            oaurldescarga: string
+            oatoken: string,
+            oaurldescarga: string,
+            oanumsolicitud: string
         }> {
         const request: {
             p_thisdocumentog_oid: any
@@ -77,11 +79,15 @@ export class DocumentoGServices extends AbstractServices {
             p_thisdocumentog_oid: puthisDocumentoGInArg
         };
         return new Promise<{
-            oaurldescarga: string
+            oatoken: string,
+            oaurldescarga: string,
+            oanumsolicitud: string
         }> ((resolve, reject) => {
             this.callService(this.previsualizarATOSrvName, request).then((response: any) => {
                 resolve({
-                    oaurldescarga: response.oaurldescarga
+                    oatoken: response.oatoken,
+                    oaurldescarga: response.oaurldescarga,
+                    oanumsolicitud: response.oanumsolicitud
                 });
             }).catch( (errorInfo: ErrorInformation) => {
                 reject(errorInfo);

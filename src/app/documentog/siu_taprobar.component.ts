@@ -67,7 +67,7 @@ export class DocumentoGSIUuTAPROBARComponent extends AbstractServiceIU implement
         this.puthisDocumentoG.mandatory = true;
         this.puthisDocumentoG.dataType = ModelConstants.Documentog.name;
         this.puthisDocumentoG.oidFields = Array(1);
-        this.puthisDocumentoG.oidFieldsTypes = ['autonumerico'];
+        this.puthisDocumentoG.oidFieldsTypes = [Field.dtAuto];
         this.puthisDocumentoG.assignCSS();
         this.fields.push(this.puthisDocumentoG);
 
@@ -235,7 +235,7 @@ export class DocumentoGSIUuTAPROBARComponent extends AbstractServiceIU implement
         this.clearValidationMessages();
         let fieldsHasValue = true;
         for (const field of this.puthisDocumentoG.oidFields) {
-            if (!field) {
+            if (this.util.isNull(field)) {
                 fieldsHasValue = false;
                 break;
             }

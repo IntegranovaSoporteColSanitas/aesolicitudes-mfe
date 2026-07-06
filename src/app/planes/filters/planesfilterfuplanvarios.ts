@@ -10,7 +10,7 @@ import { DefinedSelections } from '../../common/definedSelection';
 import { UserFunctions } from '../../common/userFunctions';
 
 /**
- * Manages the filter F_PlanVarios of class Planes
+ * « Manages the filter F_PlanVarios of class Planes »
  */
 export class PlanesFilterFuPlanVarios extends AbstractFilter {
 

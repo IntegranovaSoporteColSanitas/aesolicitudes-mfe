@@ -1,7 +1,7 @@
 import { ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { AccNavItem } from '../common/queryIUElements';
+import { AccNavItem, ScenarioType, OpenScenarioType} from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractIIU } from '../common/abstractIIU';
 import { Field, FieldBlob, FieldDefinedSelection } from '../common/baseIUElements';
@@ -247,6 +247,7 @@ export class SolicitudIIUuInclusionComponent extends AbstractIIU {
             ModelConstants.Mesadeapoyo.name];
         accItem.targetClass = ModelConstants.Solicitud.name;
         accItem.targetUI = ModelConstants.Solicitud.siuutcrearomodfirma;
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -261,6 +262,7 @@ export class SolicitudIIUuInclusionComponent extends AbstractIIU {
             ModelConstants.Mesadeapoyo.name];
         accItem.targetClass = ModelConstants.Solicitud.name;
         accItem.targetUI = ModelConstants.Solicitud.siuutmodencabezadoincl;
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -282,6 +284,7 @@ export class SolicitudIIUuInclusionComponent extends AbstractIIU {
         accItem.preconditionAttributes.push(
             { agents: [],
               attributes: ['completada'] });
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -311,6 +314,7 @@ export class SolicitudIIUuInclusionComponent extends AbstractIIU {
             { agents: ['Admin', 'SuperAdmin', 'Asesor', 'AreaMedica', 'Afiliaciones', 'Gestor', 'MesaDeApoyo'],
               attributes: ['tipocontrato', 'contratantepersona.tipopersona', 'drvcontratanteestitular', 'tramite'] });
         accItem.closeOrigin = true;
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -326,6 +330,7 @@ export class SolicitudIIUuInclusionComponent extends AbstractIIU {
         accItem.targetClass = ModelConstants.Solicitud.name;
         accItem.targetUI = ModelConstants.Solicitud.siuuenviarsmsinfopago;
         accItem.setNoShowProperties('enviarSMSInfoPago', 'p_thissolicitud_oid', '', false);
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
     }
@@ -348,6 +353,7 @@ export class SolicitudIIUuInclusionComponent extends AbstractIIU {
         navItem.targetClass = ModelConstants.Documentog.name;
         navItem.targetUI = ModelConstants.Documentog.piuudocumentog;
         navItem.rolePath = 'Solicitud';
+        navItem.targetType  = ScenarioType.Population;
         this.navigations.push(navItem);
 
     }

@@ -8,7 +8,7 @@ import { LanguageMng } from '../../common/languageMng';
 import { UserFunctions } from '../../common/userFunctions';
 
 /**
- * Manages the filter F_Directores of class Asesor
+ * « Manages the filter F_Directores of class Asesor »
  */
 export class AsesorFilterFuDirectores extends AbstractFilter {
 

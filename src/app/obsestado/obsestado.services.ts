@@ -4,7 +4,7 @@ import { Util } from '../common/app.utils';
 import { ErrorInformation, QueryResponse } from '../common/answerRequestInformation';
 
 /**
- * Service and queries of class 'ObsEstado'
+ * « Service and queries of class 'ObsEstado' »
  */
 export class ObsEstadoServices extends AbstractServices {
 

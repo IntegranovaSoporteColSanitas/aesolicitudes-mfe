@@ -1,7 +1,7 @@
 import { ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { DisplaySetItem, AccNavItem } from '../common/queryIUElements';
+import { DisplaySetItem, AccNavItem, ScenarioType, OpenScenarioType } from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractPIU } from '../common/abstractPIU';
 import { DefinedSelections } from '../common/definedSelection';
@@ -140,7 +140,7 @@ export class ObsEstadoPIUuObsEstadoComponent extends AbstractPIU {
         accItem.preconditionAttributes.push(
             { agents: [],
               attributes: ['documentog.estado'] });
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
     }

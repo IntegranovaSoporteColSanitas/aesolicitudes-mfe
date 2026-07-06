@@ -27,8 +27,8 @@ export class GSSIUuOGENERARSOLICITUD2uOutComponent  extends AbstractIU implement
     private serviceRequest: any;
     /** Service response */
     private serviceResponse: any;
-    /** Context */
-    private readonly context: {exchangeInfo: ExchangeInfo} = {exchangeInfo: new ExchangeInfo()};
+    /** Exchange info */
+    private exchangeInfo: ExchangeInfo = new ExchangeInfo();
 
     /**
      * Component constructor
@@ -81,10 +81,10 @@ export class GSSIUuOGENERARSOLICITUD2uOutComponent  extends AbstractIU implement
         this.ptupsuErrorWS.assignCSS();
 
         // Get request and response from the exchange information
-        this.context.exchangeInfo = this.appGlobalInfo.appExchangeInfo.getExchangeInfoForScenario(this.className, this.iuName);
-        if (this.context.exchangeInfo) {
-            this.serviceRequest = this.context.exchangeInfo.customData.request;
-            this.serviceResponse = this.context.exchangeInfo.customData.response;
+        this.exchangeInfo = this.appGlobalInfo.appExchangeInfo.getExchangeInfoForScenario(this.className, this.iuName);
+        if (this.exchangeInfo) {
+            this.serviceRequest = this.exchangeInfo.customData.request;
+            this.serviceResponse = this.exchangeInfo.customData.response;
             if (this.serviceRequest && this.serviceResponse) {
                 this.initializeFromResponse();
             }
@@ -92,7 +92,15 @@ export class GSSIUuOGENERARSOLICITUD2uOutComponent  extends AbstractIU implement
         this.changeDetectorRef.markForCheck();
     }
 
-    /**
+    public override processCancel(lastExecutionSuccess?: boolean): void {
+        if (this.exchangeInfo?.comeBackContext?.exchangeInfo?.targetIUName?.toLowerCase().startsWith('piu') ) {
+            super.processCancel(lastExecutionSuccess);
+        } else {
+            this.util.navigateToMain();
+        }
+    }
+
+     /**
      * Initialize the scenario using the response information
      */
     public initializeFromResponse(): void {
@@ -102,18 +110,4 @@ export class GSSIUuOGENERARSOLICITUD2uOutComponent  extends AbstractIU implement
             this.serviceResponse[this.ptupsuErrorWS.nameInRequest];
     }
 
-    public override processCancel(lastExecutionSuccess?: boolean): void {
-        if (this.context?.exchangeInfo?.comeBackContext?.exchangeInfo?.targetIUName?.toLowerCase().startsWith('piu') ) {
-            super.processCancel(lastExecutionSuccess);
-        } else {
-            this.util.navigateToMain();
-        }
-    }
-
-    /**
-     * Returns the context information
-     */
-    public override getContext(): any {
-        return this.context;
-    }
 }

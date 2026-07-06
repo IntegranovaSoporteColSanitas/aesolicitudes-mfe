@@ -105,7 +105,7 @@ export class AeusolicitudesSIUuTINCLUSIONSCComponent extends AbstractServiceIU i
         this.ptuProteccionDatos.mandatory = true;
         this.ptuProteccionDatos.dataType = ModelConstants.Protecciondatos.name;
         this.ptuProteccionDatos.oidFields = Array(1);
-        this.ptuProteccionDatos.oidFieldsTypes = ['autonumerico'];
+        this.ptuProteccionDatos.oidFieldsTypes = [Field.dtAuto];
         this.ptuProteccionDatos.assignCSS();
         this.fields.push(this.ptuProteccionDatos);
 
@@ -817,7 +817,7 @@ export class AeusolicitudesSIUuTINCLUSIONSCComponent extends AbstractServiceIU i
         this.clearValidationMessages();
         let fieldsHasValue = true;
         for (const field of this.ptuProteccionDatos.oidFields) {
-            if (!field) {
+            if (this.util.isNull(field)) {
                 fieldsHasValue = false;
                 break;
             }

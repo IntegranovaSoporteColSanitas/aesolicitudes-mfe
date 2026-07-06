@@ -392,12 +392,10 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
         }
         this.executeDependecyRulesptupuindicadorextranjero('SetValue', true);
 
-        this.ptupuTelefonoFijo.value = BHServicesUtil.getValorElementoPor2Claves(datosPersona?.contact?.telecom,
-            'system', 'TELEFONO_CONTACTO_PRINCIPAL',
-            'use', 'RESIDENCIAL',
-            'value');
-        this.ptupuTelefonoCelular.value = BHServicesUtil.getValorElementoPorClave(datosPersona?.contact?.telecom, 'system', 'CELULAR_CONTACTO_PRINCIPAL', 'value');
-        this.ptupuCorreoElectronico.value = BHServicesUtil.getValorElementoPorClave(datosPersona?.contact?.telecom, 'system', 'CORREO_ELECTRONICO', 'value');
+        this.ptupuTelefonoFijo.value = BHServicesUtil.getTelefonoFijoResidencia(datosPersona?.contact?.telecom);
+        this.ptupuTelefonoCelular.value = BHServicesUtil.getTelefonoCelularResidencia(datosPersona?.contact?.telecom);
+
+        this.ptupuCorreoElectronico.value = BHServicesUtil.getCorreoElectronico(datosPersona?.contact?.telecom);
 
         this.ptupuevcEstadoCivil.setValue(datosPersona?.basicData?.maritalStatus?.code ?
             this.util.oidBuilder.buildOidEstadoCivil(datosPersona?.basicData?.maritalStatus?.code) : null);
@@ -531,15 +529,9 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
             }
         }
 
-        this.ptupDCTelefonoFijo.value = BHServicesUtil.getValorElementoPor2Claves(datosPersona?.contact?.telecom,
-            'system', 'TELEFONO',
-            'use', 'CORRESPONDENCIA',
-            'value');
+        this.ptupDCTelefonoFijo.value = BHServicesUtil.getTelefonoFijoCorrespondencia(datosPersona?.contact?.telecom);
 
-        this.ptupDCTelefonoCelular.value = BHServicesUtil.getValorElementoPor2Claves(datosPersona?.contact?.telecom,
-            'system', 'CELULAR',
-            'use', 'CORRESPONDENCIA',
-            'value');
+        this.ptupDCTelefonoCelular.value = BHServicesUtil.getTelefonoCelularCorrespondencia(datosPersona?.contact?.telecom);
 
 
         // Estado de la persona
@@ -565,13 +557,8 @@ export class SolicitudSIUuTINDICARCONTRATANTE2Component extends AbstractServiceI
                 const datoDireccion = {
                     idUnico: i,
                     address: dir,
-                    telefonoFijo: BHServicesUtil.getValorElementoPor2Claves(datosPersona?.contact?.telecom,
-                        'system', 'TELEFONO',
-                        'use', dir.use,
-                        'value'),
-                    telefonoCelular: BHServicesUtil.getValorElementoPorClave(datosPersona?.contact?.telecom,
-                        'system', 'CELULAR',
-                        'value')
+                    telefonoFijo: BHServicesUtil.getTelefonoFijoResidencia(datosPersona?.contact?.telecom),
+                    telefonoCelular: BHServicesUtil.getTelefonoCelularResidencia(datosPersona?.contact?.telecom)
                 }
                 this.ptuDireccionesXClass.options.push({ key: datoDireccion, value: dir.text })
                 i++;

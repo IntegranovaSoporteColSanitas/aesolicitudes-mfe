@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { DisplaySetItem, AccNavItem } from '../common/queryIUElements';
+import { DisplaySetItem, AccNavItem, ScenarioType, OpenScenarioType } from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractPIU } from '../common/abstractPIU';
 import { DefinedSelections } from '../common/definedSelection';
@@ -15,6 +15,7 @@ import { UserFunctions } from '../common/userFunctions';
  * « Implements PIU PIU_DocumentoG of DocumentoG »
  */
 import { DocumentoGServices } from './documentog.services';
+import { BHGestorAtomicUtil } from '../bhcallutils/bhgestoratomicutil';
 
 @Component({
     selector: 'imes-documentog-piu-documentog',
@@ -46,6 +47,7 @@ export class DocumentoGPIUuDocumentoGComponent extends AbstractPIU implements On
     constructor(
         public override appGlobalInfo: AppGlobalInfo, public override util: Util, public override changeDetectorRef: ChangeDetectorRef,
         public override langMng: LanguageMng, public stdFun: StandardFunctions,
+        private gestorUtil: BHGestorAtomicUtil,
         public override condNavMng: ConditionalNavigationMng, public usrFunc: UserFunctions) {
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1434446200832109UIPobCl_1';
@@ -76,10 +78,24 @@ export class DocumentoGPIUuDocumentoGComponent extends AbstractPIU implements On
             // Llamamos al servicio
             const docSrv = new DocumentoGServices(this.appGlobalInfo, this.util);
             this.setShowWait(true);
-            docSrv.previsualizarATO(this.getSelectedOids()[0]).then( ( respuesta: {oaurldescarga: string}) => {
-                this.setShowWait(false);
-                if (respuesta && respuesta.oaurldescarga) {
-                    window.open(respuesta.oaurldescarga, '_blank');
+            docSrv.previsualizarATO(this.getSelectedOids()[0]).then( ( respuesta: {
+                oatoken: string,
+                oaurldescarga: string,
+                oanumsolicitud: string
+            }) => {
+                if (respuesta && respuesta.oaurldescarga && respuesta.oatoken) {
+                    this.gestorUtil.descargarArchivo(respuesta.oatoken, respuesta.oaurldescarga, respuesta.oanumsolicitud).then( () => {
+                        this.setShowWait(false);
+                        this.changeDetectorRef.markForCheck();
+                    }).catch( (err: Error) => {
+                        this.setShowWait(false);
+                        this.util.addErrorMessage(err);
+                        this.changeDetectorRef.markForCheck();
+                    });
+                } else {
+                    this.setShowWait(false);
+                    this.util.addErrorMessage(this.gestorUtil.MSG_ERROR_GEN);
+                    this.changeDetectorRef.markForCheck();
                 }
                 this.changeDetectorRef.markForCheck();
             }).catch( (err: Error) => {
@@ -235,7 +251,7 @@ export class DocumentoGPIUuDocumentoGComponent extends AbstractPIU implements On
             ModelConstants.Afiliaciones.name, ModelConstants.Mesadeapoyo.name];
         accItem.targetClass = ModelConstants.Solicitud.name;
         accItem.targetUI = ModelConstants.Solicitud.siuutsubirdocumentoato;
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -251,9 +267,9 @@ export class DocumentoGPIUuDocumentoGComponent extends AbstractPIU implements On
         accItem.targetClass = ModelConstants.Documentog.name;
         accItem.targetUI = ModelConstants.Documentog.siuuprevisualizarato;
         accItem.setNoShowProperties('previsualizarATO', 'p_thisdocumentog_oid', '', false);
-
         accItem.showInDefault = false;
         accItem.styleClass = 'accEditGrid';
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -273,7 +289,7 @@ export class DocumentoGPIUuDocumentoGComponent extends AbstractPIU implements On
         accItem.preconditionAttributes.push(
             { agents: [],
               attributes: ['solicitud.estado'] });
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -296,7 +312,7 @@ export class DocumentoGPIUuDocumentoGComponent extends AbstractPIU implements On
         accItem.preconditionAttributes.push(
             { agents: [],
               attributes: ['solicitud.estado'] });
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
     }
@@ -319,6 +335,7 @@ export class DocumentoGPIUuDocumentoGComponent extends AbstractPIU implements On
         navItem.targetClass = ModelConstants.Documentog.name;
         navItem.targetUI = ModelConstants.Documentog.mdiuudocumentog;
         navItem.rolePath = '';
+        navItem.targetType  = ScenarioType.MasterDetail;
         this.navigations.push(navItem);
 
     }

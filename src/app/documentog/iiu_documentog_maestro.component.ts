@@ -1,7 +1,7 @@
 import { ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { AccNavItem } from '../common/queryIUElements';
+import { AccNavItem, ScenarioType, OpenScenarioType} from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractIIU } from '../common/abstractIIU';
 import { Field, FieldDefinedSelection } from '../common/baseIUElements';
@@ -15,6 +15,7 @@ import { UserFunctions } from '../common/userFunctions';
  * « Implements IIU IIU_DocumentoG_Maestro of DocumentoG »
  */
 import { DocumentoGServices } from './documentog.services';
+import { BHGestorAtomicUtil } from '../bhcallutils/bhgestoratomicutil';
 
 export class DocumentoGIIUuDocumentoGuMaestroComponent extends AbstractIIU {
 
@@ -45,6 +46,7 @@ export class DocumentoGIIUuDocumentoGuMaestroComponent extends AbstractIIU {
     constructor(
         public override appGlobalInfo: AppGlobalInfo, public override util: Util, public override changeDetectorRef: ChangeDetectorRef,
         public langMng: LanguageMng, public stdFun: StandardFunctions,
+        private gestorUtil: BHGestorAtomicUtil,
         public override condNavMng: ConditionalNavigationMng, public usrFunc: UserFunctions) {
         super(appGlobalInfo, util, changeDetectorRef, condNavMng);
         this.idXML = 'Clas_1434446200832109UIInst_1';
@@ -76,13 +78,27 @@ export class DocumentoGIIUuDocumentoGuMaestroComponent extends AbstractIIU {
         const action = this.getActionById(actionId);
         if (action.targetClass === ModelConstants.Documentog.name &&
             action.targetUI === ModelConstants.Documentog.siuuprevisualizarato) {
-            // Llamamos al servicio
+                // Llamamos al servicio
             const docSrv = new DocumentoGServices(this.appGlobalInfo, this.util);
             this.setShowWait(true);
-            docSrv.previsualizarATO(this.getSelectedOids()[0]).then( ( respuesta: {oaurldescarga: string}) => {
-                this.setShowWait(false);
-                if (respuesta && respuesta.oaurldescarga) {
-                    window.open(respuesta.oaurldescarga, '_blank');
+            docSrv.previsualizarATO(this.getSelectedOids()[0]).then( ( respuesta: {
+                oatoken: string,
+                oaurldescarga: string,
+                oanumsolicitud: string
+            }) => {
+                if (respuesta && respuesta.oaurldescarga && respuesta.oatoken) {
+                    this.gestorUtil.descargarArchivo(respuesta.oatoken, respuesta.oaurldescarga, respuesta.oanumsolicitud).then( () => {
+                        this.setShowWait(false);
+                        this.changeDetectorRef.markForCheck();
+                    }).catch( (err: Error) => {
+                        this.setShowWait(false);
+                        this.util.addErrorMessage(err);
+                        this.changeDetectorRef.markForCheck();
+                    });
+                } else {
+                    this.setShowWait(false);
+                    this.util.addErrorMessage(this.gestorUtil.MSG_ERROR_GEN);
+                    this.changeDetectorRef.markForCheck();
                 }
                 this.changeDetectorRef.markForCheck();
             }).catch( (err: Error) => {
@@ -90,10 +106,9 @@ export class DocumentoGIIUuDocumentoGuMaestroComponent extends AbstractIIU {
                 this.util.addErrorMessage(err);
                 this.changeDetectorRef.markForCheck();
             });
-
         } else {
             super.doAction(actionId);
-        }
+        }        
     }
     
     /**
@@ -273,6 +288,7 @@ export class DocumentoGIIUuDocumentoGuMaestroComponent extends AbstractIIU {
         accItem.targetClass = ModelConstants.Documentog.name;
         accItem.targetUI = ModelConstants.Documentog.siuuprevisualizarato;
         accItem.setNoShowProperties('previsualizarATO', 'p_thisdocumentog_oid', '', false);
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
     }

@@ -374,12 +374,9 @@ export class SolicitudSIUuTINDICARTITULAR2Component extends AbstractServiceIU im
         }
         this.executeDependecyRulesptupuatrindicadorextranjero('SetValue', true);
 
-        this.ptupuatrTelefonoFijo.value = BHServicesUtil.getValorElementoPor2Claves(datosPersona?.contact?.telecom, 
-                'system', 'TELEFONO_CONTACTO_PRINCIPAL', 
-                'use', 'RESIDENCIAL', 
-                'value');
-        this.ptupuatrTelefonoCelular.value = BHServicesUtil.getValorElementoPorClave(datosPersona?.contact?.telecom, 'system', 'CELULAR_CONTACTO_PRINCIPAL', 'value');
-        this.ptupuatrCorreoElectronico.value = BHServicesUtil.getValorElementoPorClave(datosPersona?.contact?.telecom, 'system', 'CORREO_ELECTRONICO', 'value');
+        this.ptupuatrTelefonoFijo.value = BHServicesUtil.getTelefonoFijoResidencia(datosPersona?.contact?.telecom);
+        this.ptupuatrTelefonoCelular.value = BHServicesUtil.getTelefonoCelularResidencia(datosPersona?.contact?.telecom);
+        this.ptupuatrCorreoElectronico.value = BHServicesUtil.getCorreoElectronico(datosPersona?.contact?.telecom);
 
         this.ptupuagrEstadoCivil.setValue( datosPersona?.basicData?.maritalStatus?.code ? 
             this.util.oidBuilder.buildOidEstadoCivil(datosPersona?.basicData?.maritalStatus?.code) : null);
@@ -510,15 +507,9 @@ export class SolicitudSIUuTINDICARTITULAR2Component extends AbstractServiceIU im
             }
         }
 
-        this.ptDCTelefonoFijo.value = BHServicesUtil.getValorElementoPor2Claves(datosPersona?.contact?.telecom, 
-            'system', 'TELEFONO', 
-            'use', 'CORRESPONDENCIA', 
-            'value');
+        this.ptDCTelefonoFijo.value = BHServicesUtil.getTelefonoFijoCorrespondencia(datosPersona?.contact?.telecom);
 
-        this.ptDCTelefonoCelular.value = BHServicesUtil.getValorElementoPor2Claves(datosPersona?.contact?.telecom, 
-                'system', 'CELULAR', 
-                'use', 'CORRESPONDENCIA', 
-                'value');
+        this.ptDCTelefonoCelular.value = BHServicesUtil.getTelefonoCelularCorrespondencia(datosPersona?.contact?.telecom);
     
 
         // Estado de la persona

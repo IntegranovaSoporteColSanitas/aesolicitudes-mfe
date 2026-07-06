@@ -5,7 +5,7 @@ import { ErrorInformation, QueryResponse } from '../common/answerRequestInformat
 import { JsonUtility } from '../common/jsonUtility';
 
 /**
- * Service and queries of class 'Ae_solicitudes'
+ * « Service and queries of class 'Ae_solicitudes' »
  */
 export class AeusolicitudesServices extends AbstractServices {
 

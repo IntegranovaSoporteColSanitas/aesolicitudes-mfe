@@ -234,12 +234,9 @@ export class PersonaSIUuTADDUSUARIOASOLComponent extends AbstractServiceIU imple
         }
         this.executeDependecyRulesptupuatrindicadorextranjero('SetValue', true);
 
-        this.ptupuatrTelefonoFijo.value = BHServicesUtil.getValorElementoPor2Claves(datosPersona?.contact?.telecom, 
-                'system', 'TELEFONO_CONTACTO_PRINCIPAL', 
-                'use', 'RESIDENCIAL', 
-                'value');
-        this.ptupuatrTelefonoCelular.value = BHServicesUtil.getValorElementoPorClave(datosPersona?.contact?.telecom, 'system', 'CELULAR_CONTACTO_PRINCIPAL', 'value');
-        this.ptupuatrCorreoElectronico.value = BHServicesUtil.getValorElementoPorClave(datosPersona?.contact?.telecom, 'system', 'CORREO_ELECTRONICO', 'value');
+        this.ptupuatrTelefonoFijo.value = BHServicesUtil.getTelefonoFijoResidencia(datosPersona?.contact?.telecom);
+        this.ptupuatrTelefonoCelular.value = BHServicesUtil.getTelefonoCelularResidencia(datosPersona?.contact?.telecom);
+        this.ptupuatrCorreoElectronico.value = BHServicesUtil.getCorreoElectronico(datosPersona?.contact?.telecom);
 
         this.ptupuagrEstadoCivil.setValue( datosPersona?.basicData?.maritalStatus?.code ? 
             this.util.oidBuilder.buildOidEstadoCivil(datosPersona?.basicData?.maritalStatus?.code) : null);
@@ -332,13 +329,8 @@ export class PersonaSIUuTADDUSUARIOASOLComponent extends AbstractServiceIU imple
                 const datoDireccion = {
                     idUnico: i,
                     address: dir,
-                    telefonoFijo: BHServicesUtil.getValorElementoPor2Claves(datosPersona?.contact?.telecom, 
-                        'system', 'TELEFONO', 
-                        'use', dir.use, 
-                        'value'),
-                    telefonoCelular: BHServicesUtil.getValorElementoPorClave(datosPersona?.contact?.telecom, 
-                        'system', 'CELULAR', 
-                        'value')
+                    telefonoFijo: BHServicesUtil.getTelefonoFijoResidencia(datosPersona?.contact?.telecom),
+                    telefonoCelular: BHServicesUtil.getTelefonoCelularResidencia(datosPersona?.contact?.telecom)
                 }
                 this.ptDireccionesXClass.options.push({key: datoDireccion, value: dir.text})
                 i++;

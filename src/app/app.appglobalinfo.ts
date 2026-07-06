@@ -6,7 +6,7 @@ import { Configuration } from './app.constants';
 import { environment } from 'src/environments/environment';
 
 /**
- * Information about the logged user
+ * « Information about the logged user »
  */
 export class LoggedUserInfo {
 
@@ -70,7 +70,7 @@ export class LoggedUserInfo {
 
     public puedeVerDatosPersona(): boolean {
         const puede = this.getValorDeCache('verDBasicosPersona');
-        // Si no existe el valor de la clave, asumimos que s� que puede
+        // Si no existe el valor de la clave, asumimos que sí que puede
         if (puede === null || puede === undefined || puede === '') {
             return true;
         }
@@ -79,7 +79,7 @@ export class LoggedUserInfo {
 
     public puedeModificarDatosPersona(): boolean {
         const puede = this.getValorDeCache('modDBasicosPersona');
-        // Si no existe el valor de la clave, asumimos que s� que puede
+        // Si no existe el valor de la clave, asumimos que sí que puede
         if (puede === null || puede === undefined || puede === '') {
             return true;
         }
@@ -502,6 +502,28 @@ export class AppGlobalInfo {
             this.loggedUserInfo.userCache = userCache;
             sessionStorage.setItem('loggedUserInfo', JSON.stringify(this.loggedUserInfo));
         }
+    }
+
+    /**
+     * Returns the navigation key for the interaction unit
+     * @param classNav Class
+     * @param iuNav Interaction unit
+     * @returns THe navigation key
+     */
+    public getNavigationKey(classNav: string, iuNav: string): string {
+        let navKey = '';
+        const classElement = this.APPCONSTANTS.NAVCONSTANTS.find((navCte: any) => navCte.className.toUpperCase() === classNav.toUpperCase());
+        if (classElement) {
+            const uiConstant = classElement.ius.find((iuCte: any) => iuCte.name.toUpperCase() === iuNav.toUpperCase());
+            if (uiConstant) {
+                if (uiConstant.navKey === '_GENERICSIU') {
+                    navKey = 'genericsiu';
+                } else {
+                    navKey = `${classElement.navKey}/${uiConstant.navKey}`;
+                }
+            }
+        }
+        return navKey;
     }
 
     /**

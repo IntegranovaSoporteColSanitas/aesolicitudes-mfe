@@ -67,7 +67,7 @@ export class ObsEstadoSIUumodificarComponent extends AbstractServiceIU implement
         this.puthisObsEstado.dataType = ModelConstants.Obsestado.name;
         this.puthisObsEstado.allowMultiSelect = true;
         this.puthisObsEstado.oidFields = Array(2);
-        this.puthisObsEstado.oidFieldsTypes = ['autonumerico', 'autonumerico'];
+        this.puthisObsEstado.oidFieldsTypes = [Field.dtAuto, Field.dtAuto];
         this.puthisObsEstado.assignCSS();
         this.fields.push(this.puthisObsEstado);
 
@@ -236,7 +236,7 @@ export class ObsEstadoSIUumodificarComponent extends AbstractServiceIU implement
         this.clearValidationMessages();
         let fieldsHasValue = true;
         for (const field of this.puthisObsEstado.oidFields) {
-            if (!field) {
+            if (this.util.isNull(field)) {
                 fieldsHasValue = false;
                 break;
             }

@@ -9,7 +9,7 @@ import { LanguageMng } from '../../common/languageMng';
 import { UserFunctions } from '../../common/userFunctions';
 
 /**
- * Manages the filter F_GrupoAsociadoVarios of class GrupoAsociado
+ * « Manages the filter F_GrupoAsociadoVarios of class GrupoAsociado »
  */
 export class GrupoAsociadoFilterFuGrupoAsociadoVarios extends AbstractFilter {
 

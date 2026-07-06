@@ -13,7 +13,7 @@ import { AbstractPIU } from '../../common/abstractPIU';
 import { QueryResponse } from 'src/app/common/answerRequestInformation';
 
 /**
- * Manages the filter F_SolicitudConsultaRadicado of class Solicitud
+ * « Manages the filter F_SolicitudConsultaRadicado of class Solicitud »
  */
 export class SolicitudFilterFuSolicitudConsultaRadicado extends AbstractFilter {
 

@@ -3,7 +3,7 @@ import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 
 /**
- * Service and queries of class 'Pregunta'
+ * « Service and queries of class 'Pregunta' »
  */
 export class PreguntaServices extends AbstractServices {
 

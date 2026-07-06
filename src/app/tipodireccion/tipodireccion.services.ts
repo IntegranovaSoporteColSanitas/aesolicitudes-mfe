@@ -3,7 +3,7 @@ import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 
 /**
- * Service and queries of class 'TipoDireccion'
+ * « Service and queries of class 'TipoDireccion' »
  */
 export class TipoDireccionServices extends AbstractServices {
 
