@@ -100,6 +100,7 @@ export class GSSIUuOGENERARSOLICITUD2uOutComponent  extends AbstractIU implement
         }
     }
 
+
      /**
      * Initialize the scenario using the response information
      */
