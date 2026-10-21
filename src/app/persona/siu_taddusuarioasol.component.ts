@@ -139,7 +139,6 @@ export class PersonaSIUuTADDUSUARIOASOLComponent extends AbstractServiceIU imple
                     this.cargarPersonaNaturalDesdeCORE(datosPersona);
                 } else {
                     this.util.addErrorMessage('La persona no existe');
-                    this.limpiarCampos();
                     this.changeDetectorRef.markForCheck();
                 }
             }).catch( (err: Error) => {
@@ -1142,7 +1141,7 @@ export class PersonaSIUuTADDUSUARIOASOLComponent extends AbstractServiceIU imple
                 this.appGlobalInfo.getLoggedUserInfo().oid);
         }
         // v <> NULL AND v.nombrecorto <> "MS" AND (AGENT_Asesor = NULL OR agent_asesor.moddbasicospersona = TRUE)
-        if (varptupuagrtipoidentificacion && varAgentAsesor && !this.util.isNull(varptupuagrtipoidentificacion) &&
+        if (varptupuagrtipoidentificacion && !this.util.isNull(varptupuagrtipoidentificacion) &&
             !this.util.valueEquals(varptupuagrtipoidentificacion.get('nombrecorto'), 'MS') && (this.util.isNull(varAgentAsesor) ||
             this.util.valueEquals(this.util.getBool(varAgentAsesor.get('moddbasicospersona')), true))) {
             // pt_p_atrPrimerNombre.SetActive( TRUE )

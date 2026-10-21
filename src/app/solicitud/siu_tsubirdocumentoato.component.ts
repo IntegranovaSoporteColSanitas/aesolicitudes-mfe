@@ -650,7 +650,7 @@ export class SolicitudSIUuTSUBIRDOCUMENTOATOComponent extends AbstractServiceIU 
     private executeDependecyRules1ptPersona(): void {
         this.cacheDependencyRules.counter++;
         this.addQueryInstanceFromField(this.ptPersona,
-                'tipoidentificacion.nombrecorto,numidentificacion');
+                'numidentificacion');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
             this.notifyAnswerFromToTheBackEnd();
@@ -672,8 +672,8 @@ export class SolicitudSIUuTSUBIRDOCUMENTOATOComponent extends AbstractServiceIU 
         const varptpersona = this.getFirstInstanceFromCache(this.ptPersona);
         // v <> NULL
         if (varptpersona && !this.util.isNull(varptpersona)) {
-            // ptNumIdentUsuario.SetValue( v.tipoidentificacion.nombrecorto + v.numidentificacion )
-            this.ptNumIdentUsuario.setValue(varptpersona.get('tipoidentificacion.nombrecorto') + varptpersona.get('numidentificacion'));
+            // ptNumIdentUsuario.SetValue( v.numidentificacion )
+            this.ptNumIdentUsuario.setValue(varptpersona.get('numidentificacion'));
             this.executeDependecyRulesptnumidentusuario('SetValue', true);
         }
         this.executePendingDependencyRules();

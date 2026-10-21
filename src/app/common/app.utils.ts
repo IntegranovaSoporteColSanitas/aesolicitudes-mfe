@@ -868,6 +868,15 @@ export class Util {
      * @param fileName File name
      */
     public openInNewWindow(fileDataBase64: string, fileName: string): void {
+        // Tratamos el caso especial de generacion de reporte
+        if (fileName === '...GET...') {
+            let url = this.appGlobalInfo.APPCONSTANTS.BASE_URL;
+            url += '/api/GlobalServicesApi/ShowReporte'
+            // En el archivo ha llega el querystring a emplear
+            url += window.atob(fileDataBase64);
+            window.open(url, '_blank');
+            return;
+        }
         if (fileDataBase64) {
             // Set MIME type using the file extension
             let options = { type: 'application/octet-stream' };
