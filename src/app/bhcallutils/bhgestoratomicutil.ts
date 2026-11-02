@@ -186,7 +186,7 @@ export class BHGestorAtomicUtil {
             const tamanyoMax = this.appGlobalInfo.getLoggedUserInfo().userCache?.sizeAdjuntos ?
                 this.appGlobalInfo.getLoggedUserInfo().userCache?.sizeAdjuntos : 5;
             if (parseFloat(tamanyoMax) < fileMB) {
-                reject(new Error('El tamaño del archivo excede los ' + tamanyoMax + ' Mb'))
+                reject(new Error('El tamaño del archivo excede los ' + tamanyoMax + ' Mb'));
                 return;
             }
 

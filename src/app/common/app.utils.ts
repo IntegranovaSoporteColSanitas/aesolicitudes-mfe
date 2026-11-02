@@ -871,7 +871,7 @@ export class Util {
         // Tratamos el caso especial de generacion de reporte
         if (fileName === '...GET...') {
             let url = this.appGlobalInfo.APPCONSTANTS.BASE_URL;
-            url += '/api/GlobalServicesApi/ShowReporte'
+            url += '/api/GlobalServicesApi/ShowReporte';
             // En el archivo ha llega el querystring a emplear
             url += window.atob(fileDataBase64);
             window.open(url, '_blank');

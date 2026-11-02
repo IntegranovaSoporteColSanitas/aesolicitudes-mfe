@@ -2455,7 +2455,7 @@ export class SolicitudSIUuTINDICARTITULAR2Component extends AbstractServiceIU im
      * @param groupId Group id.
      */
     public isGroupVisible(groupId: string): boolean {
-        let isVisible = true;
+        let isVisible;
 
         switch (groupId) {
             case '4':
